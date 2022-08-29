@@ -1,0 +1,36 @@
+.container-carrousel {
+    display: flex;
+    justify-content: center;
+}
+
+.carousel-indicators {
+    width: 850px;
+    /* background-color: rgba(92, 89, 89, 0.603); */
+}
+
+
+.carousel-control-prev,
+.carousel-control-next {
+    background-color: black;
+    width: 30px;
+    height: 60px;
+    margin: 10px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+}
+
+.carousel-control-next {
+    left: auto;
+    right: 0;
+}
+
+
+/* 
+.carousel-item {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+} */
