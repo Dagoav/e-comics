@@ -13,8 +13,9 @@ const Home = () => {
                 </div>
             </div>
             <div className="row">
-                <main className="main">
+                <main>
                     <Carrousel2 />
+>>>>>>> 9a35f36d04037c429501bbcf0cd7754eeb5dd36c
                 </main>
             </div>
             <div className="row">
