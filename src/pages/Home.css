@@ -8,6 +8,11 @@
     background-size: cover;
 }
 
+.main {
+    background-color: antiquewhite;
+    margin-top: 20px;
+}
+
 .footer {
     width: 100%;
     color: white;

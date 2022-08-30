@@ -13,7 +13,7 @@ const Home = () => {
                 </div>
             </div>
             <div className="row">
-                <main>
+                <main className="main">
                     <Carrousel2 />
                 </main>
             </div>
