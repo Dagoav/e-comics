@@ -1,11 +1,13 @@
 import React from "react";
+import logo from '../../assets/logoNav.png'
+import Searchbar from "../searchbar/Searchbar.jsx";
 
 const Navbar = () => {
     return (
         <div>
             <nav className="navbar navbar-expand-lg bg-light">
                 <div className="container-fluid">
-                    <a className="navbar-brand" href="#">Navbar</a>
+                    <a className="navbar-brand" href="#"><img src={logo} height={50} /></a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -33,10 +35,7 @@ const Navbar = () => {
                             </li>
                         </ul>
                         {/* searchbar */}
-                        <form className="d-flex" role="search">
-                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                            <button className="btn btn-outline-success" type="submit">Search</button>
-                        </form>
+                        <Searchbar />
                     </div>
                 </div>
             </nav>

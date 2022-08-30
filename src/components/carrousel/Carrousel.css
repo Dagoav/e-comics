@@ -1,6 +1,7 @@
 .container-carrousel {
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
 .carousel-indicators {
@@ -8,6 +9,13 @@
     /* background-color: rgba(92, 89, 89, 0.603); */
 }
 
+.carousel {
+    width: 100%;
+}
+
+.d-block {
+    width: 100%;
+}
 
 .carousel-control-prev,
 .carousel-control-next {
@@ -24,13 +32,3 @@
     left: auto;
     right: 0;
 }
-
-
-/* 
-.carousel-item {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-} */
