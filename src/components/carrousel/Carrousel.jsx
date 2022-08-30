@@ -1,9 +1,22 @@
 import React from "react";
+<<<<<<< HEAD
 import "./Carrousel.css"
 import hero1 from "../../assets/intro1.jpg"
 import hero2 from "../../assets/doomsday.jpg"
 
 const Carrousel = () => {
+=======
+import hero1 from "../../assets/intro1.jpg"
+import hero2 from "../../assets/doomsday.jpg"
+import hero3 from "../../assets/comic_hand.jpg"
+import "./Carrousel.css"
+
+
+
+const Carrousel = () => {
+  let x = 800
+  let y = 350
+>>>>>>> 9a35f36d04037c429501bbcf0cd7754eeb5dd36c
 
   return (
     <div className="container-carrousel">
@@ -12,25 +25,52 @@ const Carrousel = () => {
           <button type="button" data-bs-target="#carouselWhite" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
           <button type="button" data-bs-target="#carouselWhite" data-bs-slide-to="1" aria-label="Slide 2"></button>
           <button type="button" data-bs-target="#carouselWhite" data-bs-slide-to="2" aria-label="Slide 3"></button>
+<<<<<<< HEAD
 
         </div>
         <div className="carousel-inner">
           <div className="carousel-item active" data-bs-interval="10000">
             <img src={hero1} className="d-block" width={850} height={350} alt="..." />
+=======
+        </div>
+        <div className="carousel-inner">
+          <div className="carousel-item active" data-bs-interval="10000">
+            <div className="images-box">
+              <img src={hero1} className="d-block" width={x} height={y} alt="..." />
+              <img src={hero2} className="d-block" width={x} height={y} alt="..." />
+              <img src={hero3} className="d-block" width={x} height={y} alt="..." />
+            </div>
+>>>>>>> 9a35f36d04037c429501bbcf0cd7754eeb5dd36c
             {/* <div className="carousel-caption d-none d-md-block"> */}
             {/* <h5>First slide label</h5>
                             <p>Some representative placeholder content for the first slide.</p> */}
             {/* </div> */}
           </div>
           <div className="carousel-item" data-bs-interval="2000">
+<<<<<<< HEAD
             <img src={hero2} className="d-block" width={850} height={350} alt="..." />
+=======
+            <div className="images-box">
+              <img src={hero2} className="d-block" width={x} height={y} alt="..." />
+              <img src={hero1} className="d-block" width={x} height={y} alt="..." />
+              <img src={hero3} className="d-block" width={x} height={y} alt="..." />
+            </div>
+>>>>>>> 9a35f36d04037c429501bbcf0cd7754eeb5dd36c
             {/* <div className="carousel-caption d-none d-md-block"> */}
             {/* <h5>Second slide label</h5>
                             <p>Some representative placeholder content for the second slide.</p> */}
             {/* </div> */}
           </div>
           <div className="carousel-item">
+<<<<<<< HEAD
             <img src={hero2} className="d-block" width={850} height={350} alt="..." />
+=======
+            <div className="images-box">
+              <img src={hero3} className="d-block" width={x} height={y} alt="..." />
+              <img src={hero2} className="d-block" width={x} height={y} alt="..." />
+              <img src={hero1} className="d-block" width={x} height={y} alt="..." />
+            </div>
+>>>>>>> 9a35f36d04037c429501bbcf0cd7754eeb5dd36c
             {/* <div className="carousel-caption d-none d-md-block"> */}
             {/* <h5>Third slide label</h5>
                             <p>Some representative placeholder content for the third slide.</p> */}

@@ -1,4 +1,5 @@
 .container-carrousel {
+<<<<<<< HEAD
     display: flex;
     justify-content: center;
     width: 100%;
@@ -7,6 +8,33 @@
 .carousel-indicators {
     width: 850px;
     /* background-color: rgba(92, 89, 89, 0.603); */
+=======
+    width: 100%;
+}
+
+.carousel-inner img {
+    object-fit: contain;
+}
+
+
+.carousel-indicators button {
+    width: 10px;
+    height: 10px;
+}
+
+.carousel-indicators [data-bs-target] {
+    position: relative;
+    border-radius: 100%;
+    width: 10px;
+    height: 10px;
+    border: solid 2px black;
+    z-index: 1;
+}
+
+.images-box {
+    display: flex;
+    justify-content: center;
+>>>>>>> 9a35f36d04037c429501bbcf0cd7754eeb5dd36c
 }
 
 .carousel {
@@ -19,6 +47,7 @@
 
 .carousel-control-prev,
 .carousel-control-next {
+<<<<<<< HEAD
     background-color: black;
     width: 30px;
     height: 60px;
@@ -26,6 +55,17 @@
     position: absolute;
     left: 0;
     top: 50%;
+=======
+    background-color: rgb(36, 35, 35);
+    width: 40px;
+    height: 40px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 40%;
+>>>>>>> 9a35f36d04037c429501bbcf0cd7754eeb5dd36c
 }
 
 .carousel-control-next {
