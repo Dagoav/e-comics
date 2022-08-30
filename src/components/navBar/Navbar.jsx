@@ -1,5 +1,5 @@
 import React from "react";
-import logo from '../../assets/logoNav.png'
+import logo from '../../assets/LogoRed.png'
 import Searchbar from "../searchbar/Searchbar.jsx";
 
 const Navbar = () => {

@@ -3,7 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Searchbar from '../searchbar/Searchbar2';
-import logo from '../../assets/logoNav.png'
+import logo from '../../assets/LogoRed2.png'
 
 import "./Navbar.css"
 
