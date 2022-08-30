@@ -15,9 +15,6 @@ const Home = () => {
             <div className="row">
                 <main>main
                     <Carrousel />
-                    <Carrousel />
-                    <Carrousel />
-                    <Carrousel />
                 </main>
             </div>
             <div className="row">
