@@ -4,9 +4,21 @@
     width: 100%;
 }
 
-.carousel-indicators {
+/* .carousel-indicators {
     width: 850px;
-    /* background-color: rgba(92, 89, 89, 0.603); */
+    /* background-color: rgba(92, 89, 89, 0.603); 
+} */
+
+.carousel-indicators button {
+    width: 10px;
+    height: 10px;
+}
+
+.carousel-indicators [data-bs-target] {
+    border-radius: 100%;
+    width: 10px;
+    height: 10px;
+    border: solid 2px black;
 }
 
 .carousel {
