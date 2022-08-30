@@ -1,10 +1,13 @@
 import React from "react";
 import hero1 from "../../assets/intro1.jpg"
 import hero2 from "../../assets/doomsday.jpg"
+import hero3 from "../../assets/comic_hand.jpg"
 import "./Carrousel.css"
 
+
+
 const Carrousel = () => {
-  let x = 150
+  let x = 800
   let y = 350
 
   return (
@@ -17,21 +20,33 @@ const Carrousel = () => {
         </div>
         <div className="carousel-inner">
           <div className="carousel-item active" data-bs-interval="10000">
-            <img src={hero1} className="d-block" width={x} height={y} alt="..." />
+            <div className="images-box">
+              <img src={hero1} className="d-block" width={x} height={y} alt="..." />
+              <img src={hero2} className="d-block" width={x} height={y} alt="..." />
+              <img src={hero3} className="d-block" width={x} height={y} alt="..." />
+            </div>
             {/* <div className="carousel-caption d-none d-md-block"> */}
             {/* <h5>First slide label</h5>
                             <p>Some representative placeholder content for the first slide.</p> */}
             {/* </div> */}
           </div>
           <div className="carousel-item" data-bs-interval="2000">
-            <img src={hero2} className="d-block" width={x} height={y} alt="..." />
+            <div className="images-box">
+              <img src={hero2} className="d-block" width={x} height={y} alt="..." />
+              <img src={hero1} className="d-block" width={x} height={y} alt="..." />
+              <img src={hero3} className="d-block" width={x} height={y} alt="..." />
+            </div>
             {/* <div className="carousel-caption d-none d-md-block"> */}
             {/* <h5>Second slide label</h5>
                             <p>Some representative placeholder content for the second slide.</p> */}
             {/* </div> */}
           </div>
           <div className="carousel-item">
-            <img src={hero2} className="d-block" width={x} height={y} alt="..." />
+            <div className="images-box">
+              <img src={hero3} className="d-block" width={x} height={y} alt="..." />
+              <img src={hero2} className="d-block" width={x} height={y} alt="..." />
+              <img src={hero1} className="d-block" width={x} height={y} alt="..." />
+            </div>
             {/* <div className="carousel-caption d-none d-md-block"> */}
             {/* <h5>Third slide label</h5>
                             <p>Some representative placeholder content for the third slide.</p> */}

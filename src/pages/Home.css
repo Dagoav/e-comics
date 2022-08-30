@@ -1,6 +1,15 @@
 .wrapper {
     width: 100%;
-    /* background-color: antiquewhite; */
+    height: 100vh;
     overflow: hidden;
     text-align: center;
+    background: url("../assets/5108356.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.footer {
+    width: 100%;
+    color: white;
+    background-color: rgb(20, 20, 20);
 }
