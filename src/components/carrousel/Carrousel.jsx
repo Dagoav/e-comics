@@ -18,7 +18,7 @@ const Carrousel = () => {
                         </div>
                     </div>
                     <div className="carousel-item" data-bs-interval="2000">
-                        <img src="http://placekitten.com/g/200/300" className="d-block w-50" height={400} alt="..." />
+                    <img src="http://placekitten.com/g/200/300" className="d-block w-50" height={400} alt="..." />
                         <div className="carousel-caption d-none d-md-block">
                             <h5>Second slide label</h5>
                             <p>Some representative placeholder content for the second slide.</p>
