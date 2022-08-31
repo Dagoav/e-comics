@@ -7,6 +7,12 @@
     height: 45px;
 }
 
+.badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
 /* .links {
     background-color: brown;
 } */
@@ -20,5 +26,12 @@
     .logo-box {
         height: 75px;
     }
+
+    .badge {
+        position: relative;
+        top: 2px;
+        left: -10px;
+    }
+    
 
 }
