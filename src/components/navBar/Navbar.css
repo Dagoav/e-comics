@@ -1,9 +1,24 @@
 .logo {
-    position: absolute;
-    top: 4px;
-    left: 26px;
+    position: relative;
+    top: 14px;
 }
 
-.links {
-    padding-left: 90px;
+.logo-box {
+    height: 45px;
+}
+
+/* .links {
+    background-color: brown;
+} */
+
+@media (max-width: 768px) {
+    .logo {
+        top: 0px;
+        left: 0px;
+    }
+
+    .logo-box {
+        height: 75px;
+    }
+
 }
