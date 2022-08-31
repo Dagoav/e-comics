@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Sidebar.css"
+import { characters } from './mockInfoChars.js'
+
 
 const Sidebar = () => {
+  const [char, SetChar] = useState([])
+
+  useEffect(() => {
+    const listChar = characters.results.map(char =>
+      char.name
+    ).sort((a, b) => {
+      if (a > b) return 1;
+      if (a < b) return -1;
+      return 0;
+    })
+    console.log("ORDENADO : " + listChar)
+    SetChar(() => listChar)
+  }, [])
+
   return (
     <div className="containerSide">
       <nav className="navbar navbar-expand-sm navbar-light bg-white border-bottom">
@@ -10,13 +26,14 @@ const Sidebar = () => {
       <div id="mobile-filter">
         <div>
           <h6 className="p-1 border-bottom">Characters</h6>
-          <ul>
-            <li><a href="#">Living</a></li>
-            <li><a href="#">Dining</a></li>
-            <li><a href="#">Office</a></li>
-            <li><a href="#">Bedroom</a></li>
-            <li><a href="#">Kitchen</a></li>
-          </ul>
+          <select>
+            <option value="">All characters</option>
+            {
+              char?.map(name => (
+                <option key={name} value={name}>{name}</option>
+              ))
+            }
+          </select>
         </div>
         <div>
           <h6 className="p-1 border-bottom">Filter By</h6>
@@ -54,13 +71,14 @@ const Sidebar = () => {
       <section id="sidebar">
         <div>
           <h6 className="p-1 border-bottom">Characters</h6>
-          <ul>
-            <li><a href="#">Batman</a></li>
-            <li><a href="#">Superman</a></li>
-            <li><a href="#">Dr Stange</a></li>
-            <li><a href="#">Captain America</a></li>
-            <li><a href="#">Hulk</a></li>
-          </ul>
+          <select>
+            <option value="">All characters</option>
+            {
+              char?.map(name => (
+                <option key={name} value={name}>{name}</option>
+              ))
+            }
+          </select>
         </div>
         <div>
           <h6 className="p-1 border-bottom">Filter By</h6>
@@ -95,110 +113,6 @@ const Sidebar = () => {
           </form>
         </div>
       </section>
-      {/* <section id="products">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-3 col-sm-4 col-11 offset-sm-0 offset-1">
-              <div className="card">
-                <img className="card-img-top" src="https://images.pexels.com/photos/963486/pexels-photo-963486.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Card image cap" />
-                <div className="card-body">
-                  <p className="card-text">Wooden chair with legs</p>
-                  <p>$90</p>
-                  <span className="fa fa-circle" id="red"></span>
-                  <span className="fa fa-circle" id="teal"></span>
-                  <span className="fa fa-circle" id="blue"></span>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3 offset-lg-0 col-sm-4 offset-sm-2 col-11 offset-1">
-              <div className="card">
-                <img className="card-img-top" src="https://images.pexels.com/photos/1125137/pexels-photo-1125137.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Card image cap" />
-                <div className="card-body">
-                  <p className="card-text">Ugly chair and table set</p>
-                  <p>$100</p>
-                  <span className="fa fa-circle" id="red"></span>
-                  <span className="fa fa-circle" id="teal"></span>
-                  <span className="fa fa-circle" id="blue"></span>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3 col-sm-4 col-11 offset-sm-0 offset-1">
-              <div className="card">
-                <img className="card-img-top" src="https://images.pexels.com/photos/3757055/pexels-photo-3757055.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Card image cap" />
-                <div className="card-body">
-                  <p className="card-text">Leather Lounger</p>
-                  <p>$950</p>
-                  <span className="fa fa-circle" id="red"></span>
-                  <span className="fa fa-circle" id="teal"></span>
-                  <span className="fa fa-circle" id="blue"></span>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3 col-sm-4 offset-lg-0 offset-sm-2 col-11 offset-1">
-              <div className="card">
-                <img className="card-img-top" src="https://images.unsplash.com/photo-1537182534312-f945134cce34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="Card image cap" />
-                <div className="card-body">
-                  <p className="card-text">Tree Trunk table set</p>
-                  <p>$390</p>
-                  <span className="fa fa-circle" id="red"></span>
-                  <span className="fa fa-circle" id="teal"></span>
-                  <span className="fa fa-circle" id="blue"></span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="row mt-3">
-            <div className="col-lg-3 col-sm-4 col-11 offset-sm-0 offset-1">
-              <div className="card">
-                <img className="card-img-top" src="https://images.pexels.com/photos/3230274/pexels-photo-3230274.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Card image cap" />
-                <div className="card-body">
-                  <p className="card-text">Red Leather Bar Stool</p>
-                  <p>$30</p>
-                  <span className="fa fa-circle" id="red"></span>
-                  <span className="fa fa-circle" id="teal"></span>
-                  <span className="fa fa-circle" id="blue"></span>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3 col-sm-4 offset-lg-0 offset-sm-2 col-11 offset-1">
-              <div className="card">
-                <img className="card-img-top" src="https://images.pexels.com/photos/3773571/pexels-photo-3773571.png?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Card image cap" />
-                <div className="card-body">
-                  <p className="card-text">Modern Dining Table</p>
-                  <p>$740</p>
-                  <span className="fa fa-circle" id="red"></span>
-                  <span className="fa fa-circle" id="teal"></span>
-                  <span className="fa fa-circle" id="blue"></span>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3 col-sm-4 col-11 offset-sm-0 offset-1">
-              <div className="card">
-                <img className="card-img-top" src="https://images.pexels.com/photos/534172/pexels-photo-534172.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Card image cap" />
-                <div className="card-body">
-                  <p className="card-text">Boring Dining Table</p>
-                  <p>$760</p>
-                  <span className="fa fa-circle" id="red"></span>
-                  <span className="fa fa-circle" id="teal"></span>
-                  <span className="fa fa-circle" id="blue"></span>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3 col-sm-4 offset-lg-0 offset-sm-2 col-11 offset-1">
-              <div className="card">
-                <img className="card-img-top" src="https://images.pexels.com/photos/37347/office-sitting-room-executive-sitting.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Card image cap" />
-                <div className="card-body">
-                  <p className="card-text">An Ugly Office</p>
-                  <p>$90</p>
-                  <span className="fa fa-circle" id="red"></span>
-                  <span className="fa fa-circle" id="teal"></span>
-                  <span className="fa fa-circle" id="blue"></span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> */}
     </div>
   )
 }

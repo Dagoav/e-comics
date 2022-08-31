@@ -6,26 +6,26 @@ import Sidebar from "../components/sidebar/Sidebar";
 import "./Home.css"
 
 const Home = () => {
-    return (
-        <div className="wrapper">
-            <div className="row">
-                <div className="col">
-                    <Navbar2 theme="dark" />
-                </div>
-            </div>
-            <div className="row">
-                <main>
-                    <Carrousel2 />
-                    <Sidebar />
-                </main>
-            </div>
-            <div className="row">
-                <div className="col">
-                    <footer className="footer">footer</footer>
-                </div>
-            </div>
+  return (
+    <div className="wrapper">
+      <div className="row">
+        <div className="col">
+          <Navbar2 theme="dark" />
         </div>
-    )
+      </div>
+      <div className="row">
+        <main>
+          <Carrousel2 />
+          <Sidebar />
+        </main>
+      </div>
+      <div className="row">
+        <div className="col">
+          <footer className="footer">footer</footer>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export default Home;
