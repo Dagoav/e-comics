@@ -1,6 +1,7 @@
 import React from "react";
 import Carrousel2 from "../components/carrousel/Carrousel2";
 import Navbar2 from "../components/navBar/Navbar2";
+import Sidebar from "../components/sidebar/Sidebar";
 // import Navbar from "../components/navBar/Navbar2";
 import "./Home.css"
 
@@ -15,6 +16,7 @@ const Home = () => {
             <div className="row">
                 <main>
                     <Carrousel2 />
+                    <Sidebar />
                 </main>
             </div>
             <div className="row">
