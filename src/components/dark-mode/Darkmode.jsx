@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setTheme } from "../../redux/actions";
 import "./Darkmode.css"
@@ -9,14 +8,12 @@ const Darkmode = () => {
 
 
     const handleToggle = (e) => {
-        console.log(e.target.checked);
         let theme = e.target.checked ? "dark" : "light";
         dispatch(setTheme(theme))
-        console.log(theme);
     }
 
     return (
-        <div className="container d-flex justify-content-center align-items-center">
+        <div className="d-flex justify-content-center align-items-center">
             <div className={theme === "dark" ? "icon-darkmode" : "icon-lightmode"}>
                 <span className="material-symbols-outlined p-2">
                     light_mode

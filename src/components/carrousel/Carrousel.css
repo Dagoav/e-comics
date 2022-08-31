@@ -18,7 +18,7 @@
 
 .images-box {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
 }
 
 .images-box img {

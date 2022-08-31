@@ -28,7 +28,7 @@ function Navbar2() {
       <Navbar bg={theme} variant={theme} expand="md">
         <Container fluid>
           {/* logo */}
-          <Col md={1} className="logo-box ms-3 d-md-flex justify-content-start align-items-center">
+          <Col md={2} className="logo-box ms-3 d-md-flex justify-content-start align-items-center">
             <Navbar.Brand href="#">
               <img className='logo' src={logo} width={logo_X} height={logo_y} alt="logo" />
             </Navbar.Brand>
@@ -38,10 +38,10 @@ function Navbar2() {
           {/* searchbar */}
           <Navbar.Toggle aria-controls="navbarScroll" className=' mb-4' />
           <Navbar.Collapse id="navbarScroll">
-            <Col md={2} className='py-2'>
+            <Col md={2} className='py-2 me-3'>
               <Darkmode />
             </Col>
-            <Col md={4} className="ps-4 mt-xs-5">
+            <Col md={4} className="">
               <Searchbar />
             </Col>
 
@@ -50,7 +50,7 @@ function Navbar2() {
             <Col className="links pt-1 d-md-flex justify-content-center align-items-center" md={6} >
               <Nav
                 // className="me-auto my-2 my-lg-0"
-                className='ms-auto me-4'
+                className='pe-4'
                 style={{ maxHeight: '350px' }}
                 navbarScroll
               >
