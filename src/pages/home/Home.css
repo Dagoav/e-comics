@@ -3,14 +3,13 @@
     height: 100vh;
     overflow-x: hidden;
     text-align: center;
-    background: url("../assets/5108356.jpg");
+    background: url("../../assets/5108356.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .main {
-    background-color: antiquewhite;
-    margin-top: 20px;
+    margin-top: 80px;
 }
 
 .footer {

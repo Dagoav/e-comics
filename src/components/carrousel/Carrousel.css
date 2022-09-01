@@ -1,8 +1,9 @@
 .carousel-indicators [data-bs-target] {
     position: relative;
     border-radius: 100%;
-    width: 14px;
-    height: 14px;
+    width: 10px;
+    height: 10px;
+    margin: 0px 6px;
     border: solid 2px black;
     z-index: 1;
 }
@@ -11,7 +12,9 @@
 
 .carousel-indicators .active {
     opacity: 1;
-    /* background-color: #41a6de; */
+    transform: scale(1.6) translateY(-4px);
+    transition: all 500ms;
+    /* background-color: #d01e00; */
 }
 
 .images-box {

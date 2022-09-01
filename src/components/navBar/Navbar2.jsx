@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Link } from 'react-router-dom'
 import { useSelector } from "react-redux";
 import logo from '../../assets/LogoRed2.png'
 
@@ -7,30 +7,26 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Col from 'react-bootstrap/Col'
-import Badge from 'react-bootstrap/Badge';
-import Button from 'react-bootstrap/Button';
 
 import Searchbar from '../searchbar/Searchbar2';
 import Account from '../account/Account';
 import Darkmode from '../dark-mode/Darkmode';
 import "./Navbar.css"
+import ShoppingCart from '../shopping-cart/ShoppingCart';
 
 function Navbar2() {
   const theme = useSelector((state) => state.theme);
 
-  const [countProducts, setCountProducts] = useState(0)
-
-  let logo_X = 80
-  let logo_y = 80
-
   return (
     <>
-      <Navbar bg={theme} variant={theme} expand="md">
+      <Navbar className='navbar fixed-top' bg={theme} variant={theme} expand="md">
         <Container fluid>
           {/* logo */}
           <Col md={2} className="logo-box ms-3 d-md-flex justify-content-start align-items-center">
-            <Navbar.Brand href="#">
-              <img className='logo' src={logo} width={logo_X} height={logo_y} alt="logo" />
+            <Navbar.Brand>
+              <Link to={"/"}>
+                <img className='logo' src={logo} width={80} height={80} alt="logo" />
+              </Link>
             </Navbar.Brand>
           </Col>
 
@@ -61,21 +57,13 @@ function Navbar2() {
                 <Account />
 
                 {/* shopping cart */}
-                <Nav.Link className='ms-2 position-relative' href="#action3">
-                  <span className="material-symbols-outlined">
-                    shopping_cart
-                  </span>
-                  {
-                    countProducts > 0 && <Badge className='badge' bg="danger">{countProducts}</Badge>
-                  }
-                </Nav.Link>
+                <ShoppingCart />
+
               </Nav>
             </Col>
           </Navbar.Collapse>
         </Container>
       </Navbar >
-      <Button variant="success" onClick={() => setCountProducts(countProducts + 1)}>Comprar</Button>
-      <Button className='ms-2' variant="danger" onClick={() => setCountProducts(0)}>reset</Button>
     </>
   );
 }

@@ -2,6 +2,7 @@
 const initialState = {
   comics: [],
   comic: {},
+  cart_shopping: 0,
   theme: "light"
 };
 
@@ -12,6 +13,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         comics: action.payload
+      }
+
+    case "SET_SHOPPING_CART":
+      return {
+        ...state,
+        cart_shopping: action.payload,
       }
 
     case "SET_THEME":

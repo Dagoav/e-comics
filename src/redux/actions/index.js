@@ -12,6 +12,13 @@ export const getAllComics = () => dispatch => {
         })
 };
 
+export const setShoppingCart = (products) => {
+    return {
+        type: "SET_SHOPPING_CART",
+        payload: products
+    }
+}
+
 export const setTheme = (theme) => {
     return {
         type: "SET_THEME",

@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import Login from "../login/Login";
 import "./Account.css"
 
 const Account = () => {
+
     return (
         <NavDropdown className='mx-2' title="Cuenta" id="navbarScrollingDropdown">
             <div className='me-4'>
-                <NavDropdown.Item href="#action4" className='d-flex'>
+                <NavDropdown.Item className='d-flex' >
                     <span className="material-symbols-outlined" >
                         account_circle
                     </span>
                     <span className='ms-2'>
-                        Login
+                        <Login />
                     </span>
                 </NavDropdown.Item>
                 <NavDropdown.Item href="#action5" className='d-flex'>
