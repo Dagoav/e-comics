@@ -14,14 +14,13 @@ const Sidebar = () => {
       if (a < b) return -1;
       return 0;
     })
-    console.log("ORDENADO : " + listChar)
     SetChar(() => listChar)
   }, [])
 
   return (
     <div className="containerSide">
       <nav className="navbar navbar-expand-sm navbar-light bg-white border-bottom">
-        <a className="navbar-brand ml-2 font-weight-bold">Nuestros productos</a>
+        <a className="navbar-brand ml-2 font-weight-bold">Products</a>
       </nav >
       <div id="mobile-filter">
         <div>
