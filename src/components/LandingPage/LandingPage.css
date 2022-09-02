@@ -26,13 +26,14 @@
   z-index: 2;
   margin-left: 24%;
   margin-top: 22%;
+  object-fit: cover;
 }
 
 .boom {
   position: relative;
   z-index: 2;
   margin-left: 37%;
-  margin-top: 3%;
+  margin-top: 2%;
   animation: boom .5s infinite;
   transform-origin: center;
   cursor: pointer

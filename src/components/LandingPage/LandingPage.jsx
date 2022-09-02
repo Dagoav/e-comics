@@ -9,7 +9,7 @@ const LandingPage = () => {
   return (
     <>
       <img className="background" src={background} />
-      <img className='welcome' src={welcome} width="700" />
+      <img className='welcome' src={welcome} width="900" />
       <Link to="/home">
         <img className="boom" src={boom} width="350" />
       </Link>
