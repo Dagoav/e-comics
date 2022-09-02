@@ -14,7 +14,7 @@ import Darkmode from '../dark-mode/Darkmode';
 import "./Navbar.css"
 import ShoppingCart from '../shopping-cart/ShoppingCart';
 
-function Navbar2() {
+function Navbar2({ searchbar }) {
   const theme = useSelector((state) => state.theme);
 
   return (
@@ -24,7 +24,7 @@ function Navbar2() {
           {/* logo */}
           <Col md={2} className="logo-box ms-3 d-md-flex justify-content-start align-items-center">
             <Navbar.Brand>
-              <Link to={"/"}>
+              <Link to={"/home"}>
                 <img className='logo' src={logo} width={80} height={80} alt="logo" />
               </Link>
             </Navbar.Brand>
@@ -38,7 +38,10 @@ function Navbar2() {
               <Darkmode />
             </Col>
             <Col md={4} className="">
-              <Searchbar />
+              {
+                searchbar &&
+                <Searchbar />
+              }
             </Col>
 
 

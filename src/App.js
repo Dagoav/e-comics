@@ -8,7 +8,7 @@ import Home from './pages/home/Home';
 import Shop from './pages/shop/Shop';
 import CreateComic from './pages/create-comic/CreateComic';
 import CardDetail from './components/card-detail/CardDetail';
-import LandingPage from './components/LandingPage/LandingPage.jsx';
+import LandingPage from './pages/LandingPage/LandingPage.jsx';
 
 function App() {
   return (

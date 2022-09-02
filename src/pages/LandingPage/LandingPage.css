@@ -22,21 +22,27 @@
 }
 
 .welcome {
-  position: relative;
+  position: absolute;
   z-index: 2;
-  margin-left: 24%;
-  margin-top: 22%;
-  object-fit: cover;
+  bottom: 50%;
+  left: 20%;
+  right: 0;
+  text-align: center;
+  /* margin-left: 24%;
+  margin-top: 22%; */
+  /* object-fit: cover; */
 }
 
 .boom {
-  position: relative;
-  z-index: 2;
-  margin-left: 37%;
-  margin-top: 2%;
+  position: absolute;
+  /* margin-left: 37%;
+  margin-top: 2%; */
+  /* transform-origin: center; */
+  bottom: 10%;
+  left: 38%;
   animation: boom .5s infinite;
-  transform-origin: center;
-  cursor: pointer
+  cursor: pointer;
+  z-index: 2;
 }
 
 @media screen and (max-width: 767px) {

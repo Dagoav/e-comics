@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setShoppingCart } from "../../redux/actions";
+import Navbar2 from "../../components/navBar/Navbar2";
 import Carrousel2 from "../../components/carrousel/Carrousel2";
 import Sidebar from "../../components/sidebar/Sidebar";
 import ComicCard from "../../components/card/Card";
@@ -27,6 +28,7 @@ const Home = () => {
     return (
         <div className="wrapper">
             <div className="row">
+                <Navbar2 searchbar={true} />
             </div>
             <div className="row">
                 <main className="main">
