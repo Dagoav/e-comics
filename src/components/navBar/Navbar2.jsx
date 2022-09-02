@@ -37,7 +37,7 @@ function Navbar2({ searchbar }) {
             <Col md={2} className='py-2 me-3'>
               <Darkmode />
             </Col>
-            <Col md={4} className="">
+            <Col md={4} className="ps-5">
               {
                 searchbar &&
                 <Searchbar />

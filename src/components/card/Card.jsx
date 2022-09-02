@@ -1,15 +1,16 @@
 import { Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import "./Card.css"
 
 
 const ComicCard = ({ data }) => {
     const { image, name, deck, description, api_detail_url, id } = data
 
     return (
-        <Card style={{ width: '18rem' }}>
+        <Card className="m-3 card-style" style={{ width: '18rem', height: '26rem' }}>
             <Link to={`/cardDetail/${id}`} state={{ path_detail: api_detail_url }} >
-                <Card.Img variant="top" src={image.medium_url || image} />
+                <Card.Img className="pt-3 img-card" variant="top" src={image.medium_url || image} />
             </Link>
             <Card.Body>
                 <Card.Title>{name}</Card.Title>

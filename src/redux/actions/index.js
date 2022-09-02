@@ -2,7 +2,7 @@
 // dotenv.config("../.env")
 import axios from "axios";
 
-const backendURL = "http://127.0.0.1:8000";
+const backendURL = "http://127.0.0.1:3000";
 // const apiURL = "https://comicvine.gamespot.com/api";
 // const apiKey = "d1d5b2c8d71b25f222e620d4541b6ac672a05156"
 
@@ -13,7 +13,7 @@ export const getAllVolumes = () => {
     return async (dispatch) => {
         const volumes = await axios({
             method: 'get',
-            url: `${backendURL}/volumes`,
+            url: `${backendURL}/comics`,
         })
 
         return dispatch({

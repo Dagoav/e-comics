@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setShoppingCart } from "../../redux/actions";
+import { getAllVolumes, setShoppingCart } from "../../redux/actions";
 import Navbar2 from "../../components/navBar/Navbar2";
 import Carrousel2 from "../../components/carrousel/Carrousel2";
 import Sidebar from "../../components/sidebar/Sidebar";
 import ComicCard from "../../components/card/Card";
 
+import { Col, Row } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 
 import "./Home.css"
@@ -17,6 +18,7 @@ const Home = () => {
 
     useEffect(() => {
         dispatch(setShoppingCart(countProducts))
+        dispatch(getAllVolumes())
     }, [countProducts])
 
 
@@ -30,19 +32,27 @@ const Home = () => {
             <div className="row">
                 <Navbar2 searchbar={true} />
             </div>
-            <div className="row">
-                <main className="main">
+            <main className="main">
+                <Row>
                     <Carrousel2 />
-                    {
-                        comics.map(c => (
-                            <ComicCard key={c.id} data={c} />
-                        ))
-                    }
-                    <Sidebar />
-                    <Button variant="success" onClick={handleShopping}>Comprar</Button>
-                    <Button className='ms-2' variant="danger" onClick={() => setCountProducts(0)}>reset</Button>
-                </main>
-            </div>
+                </Row>
+                <Row className="mt-5">
+                    <Col md={2} className="container" >
+                        <Sidebar />
+                    </Col>
+                    <Col md={9} className="container" >
+                        {
+                            comics.map(c => (
+                                <ComicCard key={c.id} data={c} />
+                            ))
+                        }
+                    </Col>
+
+                </Row>
+
+                <Button variant="success" onClick={handleShopping}>Comprar</Button>
+                <Button className='ms-2' variant="danger" onClick={() => setCountProducts(0)}>reset</Button>
+            </main>
             <div className="row">
                 <div className="col">
                     <footer className="footer">footer</footer>

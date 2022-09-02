@@ -19,13 +19,13 @@ const Sidebar = () => {
 
   return (
     <div className="containerSide">
-      <nav className="navbar navbar-expand-sm navbar-light bg-white border-bottom">
+      {/* <nav className="navbar navbar-expand-sm navbar-light bg-white border-bottom">
         <a className="navbar-brand ml-2 font-weight-bold">Products</a>
-      </nav >
+      </nav > */}
       <div id="mobile-filter">
         <div>
           <h6>Characters</h6>
-          <select>
+          <select className="select">
             <option value="">All characters</option>
             {
               char?.map(name => (
@@ -36,7 +36,7 @@ const Sidebar = () => {
         </div>
         <div>
           <h6>Characters</h6>
-          <select>
+          <select className="select">
             <option value="">All characters</option>
             {
               char?.map(name => (
@@ -47,7 +47,7 @@ const Sidebar = () => {
         </div>
         <div>
           <h6>Characters</h6>
-          <select>
+          <select className="select">
             <option value="">All characters</option>
             {
               char?.map(name => (
@@ -60,7 +60,7 @@ const Sidebar = () => {
       <section id="sidebar">
         <div>
           <h6 className="publisher">Characters</h6>
-          <select>
+          <select className="select">
             <option value="">All characters</option>
             {
               char?.map(name => (
@@ -71,7 +71,7 @@ const Sidebar = () => {
         </div>
         <div>
           <h6 className="publisher">Publishers</h6>
-          <select>
+          <select className="select">
             <option value="">All characters</option>
             {
               char?.map(name => (
@@ -82,7 +82,7 @@ const Sidebar = () => {
         </div>
         <div>
           <h6 className="publisher">Concepts</h6>
-          <select className="select">
+          <select className="select extra">
             <option value="">All characters</option>
             {
               char?.map(name => (
