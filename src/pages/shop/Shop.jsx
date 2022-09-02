@@ -3,7 +3,10 @@ import "./Shop.css"
 
 const Shop = () => {
     return (
-        <div className="shop-container">Shop</div>
+        <>
+            <Navbar2 />
+            <div className="shop-container">Shop</div>
+        </>
     )
 }
 
