@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setShoppingCart } from "../../redux/actions";
 import Carrousel2 from "../../components/carrousel/Carrousel2";
-import Button from 'react-bootstrap/Button';
-import "./Home.css"
+import Sidebar from "../../components/sidebar/Sidebar";
 import ComicCard from "../../components/card/Card";
+
+import Button from 'react-bootstrap/Button';
+
+import "./Home.css"
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -33,7 +36,7 @@ const Home = () => {
                             <ComicCard key={c.id} data={c} />
                         ))
                     }
-
+                    <Sidebar />
                     <Button variant="success" onClick={handleShopping}>Comprar</Button>
                     <Button className='ms-2' variant="danger" onClick={() => setCountProducts(0)}>reset</Button>
                 </main>
