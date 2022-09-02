@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllVolumes, setShoppingCart } from "../../redux/actions";
-import Navbar2 from "../../components/navBar/Navbar2";
-import Carrousel2 from "../../components/carrousel/Carrousel2";
+
+import NavBar from "../../components/navBar/Navbar";
+import Carrousel from "../../components/carrousel/Carrousel";
 import Sidebar from "../../components/sidebar/Sidebar";
 import ComicCard from "../../components/card/Card";
 
@@ -28,34 +29,36 @@ const Home = () => {
 
 
     return (
-        <div className="wrapper">
-            <div className="row">
-                <Navbar2 searchbar={true} />
-            </div>
-            <main className="main">
-                <Row>
-                    <Carrousel2 />
-                </Row>
-                <Row className="mt-5">
-                    <Col md={2} className="container" >
-                        <Sidebar />
-                    </Col>
-                    <Col md={9} className="container" >
-                        {
-                            comics.map(c => (
-                                <ComicCard key={c.id} data={c} />
-                            ))
-                        }
-                    </Col>
+        <div className="home-container">
+            <Row className="header">
+                <NavBar searchbar={true} />
+            </Row>
+            <div className="wrapper">
+                <main className="main">
+                    <Row>
+                        <Carrousel />
+                    </Row>
+                    <Row className="mt-5">
+                        <Col md={2} className="container" >
+                            <Sidebar />
+                        </Col>
+                        <Col md={9} className="container" >
+                            {
+                                comics.map(c => (
+                                    <ComicCard key={c.id} data={c} />
+                                ))
+                            }
+                        </Col>
 
-                </Row>
+                    </Row>
 
-                <Button variant="success" onClick={handleShopping}>Comprar</Button>
-                <Button className='ms-2' variant="danger" onClick={() => setCountProducts(0)}>reset</Button>
-            </main>
-            <div className="row">
-                <div className="col">
-                    <footer className="footer">footer</footer>
+                    <Button variant="success" onClick={handleShopping}>Comprar</Button>
+                    <Button className='ms-2' variant="danger" onClick={() => setCountProducts(0)}>reset</Button>
+                </main>
+                <div className="row">
+                    <div className="col">
+                        <footer className="footer">footer</footer>
+                    </div>
                 </div>
             </div>
         </div>

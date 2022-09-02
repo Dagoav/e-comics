@@ -81,9 +81,9 @@ export const setShoppingCart = (products) => {
     }
 }
 
-export const setTheme = (theme) => {
+export const setTheme = (obj) => {
     return {
         type: "SET_THEME",
-        payload: theme
+        payload: obj
     }
 }

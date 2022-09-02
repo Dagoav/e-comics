@@ -8,9 +8,13 @@
     background-size: cover;
 }
 
-.main {
-    margin-top: 60px;
+.header {
+    height: 64px;
+    background-color: antiquewhite;
 }
+
+/* .main {
+} */
 
 .footer {
     width: 100%;

@@ -1,11 +1,12 @@
 import React from "react";
-import Navbar2 from "../../components/navBar/Navbar2";
+
+import NavBar from "../../components/navBar/Navbar";
 import "./Shop.css"
 
 const Shop = () => {
     return (
         <>
-            <Navbar2 searchbar={false} />
+            <NavBar searchbar={true} />
             <div className="shop-container">Shop</div>
         </>
     )
