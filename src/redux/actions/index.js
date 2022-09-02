@@ -1,106 +1,89 @@
-import dotenv from "dotenv"
-dotenv.config()
+// import dotenv from "dotenv"
+// dotenv.config("../.env")
+import axios from "axios";
 
-const backendURL = process.env.REACT_APP_API || "http://127.0.0.1:3001";
+const backendURL = "http://127.0.0.1:8000";
+// const apiURL = "https://comicvine.gamespot.com/api";
+// const apiKey = "d1d5b2c8d71b25f222e620d4541b6ac672a05156"
 
-export const getAllCountries = () => dispatch => {
-    return fetch(`${backendURL}/countries`)
-        .then(response => response.json())
-        .then(countries => {
-            dispatch({ type: "GET_ALL_COUNTRIES", payload: countries })
+// const backendURL = process.env.REACT_APP_API || "http://127.0.0.1:3001";
+
+
+export const getAllVolumes = () => {
+    return async (dispatch) => {
+        const volumes = await axios({
+            method: 'get',
+            url: `${backendURL}/volumes`,
         })
-};
 
-export const getCountriesByname = (name) => dispatch => {
-    return fetch(`${backendURL}/countries/search?name=${name}`)
-        .then(response => response.json())
-        .then(countries => {
-            dispatch({ type: "GET_COUNTRIES_BYNAME", payload: countries })
+        return dispatch({
+            type: "GET_ALL_COMICS",
+            payload: volumes.data
         })
-        .catch((response) => console.log(response))
-};
+    }
+}
 
-export const getCountryDetail = (id) => dispatch => {
-    return fetch(`${backendURL}/countries/${id}`)
-        .then(response => response.json())
-        .then(country => {
-            dispatch({ type: "GET_COUNTRY_DETAIL", payload: country })
-        })
-};
-
-
-export const getActivities = () => dispatch => {
-    return fetch(`${backendURL}/activities`)
-        .then(response => response.json())
-        .then(activities => {
-            dispatch({ type: "GET_ALL_ACTIVITIES", payload: activities })
-        })
-};
-
-export const getContinents = () => dispatch => {
-    return fetch(`${backendURL}/countries/continents`)
-        .then(response => response.json())
-        .then(continents => {
-            dispatch({ type: "GET_ALL_CONTINENTS", payload: continents })
-        })
-};
-
-// Create activity
-export const postActivity = (_body) => dispatch => {
-    return fetch(`${backendURL}/activities/byCountry`,
-        {
-            method: "POST",
-            body: JSON.stringify(_body),
-            headers: { "Content-type": "application/json; charset=UTF-8" }
-        })
-        .then(response => response.json())
-        .then(newActivity => {
-            if (newActivity) {
-                dispatch({ type: "POST_ACTIVITY", payload: newActivity })
-
+export const volumeDetail = (path) => {
+    return async (dispatch) => {
+        const volume = await axios({
+            method: 'post',
+            url: `${backendURL}/path-detail`,
+            data: {
+                path
             }
-            return newActivity;
         })
 
-};
-
-
-// filters
-export const orderByContinents = (continent) => dispatch => {
-    return fetch(`${backendURL}/countries/byContinent?name=${continent}`)
-        .then(response => response.json())
-        .then(continents => {
-            dispatch({ type: "ORDER_BY_CONTINENTS", payload: continents })
+        return dispatch({
+            type: "GET_COMIC",
+            payload: volume.data
         })
-}
-
-export const orderByActivity = (activity) => dispatch => {
-    return fetch(`${backendURL}/countries/byActivity?name=${activity}`)
-        .then(response => response.json())
-        .then(countries => {
-            dispatch({ type: "ORDER_BY_ACTIVITY", payload: countries })
-        })
-}
-
-
-export const orderByname = (order) => {
-    return {
-        type: "ORDER_BY_NAME",
-        payload: order
     }
 }
 
-export const orderByPopulation = (order) => {
-    return {
-        type: "ORDER_BY_POPULATION",
-        payload: order
+export const issueDetail = (path) => {
+    return async (dispatch) => {
+        const issue = await axios({
+            method: 'post',
+            url: `${backendURL}/path-detail`,
+            data: {
+                path
+            }
+        })
+
+        return dispatch({
+            type: "GET_ISSUE",
+            payload: issue.data
+        })
     }
 }
 
-// pagination
-export const setPaginationParams = (parameters) => {
+export const searchComic = (volume_name) => {
+    return async (dispatch) => {
+        const comic = await axios({
+            method: 'post',
+            url: `${backendURL}/search`,
+            data: {
+                volume_name
+            }
+        })
+        console.log(comic.data);
+        return dispatch({
+            type: "SEARCH_COMICS",
+            payload: comic.data
+        })
+    }
+}
+
+export const setShoppingCart = (products) => {
     return {
-        type: "SET_PAGINATION",
-        payload: parameters
+        type: "SET_SHOPPING_CART",
+        payload: products
+    }
+}
+
+export const setTheme = (theme) => {
+    return {
+        type: "SET_THEME",
+        payload: theme
     }
 }

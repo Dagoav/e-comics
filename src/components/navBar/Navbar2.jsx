@@ -1,50 +1,70 @@
+import { Link } from 'react-router-dom'
+import { useSelector } from "react-redux";
+import logo from '../../assets/LogoRed2.png'
+
+// react-bootstrap
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import Col from 'react-bootstrap/Col'
+
 import Searchbar from '../searchbar/Searchbar2';
-import logo from '../../assets/LogoRed2.png'
-
+import Account from '../account/Account';
+import Darkmode from '../dark-mode/Darkmode';
 import "./Navbar.css"
+import ShoppingCart from '../shopping-cart/ShoppingCart';
 
-function Navbar2({ theme = "light" }) {
-  let x_logo = 80
-  let y_logo = 80
+function Navbar2() {
+  const theme = useSelector((state) => state.theme);
 
   return (
-    <Navbar bg={theme} variant={theme} expand="md">
-      <Container fluid>
-        <Navbar.Brand href="#">
-          <img className='logo' src={logo} width={x_logo} height={y_logo} alt="logo" />
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
-          <Nav
-            className="me-auto my-2 my-lg-0 links"
-            style={{ maxHeight: '100px' }}
-            navbarScroll
-          >
-            <Nav.Link href="#action1">Home</Nav.Link>
-            <Nav.Link href="#action2">Link</Nav.Link>
-            <NavDropdown title="Link" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Something else here
-              </NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link href="#" disabled>
-              Link
-            </Nav.Link>
-          </Nav>
+    <>
+      <Navbar className='navbar fixed-top' bg={theme} variant={theme} expand="md">
+        <Container fluid>
+          {/* logo */}
+          <Col md={2} className="logo-box ms-3 d-md-flex justify-content-start align-items-center">
+            <Navbar.Brand>
+              <Link to={"/"}>
+                <img className='logo' src={logo} width={80} height={80} alt="logo" />
+              </Link>
+            </Navbar.Brand>
+          </Col>
+
+
           {/* searchbar */}
-          <Searchbar />
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+          <Navbar.Toggle aria-controls="navbarScroll" className=' mb-4' />
+          <Navbar.Collapse id="navbarScroll">
+            <Col md={2} className='py-2 me-3'>
+              <Darkmode />
+            </Col>
+            <Col md={4} className="">
+              <Searchbar />
+            </Col>
+
+
+            {/* links */}
+            <Col className="links pt-1 d-md-flex justify-content-center align-items-center" md={6} >
+              <Nav
+                // className="me-auto my-2 my-lg-0"
+                className='pe-4'
+                style={{ maxHeight: '350px' }}
+                navbarScroll
+              >
+                <Nav.Link className='ms-2' href="#action1">Home</Nav.Link>
+                <Nav.Link className='ms-2' href="#action2">About</Nav.Link>
+
+                {/* Account */}
+                <Account />
+
+                {/* shopping cart */}
+                <ShoppingCart />
+
+              </Nav>
+            </Col>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar >
+    </>
   );
 }
 
