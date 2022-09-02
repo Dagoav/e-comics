@@ -2,6 +2,7 @@
 const initialState = {
   comics: [],
   comic: {},
+  issue: {},
   cart_shopping: 0,
   theme: "light"
 };
@@ -10,6 +11,22 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case "GET_ALL_COMICS":
+      return {
+        ...state,
+        comics: action.payload
+      }
+    case "GET_COMIC":
+      return {
+        ...state,
+        comic: action.payload
+      }
+    case "GET_ISSUE":
+      return {
+        ...state,
+        issue: action.payload
+      }
+
+    case "SEARCH_COMICS":
       return {
         ...state,
         comics: action.payload

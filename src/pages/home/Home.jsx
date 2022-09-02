@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { setShoppingCart } from "../../redux/actions";
 import Carrousel2 from "../../components/carrousel/Carrousel2";
 import Button from 'react-bootstrap/Button';
 import "./Home.css"
+import ComicCard from "../../components/card/Card";
 
 const Home = () => {
     const dispatch = useDispatch();
+    let comics = useSelector((state) => state.comics);
     const [countProducts, setCountProducts] = useState(0)
 
     useEffect(() => {
@@ -26,6 +28,12 @@ const Home = () => {
             <div className="row">
                 <main className="main">
                     <Carrousel2 />
+                    {
+                        comics.map(c => (
+                            <ComicCard key={c.id} data={c} />
+                        ))
+                    }
+
                     <Button variant="success" onClick={handleShopping}>Comprar</Button>
                     <Button className='ms-2' variant="danger" onClick={() => setCountProducts(0)}>reset</Button>
                 </main>
