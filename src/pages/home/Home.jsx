@@ -14,13 +14,12 @@ import "./Home.css"
 
 const Home = () => {
   const dispatch = useDispatch();
-  let comics = useSelector((state) => state.comics);
   const [countProducts, setCountProducts] = useState(0)
 
   let allComics = useSelector(state => state.comics)
 
   let [currentPage, setCurrentPage] = useState(1);
-  let [comicPerPage, setPokemonsPerPage] = useState(12)
+  let [comicPerPage, setComicPerPage] = useState(12)
   let indexOfLastComic = currentPage * comicPerPage;
   let indexOfFirstComic = indexOfLastComic - comicPerPage;
   let currentComic = allComics.slice(indexOfFirstComic, indexOfLastComic)
