@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import NavBar from '../navBar/Navbar'
-import ShoppingBar from '../shoppingBar/ShoppingBar';
+import ShoppingBar from '../shopping-bar/ShoppingBar';
 
 import "./cardDetail.css"
 
