@@ -8,8 +8,6 @@
     z-index: 1;
 }
 
-
-
 .carousel-indicators .active {
     opacity: 1;
     transform: scale(1.6) translateY(-4px);
@@ -34,7 +32,7 @@
     background-color: rgb(36, 35, 35);
     width: 40px;
     height: 40px;
-    margin: 10px;
+    margin: 10px 25px;
     padding: 10px;
     border-radius: 50%;
     position: absolute;

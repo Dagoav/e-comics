@@ -1,47 +1,75 @@
-import React from "react";
-import logo from '../../assets/LogoRed.png'
-import Searchbar from "../searchbar/Searchbar.jsx";
+import { Link } from 'react-router-dom'
+import { useSelector } from "react-redux";
+import logo from '../../assets/LogoRed2.png'
 
-const Navbar = () => {
+// react-bootstrap
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import Col from 'react-bootstrap/Col'
+
+import Searchbar from '../searchbar/Searchbar';
+import Account from '../account/Account';
+import Darkmode from '../dark-mode/Darkmode';
+import ShoppingCart from '../shopping-cart/ShoppingCart';
+import "./Navbar.css"
+
+function NavBar({ searchbar = true }) {
+  const theme_params = useSelector((state) => state.theme_params);
+  const { theme } = theme_params
+
   return (
-    <div>
-      <nav className="navbar navbar-expand-lg bg-light">
-        <div className="container-fluid">
-          <a className="navbar-brand" href="#"><img src={logo} height={50} /></a>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Link</a>
-              </li>
-              <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                <ul className="dropdown-menu">
-                  <li><a className="dropdown-item" href="#">Action</a></li>
-                  <li><a className="dropdown-item" href="#">Another action</a></li>
-                  <li><hr className="dropdown-divider" /></li>
-                  <li><a className="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link disabled">Disabled</a>
-              </li>
-            </ul>
-            {/* searchbar */}
-            <Searchbar />
-          </div>
-        </div>
-      </nav>
-    </div>
-  )
+    <>
+      <Navbar className='navbar fixed-top' bg={theme} variant={theme} expand="md">
+        <Container fluid>
+          {/* logo */}
+          <Col md={2} className="logo-box ms-3 d-md-flex justify-content-start align-items-center">
+            <Navbar.Brand>
+              <Link to={"/home"}>
+                <img className='logo' src={logo} width={80} height={80} alt="logo" />
+              </Link>
+            </Navbar.Brand>
+          </Col>
+
+
+          {/* searchbar */}
+          <Navbar.Toggle aria-controls="navbarScroll" className=' mb-4' />
+          <Navbar.Collapse id="navbarScroll">
+            <Col md={2} className='py-2'>
+              <Darkmode />
+            </Col>
+            <Col md={4} className="d-flex justify-content-center align-items-center">
+              {
+                searchbar &&
+                <Searchbar />
+              }
+            </Col>
+
+
+            {/* links */}
+            <Col className="links pt-1 d-md-flex justify-content-center align-items-center" md={6} >
+              <Nav
+                // className="me-auto my-2 my-lg-0"
+                // className='pe-4'
+                style={{ maxHeight: '450px' }}
+                navbarScroll
+              >
+                <Nav.Link className='ms-2' href="#action1">Home</Nav.Link>
+                <Nav.Link className='ms-2' href="#action2">About</Nav.Link>
+
+                {/* Account */}
+                <Account />
+
+                {/* shopping cart */}
+                <ShoppingCart />
+
+              </Nav>
+            </Col>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar >
+    </>
+  );
 }
 
-
-export default Navbar
+export default NavBar;

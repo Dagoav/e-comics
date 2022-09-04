@@ -1,65 +1,43 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getAllVolumes, setShoppingCart } from "../../redux/actions";
-import Navbar2 from "../../components/navBar/Navbar2";
-import Carrousel2 from "../../components/carrousel/Carrousel2";
+import React from "react";
+
+import NavBar from "../../components/navBar/Navbar";
+import Carrousel from "../../components/carrousel/Carrousel";
 import Sidebar from "../../components/sidebar/Sidebar";
-import ComicCard from "../../components/card/Card";
+import CardsGallery from "../../components/cards-gallery/CardsGallery";
 
 import { Col, Row } from "react-bootstrap";
-import Button from 'react-bootstrap/Button';
-
 import "./Home.css"
 
 const Home = () => {
-    const dispatch = useDispatch();
-    let comics = useSelector((state) => state.comics);
-    const [countProducts, setCountProducts] = useState(0)
+  return (
+    <div className="home-container">
+      <div className="bkg-home"></div>
+      <Row className="header">
+        <NavBar searchbar={true} />
+      </Row>
+      <div className="wrapper">
+        <main className="main">
+          <Row>
+            <Carrousel />
+          </Row>
+          <Row className="mt-5">
+            <Col md={2} className="container" >
+              <Sidebar />
+            </Col>
+            <Col md={9} className="container" >
+              <CardsGallery />
+            </Col>
 
-    useEffect(() => {
-        dispatch(setShoppingCart(countProducts))
-        dispatch(getAllVolumes())
-    }, [countProducts])
-
-
-    let handleShopping = () => {
-        setCountProducts(() => countProducts + 1)
-    }
-
-
-    return (
-        <div className="wrapper">
-            <div className="row">
-                <Navbar2 searchbar={true} />
-            </div>
-            <main className="main">
-                <Row>
-                    <Carrousel2 />
-                </Row>
-                <Row className="mt-5">
-                    <Col md={2} className="container" >
-                        <Sidebar />
-                    </Col>
-                    <Col md={9} className="container" >
-                        {
-                            comics.map(c => (
-                                <ComicCard key={c.id} data={c} />
-                            ))
-                        }
-                    </Col>
-
-                </Row>
-
-                <Button variant="success" onClick={handleShopping}>Comprar</Button>
-                <Button className='ms-2' variant="danger" onClick={() => setCountProducts(0)}>reset</Button>
-            </main>
-            <div className="row">
-                <div className="col">
-                    <footer className="footer">footer</footer>
-                </div>
-            </div>
-        </div>
-    )
+          </Row>
+        </main>
+        <Row>
+          <Col>
+            <footer className="footer">footer</footer>
+          </Col>
+        </Row>
+      </div>
+    </div >
+  )
 }
 
 export default Home;

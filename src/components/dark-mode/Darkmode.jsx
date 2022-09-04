@@ -3,13 +3,19 @@ import { setTheme } from "../../redux/actions";
 import "./Darkmode.css"
 
 const Darkmode = () => {
-    const theme = useSelector((state) => state.theme);
     const dispatch = useDispatch();
+    const theme_params = useSelector((state) => state.theme_params);
+    const { theme, state } = theme_params
 
 
     const handleToggle = (e) => {
-        let theme = e.target.checked ? "dark" : "light";
-        dispatch(setTheme(theme))
+        let checked = e.target.checked;
+        let theme = checked ? "dark" : "light";
+        let params = {
+            "theme": theme,
+            "state": checked
+        }
+        dispatch(setTheme(params))
     }
 
     return (
@@ -20,7 +26,7 @@ const Darkmode = () => {
                 </span>
             </div>
             <label className="switch">
-                <input type="checkbox" onChange={handleToggle} />
+                <input type="checkbox" onChange={handleToggle} checked={state} />
                 <span className="slider round"></span>
             </label>
             <div className={theme === "light" ? "icon-lightmode" : "icon-darkmode"}>

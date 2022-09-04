@@ -2,7 +2,7 @@
 // dotenv.config("../.env")
 import axios from "axios";
 
-const backendURL = "http://127.0.0.1:3000";
+const backendURL = "http://127.0.0.1:8000";
 // const apiURL = "https://comicvine.gamespot.com/api";
 // const apiKey = "d1d5b2c8d71b25f222e620d4541b6ac672a05156"
 
@@ -15,7 +15,6 @@ export const getAllVolumes = () => {
             method: 'get',
             url: `${backendURL}/comics`,
         })
-
         return dispatch({
             type: "GET_ALL_COMICS",
             payload: volumes.data
@@ -66,7 +65,6 @@ export const searchComic = (volume_name) => {
                 volume_name
             }
         })
-        console.log(comic.data);
         return dispatch({
             type: "SEARCH_COMICS",
             payload: comic.data
@@ -81,9 +79,9 @@ export const setShoppingCart = (products) => {
     }
 }
 
-export const setTheme = (theme) => {
+export const setTheme = (obj) => {
     return {
         type: "SET_THEME",
-        payload: theme
+        payload: obj
     }
 }
