@@ -2,7 +2,6 @@
 const initialState = {
   comics: [],
   comic: {},
-  issue: {},
   cart_shopping: 0,
   theme_params: {
     theme: "light",
@@ -22,11 +21,6 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         comic: action.payload
-      }
-    case "GET_ISSUE":
-      return {
-        ...state,
-        issue: action.payload
       }
 
     case "SEARCH_COMICS":

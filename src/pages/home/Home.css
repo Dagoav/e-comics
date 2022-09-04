@@ -3,10 +3,11 @@
     height: 100vh;
     overflow-x: hidden;
     text-align: center;
-    background: url("../../assets/5108356.jpg");
+    background: url("../../assets/dev-d2Py_uhXJQo-unsplash.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }
+
 
 .header {
     height: 64px;

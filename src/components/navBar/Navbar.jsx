@@ -8,13 +8,13 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Col from 'react-bootstrap/Col'
 
-import Searchbar from '../searchbar/Searchbar2';
+import Searchbar from '../searchbar/Searchbar';
 import Account from '../account/Account';
 import Darkmode from '../dark-mode/Darkmode';
 import ShoppingCart from '../shopping-cart/ShoppingCart';
 import "./Navbar.css"
 
-function NavBar({ searchbar }) {
+function NavBar({ searchbar = true }) {
   const theme_params = useSelector((state) => state.theme_params);
   const { theme } = theme_params
 

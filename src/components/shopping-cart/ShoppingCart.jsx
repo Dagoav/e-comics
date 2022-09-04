@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { setShoppingCart } from "../../redux/actions";
+import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom'
 
 // react-bootstrap
 import Badge from 'react-bootstrap/Badge';
-import Button from 'react-bootstrap/Button';
 
 import "./ShoppingCart.css"
 
@@ -13,16 +11,6 @@ import "./ShoppingCart.css"
 
 const ShoppingCart = () => {
     const cart_shopping = useSelector((state) => state.cart_shopping);
-    const dispatch = useDispatch();
-    const [countProducts, setCountProducts] = useState(0)
-
-    useEffect(() => {
-        dispatch(setShoppingCart(countProducts))
-    }, [countProducts])
-
-    let handleShopping = () => {
-        setCountProducts(() => countProducts + 1)
-    }
 
     return (
         <>

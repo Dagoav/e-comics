@@ -6,7 +6,7 @@ import "./Account.css"
 const Account = () => {
 
     return (
-        <NavDropdown className='mx-2' title="Cuenta" id="navbarScrollingDropdown">
+        <NavDropdown title="Cuenta" id="navbarScrollingDropdown">
             <div className='me-4'>
                 <NavDropdown.Item className='d-flex' >
                     <span className="material-symbols-outlined" >
