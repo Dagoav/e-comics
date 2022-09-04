@@ -1,7 +1,6 @@
 .containerDevs {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 3fr);
   grid-column-gap: 1rem;
   grid-row-gap: 1rem;
 }
@@ -29,4 +28,26 @@
 
 .github:hover {
   color: wheat;
+}
+
+.imgRedonda {
+  width: 80px;
+  height: 80px;
+  border-radius: 150px;
+  border: 2px solid #ffffff;
+}
+
+h5 {
+  border-bottom: 2px solid red;
+}
+
+h6 {
+  border: none
+}
+
+@media(max-width:1200px) {
+  .imgDev {
+    width: 20px;
+    height: 20px;
+  }
 }
