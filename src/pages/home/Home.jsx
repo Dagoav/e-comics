@@ -6,11 +6,13 @@ import Carrousel2 from "../../components/carrousel/Carrousel2";
 import Sidebar from "../../components/sidebar/Sidebar";
 import ComicCard from "../../components/card/Card";
 import Paginado from '../../components/paginado/paginado.jsx'
+import Footer from "../../components/footer/Footer";
 
 import { Col, Row } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 
 import "./Home.css"
+
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -45,9 +47,9 @@ const Home = () => {
 
   return (
     <div className="wrapper">
-      <div className="row">
+      <div div className="row" >
         <Navbar2 searchbar={true} />
-      </div>
+      </div >
       <main className="main">
         <Row>
           <Carrousel2 />
@@ -75,12 +77,9 @@ const Home = () => {
         <Button variant="success" onClick={handleShopping}>Comprar</Button>
         <Button className='ms-2' variant="danger" onClick={() => setCountProducts(0)}>reset</Button>
       </main>
-      <div className="row">
-        <div className="col">
-          <footer className="footer">footer</footer>
-        </div>
-      </div>
-    </div>
+
+      <Footer />
+    </div >
   )
 }
 

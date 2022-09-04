@@ -1,0 +1,32 @@
+.containerDevs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+}
+
+.containerDev {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.containerIcons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  font-size: 2rem;
+}
+
+.github {
+  color: white;
+  animation: 2s ease-in
+}
+
+.github:hover {
+  color: wheat;
+}
