@@ -23,7 +23,6 @@ const CardDetail = () => {
     }
 
     removeHref(description).then(result => {
-      console.log(result);
       desc_content.innerHTML = result
     })
 

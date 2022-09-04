@@ -4,7 +4,8 @@
   overflow-x: hidden;
   overflow-y: auto;
   background: url("../../assets/intro1.jpg");
-  background-size: contain;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .card-detail {

@@ -12,10 +12,11 @@ import "./Carrousel.css"
 
 const ControlledCarousel = () => {
     const [index, setIndex] = useState(0);
-    const listImg_item1 = [hero1, hero3, hero4]
-    const listImg_item2 = [hero6, hero2, hero7]
-    const listImg_item3 = [hero4, hero5]
-    const listImg_item4 = [hero1]
+    const listImg_item1 = [hero4, hero4, hero4]
+    const listImg_item2 = [hero4, hero4, hero4]
+    const listImg_item3 = [hero4, hero4]
+    const listImg_item4 = [hero4]
+    let time_iterval = 5000
 
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
@@ -23,19 +24,19 @@ const ControlledCarousel = () => {
 
     return (
         <Carousel activeIndex={index} onSelect={handleSelect}>
-            <Carousel.Item >
+            <Carousel.Item interval={time_iterval}>
                 <Item listImages={listImg_item1} >
                 </Item>
             </Carousel.Item>
-            <Carousel.Item >
+            <Carousel.Item interval={time_iterval} >
                 <Item listImages={listImg_item2} >
                 </Item>
             </Carousel.Item>
-            <Carousel.Item >
+            <Carousel.Item interval={time_iterval}>
                 <Item listImages={listImg_item3} >
                 </Item>
             </Carousel.Item>
-            <Carousel.Item >
+            <Carousel.Item interval={time_iterval}>
                 <Item listImages={listImg_item4} >
                 </Item>
             </Carousel.Item>
