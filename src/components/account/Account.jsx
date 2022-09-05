@@ -1,14 +1,21 @@
 import React from "react";
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useDispatch } from "react-redux";
+import { getLogin } from "../../redux/actions";
 // import { Link } from "react-router-dom";
 // import Login from "../login/Login";
 import "./Account.css"
 
 const Account = () => {
+    const dispatch = useDispatch();
+
+    const auth0_login = () => {
+        dispatch(getLogin())
+    }
 
     return (
         <NavDropdown title="Cuenta" id="navbarScrollingDropdown">
-            {/* <Link to={"http://127.0.0.1:3000/user/login"}> */}
+            <NavDropdown.Item className='d-flex' onClick={() => auth0_login()}>
                 <div className='me-4'>
                     <div className='d-flex' >
                         <span className="material-symbols-outlined" >
@@ -20,7 +27,7 @@ const Account = () => {
                         </span>
                     </div>
                 </div>
-            {/* </Link> */}
+            </NavDropdown.Item>
             <NavDropdown.Item href="#action5" className='d-flex'>
                 <span className="material-symbols-outlined">
                     book
