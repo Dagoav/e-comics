@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
-import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
+import { volumeDetail } from "../../redux/actions";
+import { useParams } from "react-router-dom";
 import NavBar from '../navBar/Navbar'
 import ShoppingBar from '../shopping-bar/ShoppingBar';
 
@@ -8,30 +9,39 @@ import "./cardDetail.css"
 
 
 const CardDetail = () => {
+  const dispatch = useDispatch();
   const theme_params = useSelector((state) => state.theme_params);
-  const location = useLocation()
-  const { data } = location.state
-  const { image, name, deck, description, start_year, price } = data
-  // console.log(data);
+  const comic = useSelector((state) => state.comic);
+  const { id } = useParams()
+  const { image, name, deck, description, start_year, price } = comic
+
 
   useEffect(() => {
-    // format and add description
-    const desc_content = document.getElementById("desc")
-    const removeHref = async (text) => {
-      const pattern = /href="(.*?)"/g
-      return await text.replaceAll(pattern, 'href="javascript:()=> false;" disabled="disabled"');
+    dispatch(volumeDetail(id))
+  }, [dispatch, id])
+
+
+  useEffect(() => {
+    if (Object.entries(comic).length > 0) {
+      // format and add description
+      const desc_content = document.getElementById("desc")
+      const removeHref = async (text) => {
+        const pattern = /href="(.*?)"/g
+        return await text.replaceAll(pattern, 'href="javascript:()=> false;" disabled="disabled"');
+      }
+
+      removeHref(description).then(result => {
+        desc_content.innerHTML = result
+      })
+
+      // set theme
+      const description_bkg = document.getElementById("description-detail");
+      const theme = theme_params.theme === "light" ? "description-detail-light" : "description-detail-dark"
+      description_bkg.className = theme
     }
+  },)
 
-    removeHref(description).then(result => {
-      desc_content.innerHTML = result
-    })
-
-    // set theme
-    const description_bkg = document.getElementById("description-detail");
-    const theme = theme_params.theme === "light" ? "description-detail-light" : "description-detail-dark"
-    description_bkg.className = theme
-  })
-
+  if (Object.entries(comic).length === 0) return <p>Loading...</p>
   return (
     <div className='container-detail' >
       <NavBar searchbar={false} />

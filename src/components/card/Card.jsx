@@ -21,7 +21,7 @@ const ComicCard = ({ data }) => {
     <>
       <Card className="m-3 card-style" style={{ width: '16rem', height: '22rem' }}>
         <Card.Img className="img-card" variant="top" src={image} onClick={(e) => moveLeft(e)} />
-        <Link to={`/cardDetail/${id}`} state={{ data }} >
+        <Link to={`/cardDetail/${id}`}>
           <div className="content"></div>
         </Link>
       </Card >

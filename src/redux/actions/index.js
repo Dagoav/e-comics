@@ -1,13 +1,6 @@
-// import dotenv from "dotenv"
-// dotenv.config("../.env")
 import axios from "axios";
 
-const backendURL = "http://127.0.0.1:3000";
-// const apiURL = "https://comicvine.gamespot.com/api";
-// const apiKey = "d1d5b2c8d71b25f222e620d4541b6ac672a05156"
-
-// const backendURL = process.env.REACT_APP_API || "http://127.0.0.1:3001";
-
+const backendURL = process.env.REACT_APP_API;
 
 export const getAllVolumes = () => {
   return async (dispatch) => {
@@ -22,16 +15,12 @@ export const getAllVolumes = () => {
   }
 }
 
-export const volumeDetail = (path) => {
+export const volumeDetail = (id) => {
   return async (dispatch) => {
     const volume = await axios({
-      method: 'post',
-      url: `${backendURL}/path-detail`,
-      data: {
-        path
-      }
+      method: 'get',
+      url: `${backendURL}/comics/${String(id)}`,
     })
-
     return dispatch({
       type: "GET_COMIC",
       payload: volume.data
@@ -39,26 +28,27 @@ export const volumeDetail = (path) => {
   }
 }
 
-export const getLogin = () => {
-  return async (dispatch) => {
-    const auth = await axios({
-      method: 'get',
-      url: `${backendURL}/sign-up`,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json',
-        // 'Authorization': key,
-        withCredentials: true,
-        mode: 'no-cors',
-      }
-    })
-    console.log(auth);
-    return dispatch({
-      type: "SET_AUTH",
-      payload: auth.data
-    })
-  }
-}
+
+// export const getLogin = () => {
+//   return async (dispatch) => {
+//     const auth = await axios({
+//       method: 'get',
+//       url: `${backendURL}/sign-up`,
+//       headers: {
+//         'Access-Control-Allow-Origin': '*',
+//         'Content-Type': 'application/json',
+//         // 'Authorization': key,
+//         withCredentials: true,
+//         mode: 'no-cors',
+//       }
+//     })
+//     console.log(auth);
+//     return dispatch({
+//       type: "SET_AUTH",
+//       payload: auth.data
+//     })
+//   }
+// }
 
 
 export const issueDetail = (path) => {
@@ -79,17 +69,16 @@ export const issueDetail = (path) => {
 }
 
 export const searchComic = (volume_name) => {
+  console.log(volume_name);
   return async (dispatch) => {
-    const comic = await axios({
-      method: 'post',
-      url: `${backendURL}/search`,
-      data: {
-        volume_name
-      }
+    const comics = await axios({
+      method: 'get',
+      url: `${backendURL}/comics/search?name=${volume_name}`,
     })
+    console.log(comics.data);
     return dispatch({
       type: "SEARCH_COMICS",
-      payload: comic.data
+      payload: comics.data
     })
   }
 }
