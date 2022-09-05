@@ -1,6 +1,7 @@
 import React from 'react';
 import { BsLinkedin, BsGithub } from 'react-icons/bs'
-import Sergio from '../../assets/SergioFoto.jpeg'
+import Sergio from '../../assets/devs/SergioFoto.jpeg'
+import Daniel from '../../assets/devs/Daniel.jpeg'
 import Logo from '../../assets/LogoRed2.png'
 import "./footer.css"
 
@@ -32,7 +33,7 @@ const Footer = () => {
                 <div className="containerDevs">
                   <div className="containerDev">
                     <h6>Daniel Gonzalez Avila</h6>
-                    <img src={Sergio} className="imgRedonda mt-3" alt='' />
+                    <img src={Daniel} className="imgRedonda mt-3" alt='' />
                     <div className="containerIcons">
                       <a className="github" href='https://www.google.com.ar'>
                         <BsGithub />
