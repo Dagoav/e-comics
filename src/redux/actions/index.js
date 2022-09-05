@@ -23,37 +23,37 @@ export const getAllVolumes = () => {
 }
 
 export const volumeDetail = (path) => {
-    return async (dispatch) => {
-        const volume = await axios({
-            method: 'post',
-            url: `${backendURL}/path-detail`,
-            data: {
-                path
-            }
-        })
+  return async (dispatch) => {
+    const volume = await axios({
+      method: 'post',
+      url: `${backendURL}/path-detail`,
+      data: {
+        path
+      }
+    })
 
-        return dispatch({
-            type: "GET_COMIC",
-            payload: volume.data
-        })
-    }
+    return dispatch({
+      type: "GET_COMIC",
+      payload: volume.data
+    })
+  }
 }
 
 export const issueDetail = (path) => {
-    return async (dispatch) => {
-        const issue = await axios({
-            method: 'post',
-            url: `${backendURL}/path-detail`,
-            data: {
-                path
-            }
-        })
+  return async (dispatch) => {
+    const issue = await axios({
+      method: 'post',
+      url: `${backendURL}/path-detail`,
+      data: {
+        path
+      }
+    })
 
-        return dispatch({
-            type: "GET_ISSUE",
-            payload: issue.data
-        })
-    }
+    return dispatch({
+      type: "GET_ISSUE",
+      payload: issue.data
+    })
+  }
 }
 
 export const searchComic = (volume_name) => {
@@ -73,10 +73,10 @@ export const searchComic = (volume_name) => {
 }
 
 export const setShoppingCart = (products) => {
-    return {
-        type: "SET_SHOPPING_CART",
-        payload: products
-    }
+  return {
+    type: "SET_SHOPPING_CART",
+    payload: products
+  }
 }
 
 export const setTheme = (obj) => {
@@ -84,4 +84,34 @@ export const setTheme = (obj) => {
         type: "SET_THEME",
         payload: obj
     }
+}
+
+export function getCharacters() {
+  return async function (dispatch) {
+    var chars = await axios.get("http://127.0.0.1:3000/characters")
+    return dispatch({
+      type: "GET_CHARACTERS",
+      payload: chars.data
+    })
+  }
+}
+
+export function getPublishers() {
+  return async function (dispatch) {
+    var publishers = await axios.get("http://127.0.0.1:3000/publishers")
+    return dispatch({
+      type: "GET_PUBLISHERS",
+      payload: publishers.data
+    })
+  }
+}
+
+export function getConcepts() {
+  return async function (dispatch) {
+    var concepts = await axios.get("http://127.0.0.1:3000/concepts")
+    return dispatch({
+      type: "GET_CONCEPTS",
+      payload: concepts.data
+    })
+  }
 }
