@@ -3,18 +3,22 @@
     height: 100vh;
     text-align: center;
     overflow-x: hidden;
+    background: url("../../assets/dev-d2Py_uhXJQo-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left left;
 }
 
-.bkg-home {
-    height: 100vh;
+/* .bkg-home {
     width: calc(100% - 12px);
+    height: 100vh;
     position: absolute;
     background: url("../../assets/dev-d2Py_uhXJQo-unsplash.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: left left;
     filter: grayscale(.8);
-}
+} */
 
 .header {
     height: 64px;
@@ -34,5 +38,9 @@
 @media all and (min--moz-device-pixel-ratio:0) {
     .bkg-home {
         width: calc(100% - 16px);
+    }
+
+    .main {
+        margin-top: 60px;
     }
 }

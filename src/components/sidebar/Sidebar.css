@@ -160,17 +160,13 @@ li a:hover {
   #mobile-filter {
     display: none;
   }
+
+  #sidebar {
+    width: 10rem;
+  }
 }
 
 @media(min-width:568px) and (max-width:767px) {
-  .navbar-nav {
-    margin-left: 20%;
-  }
-
-  .nav-item {
-    padding-left: 10px;
-  }
-
   .card {
     width: 205px;
     display: inline-block;
@@ -190,6 +186,10 @@ li a:hover {
   #mobile-filter {
     display: none;
   }
+
+  #sidebar {
+    width: 95%;
+  }
 }
 
 @media(max-width:567px) {
@@ -202,10 +202,9 @@ li a:hover {
   }
 
   #sidebar {
-    width: 100%;
-    padding: 10px;
-    margin: 0;
-    float: left;
+    width: 90%;
+    height: 100%;
+    margin-left: 1.8rem;
   }
 
   #products {
@@ -240,13 +239,5 @@ li a:hover {
     display: block;
     margin-left: 70%;
     margin-top: 2%;
-  }
-
-  #sidebar {
-    display: none;
-  }
-
-  #mobile-filter {
-    padding: 10px;
   }
 }
