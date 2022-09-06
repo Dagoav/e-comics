@@ -85,7 +85,7 @@ export const searchComic = (volume_name) => {
 
 export function getCharacters() {
   return async function (dispatch) {
-    var chars = await axios.get("http://127.0.0.1:3000/characters")
+    var chars = await axios.get(`${backendURL}/characters`)
     return dispatch({
       type: "GET_CHARACTERS",
       payload: chars.data
@@ -95,7 +95,7 @@ export function getCharacters() {
 
 export function getPublishers() {
   return async function (dispatch) {
-    var publishers = await axios.get("http://127.0.0.1:3000/publishers")
+    var publishers = await axios.get(`${backendURL}/publishers`)
     return dispatch({
       type: "GET_PUBLISHERS",
       payload: publishers.data
@@ -105,7 +105,7 @@ export function getPublishers() {
 
 export function getConcepts() {
   return async function (dispatch) {
-    var concepts = await axios.get("http://127.0.0.1:3000/concepts")
+    var concepts = await axios.get(`${backendURL}/concepts`)
     return dispatch({
       type: "GET_CONCEPTS",
       payload: concepts.data
