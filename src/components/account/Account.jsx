@@ -5,9 +5,19 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 // import { Link } from "react-router-dom";
 // import Login from "../login/Login";
 import "./Account.css"
+import { Link } from "react-router-dom";
+
+import Login1 from "../login/Login";
+import Logout from '../login/Logout'
+import Profile from '../login/Profile'
+import { useAuth0 } from '@auth0/auth0-react';
+
+
+
 
 const Account = () => {
     const dispatch = useDispatch();
+    const {isAuthenticated} = useAuth0()
 
     const auth0_login = () => {
         dispatch(getLogin())
@@ -24,7 +34,15 @@ const Account = () => {
                         </span>
                         <span className='ms-2'>
                             {/* <Login /> */}
-                            Login
+
+                            {isAuthenticated ? (
+              <>
+              <Profile/>
+              <Logout/>
+              </> 
+              ): (
+              <Login1/>
+            )} 
                         </span>
                     </div>
                 </div>
@@ -34,8 +52,9 @@ const Account = () => {
                     book
                 </span>
                 <span className='ms-2'>
-                    Favoritos
+                    <Link to='/fav'><button>Favoritos</button></Link> 
                 </span>
+
             </NavDropdown.Item>
             <NavDropdown.Item href="#action6" className='d-flex'>
                 <span className="material-symbols-outlined">
@@ -48,7 +67,7 @@ const Account = () => {
             <NavDropdown.Divider />
             <NavDropdown.Item href="#action7" className='d-flex'>
                 <span className="material-symbols-outlined">
-                    logout
+                    {<Logout/>}
                 </span>
                 <span className='ms-2'>
                     Salir

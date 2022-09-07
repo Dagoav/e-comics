@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllVolumes } from "../../redux/actions";
+import { getAllVolumes, reset_comicState } from "../../redux/actions";
 import ComicCard from "../../components/card/Card";
 import Paginado from "../paginado/paginado";
 
@@ -13,7 +13,9 @@ const CardsGallery = () => {
     // eslint-disable-next-line no-unused-vars
     let [comicPerPage, setComicPerPage] = useState(12)
     let comics = useSelector((state) => state.comics);
+        console.log(comics)
     useEffect(() => {
+        dispatch(reset_comicState())
         dispatch(getAllVolumes())
     }, [dispatch])
 

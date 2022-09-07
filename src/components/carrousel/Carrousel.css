@@ -1,3 +1,9 @@
+.container-carrousel {
+    opacity: .85;
+    padding: 20px;
+
+}
+
 .carousel-indicators [data-bs-target] {
     position: relative;
     border-radius: 100%;
@@ -5,6 +11,7 @@
     height: 10px;
     margin: 0px 6px;
     border: solid 2px black;
+    opacity: 1;
     z-index: 1;
 }
 
@@ -18,26 +25,28 @@
 .images-box {
     display: flex;
     justify-content: center;
+    opacity: 1;
 }
 
 .images-box img {
-    width: 500px;
-    height: 300px;
+    width: 270px;
+    height: 170px;
     object-fit: cover;
+    opacity: 1 !important;
 }
 
 
 .carousel-control-prev,
 .carousel-control-next {
-    background-color: rgb(36, 35, 35);
+    background-color: rgb(255, 1, 1);
     width: 40px;
     height: 40px;
-    margin: 10px 25px;
+    margin: 10px 15px;
     padding: 10px;
     border-radius: 50%;
     position: absolute;
     left: 0;
-    top: 40%;
+    top: 30%;
 }
 
 .carousel-control-next {
