@@ -126,3 +126,29 @@ export const setTheme = (obj) => {
     payload: obj
   }
 }
+
+export function addFavorite(comic){
+  console.log(comic, "action.fav")
+  return {
+  type: "ADD_FAVORITE",
+  payload: comic
+  }
+  }
+
+  export function removeFavorite(comic){
+    console.log(comic, "quitando de fav")
+    return{
+      type: "REMOVE_FAVORITE",
+      payload: comic
+    }
+  }
+
+export function creategame(data) {
+  return async function () {
+    const createUser = await axios.post(
+      "http://localhost:3000/publishers",
+      data
+    );
+    console.log(createUser)
+  };
+}
