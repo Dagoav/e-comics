@@ -10,7 +10,6 @@ import { Col, Row } from "react-bootstrap";
 import "./Home.css"
 
 const Home = () => {
-  console.log("from branch deploy");
   return (
     <div className="home-container">
 

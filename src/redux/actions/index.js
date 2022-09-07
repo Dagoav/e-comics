@@ -73,7 +73,7 @@ export const searchComic = (volume_name) => {
   return async (dispatch) => {
     const comics = await axios({
       method: 'get',
-      url: `${backendURL}/comics/name?name=${volume_name}`,
+      url: `${backendURL}/comics/search?name=${volume_name}`,
     })
     console.log(comics.data);
     return dispatch({
@@ -113,6 +113,12 @@ export function getConcepts() {
   }
 }
 
+export const reset_comicState = (payload) => {
+  return {
+    type: "RESET_COMIC",
+    payload
+  }
+}
 export const setShoppingCart = (products) => {
   return {
     type: "SET_SHOPPING_CART",
