@@ -8,6 +8,7 @@ import ShoppingBar from '../shopping-bar/ShoppingBar';
 import "./cardDetail.css"
 
 
+
 const CardDetail = () => {
   const dispatch = useDispatch();
   const theme_params = useSelector((state) => state.theme_params);
@@ -15,6 +16,7 @@ const CardDetail = () => {
   const { id } = useParams()
   const { image, name, deck, description, start_year, price } = comic
 
+  console.log(comic)
 
   useEffect(() => {
     dispatch(volumeDetail(id))
@@ -41,6 +43,7 @@ const CardDetail = () => {
     }
   },)
 
+
   if (Object.entries(comic).length === 0) return <p>Loading...</p>
   return (
     <div className='container-detail' >
@@ -56,7 +59,7 @@ const CardDetail = () => {
             <p id='desc'></p>
           </div>
           <div className='shopping-detail'>
-            <ShoppingBar price={price} />
+            <ShoppingBar comic={comic} price={price} />
           </div>
         </div>
       </div>
