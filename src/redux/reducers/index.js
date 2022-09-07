@@ -10,6 +10,7 @@ const initialState = {
     theme: "light",
     state: false
   },
+  favourite: []
 };
 
 
@@ -67,6 +68,20 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         concepts: action.payload
+      }
+      case 'ADD_FAVORITE':     
+      console.log(action.payload, "hola reducers")            
+      return{
+          ...state,
+          favourite: action.payload
+          //Fouvorites: [...state.favourite, action.payload ]   
+      }
+  
+      case 'REMUVE_FAVORITE':                
+      return{
+          ...state,
+          // favourites: state.favourite.filter(movie => movie.id !== action.payload) 
+          favourite: state.favourite.filter(e => e.id !== action.payload) 
       }
 
     default: return state
