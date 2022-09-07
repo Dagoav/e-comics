@@ -27,6 +27,12 @@ const rootReducer = (state = initialState, action) => {
         comic: action.payload
       }
 
+    case "RESET_COMIC":
+      return {
+        ...state,
+        comic: {}
+      }
+
     case "SEARCH_COMICS":
       return {
         ...state,
