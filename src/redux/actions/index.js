@@ -29,26 +29,26 @@ export const volumeDetail = (id) => {
 }
 
 
-// export const getLogin = () => {
-//   return async (dispatch) => {
-//     const auth = await axios({
-//       method: 'get',
-//       url: `${backendURL}/sign-up`,
-//       headers: {
-//         'Access-Control-Allow-Origin': '*',
-//         'Content-Type': 'application/json',
-//         // 'Authorization': key,
-//         withCredentials: true,
-//         mode: 'no-cors',
-//       }
-//     })
-//     console.log(auth);
-//     return dispatch({
-//       type: "SET_AUTH",
-//       payload: auth.data
-//     })
-//   }
-// }
+export const getLogin = () => {
+  return async (dispatch) => {
+    const auth = await axios({
+      method: 'get',
+      url: `${backendURL}/sign-up`,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+        // 'Authorization': key,
+        withCredentials: true,
+        mode: 'no-cors',
+      }
+    })
+    console.log(auth);
+    return dispatch({
+      type: "SET_AUTH",
+      payload: auth.data
+    })
+  }
+}
 
 
 export const issueDetail = (path) => {
@@ -73,7 +73,7 @@ export const searchComic = (volume_name) => {
   return async (dispatch) => {
     const comics = await axios({
       method: 'get',
-      url: `${backendURL}/comics/search?name=${volume_name}`,
+      url: `${backendURL}/comics/name?name=${volume_name}`,
     })
     console.log(comics.data);
     return dispatch({
