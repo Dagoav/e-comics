@@ -13,6 +13,7 @@ const CardsGallery = () => {
     // eslint-disable-next-line no-unused-vars
     let [comicPerPage, setComicPerPage] = useState(12)
     let comics = useSelector((state) => state.comics);
+        console.log(comics)
     useEffect(() => {
         dispatch(reset_comicState())
         dispatch(getAllVolumes())
