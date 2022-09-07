@@ -6,7 +6,7 @@ export const getAllVolumes = () => {
   return async (dispatch) => {
     const volumes = await axios({
       method: 'get',
-      url: `${backendURL}comics`,
+      url: `${backendURL}/comics`,
     })
     return dispatch({
       type: "GET_ALL_COMICS",
@@ -19,7 +19,7 @@ export const volumeDetail = (id) => {
   return async (dispatch) => {
     const volume = await axios({
       method: 'get',
-      url: `${backendURL}comics/${String(id)}`,
+      url: `${backendURL}/comics/${String(id)}`,
     })
     return dispatch({
       type: "GET_COMIC",
@@ -33,7 +33,7 @@ export const volumeDetail = (id) => {
 //   return async (dispatch) => {
 //     const auth = await axios({
 //       method: 'get',
-//       url: `${backendURL}sign-up`,
+//       url: `${backendURL}/sign-up`,
 //       headers: {
 //         'Access-Control-Allow-Origin': '*',
 //         'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ export const issueDetail = (path) => {
   return async (dispatch) => {
     const issue = await axios({
       method: 'post',
-      url: `${backendURL}path-detail`,
+      url: `${backendURL}/path-detail`,
       data: {
         path
       }
@@ -73,7 +73,7 @@ export const searchComic = (volume_name) => {
   return async (dispatch) => {
     const comics = await axios({
       method: 'get',
-      url: `${backendURL}comics/name?name=${volume_name}`,
+      url: `${backendURL}/comics/name?name=${volume_name}`,
     })
     console.log(comics.data);
     return dispatch({
@@ -85,7 +85,7 @@ export const searchComic = (volume_name) => {
 
 export function getCharacters() {
   return async function (dispatch) {
-    var chars = await axios.get(`${backendURL}characters`)
+    var chars = await axios.get(`${backendURL}/characters`)
     return dispatch({
       type: "GET_CHARACTERS",
       payload: chars.data
@@ -95,7 +95,7 @@ export function getCharacters() {
 
 export function getPublishers() {
   return async function (dispatch) {
-    var publishers = await axios.get(`${backendURL}publishers`)
+    var publishers = await axios.get(`${backendURL}/publishers`)
     return dispatch({
       type: "GET_PUBLISHERS",
       payload: publishers.data
@@ -105,7 +105,7 @@ export function getPublishers() {
 
 export function getConcepts() {
   return async function (dispatch) {
-    var concepts = await axios.get(`${backendURL}concepts`)
+    var concepts = await axios.get(`${backendURL}/concepts`)
     return dispatch({
       type: "GET_CONCEPTS",
       payload: concepts.data
