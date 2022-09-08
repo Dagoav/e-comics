@@ -170,3 +170,59 @@ header ul li a:hover {
   height: 100%;
   clip-path: circle(917px at left 131px);
 }
+
+@media (max-width: 375px) {
+  section {
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
+  header {
+    width: 50%;
+  }
+
+  .cont {
+    display: grid;
+  }
+
+  .cont .textBox {
+    margin-top: 210%;
+    margin-right: 300px;
+  }
+
+  .cont .imgBox {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+  }
+
+  section .circle2 {
+    width: 400px;
+    height: 2000px;
+    clip-path: circle(704px at left 1218px);
+  }
+
+}
+
+@media (max-width: 768px) {
+  section {
+    overflow-y: scroll;
+  }
+
+  .imgBox {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    padding-left: 70px;
+  }
+
+  .thumb {
+    bottom: -174px;
+    left: 280px;
+  }
+
+  .thumb img {
+    width: 140px;
+    height: 140px;
+  }
+}
