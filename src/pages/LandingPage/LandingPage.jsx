@@ -34,7 +34,7 @@ const LandingPage = () => {
         <div className="cont">
           <div className="textBox">
             <h2>It`s not just Comics <br />It`s <span>E-Comics</span></h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum sint et rem provident officiis vitae laborum, facilis quasi fugit dolor voluptas dignissimos impedit iure vero distinctio labore fuga. Mollitia, nobis.</p>
+            <p>Looking for a comic? E-Comics is your place to find it. The best prices, the best comics and the best promotions</p>
             <a className="shop" href="/home">Go Shop</a>
           </div>
           <div className='imgBox'>
@@ -46,9 +46,9 @@ const LandingPage = () => {
             <img src={comic6} width={180} height={200} alt="comic" />
           </div>
           <ul className='thumb'>
-            <li><img src={sale50} alt="sale" width={150} height={150} /></li>
-            <li><img src={offer} alt="offer" width={150} height={150} /></li>
-            <li><img src={bestseller} alt="best" width={150} height={150} /></li>
+            <Link to="/home"><li><img src={sale50} alt="sale" width={150} height={150} /></li></Link>
+            <Link to="/home"><li><img src={offer} alt="offer" width={150} height={150} /></li></Link>
+            <Link to="/home"><li><img src={bestseller} alt="best" width={150} height={150} /></li></Link>
           </ul>
         </div>
       </section>
