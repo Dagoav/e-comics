@@ -15,10 +15,11 @@ const Searchbar = () => {
   };
 
   useEffect(() => {
+
     if (inputValue !== "") {
       dispatch(searchComic(inputValue));
     }
-    if (inputValue === "" && change) {
+    if (change) {
       dispatch(getAllVolumes());
     }
   }, [inputValue, change, dispatch]);

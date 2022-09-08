@@ -6,7 +6,10 @@ import { setShoppingCart } from "../../redux/actions";
 
 import "./ShoppingBar.css"
 
-const ShoppingBar = ({ price }) => {
+import { addFavorite } from '../../redux/actions';
+
+
+const ShoppingBar = ({ price, comic }) => {
   const dispatch = useDispatch();
   const theme_params = useSelector((state) => state.theme_params);
   const cart_shopping = useSelector((state) => state.cart_shopping);
@@ -37,11 +40,15 @@ const ShoppingBar = ({ price }) => {
     setAddProduct(false)
   }
 
+  const addFavhandler = (e) => {
+    e.preventDefault()
+    dispatch(addFavorite(comic))
+  }
 
-  return (
+  return (                                                                      //line 51
     <div id="shopping-container">
       <Col md={2} className="d-flex justify-content-start align-items-center">
-        <button className="shopping-icon">
+        <button className="shopping-icon" onClick={addFavhandler}>     
           <span className="pt-1 material-symbols-outlined">
             heart_plus
           </span>

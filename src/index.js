@@ -9,13 +9,23 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { Auth0Provider } from '@auth0/auth0-react';
+
+const providerConfig = {
+  domain: "dev-dme2agps.us.auth0.com",
+  clientId: "KGHYE5uXq8zYlmfaaa1oMTLlxLlc1Unh",
+  redirectUri: window.location.origin,
+};
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <React.StrictMode >
     <Provider store={store}>
+    <Auth0Provider {...providerConfig}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
+      </Auth0Provider>
     </Provider>
   </React.StrictMode>
 );
