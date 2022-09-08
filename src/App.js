@@ -9,6 +9,7 @@ import CreateComic from './pages/create-comic/CreateComic';
 import CardDetail from './components/card-detail/CardDetail';
 import LandingPage from './pages/LandingPage/LandingPage.jsx';
 import Favorites from './pages/favorites/Favorites';
+import Checkout from './components/pagos/Checkout'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path={"/cardDetail/:id"} element={<CardDetail />} />
         <Route path="/create" element={<CreateComic />} />
         <Route path='/fav' element={<Favorites />} />
+        <Route path='/checkout' element={<Checkout />} />
       </Routes>
     </div>
   );
