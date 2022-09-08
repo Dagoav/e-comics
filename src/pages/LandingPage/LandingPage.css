@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Poppins&display=swap');
 
 * {
   margin: 0;
@@ -52,10 +52,117 @@ header ul li a {
   text-decoration: none;
 }
 
+header ul li a:hover {
+  transform: scale(1.3);
+  color: #d01e00;
+}
+
 .cont {
   position: relative;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.imgBox {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  margin-right: -6%;
+  margin-top: 90px;
+}
+
+.cont .textBox {
+  position: relative;
+  max-width: 600px;
+}
+
+.cont .textBox h2 {
+  color: #333;
+  font-size: 3rem;
+  line-height: 3rem;
+  font-weight: 500;
+}
+
+.cont .textBox h2 span {
+  color: #d01e00;
+  font-size: 3.3rem;
+  font-weight: 900;
+  font-family: 'Permanent Marker', cursive;
+}
+
+.cont .textBox p {
+  color: #333;
+  font-weight: 600;
+}
+
+.cont .textBox a {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 8px 20px;
+  background: #d01e00;
+  color: #fff;
+  border-radius: 40px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+.cont .imgBox {
+  width: 600px;
+  padding-right: 50px;
+}
+
+.thumb {
+  position: absolute;
+  left: 50%;
+  bottom: -36px;
+  transform: translateX(-95%);
+  display: flex;
+}
+
+.thumb li {
+  list-style: none;
+  display: inline-block;
+  cursor: pointer;
+}
+
+@keyframes latidos {
+  from {
+    transform: none;
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  to {
+    transform: none;
+  }
+}
+
+.thumb img {
+  animation: latidos .5s infinite;
+  transform-origin: center;
+}
+
+.circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: circle(589px at right 267px);
+}
+
+.circle2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: circle(917px at left 131px);
 }
