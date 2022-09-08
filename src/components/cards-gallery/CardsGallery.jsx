@@ -3,52 +3,56 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAllVolumes, reset_comicState } from "../../redux/actions";
 import ComicCard from "../../components/card/Card";
 import Paginado from "../paginado/paginado";
+import Loading from "../loading/Loading";
+
 
 // Aqui va el ordenamiento, filtrado y paginado
 // loading
-
 const CardsGallery = () => {
-    const dispatch = useDispatch();
-    let [currentPage, setCurrentPage] = useState(1);
-    // eslint-disable-next-line no-unused-vars
-    let [comicPerPage, setComicPerPage] = useState(12)
-    let comics = useSelector((state) => state.comics);
-        console.log(comics)
-    useEffect(() => {
-        dispatch(reset_comicState())
-        dispatch(getAllVolumes())
-    }, [dispatch])
+  const dispatch = useDispatch();
+  let [currentPage, setCurrentPage] = useState(1);
+  // eslint-disable-next-line no-unused-vars
+  let [comicPerPage, setComicPerPage] = useState(12)
+  let comics = useSelector((state) => state.comics);
+  let loading_state = useSelector((state) => state.loading);
+  let indexOfLastComic = currentPage * comicPerPage;
+  let indexOfFirstComic = indexOfLastComic - comicPerPage;
+  let currentComic = comics.slice(indexOfFirstComic, indexOfLastComic)
 
 
-    let indexOfLastComic = currentPage * comicPerPage;
-    let indexOfFirstComic = indexOfLastComic - comicPerPage;
-    let currentComic = comics.slice(indexOfFirstComic, indexOfLastComic)
-
-    const paginado = (pageNumber) => {
-        setCurrentPage(pageNumber)
-    }
-
-    useEffect(() => {
-        setCurrentPage(1);
-    }, [comics.length, setCurrentPage]);
+  useEffect(() => {
+    dispatch(reset_comicState())
+    dispatch(getAllVolumes())
+  }, [dispatch])
 
 
-    return (
-        <>
-            <Paginado
-                comicPerPage={comicPerPage}
-                allComics={comics.length}
-                paginado={paginado}
-                page={currentPage}
-            />
-            {
-                currentComic.length === 0 ? <p className="notFound">No hay resultados</p> :
-                    currentComic.map(c => (
-                        <ComicCard key={c.id} data={c} />
-                    ))
-            }
-        </>
-    )
+  const paginado = (pageNumber) => {
+    setCurrentPage(pageNumber)
+  }
+
+  useEffect(() => {
+    setCurrentPage(1);
+
+  }, [comics.length, setCurrentPage]);
+
+  return (
+    <>
+      <Paginado
+        comicPerPage={comicPerPage}
+        allComics={comics.length}
+        paginado={paginado}
+        page={currentPage}
+      />
+      <Loading data={comics} />
+      {
+        comics.length > 0 && !loading_state &&
+        currentComic.map(c => (
+          <ComicCard key={c.id} data={c} />
+        ))
+      }
+
+    </>
+  )
 }
 
 export default CardsGallery;

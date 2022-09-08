@@ -1,0 +1,14 @@
+.card-issue {
+  position: relative;
+  border-radius: 0px;
+  border: none;
+  user-select: none;
+  background: transparent;
+  transition: all 400ms;
+}
+
+.card-issue:hover {
+  transform: translateY(-80px);
+  transition: all 400ms;
+  cursor: pointer;
+}
