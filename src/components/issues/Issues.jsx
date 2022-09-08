@@ -1,24 +1,27 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { issueDetail } from "../../redux/actions";
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
+import { getIssues } from "../../redux/actions";
+import CardIssue from './CardIssue';
 
-const Issue = ({ data }) => {
 
-    const dispatch = useDispatch();
-    const issue = useSelector((state) => state.issue);
+function Issue({ issue_number }) {
+  const dispatch = useDispatch();
+  const issues = useSelector((state) => state.issues);
+  console.log(issues);
 
-    // useEffect(() => {
-    //     let path = data.api_detail_url
-    //     dispatch(issueDetail(path))
-    // }, [])
+  useEffect(() => {
+    dispatch(getIssues(issue_number))
+  }, [dispatch, issue_number])
 
-    console.log(data);
-    return (
-        <div className="d-flex flex-column">
-            <span src={data.api_detail_url} span />
-            <span className='mt-5'>{data.name}</span>
-            <span className='mt-5'>{data.issue_number}</span>
-        </div>
-    )
+  return (
+    <div className='container'>
+      {
+        issues.length > 0 && issues.map(issue => (
+          <CardIssue key={issue.id} data={issue} />
+        ))
+      }
+    </div>
+  );
 }
-export default Issue
+
+export default Issue;

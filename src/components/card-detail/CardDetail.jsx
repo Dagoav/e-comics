@@ -3,20 +3,18 @@ import { useSelector, useDispatch } from "react-redux";
 import { volumeDetail } from "../../redux/actions";
 import { useParams } from "react-router-dom";
 import NavBar from '../navBar/Navbar'
-import ShoppingBar from '../shopping-bar/ShoppingBar';
+import Issues from '../issues/Issues';
+
 
 import "./cardDetail.css"
-
-
 
 const CardDetail = () => {
   const dispatch = useDispatch();
   const theme_params = useSelector((state) => state.theme_params);
+  const { theme } = theme_params;
   const comic = useSelector((state) => state.comic);
   const { id } = useParams()
-  const { image, name, deck, description, start_year, price } = comic
-
-  console.log(comic)
+  const { image, name, deck, description, start_year } = comic
 
   useEffect(() => {
     dispatch(volumeDetail(id))
@@ -38,32 +36,33 @@ const CardDetail = () => {
 
       // set theme
       const description_bkg = document.getElementById("description-detail");
-      const theme = theme_params.theme === "light" ? "description-detail-light" : "description-detail-dark"
-      description_bkg.className = theme
+      description_bkg.className = `description-detail-${theme}`
     }
   },)
 
 
   if (Object.entries(comic).length === 0) return <p>Loading...</p>
   return (
-    <div className='container-detail' >
-      <NavBar searchbar={false} />
-      <div className='card-detail d-flex'>
-        <div className='img-detail'>
-          <img src={image} alt="" />
-        </div>
-        <div className='info-detail'>
-          <div id='description-detail'>
-            <p className='description-title'>{name} ({start_year})</p>
-            <p className='description-subtitle'>{deck}</p>
-            <p id='desc'></p>
+    <>
+      <div className='container-detail' >
+        <NavBar searchbar={false} />
+        <div className='card-detail d-flex'>
+          <div className='img-detail'>
+            <img src={image} alt="" />
           </div>
-          <div className='shopping-detail'>
-            <ShoppingBar comic={comic} price={price} />
+          <div className='info-detail'>
+            <div id='description-detail'>
+              <p className='description-title'>{name} ({start_year})</p>
+              <p className='description-subtitle'>{deck}</p>
+              <p id='desc'></p>
+            </div>
           </div>
         </div>
-      </div>
-    </div >
+        <div className='info-issues mt-5'>
+          <Issues issue_number={id}></Issues>
+        </div>
+      </div >
+    </>
   );
 }
 
