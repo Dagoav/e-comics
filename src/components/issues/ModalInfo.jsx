@@ -50,7 +50,7 @@ const ModalInfoIssue = ({ open, data, theme }) => {
           <img className='ms-5 mt-3' style={{ width: '80%' }} src={image} alt="" />
         </Modal.Body>
         <Modal.Footer className='pe-5'>
-          <ShoppingBar price={price} />
+          <ShoppingBar price={price} comic={data}/>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
