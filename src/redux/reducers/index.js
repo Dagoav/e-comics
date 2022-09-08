@@ -2,7 +2,7 @@ const initialState = {
   comics: [],
   issues: [],
   comic: {},
-  cart_shopping: 0,
+  cart_shopping: [],
   favourite: [],
   characters: [],
   publishers: [],
@@ -55,6 +55,18 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         cart_shopping: action.payload,
+      }
+    
+    case "ADD_TO_CART":
+      return {
+        ...state,
+        cart_shopping: [...state.cart_shopping, action.payload]
+      }
+
+    case "REMOVE_FROM_CART":
+      return {
+        ...state,
+        cart_shopping: state.cart_shopping.filter( c => c.id !== action.payload.id)
       }
 
     case "SET_LOADING":

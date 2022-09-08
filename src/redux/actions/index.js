@@ -121,6 +121,20 @@ export const setShoppingCart = (products) => {
   }
 }
 
+export const addToCart = (products) => {
+  return {
+    type: "ADD_TO_CART",
+    payload: products,
+  }
+}
+
+export const removeFromCart = (products) => {
+  return {
+    type: "REMOVE_FROM_CART",
+    payload: products,
+  }
+}
+
 export const setLoading = (bool) => {
   return {
     type: "SET_LOADING",
