@@ -32,15 +32,19 @@
 
 .description-detail-light {
   height: 440px;
-  background-color: rgba(252, 248, 248, 0.87);
+  background-color: rgba(224, 208, 137, 1);
   color: rgb(29, 28, 28);
+  font-weight: 500;
   padding: 15px;
+  /* filter: blur(); */
+  /* filter: brightness(.7); */
+  border: 2px solid rgba(80, 79, 79, 1);
   overflow-x: hidden;
 }
 
 .description-detail-dark {
   height: 440px;
-  background-color: rgba(80, 79, 79, 0.87);
+  background-color: rgba(80, 79, 79, 0.95);
   color: rgb(199, 192, 192);
   padding: 15px;
   overflow-x: hidden;
@@ -59,6 +63,8 @@
 
 #desc a[disabled="disabled"] {
   pointer-events: none;
+  text-decoration: none;
+  color: rgb(71, 122, 233);
   cursor: pointer;
 }
 
