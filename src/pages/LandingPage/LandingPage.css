@@ -99,6 +99,10 @@ header ul li a:hover {
   font-weight: 600;
 }
 
+.cont .textBox a:hover {
+  background: #0a1c20;
+}
+
 .cont .textBox a {
   display: inline-block;
   margin-top: 20px;

@@ -35,7 +35,7 @@ const LandingPage = () => {
           <div className="textBox">
             <h2>It`s not just Comics <br />It`s <span>E-Comics</span></h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum sint et rem provident officiis vitae laborum, facilis quasi fugit dolor voluptas dignissimos impedit iure vero distinctio labore fuga. Mollitia, nobis.</p>
-            <a href="/home">Go Shop</a>
+            <a className="shop" href="/home">Go Shop</a>
           </div>
           <div className='imgBox'>
             <img src={comic1} width={180} height={200} alt="comic" />
