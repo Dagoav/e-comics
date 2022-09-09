@@ -10,8 +10,7 @@ import CardDetail from './components/card-detail/CardDetail';
 import LandingPage from './pages/LandingPage/LandingPage.jsx';
 import Favorites from './pages/favorites/Favorites';
 import Checkout from './components/pagos/Checkout'
-import AdmDashboard from './pages/admin-dashboard/AdmDashboard.jsx';
-
+import AdmDashboard from './pages/admin-dashboard/admDashboard'
 function App() {
   return (
     <div className="App">
