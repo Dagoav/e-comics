@@ -219,3 +219,14 @@
   font-size: 2.5em;
   color: var(--blue);
 }
+
+.cardBoxDashboard .cardDashboard .cardName {
+  color: var(--black2);
+  font-size: 1.1em;
+  margin-top: 5px;
+}
+
+.cardBoxDashboard .cardDashboard .iconBx {
+  font-size: 2.2em;
+  color: var(--black2);
+}

@@ -9,7 +9,8 @@ import {
   RiLogoutBoxRLine,
   RiSearch2Line,
   RiEyeLine,
-  RiMoneyDollarCircleLine
+  RiMoneyDollarCircleLine,
+  RiUpload2Line
 } from 'react-icons/ri'
 import {
   MdShoppingCart,
@@ -62,6 +63,12 @@ const AdmDashboard = () => {
             <a href="#">
               <span className='icon'><RiLockPasswordLine /></span>
               <span className='title'>Password</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span className='icon'><RiUpload2Line /></span>
+              <span className='title'>Subir comic</span>
             </a>
           </li>
           <li>
