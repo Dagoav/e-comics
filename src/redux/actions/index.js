@@ -51,31 +51,26 @@ export const getLogin = () => {
 }
 
 
-export const issueDetail = (path) => {
+export const getIssues = (id) => {
   return async (dispatch) => {
-    const issue = await axios({
-      method: 'post',
-      url: `${backendURL}/path-detail`,
-      data: {
-        path
-      }
+    const issues = await axios({
+      method: 'get',
+      url: `${backendURL}/comics/issues/${id}`,
     })
 
     return dispatch({
-      type: "GET_ISSUE",
-      payload: issue.data
+      type: "GET_ISSUES",
+      payload: issues.data
     })
   }
 }
 
 export const searchComic = (volume_name) => {
-  console.log(volume_name);
   return async (dispatch) => {
     const comics = await axios({
       method: 'get',
       url: `${backendURL}/comics/name?name=${volume_name}`,
     })
-    console.log(comics.data);
     return dispatch({
       type: "SEARCH_COMICS",
       payload: comics.data
@@ -126,6 +121,26 @@ export const setShoppingCart = (products) => {
   }
 }
 
+export const addToCart = (products) => {
+  return {
+    type: "ADD_TO_CART",
+    payload: products,
+  }
+}
+
+export const removeFromCart = (products) => {
+  return {
+    type: "REMOVE_FROM_CART",
+    payload: products,
+  }
+}
+
+export const setLoading = (bool) => {
+  return {
+    type: "SET_LOADING",
+    payload: bool
+  }
+}
 export const setTheme = (obj) => {
   return {
     type: "SET_THEME",
@@ -133,21 +148,21 @@ export const setTheme = (obj) => {
   }
 }
 
-export function addFavorite(comic){
+export function addFavorite(comic) {
   console.log(comic, "action.fav")
   return {
-  type: "ADD_FAVORITE",
-  payload: comic
+    type: "ADD_FAVORITE",
+    payload: comic
   }
-  }
+}
 
-  export function removeFavorite(comic){
-    console.log(comic, "quitando de fav")
-    return{
-      type: "REMOVE_FAVORITE",
-      payload: comic
-    }
+export function removeFavorite(comic) {
+  console.log(comic, "quitando de fav")
+  return {
+    type: "REMOVE_FAVORITE",
+    payload: comic
   }
+}
 
 export function creategame(data) {
   return async function () {
