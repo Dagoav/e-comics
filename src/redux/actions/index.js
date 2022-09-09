@@ -148,22 +148,6 @@ export const setTheme = (obj) => {
   }
 }
 
-export function addFavorite(comic) {
-  console.log(comic, "action.fav")
-  return {
-    type: "ADD_FAVORITE",
-    payload: comic
-  }
-}
-
-export function removeFavorite(comic) {
-  console.log(comic, "quitando de fav")
-  return {
-    type: "REMOVE_FAVORITE",
-    payload: comic
-  }
-}
-
 export function creategame(data) {
   return async function () {
     const createUser = await axios.post(
@@ -172,4 +156,17 @@ export function creategame(data) {
     );
     console.log(createUser)
   };
+}
+export function addFavorite(comic) {
+  return {
+    type: "ADD_FAVORITE",
+    payload: comic
+  }
+}
+
+export function removeFavorite(comic) {
+  return {
+    type: "REMUVE_FAVORITE",
+    payload: comic
+  }
 }

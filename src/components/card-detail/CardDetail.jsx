@@ -8,7 +8,9 @@ import Issues from '../issues/Issues';
 
 import "./cardDetail.css"
 
+
 const CardDetail = () => {
+
   const dispatch = useDispatch();
   const theme_params = useSelector((state) => state.theme_params);
   const { theme } = theme_params;

@@ -1,3 +1,4 @@
+
 const initialState = {
   comics: [],
   issues: [],
@@ -98,20 +99,15 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         concepts: action.payload
       }
-
-    case 'ADD_FAVORITE':
-      console.log(action.payload, "hola reducers")
+    case "ADD_FAVORITE":
       return {
         ...state,
-        favourite: action.payload
-        //Fouvorites: [...state.favourite, action.payload ]   
+        favourite: [...state.favourite, action.payload]  
       }
-
-    case 'REMUVE_FAVORITE':
+    case "REMUVE_FAVORITE":
       return {
         ...state,
-        // favourites: state.favourite.filter(movie => movie.id !== action.payload) 
-        favourite: state.favourite.filter(e => e.id !== action.payload)
+        favourite: state.favourite.filter(e => e.id !== action.payload.id)
       }
 
     default: return state

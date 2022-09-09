@@ -1,59 +1,50 @@
 import React  from 'react'
-import { useEffect } from "react"
-import {addFavorite, removeFavorite} from '../../redux/actions/index'
+import { removeFavorite, addToCart} from '../../redux/actions/index'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import NavBar from "../../components/navBar/Navbar";
 
 
-
-export default function Favorites() {
+export default function Favorites({comic}) {
     
     const dispatch = useDispatch()
     const favourite = useSelector((state) => state.favourite)
-        // console.log(favourite, "hola fav desde componente ")
 
-    // useEffect(() => {
-    //     dispatch(addFavorite())
-    // }, [dispatch])
-
-    const removeHandler = (e) => {
-        e.preventDefault()
-        console.log(e.target.value)
-        dispatch(removeFavorite()) 
+    const removeHandler = (comic) => {
+        dispatch(removeFavorite(comic)) 
     }
-    const buyHandler = (e) => {
-        e.preventDefault()
-        dispatch()
-        
+    const buyHandler = () => {
+        dispatch(addToCart(comic)) 
     }
-
-
 
     return (
     <div>
-    <h1>FAVOURITES</h1>
-    {/* <button onClick={e => addHandler(e)}>Add</button> 
-     */}
+    <NavBar searchbar={true} />
+            <div className="shop-container"></div>
+    <h1>MY FAVOURITES</h1>
         {
-            favourite  ? 
-            <div> 
-                    <h1>{favourite.name }</h1>
-                    <img src= {favourite.image} width="600px" height="340px" alt=""/> 
-                    {/* <h4>Description: {favourite?.description}</h4> */}
-                    <h4>Rating: {favourite.rating}</h4>
-                    <h4>issues</h4>
-         </div>: <p>Loading...</p>
+            favourite.map((comics, i) => {
+                return (
+                    <div key={i} > 
+                    <h1>{comics.name }</h1>
+                    <img src= {comics.image} width="600px" height="340px" alt=""/> 
+                    {/* <h4>Rating: {favourite.rating}</h4> */}
+                    <h4>volume: {comics.volume_id}</h4>
+                    <h4>issues: {comics.issue_number}</h4>
+                    <h4>price: {(comics.price).toFixed(2)}</h4>
+                    <button onClick={() => removeHandler(comics)}>❌</button> 
+                </div> 
+                )
+            }) 
         }
             <p>
-            <button onClick={e => removeHandler(e)}>❌</button> 
             <button onClick={e => buyHandler(e)}>🛒</button> 
             </p>
-        
         <Link to='/home'>
             <button>Volver⬅️</button>
         </Link> 
     </div>
     )
-
-
 }
+
+

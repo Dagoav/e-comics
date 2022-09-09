@@ -7,7 +7,6 @@ import CardIssue from './CardIssue';
 function Issue({ issue_number }) {
   const dispatch = useDispatch();
   const issues = useSelector((state) => state.issues);
-  console.log(issues);
 
   useEffect(() => {
     dispatch(getIssues(issue_number))
