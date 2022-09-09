@@ -20,7 +20,7 @@ const ShoppingBar = ({ price, comic }) => {
 
 
   let addProducts = () => {
-    dispatch(addToCart(comic))   // axios.post(al carrito)
+    dispatch(addToCart(comic, cart_shopping))   // axios.post(al carrito)
     setCountProducts(() => countProducts + 1)
     setComprado(true)
   }
