@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from "react-redux";
 import ModalInfoIssue from './ModalInfo';
 
@@ -11,16 +11,20 @@ function CardIssue({ data }) {
   const [showModal, setShowModal] = useState(false)
   const { image } = data
 
+  useEffect(() => {
+    setShowModal(() => false)
+  }, [showModal])
+
   const handleModal = () => {
-    setShowModal(() => !showModal)
+    setShowModal(() => true)
   }
 
   return (
     <>
-      <Card className='ms-5 card-issue' style={{ width: '8rem', height: '1rem' }} onClick={handleModal}>
+      <Card className='ms-5 card-issue' style={{ width: '8rem', height: '1rem' }} onClick={handleModal} >
         <Card.Img src={image} />
-        <ModalInfoIssue open={showModal} data={data} theme={theme} />
       </Card>
+      <ModalInfoIssue open={showModal} data={data} theme={theme} />
     </>
   );
 }
