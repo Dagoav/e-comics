@@ -32,8 +32,8 @@ const AdmDashboard = () => {
 
 
   return (
-    <div className="container">
-      <div className='navigation'>
+    <div className="contAdm">
+      <div className='navAdm'>
         <ul>
           <li>
             <a href="#">
@@ -80,7 +80,7 @@ const AdmDashboard = () => {
         </ul>
       </div>
 
-      <div className="main">
+      <div className="mainAdm">
         <div className="topbar">
 
           <div className="search">
@@ -130,6 +130,14 @@ const AdmDashboard = () => {
             </div>
             <div className="iconBx">
               <RiMoneyDollarCircleLine />
+            </div>
+          </div>
+        </div>
+
+        <div className="detail">
+          <div className="recentOrders">
+            <div className="cardHeader">
+              <h2>Recent Orders</h2>
             </div>
           </div>
         </div>
