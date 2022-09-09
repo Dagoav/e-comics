@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setShoppingCart, addFavorite, addToCart, removeFromCart } from "../../redux/actions";
+import { removeFavorite, addFavorite, addToCart, removeFromCart } from "../../redux/actions";
+// import Favorites from "../../pages/favorites/Favorites";
 
 import { Col, Row } from 'react-bootstrap'
 
@@ -9,6 +10,7 @@ import "./ShoppingBar.css"
 
 
 const ShoppingBar = ({ price, comic }) => {
+  const favourite = useSelector((state) => state.favourite)
   const dispatch = useDispatch();
   const cart_shopping = useSelector((state) => state.cart_shopping);
   const [countProducts, setCountProducts] = useState(cart_shopping.length);
@@ -16,8 +18,9 @@ const ShoppingBar = ({ price, comic }) => {
     cart_shopping.some( c => c.id === comic.id)
   )
 
+
   let addProducts = () => {
-    dispatch(addToCart(comic))   // axios.post(al carrito)
+    dispatch(addToCart(comic, cart_shopping))   // axios.post(al carrito)
     setCountProducts(() => countProducts + 1)
     setComprado(true)
   }
@@ -28,21 +31,31 @@ const ShoppingBar = ({ price, comic }) => {
     setComprado(false)
   }
 
-  const addFavhandler = (e) => {
-    e.preventDefault()
+  const addFavhandler = () => {
     dispatch(addFavorite(comic))
+    console.log(comic, "cuando agrego")
+  }
+  const remuveFavhandler = () => {
+    dispatch(removeFavorite(comic))
+    console.log(comic, "cuando elimina")
   }
 
-  return (                                                                      //line 51
+  return (                                                                  
     <div className="shopping-container">
       <Row>
+        {favourite ?
         <Col md={1} >
           <button className="fav-icon" onClick={addFavhandler}>
             <span className="material-symbols-outlined">
               heart_plus
             </span>
-          </button>
+          </button> 
         </Col>
+        :
+          <button onClick={remuveFavhandler}>
+            remuve_Fav
+          </button>
+        }
 
         {
           !comprado ?
@@ -54,15 +67,12 @@ const ShoppingBar = ({ price, comic }) => {
             </button>
           </Col>
           :
-
           /* DANI NO SÉ DE BOOTSTRAP PERDÓN :( */
 
           <button onClick={removeProducts}> 
             QUITAR DE CARRITO
           </button>
         }
-
-
 
         <Col >
           <span className="shopping-price">

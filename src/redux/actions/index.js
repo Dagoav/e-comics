@@ -125,10 +125,20 @@ export const setShoppingCart = (products) => {
   }
 }
 
-export const addToCart = (products) => {
-  return {
-    type: "ADD_TO_CART",
-    payload: products,
+export const addToCart = (products, shopping_cart) => {
+
+  // Verifica que el producto no esté en el carrito para no agregarlo de nuevo
+  const inCart = shopping_cart.some(p => p.id === products.id)
+
+  if(!inCart){
+    return {
+      type: "ADD_TO_CART",
+      payload: products,
+    }
+  } else {
+    return{
+      type: "NADA", //devuelve el estado, sino Redux llora
+    }
   }
 }
 
@@ -152,22 +162,6 @@ export const setTheme = (obj) => {
   }
 }
 
-export function addFavorite(comic) {
-  console.log(comic, "action.fav")
-  return {
-    type: "ADD_FAVORITE",
-    payload: comic
-  }
-}
-
-export function removeFavorite(comic) {
-  console.log(comic, "quitando de fav")
-  return {
-    type: "REMOVE_FAVORITE",
-    payload: comic
-  }
-}
-
 export function creategame(data) {
   return async function () {
     const createUser = await axios.post(
@@ -177,14 +171,16 @@ export function creategame(data) {
     console.log(createUser)
   };
 }
+export function addFavorite(comic) {
+  return {
+    type: "ADD_FAVORITE",
+    payload: comic
+  }
+}
 
-
-
-//-------------------login-------------------
-export function loginUser(data){
-  return async function(){
-    const Login = await axios.post(
-      "http://localhost:3000/user/login", data
-    )
+export function removeFavorite(comic) {
+  return {
+    type: "REMUVE_FAVORITE",
+    payload: comic
   }
 }

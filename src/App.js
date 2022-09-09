@@ -13,7 +13,7 @@ import Favorites from './pages/favorites/Favorites';
 import LoginApp from './components/login.jwt/login';
 
 import Checkout from './components/pagos/Checkout'
-
+import AdmDashboard from './pages/admin-dashboard/admDashboard'
 
 function App() {
   return (
@@ -29,7 +29,7 @@ function App() {
         <Route path='/login' element={<LoginApp />} />
 
         <Route path='/checkout' element={<Checkout />} />
-
+        <Route path='/admin' element={<AdmDashboard />} />
       </Routes>
     </div>
   );
