@@ -121,10 +121,20 @@ export const setShoppingCart = (products) => {
   }
 }
 
-export const addToCart = (products) => {
-  return {
-    type: "ADD_TO_CART",
-    payload: products,
+export const addToCart = (products, shopping_cart) => {
+
+  // Verifica que el producto no esté en el carrito para no agregarlo de nuevo
+  const inCart = shopping_cart.some(p => p.id === products.id)
+
+  if(!inCart){
+    return {
+      type: "ADD_TO_CART",
+      payload: products,
+    }
+  } else {
+    return{
+      type: "NADA", //devuelve el estado, sino Redux llora
+    }
   }
 }
 
