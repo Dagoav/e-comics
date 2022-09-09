@@ -158,3 +158,14 @@ export function creategame(data) {
     console.log(createUser)
   };
 }
+
+
+
+//-------------------login-------------------
+export function loginUser(data){
+  return async function(){
+    const Login = await axios.post(
+      "http://localhost:3000/user/login", data
+    )
+  }
+}
