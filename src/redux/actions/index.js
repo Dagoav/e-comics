@@ -3,10 +3,14 @@ import axios from "axios";
 const backendURL = process.env.REACT_APP_API;
 
 export const getAllVolumes = () => {
+  const token = JSON.parse(localStorage.getItem("token"))
   return async (dispatch) => {
     const volumes = await axios({
-      method: 'get',
+      method: 'GET',
       url: `${backendURL}/comics`,
+      headers: {
+      "Authorization": `Bearer ${token.token}`
+      }
     })
     return dispatch({
       type: "GET_ALL_COMICS",
