@@ -17,12 +17,12 @@ const ModalInfoIssue = ({ open, data, theme }) => {
 
   }, [open])
 
-  useEffect(() => {
+  // useEffect(() => {
     // set theme
     // const modal = document.getElementById("modal");
     // console.log(modal);
     // modal.className = `modal-${theme}`
-  })
+  // })
 
   const handleClose = () => setShow(false);
   // const handleShow = () => setShow(true);
