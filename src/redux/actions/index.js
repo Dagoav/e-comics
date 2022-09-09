@@ -3,10 +3,14 @@ import axios from "axios";
 const backendURL = process.env.REACT_APP_API;
 
 export const getAllVolumes = () => {
+  const token = JSON.parse(localStorage.getItem("token"))
   return async (dispatch) => {
     const volumes = await axios({
-      method: 'get',
+      method: 'GET',
       url: `${backendURL}/comics`,
+      headers: {
+      "Authorization": `Bearer ${token.token}`
+      }
     })
     return dispatch({
       type: "GET_ALL_COMICS",
@@ -29,26 +33,26 @@ export const volumeDetail = (id) => {
 }
 
 
-// export const getLogin = () => {
-//   return async (dispatch) => {
-//     const auth = await axios({
-//       method: 'get',
-//       url: `${backendURL}/sign-up`,
-//       headers: {
-//         'Access-Control-Allow-Origin': '*',
-//         'Content-Type': 'application/json',
-//         // 'Authorization': key,
-//         withCredentials: true,
-//         mode: 'no-cors',
-//       }
-//     })
-//     console.log(auth);
-//     return dispatch({
-//       type: "SET_AUTH",
-//       payload: auth.data
-//     })
-//   }
-// }
+export const getLogin = () => {
+  return async (dispatch) => {
+    const auth = await axios({
+      method: 'get',
+      url: `${backendURL}/sign-up`,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+        // 'Authorization': key,
+        withCredentials: true,
+        mode: 'no-cors',
+      }
+    })
+    console.log(auth);
+    return dispatch({
+      type: "SET_AUTH",
+      payload: auth.data
+    })
+  }
+}
 
 
 export const getIssues = (id) => {
@@ -69,7 +73,7 @@ export const searchComic = (volume_name) => {
   return async (dispatch) => {
     const comics = await axios({
       method: 'get',
-      url: `${backendURL}/comics/search?name=${volume_name}`,
+      url: `${backendURL}/comics/name?name=${volume_name}`,
     })
     return dispatch({
       type: "SEARCH_COMICS",
