@@ -1,7 +1,7 @@
 import React from "react";
 import NavDropdown from 'react-bootstrap/NavDropdown';
-// import { useDispatch } from "react-redux";
-// import { getLogin } from "../../redux/actions";
+ import { useDispatch } from "react-redux";
+ import { getLogin } from "../../redux/actions";
 // import { Link } from "react-router-dom";
 // import Login from "../login/Login";
 import "./Account.css"
