@@ -5,16 +5,18 @@ import { Link } from 'react-router-dom'
 import NavBar from "../../components/navBar/Navbar";
 
 
+
 export default function Favorites({comic}) {
     
+    const cart = useSelector((state) => state.cart_shopping)
     const dispatch = useDispatch()
     const favourite = useSelector((state) => state.favourite)
 
     const removeHandler = (comic) => {
         dispatch(removeFavorite(comic)) 
     }
-    const buyHandler = () => {
-        dispatch(addToCart(comic)) 
+    const buyHandler = (comic) => {
+        dispatch(addToCart(comic, cart)) 
     }
 
     return (
@@ -33,13 +35,13 @@ export default function Favorites({comic}) {
                     <h4>issues: {comics.issue_number}</h4>
                     <h4>price: {(comics.price).toFixed(2)}</h4>
                     <button onClick={() => removeHandler(comics)}>❌</button> 
+                    <p>
+                    <button onClick={e => buyHandler(comics)}>🛒</button> 
+                    </p>
                 </div> 
                 )
             }) 
         }
-            <p>
-            <button onClick={e => buyHandler(e)}>🛒</button> 
-            </p>
         <Link to='/home'>
             <button>Volver⬅️</button>
         </Link> 
