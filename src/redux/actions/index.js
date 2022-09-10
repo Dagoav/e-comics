@@ -8,9 +8,9 @@ export const getAllVolumes = () => {
     const volumes = await axios({
       method: 'GET',
       url: `${backendURL}/comics`,
-      headers: {
-      "Authorization": `Bearer ${token.token}`
-      }
+      // headers: {
+      // "Authorization": `Bearer ${token.token}`
+      // }
     })
     return dispatch({
       type: "GET_ALL_COMICS",
@@ -73,7 +73,7 @@ export const searchComic = (volume_name) => {
   return async (dispatch) => {
     const comics = await axios({
       method: 'get',
-      url: `${backendURL}/comics/name?name=${volume_name}`,
+      url: `${backendURL}/comics/name?name=${volume_name}`
     })
     return dispatch({
       type: "SEARCH_COMICS",
@@ -172,6 +172,7 @@ export function creategame(data) {
   };
 }
 export function addFavorite(comic) {
+  
   return {
     type: "ADD_FAVORITE",
     payload: comic

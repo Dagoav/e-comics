@@ -3,7 +3,7 @@ import { removeFavorite, addToCart} from '../../redux/actions/index'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import NavBar from "../../components/navBar/Navbar";
-
+import "./Favorites.css"
 
 
 export default function Favorites({comic}) {
@@ -20,7 +20,7 @@ export default function Favorites({comic}) {
     }
 
     return (
-    <div>
+    <div className='test'>
     <NavBar searchbar={true} />
             <div className="shop-container"></div>
     <h1>MY FAVOURITES</h1>

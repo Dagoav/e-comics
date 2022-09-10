@@ -1,7 +1,7 @@
 import React from "react";
 import NavDropdown from 'react-bootstrap/NavDropdown';
- import { useDispatch } from "react-redux";
- import { getLogin } from "../../redux/actions";
+// import { useDispatch } from "react-redux";
+// import { getLogin } from "../../redux/actions";
 // import { Link } from "react-router-dom";
 // import Login from "../login/Login";
 import "./Account.css"
@@ -54,13 +54,17 @@ const Account = () => {
         </span>
 
       </NavDropdown.Item>
-      <NavDropdown.Item href="#action6" className='d-flex'>
-        <span className="material-symbols-outlined">
-          upload_file
+      <NavDropdown.Item href="#" className='d-flex'>
+        <span class="material-symbols-outlined">
+          dashboard
         </span>
         <span className='ms-2'>
-          Subir Comic
+          <Link to='/dashboard/admin'>
+            <button>Dashboard
+            </button>
+          </Link>
         </span>
+
       </NavDropdown.Item>
       <NavDropdown.Divider />
       <NavDropdown.Item href="#action7" className='d-flex'>
