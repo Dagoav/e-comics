@@ -5,20 +5,24 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 // import { Link } from "react-router-dom";
 // import Login from "../login/Login";
 import "./Account.css"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-import Login1 from "../login/Login";
+// import Login1 from "../login/Login";
 import Logout from '../login/Logout'
 import Profile from '../login/Profile'
 import { useAuth0 } from '@auth0/auth0-react';
+import Login from '../login/login'
+import ModalLogin from "./ModalLogin";
+
 
 
 const Account = () => {
   // const dispatch = useDispatch();
   const { isAuthenticated } = useAuth0()
-
+  const navigate = useNavigate()
+  
   const auth0_login = () => {
-    // dispatch(getLogin())
+      
     console.log("auth0");
   }
 
@@ -39,7 +43,7 @@ const Account = () => {
                   <Logout />
                 </>
               ) : (
-                <Login1 />
+                <ModalLogin />
               )}
             </span>
           </div>
