@@ -11,7 +11,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Logout from '../login/Logout'
 import Profile from '../login/Profile'
 import { useAuth0 } from '@auth0/auth0-react';
-import Login from '../../components/login.jwt/login'
+import Login from '../login/login'
+import ModalLogin from "./ModalLogin";
 
 
 
@@ -42,7 +43,7 @@ const Account = () => {
                   <Logout />
                 </>
               ) : (
-                <Login />
+                <ModalLogin />
               )}
             </span>
           </div>

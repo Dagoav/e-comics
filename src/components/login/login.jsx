@@ -5,6 +5,7 @@ import {MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } f
 import './login.css'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 function validate(input){
   let errors = {};
@@ -23,7 +24,7 @@ return errors
 
 function LoginApp() {
 const navigate = useNavigate()
-const dispatch = useDispatch()
+
 const [errors, setErrors] = useState([""])
 
   const [input, setInput] = useState({
@@ -54,19 +55,23 @@ const  handleSubmit =async(e)=> {
         data: input
     })
       localStorage.setItem('token', JSON.stringify(response.data))
-      
       if(response.data.Rol === "USER"){
-      navigate('/home')
+      navigate('/userprofile')
       }
       if(response.data.Rol === "ADMIN"){
-      navigate('./')
+      navigate('./admin')
       }
-    setInput({
+     setInput({
         email: "",
         password: "",
     })
   } catch (error) {
-    console.log(error)
+    Swal.fire({
+      title: 'Error!',
+      text: 'Usuario no se encuentra registrado',
+      icon: 'error',
+      confirmButtonText: 'cerrar'
+    })
   }
 }
 console.log(errors)
@@ -76,18 +81,18 @@ console.log(errors)
       <MDBRow>
 
         <MDBCol col='10' md='6'>
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" className="img-fluid" alt="Sample image" />
+          <img src="https://previews.123rf.com/images/galamar/galamar1601/galamar160101219/51191399-el-arte-pop-icono-de-c%C3%B3mics-hola.jpg" className="img-fluid" alt="Sample image" />
         </MDBCol>
 
         <MDBCol col='4' md='6'>
            {errors && errors.email ? <span className="text-red-600"> {errors.password} </span> : null}
-          <MDBInput value={input.email} name="email" onChange={handleChange} wrapperClass='mb-4' label='Email address' id='formControlLg' type='email' size="lg"/>
+          <MDBInput value={input.email} name="email" onChange={handleChange} wrapperClass='mb-4' label='Correo electronico' id='formControlLg' type='email' size="lg"/>
 
           {errors && errors.password ? <span className="text-red-600"> {errors.password} </span> : null}
-          <MDBInput value={input.password} name="password"  onChange={handleChange}  wrapperClass='mb-4' label='Password' id='formControlLg' type='password' size="lg"/>
+          <MDBInput value={input.password} name="password"  onChange={handleChange}  wrapperClass='mb-4' label='contraseña' id='formControlLg' type='password' size="lg"/>
 
           <div className="d-flex justify-content-between mb-4">
-            <a href="!#">olvidó su contraseña?</a>
+            <a href="!#">olvido su contraseña?</a>
           </div>
 
           <div className='text-center text-md-start mt-4 pt-2'>
