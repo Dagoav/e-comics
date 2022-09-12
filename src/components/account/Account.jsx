@@ -37,9 +37,8 @@ const Account = () => {
 
               localStorage.getItem("token")?
               <Link to = '/userprofile'> 
-              {localStorage.getItem("user").replace(/['"]+/g, '')}
+              {localStorage.getItem("user")}
               </Link>:
-      
                 <ModalLogin />
 
               )}

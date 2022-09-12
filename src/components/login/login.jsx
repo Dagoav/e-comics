@@ -1,17 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-<<<<<<< HEAD
-import {MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
 import './Login.css'
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-=======
 import { Link, useNavigate } from 'react-router-dom';
-import { MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
+import { MDBContainer, MDBCol, MDBRow, MDBInput } from 'mdb-react-ui-kit';
 import { Button } from 'react-bootstrap';
->>>>>>> 797fbf05ecb8cf02b8c1a81d0b18f5ddf4b2a380
 import Swal from 'sweetalert2'
 import './Login.css'
 
