@@ -10,7 +10,6 @@ import { Col, Row } from "react-bootstrap";
 import "./Home.css"
 
 const Home = () => {
-  console.log("from branch deploy");
   return (
     <div className="home-container">
 
@@ -20,7 +19,7 @@ const Home = () => {
       </Row>
 
       <div className="wrapper">
-        <div className="bkg-home">asdf</div>
+        <div className="bkg-home"></div>
         <main className="main">
           <Row>
             <Carrousel />

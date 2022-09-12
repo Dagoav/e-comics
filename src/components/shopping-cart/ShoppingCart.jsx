@@ -10,7 +10,7 @@ import "./ShoppingCart.css"
 // Guardar el estado de la compra en local storage
 
 const ShoppingCart = () => {
-    const cart_shopping = useSelector((state) => state.cart_shopping);
+    const cart_shopping = useSelector((state) => state.cart_shopping.length);
 
     return (
         <>

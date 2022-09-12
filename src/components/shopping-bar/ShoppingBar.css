@@ -1,49 +1,45 @@
-.shopping-container-dark {
-  height: 80px;
+.shopping-container {
+  height: 40px;
+  width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
-  background-color: rgba(80, 79, 79, 0.87);
-  color: rgb(199, 192, 192);
 }
 
-.shopping-container-light {
-  height: 80px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background-color: rgba(252, 248, 248, 0.87);
-  color: rgb(29, 28, 28);
-}
 
-.shopping-container span {
-  cursor: pointer;
+.shopping-price {
+  position: absolute;
+  right: 55px;
+  bottom: 65px;
+  font-size: 26px;
+  font-weight: 500;
   user-select: none;
 }
 
-.shopping-price {
-  font-size: 26px;
-  font-weight: 500;
-}
-
-.shopping-icon {
+.shopping-icon,
+.fav-icon {
   width: 40px;
   height: 40px;
+  position: absolute;
+  left: 25px;
+  bottom: 15px;
   border: none;
   border-radius: 50%;
   box-shadow: 0px 0px 8px 2px rgba(204, 200, 200, 0.527);
   background: white;
 }
 
-.shopping-icon:active {
+.shopping-icon {
+  left: 80px;
+}
+
+.shopping-icon,
+.fav-icon span {
+  padding-top: 7px;
+}
+
+.shopping-icon:active,
+.fav-icon:active {
   border-radius: 50%;
   box-shadow: 0px 0px 18px 2px rgba(145, 141, 141, 0.527);
-}
-
-.shopping-add {
-  color: blue;
-}
-
-.shopping-remove {
-  color: red;
 }
