@@ -6,6 +6,8 @@ import './login.css'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
+import { Link } from 'react-router-dom';
+const backendURL = process.env.REACT_APP_API;
 
 function validate(input){
   let errors = {};
@@ -25,9 +27,9 @@ return errors
 function LoginApp() {
 const navigate = useNavigate()
 
-const [errors, setErrors] = useState([""])
 
-  const [input, setInput] = useState({
+const [errors, setErrors] = useState([""])
+const [input, setInput] = useState({
     email: "", 
     password: "",
   })
@@ -47,14 +49,15 @@ function handleChange(e){
 
 const  handleSubmit =async(e)=> {
   e.preventDefault();
-
   try {
       const response = await axios({
-        url: "http://localhost:3000/user/login",
+        url: (`${backendURL}/user/login`),
         method: 'POST',
         data: input
     })
       localStorage.setItem('token', JSON.stringify(response.data))
+      localStorage.setItem("user", JSON.stringify(response.data.name))
+     
       if(response.data.Rol === "USER"){
       navigate('/userprofile')
       }
@@ -74,7 +77,9 @@ const  handleSubmit =async(e)=> {
     })
   }
 }
-console.log(errors)
+
+
+
   return (
     <MDBContainer fluid className="p-3 my-5 h-custom">
 
@@ -85,11 +90,15 @@ console.log(errors)
         </MDBCol>
 
         <MDBCol col='4' md='6'>
-           {errors && errors.email ? <span className="text-red-600"> {errors.password} </span> : null}
+          {input.email.length && errors && errors.email ? (
+                <span className="texterror"> {errors.email} </span>
+              ) : null}
           <MDBInput value={input.email} name="email" onChange={handleChange} wrapperClass='mb-4' label='Correo electronico' id='formControlLg' type='email' size="lg"/>
 
-          {errors && errors.password ? <span className="text-red-600"> {errors.password} </span> : null}
           <MDBInput value={input.password} name="password"  onChange={handleChange}  wrapperClass='mb-4' label='contraseña' id='formControlLg' type='password' size="lg"/>
+          {input.password.length && errors && errors.password ? (
+                <span className="text-danger position-absolute"> {errors.password} </span>
+              ) : null}
 
           <div className="d-flex justify-content-between mb-4">
             <a href="!#">olvido su contraseña?</a>
@@ -97,7 +106,7 @@ console.log(errors)
 
           <div className='text-center text-md-start mt-4 pt-2'>
             <MDBBtn type='submit' onClick={handleSubmit} className="mb-0 px-5" size='lg' disabled={Object.keys(errors).length === 0 ? false : true}>Login</MDBBtn>
-            <p className="small fw-bold mt-2 pt-1 mb-2">No tienes cuenta? <a href="#!" className="link-danger">Registro</a></p>
+            <p className="small fw-bold mt-2 pt-1 mb-2">No tienes cuenta? <Link to ='/singup'> <a className="link-danger">Registro</a>  </Link></p>
           </div>
 
         </MDBCol>

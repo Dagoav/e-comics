@@ -28,7 +28,7 @@ const LandingPage = () => {
           <ul>
             <li><a href='/home'>Home</a></li>
             <li><a href='/login'>Login</a></li>
-            <li><a href='/signup'>Sign Up</a></li>
+            <li><a href='/singup'>Sign Up</a></li>
           </ul>
         </header>
         <div className="cont">

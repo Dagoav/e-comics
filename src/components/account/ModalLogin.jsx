@@ -16,6 +16,8 @@ function ModalLogin() {
         Login
       </span>
 
+      
+
       <Modal size="lg" show={show} onHide={handleClose}>
         <Modal.Header>
           <div >
@@ -33,3 +35,4 @@ function ModalLogin() {
 }
 
 export default ModalLogin;
+

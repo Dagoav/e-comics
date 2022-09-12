@@ -1,15 +1,17 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
+import NavBar from "../../components/navBar/Navbar";
+import Favorites from "../favorites/Favorites";
 
 
 function UserProfile() {
   return (
     <div>
-      <h1>perfil de usuario</h1>
-      <Link to = '/home' >
-      <button>home</button>
-      </Link>
+
+      <NavBar/>
+
+      <Favorites/>
     </div>
      
   );

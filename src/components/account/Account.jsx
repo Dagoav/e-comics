@@ -1,8 +1,7 @@
 import React from "react";
 import NavDropdown from 'react-bootstrap/NavDropdown';
  import { useDispatch } from "react-redux";
- import { getLogin } from "../../redux/actions";
-// import { Link } from "react-router-dom";
+ import { getLogin } from "../../redux/actions"
 // import Login from "../login/Login";
 import "./Account.css"
 import { Link, useNavigate } from "react-router-dom";
@@ -18,14 +17,11 @@ import ModalLogin from "./ModalLogin";
 
 const Account = () => {
   // const dispatch = useDispatch();
-  const { isAuthenticated } = useAuth0()
-  const navigate = useNavigate()
-  
+  const { isAuthenticated } = useAuth0()  
   const auth0_login = () => {
-      
-    console.log("auth0");
   }
-
+ 
+  
   return (
     <NavDropdown title="Cuenta" id="navbarScrollingDropdown">
       <NavDropdown.Item className='d-flex' onClick={() => auth0_login()}>
@@ -43,19 +39,29 @@ const Account = () => {
                   <Logout />
                 </>
               ) : (
+
+              localStorage.getItem("token")?
+              <Link to = '/userprofile'> 
+              {localStorage.getItem("user").replace(/['"]+/g, '')}
+              </Link>:
+      
                 <ModalLogin />
+
               )}
             </span>
           </div>
         </div>
       </NavDropdown.Item>
+
       <NavDropdown.Item href="#action5" className='d-flex'>
         <span className="material-symbols-outlined">
           book
         </span>
-        <span className='ms-2'>
-          <Link to='/fav'><button>Favoritos</button></Link>
-        </span>
+
+        {/* loa favoritoas van a estar en el panel de administracion */}
+        {/* <span className='ms-2'>
+          <Link to='/fav'><button>perfil</button></Link>
+        </span> */}
 
       </NavDropdown.Item>
       <NavDropdown.Item href="#action6" className='d-flex'>

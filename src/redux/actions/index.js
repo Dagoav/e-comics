@@ -184,3 +184,26 @@ export function removeFavorite(comic) {
     payload: comic
   }
 }
+
+//-----------------login usuario-------------------------
+
+// export function loginUser(data){
+//   return async function(){
+//     const response = await axios({
+//       url: "http://localhost:3000/user/login",
+//       method: 'POST',
+//       data: data
+//     })
+//   }
+// }
+
+export function registerUser(data){
+    return async function(){
+      const register = await axios({
+        url: (`${backendURL}/user/singup`),
+        method: 'POST',
+        data: data
+      })
+    }
+  }
+

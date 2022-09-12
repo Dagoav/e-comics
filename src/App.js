@@ -15,11 +15,13 @@ import LoginApp from './components/login/login';
 import Checkout from './components/pagos/Checkout'
 import AdmDashboard from './pages/admin-dashboard/admDashboard'
 import UserProfile from './pages/UserProfile/UserProfile';
-
+import Register from './components/login/Register';
+localStorage.getItem("token")
 function App() {
   return (
     <div className="App">
       <Routes>
+
         <Route exact path="/" element={<LandingPage />} />
         <Route path="/home" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
@@ -30,6 +32,7 @@ function App() {
         <Route path='/checkout' element={<Checkout />} />
         <Route path='/admin' element={<AdmDashboard />} />
         <Route path='/userprofile' element={<UserProfile />} />
+        <Route path='/singup' element={<Register />} />
       </Routes>
     </div>
   );
