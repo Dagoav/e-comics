@@ -109,6 +109,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         favourite: state.favourite.filter(e => e.id !== action.payload.id)
       }
+      case "GET_FAVORITE":
+        return {
+          ...state, 
+          favourite: [...state.favourite, action.payload]
+        }
 
     default: return state
   };

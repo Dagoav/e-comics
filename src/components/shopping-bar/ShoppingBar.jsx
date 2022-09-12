@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { removeFavorite, addFavorite, addToCart, removeFromCart } from "../../redux/actions";
+import { getAllfavoritesDb, removeFavorite, addFavorite, addToCart, removeFromCart } from "../../redux/actions";
 // import Favorites from "../../pages/favorites/Favorites";
 
 import { Col, Row } from 'react-bootstrap'
@@ -18,6 +18,11 @@ const ShoppingBar = ({ price, comic }) => {
     cart_shopping.some( c => c.id === comic.id)
   )
 
+  useEffect(() => {
+    dispatch(getAllfavoritesDb())    
+    console.log(getAllfavoritesDb, "soy la action desde el componente")
+  }, [dispatch])
+  
 
   let addProducts = () => {
     dispatch(addToCart(comic, cart_shopping))   // axios.post(al carrito)
@@ -32,11 +37,11 @@ const ShoppingBar = ({ price, comic }) => {
   }
 
   const addFavhandler = () => {
-    dispatch(addFavorite(comic))
+    dispatch(addFavorite(comic, favourite))
     console.log(comic, "cuando agrego")
   }
   const remuveFavhandler = () => {
-    dispatch(removeFavorite(comic))
+    dispatch(removeFavorite(comic, favourite))
     console.log(comic, "cuando elimina")
   }
 

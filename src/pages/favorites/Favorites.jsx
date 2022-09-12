@@ -1,8 +1,9 @@
 import React  from 'react'
-import { removeFavorite, addToCart} from '../../redux/actions/index'
+import { removeFavorite, addToCart, /*getAllfavoritesDb*/} from '../../redux/actions/index'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import NavBar from "../../components/navBar/Navbar";
+import { useEffect } from 'react'
 
 
 
@@ -12,8 +13,13 @@ export default function Favorites({comic}) {
     const dispatch = useDispatch()
     const favourite = useSelector((state) => state.favourite)
 
+    // useEffect(() => {
+    //   dispatch(getAllfavoritesDb())
+    // }, [dispatch])
+    
     const removeHandler = (comic) => {
         dispatch(removeFavorite(comic)) 
+        console.log(comic)
     }
     const buyHandler = (comic) => {
         dispatch(addToCart(comic, cart)) 
