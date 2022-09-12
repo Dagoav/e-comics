@@ -73,11 +73,25 @@ export const searchComic = (volume_name) => {
   return async (dispatch) => {
     const comics = await axios({
       method: 'get',
-      url: `${backendURL}/comics/name?name=${volume_name}`
+      url: `${backendURL}/comics/search?name=${volume_name}`
     })
     return dispatch({
       type: "SEARCH_COMICS",
       payload: comics.data
+    })
+  }
+}
+
+
+export const getUsers = () => {
+  return async (dispatch) => {
+    const users = await axios({
+      method: 'get',
+      url: `${backendURL}/admin/users`
+    })
+    return dispatch({
+      type: "GET_USERS",
+      payload: users.data
     })
   }
 }
@@ -128,13 +142,14 @@ export const setShoppingCart = (products) => {
 export const addToCart = (products, shopping_cart) => {
   // Verifica que el producto no esté en el carrito para no agregarlo de nuevo
   const inCart = shopping_cart.some(p => p.id === products.id)
-  if(!inCart){
+
+  if (!inCart) {
     return {
       type: "ADD_TO_CART",
       payload: products,
     }
   } else {
-    return{
+    return {
       type: "NADA", //devuelve el estado, sino Redux llora
     }
   }
@@ -272,3 +287,26 @@ export const getAllfavoritesDb = (comic, favourite) => {
     })
   }
 }
+
+//-----------------login usuario-------------------------
+
+// export function loginUser(data){
+//   return async function(){
+//     const response = await axios({
+//       url: "http://localhost:3000/user/login",
+//       method: 'POST',
+//       data: data
+//     })
+//   }
+// }
+
+export function registerUser(data){
+    return async function(){
+      const register = await axios({
+        url: (`${backendURL}/user/singup`),
+        method: 'POST',
+        data: data
+      })
+    }
+  }
+

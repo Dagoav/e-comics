@@ -1,5 +1,5 @@
 import React from 'react'
-import './AdmDashboard.css'
+// import './AdmDashboard.css'
 import {
   RiAdminFill,
   RiHome2Line,

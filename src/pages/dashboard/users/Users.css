@@ -1,0 +1,9 @@
+.mainAdm-users {
+  position: absolute;
+  min-height: 100vh;
+  width: calc(100% - 300px);
+  left: 300px;
+  padding: 50px;
+  background: var(--white);
+  transition: 0.5s;
+}

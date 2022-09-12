@@ -1,80 +1,94 @@
 import React from 'react';
+import axios from 'axios';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+<<<<<<< HEAD
 import {MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
 import './Login.css'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+=======
+import { Link, useNavigate } from 'react-router-dom';
+import { MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
+import { Button } from 'react-bootstrap';
+>>>>>>> 797fbf05ecb8cf02b8c1a81d0b18f5ddf4b2a380
 import Swal from 'sweetalert2'
+import './Login.css'
 
-function validate(input){
+
+const backendURL = process.env.REACT_APP_API;
+
+function validate(input) {
   let errors = {};
 
-if(!input.email){
-  errors.email = "El email es requerido"
-}
-else if (!/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(input.email)){
-  errors.email = "correo no valido"
-}
-else if (!input.password){
-  errors.password = ("contraseña es requerida")
-}
-return errors
+  if (!input.email) {
+    errors.email = "El email es requerido"
+  }
+  else if (!/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(input.email)) {
+    errors.email = "correo no valido"
+  }
+  else if (!input.password) {
+    errors.password = ("contraseña es requerida")
+  }
+  return errors
 }
 
 function LoginApp() {
-const navigate = useNavigate()
+  const navigate = useNavigate()
 
-const [errors, setErrors] = useState([""])
 
+  const [errors, setErrors] = useState([""])
   const [input, setInput] = useState({
-    email: "", 
+    email: "",
     password: "",
   })
 
-function handleChange(e){
-  setInput({
-    ...input,
-    [e.target.name] : e.target.value
-  })
-  setErrors(
-    validate({
-        ...input,
-        [e.target.name] : e.target.value
+  function handleChange(e) {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value
     })
-)
-}
+    setErrors(
+      validate({
+        ...input,
+        [e.target.name]: e.target.value
+      })
+    )
+  }
 
-const  handleSubmit =async(e)=> {
-  e.preventDefault();
-
-  try {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
       const response = await axios({
-        url: "http://localhost:3000/user/login",
+        url: (`${backendURL}/user/login`),
         method: 'POST',
         data: input
-    })
+      })
       localStorage.setItem('token', JSON.stringify(response.data))
-      if(response.data.Rol === "USER"){
-      navigate('/userprofile')
+      localStorage.setItem("user", JSON.stringify(response.data.name))
+
+      if (response.data.Rol === "USER") {
+        navigate('/userprofile')
       }
-      if(response.data.Rol === "ADMIN"){
-      navigate('./admin')
+      if (response.data.Rol === "ADMIN") {
+        navigate('./admin')
       }
-     setInput({
+      setInput({
         email: "",
         password: "",
-    })
-  } catch (error) {
-    Swal.fire({
-      title: 'Error!',
-      text: 'Usuario no se encuentra registrado',
-      icon: 'error',
-      confirmButtonText: 'cerrar'
-    })
+      })
+    } catch (error) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Usuario no se encuentra registrado',
+        icon: 'error',
+        confirmButtonText: 'cerrar'
+      })
+    }
   }
-}
-console.log(errors)
+
+
+
   return (
     <MDBContainer fluid className="p-3 my-5 h-custom">
 
@@ -85,19 +99,23 @@ console.log(errors)
         </MDBCol>
 
         <MDBCol col='4' md='6'>
-           {errors && errors.email ? <span className="text-red-600"> {errors.password} </span> : null}
-          <MDBInput value={input.email} name="email" onChange={handleChange} wrapperClass='mb-4' label='Correo electronico' id='formControlLg' type='email' size="lg"/>
+          {input.email.length && errors && errors.email ? (
+            <span className="texterror"> {errors.email} </span>
+          ) : null}
+          <MDBInput value={input.email} name="email" onChange={handleChange} wrapperClass='mb-4' label='Correo electronico' id='formControlLg' type='email' size="lg" />
 
-          {errors && errors.password ? <span className="text-red-600"> {errors.password} </span> : null}
-          <MDBInput value={input.password} name="password"  onChange={handleChange}  wrapperClass='mb-4' label='contraseña' id='formControlLg' type='password' size="lg"/>
+          <MDBInput value={input.password} name="password" onChange={handleChange} wrapperClass='mb-4' label='contraseña' id='formControlLg' type='password' size="lg" />
+          {input.password.length && errors && errors.password ? (
+            <span className="text-danger position-absolute"> {errors.password} </span>
+          ) : null}
 
           <div className="d-flex justify-content-between mb-4">
             <a href="!#">olvido su contraseña?</a>
           </div>
 
           <div className='text-center text-md-start mt-4 pt-2'>
-            <MDBBtn type='submit' onClick={handleSubmit} className="mb-0 px-5" size='lg' disabled={Object.keys(errors).length === 0 ? false : true}>Login</MDBBtn>
-            <p className="small fw-bold mt-2 pt-1 mb-2">No tienes cuenta? <a href="#!" className="link-danger">Registro</a></p>
+            <Button type='submit' onClick={handleSubmit} className="mb-0 px-5" size='lg' disabled={Object.keys(errors).length === 0 ? false : true}>Login</Button>
+            <p className="small fw-bold mt-2 pt-1 mb-2">No tienes cuenta? <Link to='/singup'> <a className="link-danger">Registro</a>  </Link></p>
           </div>
 
         </MDBCol>

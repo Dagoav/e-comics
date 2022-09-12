@@ -2,26 +2,26 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Login from '../login/login';
 import Register from '../../components/login/Register';
-//import './Tabslogin.css'
+
 
 
 
 function Tabslogin() {
   return (
-    <Tabs
-      // defaultActiveKey="profile"
-      id="uncontrolled-tab-example"
-      className="d-flex flex-row align-items-center mb-4 "
-    >
-    
-      <Tab eventKey="Login" title="Login">
-        <Login/>
-      </Tab>
-      <Tab eventKey="Registro" title="Registro">
-        <Register />
-      </Tab>
-
-    </Tabs>
+    <div className='tabs-login'>
+      <Tabs
+        defaultActiveKey="login"
+        id="uncontrolled-tab-example"
+        className="mb-3 "
+      >
+        <Tab eventKey="login" title="Login">
+          <Login />
+        </Tab>
+        <Tab eventKey="signup" title="Signup">
+          <Register />
+        </Tab>
+      </Tabs>
+    </div>
   );
 }
 

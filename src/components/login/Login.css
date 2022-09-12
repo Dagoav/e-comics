@@ -13,3 +13,8 @@
   height: 100%;
   }
 }
+.texterror {
+  position: absolute;
+  color: red;
+  margin-top: 65px;
+}

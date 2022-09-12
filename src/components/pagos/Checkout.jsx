@@ -17,20 +17,15 @@ const Checkout = (/* {price} */) => {
             type: 'card',
             card: elements.getElement(CardElement) // Selecciona el num de tarjeta del componente Card
         })
-        
         const { id } = paymentMethod;
-        
         try {
             if(!error){
                 const { data } = await axios.post(url + 'checkout', {
                     id: id,
                     price: price,
                 });
-
                 alert("COMIC PAGADO") // Ponganle un mensaje más bonito
-
                 elements.getElement(CardElement).clear() // Limpia el input
-
             } else {
                 console.log(error)
             }
@@ -39,7 +34,6 @@ const Checkout = (/* {price} */) => {
             alert(error.response.data.error)
         }
     }
-
     return(
         <form onSubmit={handleSubmit}>
             <CardElement />
@@ -51,3 +45,66 @@ const Checkout = (/* {price} */) => {
 }
 
 export default Checkout;
+
+
+
+// import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+// import axios from 'axios';
+// import { useAuth0 } from '@auth0/auth0-react';
+// import { useNavigate } from 'react-router-dom';
+// const backendURL = process.env.REACT_APP_API;
+// const Checkout = (/* {price} */) => {
+// const token = JSON.parse(localStorage.getItem("token"))
+
+    
+
+//     const price = 10000
+
+//     const stripe = useStripe()
+//     const elements = useElements()
+//     const navigate = useNavigate()
+//     const handleSubmit = async (e) => {
+//         e.preventDefault()
+
+//         const { paymentMethod, error } = await stripe.createPaymentMethod({
+//             type: 'card',
+//             card: elements.getElement(CardElement) // Selecciona el num de tarjeta del componente Card
+//         })
+//         const { id } = paymentMethod;
+//         try {
+//             if(!error){
+//                 const response = await axios({
+//                     method: 'POST',
+//                     url: `${backendURL}/checkout`,
+//                     id: id,
+//                     price: price,
+//                     headers: {
+//                     "Authorization": `Bearer ${token.token}`
+//                     }
+//                   })
+//                   if(response.data.Rol !== "USER"){
+//                     navigate('/login')
+//                     }
+                
+
+//                 alert("COMIC PAGADO") // Ponganle un mensaje más bonito
+//                 elements.getElement(CardElement).clear() // Limpia el input
+//             } else {
+//                 console.log(error)
+//             }
+//         } catch (error) {
+//             // Error en el pago, ej sin fondos
+//             alert(error.response.data.error)
+//         }
+//     }
+//     return(
+//         <form onSubmit={handleSubmit}>
+//             <CardElement />
+//             <button>
+//                 Buy
+//             </button>
+//         </form>
+//     )
+// }
+
+// export default Checkout;

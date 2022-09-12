@@ -287,14 +287,14 @@
   color: var(--blue);
 }
 
-.btn {
+/* .btn {
   position: relative;
   padding: 5px 10px;
   background: var(--blue);
   text-decoration: none;
   color: var(--white);
   border-radius: 6px;
-}
+} */
 
 .detailsAdm table {
   width: 100%;

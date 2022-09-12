@@ -1,5 +1,5 @@
 import React from "react";
-// import Carousel from 'react-bootstrap/Carousel';
+import "./Item.css"
 
 const Item = ({ listImages }) => {
     return (
@@ -8,7 +8,7 @@ const Item = ({ listImages }) => {
                 listImages.map((hero, i) => (
                     <img
                         key={`hero-${i}`}
-                        className="d-flex justify-content-start align-items-center"
+                        className="imgage-carrousel d-flex justify-content-start align-items-center"
                         src={hero}
                         alt="First slide"
                     />

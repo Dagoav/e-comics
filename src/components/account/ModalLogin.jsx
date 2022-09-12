@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Tabs } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Tabslogin from "./Tabslogin";
+import "./ModalLogin.css"
 
 function ModalLogin() {
   const [show, setShow] = useState(false);
@@ -15,21 +15,24 @@ function ModalLogin() {
       <span variant="primary" onClick={handleShow}>
         Login
       </span>
+      <>
+        <Modal size="lg" show={show} onHide={handleClose}>
+          <Modal.Body>
+            <div className="tabs-login-container" >
+              <Tabslogin />
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
 
-      <Modal size="lg" show={show} onHide={handleClose}>
-        <Modal.Header>
-          <div >
-            <Tabslogin />
-          </div>
-        </Modal.Header>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      </>
     </>
   );
 }
 
 export default ModalLogin;
+

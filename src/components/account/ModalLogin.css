@@ -1,0 +1,27 @@
+.tabs-login-container {
+  width: 100%;
+}
+
+.navbar-nav {
+  display: flex;
+  border: none !important;
+  flex-direction: row !important;
+  margin-left: 0 !important;
+}
+
+.navbar-nav:hover {
+  border: none !important;
+}
+
+.nav-link {
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.nav-link.active {
+  background-color: rgb(240, 208, 30) !important;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+}
