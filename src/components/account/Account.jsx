@@ -23,7 +23,7 @@ const Account = () => {
   }
 
   return (
-    <NavDropdown title="Cuenta" id="navbarScrollingDropdown">
+    <NavDropdown title="Account" id="navbarScrollingDropdown">
       <NavDropdown.Item className='d-flex' onClick={() => auth0_login()}>
         <div className='me-4'>
           <div className='d-flex' >
@@ -72,7 +72,7 @@ const Account = () => {
           {<Logout />}
         </span>
         <span className='ms-2'>
-          Salir
+          Exit
         </span>
       </NavDropdown.Item>
     </NavDropdown >

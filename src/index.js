@@ -9,29 +9,29 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import { Auth0Provider } from '@auth0/auth0-react';
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
+// import { Auth0Provider } from '@auth0/auth0-react';
+// import { Elements } from '@stripe/react-stripe-js';
+// import { loadStripe } from '@stripe/stripe-js';
 
-const providerConfig = {
-  domain: "dev-dme2agps.us.auth0.com",
-  clientId: "KGHYE5uXq8zYlmfaaa1oMTLlxLlc1Unh",
-  redirectUri: window.location.origin,
-};
+// const providerConfig = {
+//   domain: "dev-dme2agps.us.auth0.com",
+//   clientId: "KGHYE5uXq8zYlmfaaa1oMTLlxLlc1Unh",
+//   redirectUri: window.location.origin,
+// };
 
-const stripePromise = loadStripe("pk_test_51LfUl2GKiZGzVPFiXL66alIPbNJN4wqY9ZLCjUk9Uht9CDx2OQ1cvLZznwSIYlWeBUNRkMQNIXqIm6huk4JqOnIb00UB9E1Ck8")
+// const stripePromise = loadStripe("pk_test_51LfUl2GKiZGzVPFiXL66alIPbNJN4wqY9ZLCjUk9Uht9CDx2OQ1cvLZznwSIYlWeBUNRkMQNIXqIm6huk4JqOnIb00UB9E1Ck8")
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode >
     <Provider store={store}>
-      <Auth0Provider {...providerConfig}>
-        <Elements stripe={stripePromise}>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </Elements>
-      </Auth0Provider>
+      {/* <Auth0Provider {...providerConfig}> */}
+        {/* <Elements stripe={stripePromise}> */}
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+        {/* </Elements> */}
+      {/* </Auth0Provider> */}
     </Provider>
   </React.StrictMode>
 );
