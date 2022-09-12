@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import { useSelector } from "react-redux";
 import logo from '../../assets/LogoRed2.png'
@@ -17,6 +18,17 @@ import "./Navbar.css"
 function NavBar({ searchbar = true }) {
   const theme_params = useSelector((state) => state.theme_params);
   const { theme } = theme_params
+
+  useEffect(() => {
+    let links = document.querySelectorAll(".style-links")
+    console.log(links);
+    links.forEach(link => {
+      if (link) {
+        link.className = `style-links navbar-link-${theme} mt-2 mx-2`
+      }
+    })
+
+  }, [theme])
 
   return (
     <>
@@ -54,8 +66,12 @@ function NavBar({ searchbar = true }) {
                 style={{ maxHeight: '450px' }}
                 navbarScroll
               >
-                <Nav.Link className='ms-2' href="#action1">Home</Nav.Link>
-                <Nav.Link className='ms-2' href="#action2">About</Nav.Link>
+                <Link to={"/home"} className='style-links'>
+                  Home
+                </Link>
+                <Link to={"/about"} className='style-links'>
+                  About
+                </Link>
 
                 {/* Account */}
                 <Account />

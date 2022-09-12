@@ -23,9 +23,24 @@
     left: 20px;
 }
 
-/* .links {
-    background-color: brown;
-} */
+
+.navbar-link-light {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.55);
+}
+
+.navbar-link-light:hover {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.navbar-link-dark {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.navbar-link-dark:hover {
+    color: rgba(255, 255, 255, 0.75);
+}
 
 @media (max-width: 768px) {
     .logo {
