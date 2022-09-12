@@ -10,7 +10,8 @@ import {
   RiSearch2Line,
   RiEyeLine,
   RiMoneyDollarCircleLine,
-  RiUpload2Line
+  RiUpload2Line,
+  RiMenuFill
 } from 'react-icons/ri'
 import {
   MdShoppingCart,
@@ -20,16 +21,14 @@ import Dani from '../../assets/devs/Daniel.jpeg'
 
 const AdmDashboard = () => {
 
-  let list = document.querySelectorAll('.navigation li')
-
+  let list = document.querySelectorAll('.navAdm li');
   function activeLink() {
     list.forEach((item) =>
-      item.classList.remove('hovered'))
+      item.classList.remove('hovered'));
     this.classList.add('hovered');
   }
   list.forEach((item) =>
-    item.addEventListener('mouseover', activeLink))
-
+    item.addEventListener('mouseover', activeLink));
 
   return (
     <div className="contAdm">
@@ -82,6 +81,9 @@ const AdmDashboard = () => {
 
       <div className="mainAdm">
         <div className="topbar">
+          <div className="toggle">
+            <RiMenuFill />
+          </div>
 
           <div className="search">
             <label>
@@ -134,11 +136,119 @@ const AdmDashboard = () => {
           </div>
         </div>
 
-        <div className="detail">
+        <div className="detailsAdm">
           <div className="recentOrders">
             <div className="cardHeader">
               <h2>Recent Orders</h2>
+              <a href="#" className="btn">View All</a>
             </div>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Price</td>
+                  <td>Status</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Star Refrigerator</td>
+                  <td>$1200</td>
+                  <td><span className="status delivered">Delivered</span></td>
+                </tr>
+                <tr>
+                  <td>Window Coolers</td>
+                  <td>$110</td>
+                  <td><span className="status pending">Pending</span></td>
+                </tr>
+                <tr>
+                  <td>Speakers</td>
+                  <td>$620</td>
+                  <td><span className="status return">Return</span></td>
+                </tr>
+                <tr>
+                  <td>Hp Laptop</td>
+                  <td>$110</td>
+                  <td><span className="status inprogress">In Progress</span></td>
+                </tr>
+                <tr>
+                  <td>Apple Watch</td>
+                  <td>$1200</td>
+                  <td><span className="status delivered">Delivered</span></td>
+                </tr>
+                <tr>
+                  <td>Wall Fan</td>
+                  <td>$110</td>
+                  <td><span className="status pending">Pending</span></td>
+                </tr>
+                <tr>
+                  <td>Adidas Shoes</td>
+                  <td>$620</td>
+                  <td><span className="status return">Return</span></td>
+                </tr>
+                <tr>
+                  <td>Denim Shirts</td>
+                  <td>$110</td>
+                  <td><span className="status inprogress">In Progress</span></td>
+                </tr>
+                <tr>
+                  <td>Casual Shoes</td>
+                  <td>$575</td>
+                  <td><span className="status pending">Pending</span></td>
+                </tr>
+                <tr>
+                  <td>Wall Fan</td>
+                  <td>$110</td>
+                  <td><span className="status pending">Pending</span></td>
+                </tr>
+                <tr>
+                  <td>Denim Shirts</td>
+                  <td>$110</td>
+                  <td><span className="status inprogress">In Progress</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div className="recentCustomers">
+            <div className="cardHeader">
+              <h2>Recent Customers</h2>
+            </div>
+            <table>
+              <tr>
+                <td width="60px"><div className="imgBx"><img src={Dani} /></div></td>
+                <td><h4>User 1<br /></h4></td>
+              </tr>
+              <tr>
+                <td><div className="imgBx"><img src={Dani} /></div></td>
+                <td><h4>User 2<br /></h4></td>
+              </tr>
+              <tr>
+                <td><div className="imgBx"><img src={Dani} /></div></td>
+                <td><h4>User 3<br /></h4></td>
+              </tr>
+              <tr>
+                <td><div className="imgBx"><img src={Dani} /></div></td>
+                <td><h4>User 4<br /></h4></td>
+              </tr>
+              <tr>
+                <td><div className="imgBx"><img src={Dani} /></div></td>
+                <td><h4>User 5<br /></h4></td>
+              </tr>
+              <tr>
+                <td><div className="imgBx"><img src={Dani} /></div></td>
+                <td><h4>User 6<br /></h4></td>
+              </tr>
+              <tr>
+                <td><div className="imgBx"><img src={Dani} /></div></td>
+                <td><h4>User 7<br /></h4></td>
+              </tr>
+              <tr>
+                <td><div className="imgBx"><img src={Dani} /></div></td>
+                <td><h4>User 8<br /></h4></td>
+              </tr>
+
+            </table>
           </div>
         </div>
 

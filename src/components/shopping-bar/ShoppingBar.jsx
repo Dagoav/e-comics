@@ -10,6 +10,7 @@ import "./ShoppingBar.css"
 
 
 const ShoppingBar = ({ price, comic }) => {
+  console.log(comic);
   const favourite = useSelector((state) => state.favourite)
   const dispatch = useDispatch();
   const cart_shopping = useSelector((state) => state.cart_shopping);
