@@ -60,7 +60,7 @@ const Account = () => {
 
       </NavDropdown.Item>
       <NavDropdown.Item href="#" className='d-flex'>
-        <span class="material-symbols-outlined">
+        <span className="material-symbols-outlined">
           dashboard
         </span>
         <span className='ms-2'>

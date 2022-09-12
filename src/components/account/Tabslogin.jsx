@@ -10,14 +10,14 @@ function Tabslogin() {
   return (
     <div className='tabs-login'>
       <Tabs
-        defaultActiveKey="profile"
+        defaultActiveKey="login"
         id="uncontrolled-tab-example"
         className="mb-3 "
       >
-        <Tab eventKey="home" title="Home">
+        <Tab eventKey="login" title="Login">
           <Login />
         </Tab>
-        <Tab eventKey="profile" title="Profile">
+        <Tab eventKey="signup" title="Signup">
           <Register />
         </Tab>
       </Tabs>
