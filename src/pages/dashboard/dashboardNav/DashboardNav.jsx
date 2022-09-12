@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import { NavLink, Link, Outlet } from 'react-router-dom'
 import {
   RiUser3Fill,
   RiSettings3Fill,
@@ -8,25 +8,39 @@ import {
 } from 'react-icons/ri'
 
 import './DashboardNav.css'
+import { useEffect } from 'react'
 
 const DashboardNav = () => {
+  useEffect(() => {
 
-  // let list = document.querySelectorAll('.navigation li')
+    let list = document.querySelectorAll('.navAdm ul li')
 
-  // function activeLink() {
-  //   list.forEach((item) =>
-  //     item.classList.remove('hovered'))
-  //   this.classList.add('hovered');
-  // }
-  // list.forEach((item) =>
-  //   item.addEventListener('mouseover', activeLink))
+    list.forEach(elem => {
+      elem.addEventListener("click", (e) => {
+        elem.classList.add("selected")
+        console.log(e.target);
+        list.forEach(elem => {
+          elem.classList.remove("selected")
+        })
+
+      })
+    })
+
+    // function activeLink() {
+    //   list.forEach((item) =>
+    //     item.classList.remove('hovered'))
+    //   this.classList.add('hovered');
+    // }
+    // list.forEach((item) =>
+    //   item.addEventListener('mouseover', activeLink))
+  })
 
   return (
     <div className="contAdm">
       <div className='navAdm'>
         <ul>
           <li className='mt-2'>
-            <Link to={"/"}>
+            <Link to={"/dashboard"}>
               <span className='icon'>
                 <span className="material-symbols-outlined pt-2" style={{ fontSize: '2.5rem' }}>
                   admin_panel_settings
@@ -36,26 +50,26 @@ const DashboardNav = () => {
             </Link>
           </li>
           <li>
-            <Link to={"/dashboard/admin"}>
+            <NavLink to={"/dashboard/admin"} >
               <span className='icon'>
                 <span className="material-symbols-outlined pt-2" style={{ fontSize: '2.5rem' }}>
                   dashboard
                 </span>
               </span>
               <span className='title'>Dashboard</span>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to={"/dashboard/users"}>
+            <NavLink to={"/dashboard/users"}>
               <span className='icon'><RiUser3Fill /></span>
               <span className='title'>Users</span>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to={"/dashboard/settings"}>
+            <NavLink to={"/dashboard/settings"} >
               <span className='icon'><RiSettings3Fill /></span>
               <span className='title'>Settings</span>
-            </Link>
+            </NavLink>
           </li>
           {/* <li>
             <a href="#">
@@ -64,16 +78,16 @@ const DashboardNav = () => {
             </a>
           </li> */}
           <li>
-            <Link to={"/dashboard/upload"}>
+            <NavLink to={"/dashboard/upload"} >
               <span className='icon'><RiUpload2Line /></span>
               <span className='title'>Subir comic</span>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to={"/home"}>
+            <NavLink to={"/home"}>
               <span className='icon'><RiLogoutBoxRLine /></span>
               <span className='title'>Exit</span>
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </div>

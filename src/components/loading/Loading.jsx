@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from "react-redux";
 import Spinner from 'react-bootstrap/Spinner';
+import "./Loading.css"
 
 const Loading = ({ data }) => {
   let [error, setError] = useState(false);
@@ -17,7 +18,7 @@ const Loading = ({ data }) => {
   }, [data, error])
 
 
-  if (error) return (<p> No data</p >)
+  if (error) return (<p className='notFound'>Comics not found</p >)
   return (
     <>
       {

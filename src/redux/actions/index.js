@@ -3,7 +3,7 @@ import axios from "axios";
 const backendURL = process.env.REACT_APP_API;
 
 export const getAllVolumes = () => {
-  const token = JSON.parse(localStorage.getItem("token"))
+  // const token = JSON.parse(localStorage.getItem("token"))
   return async (dispatch) => {
     const volumes = await axios({
       method: 'GET',
@@ -73,11 +73,25 @@ export const searchComic = (volume_name) => {
   return async (dispatch) => {
     const comics = await axios({
       method: 'get',
-      url: `${backendURL}/comics/name?name=${volume_name}`
+      url: `${backendURL}/comics/search?name=${volume_name}`
     })
     return dispatch({
       type: "SEARCH_COMICS",
       payload: comics.data
+    })
+  }
+}
+
+
+export const getUsers = () => {
+  return async (dispatch) => {
+    const users = await axios({
+      method: 'get',
+      url: `${backendURL}/admin/users`
+    })
+    return dispatch({
+      type: "GET_USERS",
+      payload: users.data
     })
   }
 }
@@ -130,13 +144,13 @@ export const addToCart = (products, shopping_cart) => {
   // Verifica que el producto no esté en el carrito para no agregarlo de nuevo
   const inCart = shopping_cart.some(p => p.id === products.id)
 
-  if(!inCart){
+  if (!inCart) {
     return {
       type: "ADD_TO_CART",
       payload: products,
     }
   } else {
-    return{
+    return {
       type: "NADA", //devuelve el estado, sino Redux llora
     }
   }
@@ -172,7 +186,7 @@ export function creategame(data) {
   };
 }
 export function addFavorite(comic) {
-  
+
   return {
     type: "ADD_FAVORITE",
     payload: comic
