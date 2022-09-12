@@ -29,27 +29,6 @@ export const volumeDetail = (id) => {
 }
 
 
-// export const getLogin = () => {
-//   return async (dispatch) => {
-//     const auth = await axios({
-//       method: 'get',
-//       url: `${backendURL}/sign-up`,
-//       headers: {
-//         'Access-Control-Allow-Origin': '*',
-//         'Content-Type': 'application/json',
-//         // 'Authorization': key,
-//         withCredentials: true,
-//         mode: 'no-cors',
-//       }
-//     })
-//     console.log(auth);
-//     return dispatch({
-//       type: "SET_AUTH",
-//       payload: auth.data
-//     })
-//   }
-// }
-
 
 export const issueDetail = (path) => {
   return async (dispatch) => {
@@ -158,3 +137,47 @@ export function creategame(data) {
     console.log(createUser)
   };
 }
+
+//------Filtros--------------//
+
+export function filterComicForPublishers(payload){
+
+  return {
+  type:"FILTER_COMIC_FOR_PUBLISHER",
+  payload
+  }}
+
+
+  export function clear(){
+    return{
+        type:"CLEAR",
+    }
+}
+
+  export function setPage (payload){
+    return {
+        type:"SET_PAGE",
+        payload
+    }
+
+}
+export function filterForAD (payload){
+return {
+  type:"FILTER_COMIC_FOR_AD",
+  payload
+  }
+}
+export function FilterForEpisodes(payload){
+  console.log(payload)
+  return{
+      type:"FILTER_FOR_EPISODES",
+      payload
+      }}
+      
+
+      export function FilterForGender(payload){
+        console.log(payload)
+        return{
+            type:"FILTER_FOR_GENDER",
+            payload
+            }}

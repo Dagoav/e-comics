@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllVolumes, reset_comicState } from "../../redux/actions";
+import { getAllVolumes,setPage,clear} from "../../redux/actions";
 import ComicCard from "../../components/card/Card";
 import Paginado from "../paginado/paginado";
 
@@ -9,40 +9,37 @@ import Paginado from "../paginado/paginado";
 
 const CardsGallery = () => {
     const dispatch = useDispatch();
-    let [currentPage, setCurrentPage] = useState(1);
+    let currentPage = useSelector(state =>state.currentPage);
     // eslint-disable-next-line no-unused-vars
-    let [comicPerPage, setComicPerPage] = useState(12)
-    let comics = useSelector((state) => state.comics);
-        console.log(comics)
-    useEffect(() => {
-        dispatch(reset_comicState())
-        dispatch(getAllVolumes())
-    }, [dispatch])
+    let [comicPerPage] = useState(12)
+    let allComics = useSelector((state) => state.comics);
+    
+        
+    
+   
 
 
     let indexOfLastComic = currentPage * comicPerPage;
     let indexOfFirstComic = indexOfLastComic - comicPerPage;
-    let currentComic = comics.slice(indexOfFirstComic, indexOfLastComic)
+    let currentComic = allComics.slice(indexOfFirstComic, indexOfLastComic)
 
     const paginado = (pageNumber) => {
-        setCurrentPage(pageNumber)
+       
+        dispatch(setPage(pageNumber))
+        
     }
-
-    useEffect(() => {
-        setCurrentPage(1);
-    }, [comics.length, setCurrentPage]);
-
+   
 
     return (
         <>
             <Paginado
                 comicPerPage={comicPerPage}
-                allComics={comics.length}
+                allComics={allComics.length}
                 paginado={paginado}
-                page={currentPage}
+                currentPage={currentPage}
             />
             {
-                currentComic.length === 0 ? <p className="notFound">No hay resultados</p> :
+                currentComic.length === 0 ? <p className="notFound">No Found Anything</p> :
                     currentComic.map(c => (
                         <ComicCard key={c.id} data={c} />
                     ))

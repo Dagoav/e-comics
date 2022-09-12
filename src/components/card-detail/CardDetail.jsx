@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { volumeDetail } from "../../redux/actions";
-import { useParams } from "react-router-dom";
+import { volumeDetail,clear } from "../../redux/actions";
+import { useParams,useNavigate } from "react-router-dom";
 import NavBar from '../navBar/Navbar'
 import ShoppingBar from '../shopping-bar/ShoppingBar';
 
@@ -10,15 +10,17 @@ import "./cardDetail.css"
 
 
 const CardDetail = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const theme_params = useSelector((state) => state.theme_params);
-  const comic = useSelector((state) => state.comic);
+  const comic= useSelector((state) => state.comic);
   const { id } = useParams()
-  const { image, name, deck, description, start_year, price } = comic
+  const { image, name, episodes, description, start_year, price } = comic
 
   console.log(comic)
 
   useEffect(() => {
+    dispatch(clear())
     dispatch(volumeDetail(id))
   }, [dispatch, id])
 
@@ -51,18 +53,20 @@ const CardDetail = () => {
       <div className='card-detail d-flex'>
         <div className='img-detail'>
           <img src={image} alt="" />
+          
         </div>
         <div className='info-detail'>
           <div id='description-detail'>
             <p className='description-title'>{name} ({start_year})</p>
-            <p className='description-subtitle'>{deck}</p>
-            <p id='desc'></p>
+            <p className='description-subtitle'>{episodes}</p>
+           
           </div>
           <div className='shopping-detail'>
             <ShoppingBar comic={comic} price={price} />
           </div>
         </div>
       </div>
+      <button onClick= {()=>navigate(-1)} className={"game"}>Back</button>
     </div >
   );
 }

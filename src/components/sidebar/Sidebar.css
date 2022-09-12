@@ -28,8 +28,10 @@ h6 {
 }
 
 .publisher {
+  background-color: aliceblue;
   margin: 2rem;
   margin-top: 1rem;
+  color: #d01e00;
 }
 
 .select {

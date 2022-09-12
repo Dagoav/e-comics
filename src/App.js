@@ -9,10 +9,24 @@ import CreateComic from './pages/create-comic/CreateComic';
 import CardDetail from './components/card-detail/CardDetail';
 import LandingPage from './pages/LandingPage/LandingPage.jsx';
 import Favorites from './pages/favorites/Favorites';
+import{useEffect}from "react";
+import {useDispatch} from "react-redux"
+import {getAllVolumes} from "./redux/actions";
 
 function App() {
+const dispatch =useDispatch()
+
+
+  useEffect(() => {
+    dispatch(getAllVolumes());
+    }, [dispatch]);
+  
   return (
+    
+
+    
     <div className="App">
+    
       <Routes>
         <Route exact path="/" element={<LandingPage />} />
         <Route path="/home" element={<Home />} />
