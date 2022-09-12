@@ -25,13 +25,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode >
     <Provider store={store}>
-      {/* <Auth0Provider {...providerConfig}> */}
-        {/* <Elements stripe={stripePromise}> */}
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-        {/* </Elements> */}
-      {/* </Auth0Provider> */}
+      {/* <Auth0Provider {...providerConfig}>
+        <Elements stripe={stripePromise}> */}
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+      {/* </Elements>
+      </Auth0Provider> */}
     </Provider>
   </React.StrictMode>
 );

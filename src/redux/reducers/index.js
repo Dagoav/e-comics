@@ -15,6 +15,7 @@ const initialState = {
     theme: "light",
     state: false
   },
+  datauser: []
 };
 
 
@@ -116,7 +117,6 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         favourite: state.favourite.filter(e => e.id !== action.payload.id)
       }
-
     default: return state
   };
 };
