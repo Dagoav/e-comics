@@ -26,21 +26,24 @@ import {PublicRoute} from './components/routes/PublicRoute'
 import {AdminRoute} from './components/routes/AdminRoute'
 import Logout from './components/login/Logout';
 import ModalLogin from './components/account/ModalLogin';
+import { Nofound } from './components/NoFound/Nofound';
+import Tabslogin from './components/account/Tabslogin';
 
 function App() {
   return (
     <div className="App">
      
-         
+{/*----------------------------------rutas publicas-----------------------------------------  */}
           <Routes>
                 <Route path='/' element ={<PublicRoute/>}>
-                    <Route path= "/cardDetail/:id" element={<CardDetail />} />
                     <Route exact path="/" element={<LandingPage />} />
-                    <Route path="/home" element={<Home />} />
-                    <Route path='/login' element={<ModalLogin />} />
+                    <Route path='/login' element={<Tabslogin />} />
                     <Route path='/singup' element={<Register />} />
+                    <Route path="/home" element={<Home />} />
+                    <Route path= "/cardDetail/:id" element={<CardDetail />} />
                 </Route>
-
+{/* --------------------------------rutas usuario ----------------------------------------- */}
+                
                 <Route path = '/user' element={<UserRoute/>}>
                     <Route path ='/user' element={<UserProfile />} />
                     <Route path="/user/home" element={<Home />} />
@@ -51,16 +54,15 @@ function App() {
                     <Route path='/user/checkout' element={<Checkout />} />
                     <Route path='/user/logout' element={<Logout />} />
                 </Route>
-
+{/*-------------------------------- rutas de administador ----------------------------------*/}
+                
                 <Route path = '/admin' element={<AdminRoute/>}>
-                    <Route path='/admin' element={<Admin />} />
-                    <Route path='/admin/dashboard' element={<DashboardNav />}/>
-                    <Route path="/admin/home" element={<Home />} />
-                    <Route path='/admin/settings' element={<Settings />} />
-                    <Route path='/admin/profileupload' element={<UploadComic />} />
+                    <Route path='/admin/dashboard' element={<Admin />} />
+                    <Route path='/admin' element={<DashboardNav />}/>
                     <Route path='/admin/logout' element={<Logout />} />
-                    <Route path='/admin/cardDetail/:id' element={<CardDetail />} />
                 </Route>
+                
+                <Route path= '/*'   element={<Nofound />} />
           </Routes>
        
    

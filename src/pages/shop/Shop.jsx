@@ -45,7 +45,7 @@ const Shop = () => {
             <div className="checkout-box">
               PRECIO TOTAL: ${Number(totalPrice).toFixed(2)}
               <button onClick={removeAll}>Vaciar Carrito</button>
-              <Link to='/checkout'>
+              <Link to='/user/checkout'>
               {/* <Link to= {rol === "USER" ? '/user/checkout' : '/admin/dashboard' }> */}
               <button>COMPRAR</button></Link>
             </div>

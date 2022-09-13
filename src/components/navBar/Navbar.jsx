@@ -69,7 +69,7 @@ function NavBar({ searchbar = true }) {
                 style={{ maxHeight: '450px' }}
                 navbarScroll
               >
-                <Link to={rol === "ADMIN"? '/admin/home' : rol === "USER"? '/user/home' : '/home'} className='style-links'>
+                <Link to={rol === "ADMIN"? '/admin' : rol === "USER"? '/user/home' : '/home'} className='style-links'>
                   Home
                 </Link>
                 <Link to={"/about"} className='style-links'>
@@ -80,10 +80,10 @@ function NavBar({ searchbar = true }) {
                 <Account />
 
                 {/* shopping cart */}
-                {rol === "USER"?
-                <ShoppingCart />:
-                null
-                 }
+                {/* {rol === "USER"? */}
+                <ShoppingCart />
+                {/* // null
+                //  } */}
 
               </Nav>
             </Col>

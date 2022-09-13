@@ -15,9 +15,9 @@ const Account = () => {
   const { isAuthenticated } = useAuth0()  
   const auth0_login = () => {
   }
- const rol = JSON.parse(localStorage.getItem("ROL"))
- 
- 
+  
+  
+  const rol = JSON.parse(localStorage.getItem("ROL"))
  const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true); 
@@ -80,7 +80,7 @@ const Account = () => {
       <NavDropdown.Item href="#action7" className='d-flex'>
     
           {rol ? 
-          <Link to = {rol === "ADMIN"? "/admin/logout" : rol=== 'USER'? '/user/logout': ""}  >
+          <Link to = '/user/logout'  >
           <span className='ms-2'>
           Exit
           </span>

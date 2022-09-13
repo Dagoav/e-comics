@@ -50,7 +50,7 @@ const DashboardNav = () => {
             </Link>
           </li>
           <li>
-            <NavLink to={"/dashboard/admin"} >
+            <NavLink to={"/admin/dashboard"} >
               <span className='icon'>
                 <span className="material-symbols-outlined pt-2" style={{ fontSize: '2.5rem' }}>
                   dashboard
@@ -84,7 +84,7 @@ const DashboardNav = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/home"}>
+            <NavLink to={"/admin/logout"}>
               <span className='icon'><RiLogoutBoxRLine /></span>
               <span className='title'>Exit</span>
             </NavLink>
