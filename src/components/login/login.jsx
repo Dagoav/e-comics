@@ -7,7 +7,7 @@ import { MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } 
 import { Button } from 'react-bootstrap';
 import Swal from 'sweetalert2'
 import './login.css'
-
+import {useAuthContext} from '../../context/authContext'
 
 const backendURL = process.env.REACT_APP_API;
 
@@ -27,6 +27,8 @@ function validate(input) {
 }
 
 function LoginApp() {
+
+  const {login} = useAuthContext()
   const navigate = useNavigate()
 
 
@@ -59,17 +61,21 @@ function LoginApp() {
       })
       localStorage.setItem('token', JSON.stringify(response.data))
       localStorage.setItem("user", JSON.stringify(response.data.name))
-
-      if (response.data.Rol === "USER") {
-        navigate('/userprofile')
-      }
-      if (response.data.Rol === "ADMIN") {
-        navigate('./admin')
-      }
+      localStorage.setItem("ROL", JSON.stringify(response.data.Rol))
+      
+      // if (response.data.Rol === "USER") {
+      //   navigate('/userprofile')
+      //   //localStorage.setItem("MY_AUTH", true)
+      // }
+      // if (response.data.Rol === "ADMIN") {
+      //   navigate('./dashboard/admin')
+      //   //localStorage.setItem("MY_AUTH", true)
+      // }
       setInput({
         email: "",
         password: "",
       })
+      login()
     } catch (error) {
       Swal.fire({
         title: 'Error!',

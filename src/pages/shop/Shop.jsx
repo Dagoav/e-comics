@@ -20,7 +20,7 @@ const Shop = () => {
   const removeAll = () => {
     cart_shopping.map(p => removeProduct(p))
   }
-
+  const rol = JSON.stringify(localStorage.getItem("ROL"))
   let totalPrice = 0;
   return (
     <>
@@ -45,7 +45,9 @@ const Shop = () => {
             <div className="checkout-box">
               PRECIO TOTAL: ${Number(totalPrice).toFixed(2)}
               <button onClick={removeAll}>Vaciar Carrito</button>
-              <Link to='/checkout'><button>COMPRAR</button></Link>
+              <Link to='/checkout'>
+              {/* <Link to= {rol === "USER" ? '/user/checkout' : '/admin/dashboard' }> */}
+              <button>COMPRAR</button></Link>
             </div>
             : <div>No hay productos</div>
         }

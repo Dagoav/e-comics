@@ -14,7 +14,7 @@ const ShoppingCart = () => {
 
     return (
         <>
-            <Link to={"/shop"} style={{ textDecoration: 'none' }}>
+            <Link to={"/user/shop"} style={{ textDecoration: 'none' }}>
                 <div className='p-2 position-relative'>
                     <span className="material-symbols-outlined cart">
                         shopping_cart
