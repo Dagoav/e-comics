@@ -1,0 +1,22 @@
+.mainAdm-users {
+  position: absolute;
+  width: calc(100% - 300px);
+  height: 100vh;
+  left: 300px;
+  min-height: 100vh;
+  background: var(--white);
+  transition: 0.5s;
+  overflow-y: auto;
+}
+
+.alert-styles {
+  position: absolute;
+  bottom: 50px;
+  right: 20px;
+}
+
+.errors {
+  font-size: 14px;
+  color: #dc3545;
+  margin-left: 10px;
+}

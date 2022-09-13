@@ -128,7 +128,7 @@ export function getConcepts() {
 
 export const reset_comicState = (payload) => {
   return {
-    type: "RESET_COMIC",
+    type: "RESET_STATE",
     payload
   }
 }
@@ -138,6 +138,21 @@ export const setShoppingCart = (products) => {
     payload: products
   }
 }
+
+export const addComic = (body) => {
+  return async (dispatch) => {
+    const comic_info = await axios({
+      method: 'post',
+      url: `${backendURL}/comics`,
+      data: body
+    })
+    return dispatch({
+      type: "POST_COMIC",
+      payload: comic_info.data
+    })
+  }
+}
+
 
 export const addToCart = (products, shopping_cart) => {
 
@@ -212,13 +227,13 @@ export function removeFavorite(comic) {
 //   }
 // }
 
-export function registerUser(data){
-    return async function(){
-      const register = await axios({
-        url: (`${backendURL}/user/singup`),
-        method: 'POST',
-        data: data
-      })
-    }
+export function registerUser(data) {
+  return async function () {
+    const register = await axios({
+      url: (`${backendURL}/user/singup`),
+      method: 'POST',
+      data: data
+    })
   }
+}
 

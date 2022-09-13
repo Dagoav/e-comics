@@ -14,10 +14,9 @@ import Checkout from './components/pagos/Checkout'
 import DashboardNav from './pages/dashboard/dashboardNav/DashboardNav';
 import Admin from './pages/dashboard/admin/Admin';
 import Users from './pages/dashboard/users/Users'
-import Settings from './pages/dashboard/settings/Settings';
+import Orders from './pages/dashboard/orders/Orders';
 import UploadComic from './pages/dashboard/uploadComic/UploadComic'
 
-import AdmDashboard from './pages/admin-dashboard/admDashboard'
 import UserProfile from './pages/UserProfile/UserProfile';
 import Register from './components/login/Register';
 
@@ -26,7 +25,6 @@ function App() {
   return (
     <div className="App">
       <Routes>
-
         <Route exact path="/" element={<LandingPage />} />
         <Route path={"/cardDetail/:id"} element={<CardDetail />} />
         <Route path="/home" element={<Home />} />
@@ -34,21 +32,38 @@ function App() {
         <Route path='/fav' element={<Favorites />} />
         <Route path='/checkout' element={<Checkout />} />
 
-        {/* Dashboard */}
-        <Route path='dashboard' element={<DashboardNav />} >
-          <Route path='admin' element={<Admin />} />
-          <Route path='users' element={<Users />} />
-          <Route path='settings' element={<Settings />} />
-          <Route path='upload' element={<UploadComic />} />
-        </Route>
-
         {/* login */}
         <Route path='/login' element={<LoginApp />} />
         <Route path='/userprofile' element={<UserProfile />} />
         <Route path='/singup' element={<Register />} />
+
+        {/* Dashboard */}
+        <Route path='/dashboard/*' element={<DashboardNav />} >
+          <Route path='admin' element={<Admin />} />
+          <Route path='users' element={<Users />} />
+          <Route path='orders' element={<Orders />} />
+          <Route path='upload' element={<UploadComic />} />
+        </Route>
+
       </Routes>
     </div>
   );
 }
 
 export default App;
+
+
+// export const AppRouter = () => {
+
+//   const { usuario } = useContext(AuthContext);
+//   return (
+//     <BrowserRouter>
+//       <div  >
+//         <Routes>
+//           <Route path="/login" element={usuario.logged ? (<Navigate to="/" />) : (<LoginScreen />)} />
+//           <Route path="/*" element={usuario.logged ? (<DashboardRoutes />) : (<Navigate to="/login" />)} />
+//         </Routes>
+//       </div>
+//     </BrowserRouter>
+//   )
+// }

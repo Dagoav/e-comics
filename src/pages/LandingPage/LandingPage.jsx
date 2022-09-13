@@ -20,7 +20,7 @@ const LandingPage = () => {
 
   return (
     <>
-      <section>
+      <section className='landing-section'>
         <img src={patternYellow} className="circle" />
         <img src={patternBlue} className="circle2" />
         <header className='shadow-lg sticky bg-gray-100  border-b-2 border-gray-100'>

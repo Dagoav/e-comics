@@ -46,13 +46,14 @@
 .navAdm ul li:hover,
 .navAdm ul li.hovered {
   background: var(--white);
-  
+
 }
 
 .active {
-  /* background-color: #da8933; */
+  background-color: var(--white);
+  color: var(--blue) !important;
   border-top-left-radius: 30px;
-  border-bottom-left-radius: 30px;  
+  border-bottom-left-radius: 30px;
 }
 
 
@@ -97,33 +98,33 @@
   white-space: nowrap;
 }
 
-/* 
-  /* .navAdm ul li:hover a::before,
-  .navAdm ul li.hovered a::before {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: -50px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    box-shadow: 90px 90px 0 10px var(--white);
-    pointer-events: none;
-  }
 
-  .navAdm ul li:hover a::after,
-  .navAdm ul li.hovered a::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    bottom: -50px;
-    width: 50px;
-    height: 50px;
-    background: transparent;
-    border-radius: 50%;
-    box-shadow: 90px -90px 0 10px var(--white);
-    pointer-events: none;
-  } */
+.navAdm ul li:hover a::before,
+.navAdm ul li.hovered a::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 90px 90px 0 10px var(--white);
+  pointer-events: none;
+}
+
+.navAdm ul li:hover a::after,
+.navAdm ul li.hovered a::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  width: 50px;
+  height: 50px;
+  background: transparent;
+  border-radius: 50%;
+  box-shadow: 90px -90px 0 10px var(--white);
+  pointer-events: none;
+}
 
 
 .selected {
