@@ -6,7 +6,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { MDBContainer, MDBCol, MDBRow, MDBInput } from 'mdb-react-ui-kit';
 import { Button } from 'react-bootstrap';
 import Swal from 'sweetalert2'
-// import './login.css'
 import {useAuthContext} from '../../context/authContext'
 
 const backendURL = process.env.REACT_APP_API;
