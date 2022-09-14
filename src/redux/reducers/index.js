@@ -3,6 +3,7 @@ const initialState = {
   comics: [],
   issues: [],
   comic: {},
+  comic_info: {},
   cart_shopping: [],
   favourite: [],
   users: [],
@@ -35,16 +36,24 @@ const rootReducer = (state = initialState, action) => {
         issues: action.payload,
       }
 
+
     case "GET_COMIC":
       return {
         ...state,
         comic: action.payload
       }
 
-    case "RESET_COMIC":
+    case "POST_COMIC":
       return {
         ...state,
-        comic: {}
+        comic_info: action.payload
+      }
+
+    case "RESET_STATE":
+      return {
+        ...state,
+        comic: {},
+        issues: []
       }
 
     case "SEARCH_COMICS":

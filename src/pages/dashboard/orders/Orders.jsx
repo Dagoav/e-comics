@@ -1,7 +1,7 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
 
-const Settings = () => {
+const Orders = () => {
   return (
     <>
       <h1>User</h1>
@@ -9,4 +9,4 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+export default Orders;

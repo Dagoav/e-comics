@@ -6,6 +6,7 @@ import store from './redux/store';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { AuthContextProvider } from './context/authContext'
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
@@ -15,13 +16,15 @@ const stripePromise = loadStripe("pk_test_51LfUl2GKiZGzVPFiXL66alIPbNJN4wqY9ZLCj
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode >
-    <Provider store={store}>
-        <Elements stripe={stripePromise}> 
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-       </Elements>
-    </Provider>
+    <AuthContextProvider>
+      <Provider store={store}>
+        <Elements stripe={stripePromise}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </Elements>
+      </Provider>
+    </AuthContextProvider>
   </React.StrictMode>
 );
 

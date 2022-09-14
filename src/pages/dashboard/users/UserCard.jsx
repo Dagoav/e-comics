@@ -3,7 +3,7 @@ import { Card, Col, Row } from 'react-bootstrap';
 import "./UserCard.css"
 
 const UserCard = ({ data }) => {
-  console.log(data);
+  // console.log(data);
   const { email, rol } = data
 
   return (
