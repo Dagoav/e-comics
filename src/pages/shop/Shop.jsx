@@ -1,7 +1,7 @@
 import React from "react";
 import { ListGroup } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromCart } from "../../redux/actions";
+import { removeFromCart, emptyCart } from "../../redux/actions";
 
 import NavBar from "../../components/navBar/Navbar";
 import "./Shop.css"
@@ -14,11 +14,15 @@ const Shop = () => {
   const dispatch = useDispatch()
 
   const removeProduct = (issue) => {
-    dispatch(removeFromCart(issue))
+    var confirm = window.confirm(`¿Eliminar ${issue.name || 'esta issue'} del Carrito?`)
+    if(confirm) dispatch(removeFromCart(issue))
   }
 
+  console.log(JSON.parse(localStorage.getItem("carrito")), "CARRITO LOCAL STORAGE")
+
   const removeAll = () => {
-    cart_shopping.map(p => removeProduct(p))
+    var confirm = window.confirm(`¿Vaciar Carrito de Compras?`)
+    if(confirm) cart_shopping.map(p => dispatch(removeFromCart(p)))
   }
 
   let totalPrice = 0;
@@ -45,7 +49,7 @@ const Shop = () => {
             <div className="checkout-box">
               PRECIO TOTAL: ${Number(totalPrice).toFixed(2)}
               <button onClick={removeAll}>Vaciar Carrito</button>
-              <Link to='/checkout'><button>COMPRAR</button></Link>
+              <Link to='/shop/checkout'><button>COMPRAR</button></Link>
             </div>
             : <div>No hay productos</div>
         }

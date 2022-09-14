@@ -1,33 +1,42 @@
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { removeFromCart } from '../../redux/actions';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const Checkout = (/* {price} */) => {
+const Checkout = () => {
 
-    const url = 'http://localhost:3000/'
-
-    const price = 10000
+    const url = 'http://localhost:3000/shop/'
+    const stateCart = useSelector(state => state.cart_shopping)
 
     const stripe = useStripe()
     const elements = useElements()
 
+    var totalprices = 0;
+    stateCart.map(e => totalprices = e.price + totalprices)
+    
     const handleSubmit = async (e) => {
         e.preventDefault()
-
+        
         const { paymentMethod, error } = await stripe.createPaymentMethod({
             type: 'card',
-            card: elements.getElement(CardElement) // Selecciona el num de tarjeta del componente Card
+            card: elements.getElement(CardElement), // Selecciona el num de tarjeta del componente Card
         })
+
+        // :( 
         const { id } = paymentMethod;
         try {
             if(!error){
                 const { data } = await axios.post(url + 'checkout', {
                     id: id,
-                    price: price,
+                    price: totalprices,
+                    carrito: stateCart,
                 });
                 alert("COMIC PAGADO") // Ponganle un mensaje más bonito
                 elements.getElement(CardElement).clear() // Limpia el input
+                stateCart.map( p => removeFromCart(p))
             } else {
-                console.log(error)
+                console.error("Error")
             }
         } catch (error) {
             // Error en el pago, ej sin fondos
@@ -38,8 +47,13 @@ const Checkout = (/* {price} */) => {
         <form onSubmit={handleSubmit}>
             <CardElement />
             <button>
-                Buy
+                BUY
             </button>
+            <Link to='/home'>
+            <button>
+                HOME
+            </button>
+            </Link>
         </form>
     )
 }

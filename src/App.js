@@ -30,9 +30,9 @@ function App() {
         <Route exact path="/" element={<LandingPage />} />
         <Route path={"/cardDetail/:id"} element={<CardDetail />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/shop" element={<Shop />} />
+        <Route exact path="/shop" element={<Shop />} />
+        <Route exact path='/shop/checkout' element={<Checkout />} />
         <Route path='/fav' element={<Favorites />} />
-        <Route path='/checkout' element={<Checkout />} />
 
         {/* Dashboard */}
         <Route path='dashboard' element={<DashboardNav />} >

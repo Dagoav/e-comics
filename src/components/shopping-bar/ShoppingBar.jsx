@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFavorite, addFavorite, addToCart, removeFromCart } from "../../redux/actions";
 // import Favorites from "../../pages/favorites/Favorites";
@@ -19,11 +19,16 @@ const ShoppingBar = ({ price, comic }) => {
     cart_shopping.some( c => c.id === comic.id)
   )
 
-
   let addProducts = () => {
-    dispatch(addToCart(comic, cart_shopping))   // axios.post(al carrito)
+
+    if(!localStorage.getItem("carrito")){
+      localStorage.setItem('carrito', '[]')
+    }
+    
+    dispatch(addToCart(comic, cart_shopping))
     setCountProducts(() => countProducts + 1)
     setComprado(true)
+    localStorage.setItem("carrito", JSON.stringify(cart_shopping))
   }
 
   let removeProducts = () => {
