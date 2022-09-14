@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getCharacters, getPublishers, getConcepts,filterComicForPublishers,clear,filterForAD, FilterForEpisodes } from '../../redux/actions/index.js'
+import { getCharacters, getPublishers, getConcepts,clear,filterForAD, FilterForEpisodes } from '../../redux/actions/index.js'
 import "./Sidebar.css"
 
 
@@ -15,10 +15,10 @@ const Sidebar = () => {
   function handlePublisher(e){
    
     dispatch(getPublishers());
-    dispatch(filterComicForPublishers(e.target.value));
+   
   }
 
-  useEffect(() => {
+  useEffect(() => { 
     dispatch(getCharacters())
     dispatch(getPublishers());
    

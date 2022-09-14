@@ -10,7 +10,7 @@ import { Col, Row } from "react-bootstrap";
 import "./Home.css"
 import { useDispatch,useSelector } from "react-redux";
 import { getAllVolumes,FilterForEpisodes,clear } from "../../redux/actions";
-import Filters from "../../components/filter";
+//import Filters from "../../components/filter";
 
 const Home = () => {
   const dispatch =useDispatch()
@@ -18,12 +18,12 @@ const Home = () => {
   const isFilter = useSelector(state => state.isFilter)
 
 
-  useEffect(() => {
-    if(isFilter){}
+//   useEffect(() => {
+//     if(isFilter){}
      
     
     
-}, [isFilter])
+// }, [isFilter])
 
 
 
@@ -35,7 +35,7 @@ const Home = () => {
       <Row className="header">
         <NavBar searchbar={true} />
       </Row>
-        <Filters/>
+      
       <div className="wrapper">
         <div className="bkg-home"></div>
         <main className="main">
