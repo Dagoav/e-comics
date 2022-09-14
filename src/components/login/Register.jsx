@@ -69,18 +69,18 @@ function Register() {
     try {
       e.preventDefault();
       dispatch(registerUser(input))
-        setInput({
-          username: "",
-          email: "",
-          password: "",
-          repeatpassword: "",
-        })
-        Swal.fire({
-          text: 'Usuario registrado con exito',
-          icon: 'success',
-          timer: 1500
-        })  
-        navigate("/home");
+      navigate("/home");
+      Swal.fire({
+        text: 'Usuario registrado con exito',
+        icon: 'success',
+        timer: 1500
+      })  
+      setInput({
+        username: "",
+        email: "",
+        password: "",
+        repeatpassword: "",
+      })
     } catch (error) {
       Swal.fire({
         title: 'Error!',

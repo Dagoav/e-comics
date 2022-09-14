@@ -1,14 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavLink, Link, Outlet } from 'react-router-dom'
 import {
   RiUser3Fill,
-  RiSettings3Fill,
   RiLogoutBoxRLine,
   RiUpload2Line,
 } from 'react-icons/ri'
 
 import './DashboardNav.css'
-import { useEffect } from 'react'
 
 const DashboardNav = () => {
   useEffect(() => {
@@ -18,7 +16,6 @@ const DashboardNav = () => {
     list.forEach(elem => {
       elem.addEventListener("click", (e) => {
         elem.classList.add("selected")
-        console.log(e.target);
         list.forEach(elem => {
           elem.classList.remove("selected")
         })
@@ -40,7 +37,8 @@ const DashboardNav = () => {
       <div className='navAdm'>
         <ul>
           <li className='mt-2'>
-            <Link to={"/dashboard"}>
+            {/* no importa esta ruta */}
+            <Link to={"/"}> 
               <span className='icon'>
                 <span className="material-symbols-outlined pt-2" style={{ fontSize: '2.5rem' }}>
                   admin_panel_settings
@@ -60,15 +58,19 @@ const DashboardNav = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/dashboard/users"}>
-              <span className='icon'><RiUser3Fill /></span>
-              <span className='title'>Users</span>
+            <NavLink to={"/dashboard/orders"} >
+              <span className='icon'>
+                <span className="material-symbols-outlined pt-2" style={{ fontSize: '2.5rem' }}>
+                  list_alt
+                </span>
+              </span>
+              <span className='title'>Orders</span>
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/dashboard/settings"} >
-              <span className='icon'><RiSettings3Fill /></span>
-              <span className='title'>Settings</span>
+            <NavLink to={"/dashboard/users"}>
+              <span className='icon'><RiUser3Fill /></span>
+              <span className='title'>Users</span>
             </NavLink>
           </li>
           {/* <li>
@@ -84,7 +86,7 @@ const DashboardNav = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/home"}>
+            <NavLink to={"/dashboard/logout"}>
               <span className='icon'><RiLogoutBoxRLine /></span>
               <span className='title'>Exit</span>
             </NavLink>

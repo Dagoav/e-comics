@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { getAllVolumes, searchComic, setLoading } from "../../redux/actions";
 
 import "./Searchbar.css"
 
 const Searchbar = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState("");
 
@@ -22,10 +24,13 @@ const Searchbar = () => {
   const handleSearch = () => {
     if (inputValue.trim() === "") {
       dispatch(getAllVolumes());
+      
     }
     else {
       dispatch(searchComic(inputValue));
       dispatch(setLoading(true));
+      // se añade para que cuando se busque desde el panel de usuario se redi
+      navigate('/user/home')
     }
   };
 
