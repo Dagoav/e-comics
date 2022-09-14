@@ -120,7 +120,7 @@ const rootReducer = (state = initialState, action) => {
       case "GET_FAVORITE":
         return {
           ...state, 
-          favourite: [...state.favourite, action.payload]
+          favourite: [...action.payload]
         }
 
     default: return state

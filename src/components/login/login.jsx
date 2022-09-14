@@ -57,8 +57,9 @@ function LoginApp() {
         method: 'POST',
         data: input
       })
-      localStorage.setItem('token', JSON.stringify(response.data))
+      localStorage.setItem('token', JSON.stringify(response.data.token))
       localStorage.setItem("user", JSON.stringify(response.data.name))
+      localStorage.setItem("id", JSON.stringify(response.data.id))
 
       if (response.data.Rol === "USER") {
         navigate('/userprofile')

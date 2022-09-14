@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllfavoritesDb, removeFavorite, addFavorite, addToCart, removeFromCart } from "../../redux/actions";
+import { removeFavorite, addFavorite, addToCart, removeFromCart } from "../../redux/actions";
 // import Favorites from "../../pages/favorites/Favorites";
 
 import { Col, Row } from 'react-bootstrap'
 
 import "./ShoppingBar.css"
 
-
-
 const ShoppingBar = ({ price, comic }) => {
-  console.log(comic);
   const favourite = useSelector((state) => state.favourite)
   const dispatch = useDispatch();
   const cart_shopping = useSelector((state) => state.cart_shopping);
@@ -19,11 +16,7 @@ const ShoppingBar = ({ price, comic }) => {
     cart_shopping.some( c => c.id === comic.id)
   )
 
-  useEffect(() => {
-    dispatch(getAllfavoritesDb())    
-    console.log(getAllfavoritesDb, "soy la action desde el componente")
-  }, [dispatch])
-  
+  const idUsuer = JSON.parse(localStorage.getItem("id"))
 
   let addProducts = () => {
     dispatch(addToCart(comic, cart_shopping))   // axios.post(al carrito)
@@ -37,13 +30,16 @@ const ShoppingBar = ({ price, comic }) => {
     setComprado(false)
   }
 
-  const addFavhandler = () => {
-    dispatch(addFavorite(comic, favourite))
-    console.log(comic, "cuando agrego")
+  const addFavhandler = async() => {
+    // e.preventDefault()
+    dispatch(addFavorite(comic.id, idUsuer))
+    console.log(idUsuer, "id usuario 47")
   }
-  const remuveFavhandler = () => {
-    dispatch(removeFavorite(comic, favourite))
-    console.log(comic, "cuando elimina")
+
+  const remuveFavhandler = (e) => {
+    e.preventDefault()
+    dispatch(removeFavorite(comic, ))
+    // console.log(comic, "cuando elimina")
   }
 
   return (                                                                  

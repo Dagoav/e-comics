@@ -17,7 +17,7 @@ import Users from './pages/dashboard/users/Users'
 import Settings from './pages/dashboard/settings/Settings';
 import UploadComic from './pages/dashboard/uploadComic/UploadComic'
 
-import AdmDashboard from './pages/admin-dashboard/admDashboard'
+// import AdmDashboard from './pages/admin-dashboard/admDashboard'
 import UserProfile from './pages/UserProfile/UserProfile';
 import Register from './components/login/Register';
 
