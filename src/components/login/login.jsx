@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
 import { Button } from 'react-bootstrap';
 import Swal from 'sweetalert2'
-import './Login.css'
+import './login.css'
 import {useAuthContext} from '../../context/authContext'
 
 const backendURL = process.env.REACT_APP_API;
@@ -118,6 +118,7 @@ function LoginApp() {
             <Button type='submit' onClick={handleSubmit} className="mb-0 px-5" size='lg' disabled={Object.keys(errors).length === 0 ? false : true}>Login</Button>
             <p className="small fw-bold mt-2 pt-1 mb-2">No tienes cuenta? <Link to='/singup'> <a className="link-danger">Registro</a>  </Link></p>
           </div>
+          
 
         </MDBCol>
       </MDBRow>
