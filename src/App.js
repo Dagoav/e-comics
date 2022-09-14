@@ -41,6 +41,7 @@ function App() {
         {/* --------------------------------rutas usuario ----------------------------------------- */}
 
         <Route path='/user' element={<UserRoute />}>
+          
           <Route path='/user' element={<UserProfile />} />
           <Route path="/user/home" element={<Home />} />
           <Route path='/user/cardDetail/:id' element={<CardDetail />} />

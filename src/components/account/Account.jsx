@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useAuth0 } from '@auth0/auth0-react';
 import Logout from '../login/Logout'
@@ -7,16 +7,24 @@ import Profile from '../login/Profile'
 import ModalLogin from "./ModalLogin";
 import { useState } from "react";
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useAuthContext } from '../../context/authContext'
 import "./Account.css"
 
 
+
 const Account = () => {
+  const {logout} = useAuthContext();
   // const dispatch = useDispatch();
+  const navigate = useNavigate()
   const { isAuthenticated } = useAuth0()  
   const auth0_login = () => {
   }
   
-  
+  function Logout() {
+    logout()
+    navigate('/home')
+
+  }
   const rol = JSON.parse(localStorage.getItem("ROL"))
  const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -77,16 +85,24 @@ const Account = () => {
 
       </NavDropdown.Item> */}
       <NavDropdown.Divider />
-      <NavDropdown.Item href="#action7" className='d-flex'>
+      <NavDropdown.Item onClick={() => Logout()} className='d-flex'>
     
-          {rol ? 
+          {/* {rol ? 
           <Link to = '/user/logout'  >
-          <span className='ms-2'>
+          <span className='ms-2 '>
           Exit
           </span>
           </Link>:
           null
-}
+          }
+         */}
+          {rol &&
+          <span className='ms-2 '>
+          Exit
+          </span>}
+        
+        
+          
         
       </NavDropdown.Item>
     </NavDropdown >
