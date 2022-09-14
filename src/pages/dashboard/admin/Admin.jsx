@@ -8,11 +8,13 @@ import {
   MdShoppingCart,
   MdVerifiedUser
 } from 'react-icons/md'
+
 import "./Admin.css"
 
 const Admin = () => {
   return (
     <div>
+      
       <div className="mainAdm">
         <div className="topbar">
           <div className="search">

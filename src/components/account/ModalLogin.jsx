@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Tabslogin from "./Tabslogin";
 import "./ModalLogin.css"
+import { useEffect } from "react";
 
 function ModalLogin() {
   const [show, setShow] = useState(false);
@@ -10,6 +11,10 @@ function ModalLogin() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  // useEffect(() => {
+  //  handleShow()
+  // },[])
+  
   return (
     <>
       <span variant="primary" onClick={handleShow}>

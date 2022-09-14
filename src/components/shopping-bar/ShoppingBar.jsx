@@ -40,17 +40,21 @@ const ShoppingBar = ({ price, comic }) => {
     dispatch(removeFavorite(comic))
     console.log(comic, "cuando elimina")
   }
-
+  const rol = JSON.parse(localStorage.getItem("ROL"))
   return (                                                                  
     <div className="shopping-container">
       <Row>
         {favourite ?
         <Col md={1} >
+          {
+          rol==="USER"?
           <button className="fav-icon" onClick={addFavhandler}>
             <span className="material-symbols-outlined">
               heart_plus
             </span>
-          </button> 
+          </button> :
+          null
+          }
         </Col>
         :
           <button onClick={remuveFavhandler}>
@@ -61,11 +65,15 @@ const ShoppingBar = ({ price, comic }) => {
         {
           !comprado ?
           <Col md={1}  >
+            { rol === "USER"?
             <button className="shopping-icon" onClick={addProducts}>
               <span className="material-symbols-outlined">
                 add_shopping_cart
               </span>
-            </button>
+            </button>:
+            null
+            }
+
           </Col>
           :
           /* DANI NO SÉ DE BOOTSTRAP PERDÓN :( */

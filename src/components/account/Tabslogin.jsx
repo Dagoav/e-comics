@@ -2,7 +2,7 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Login from '../login/login';
 import Register from '../../components/login/Register';
-
+import "./TabsLogin.css"
 
 
 
