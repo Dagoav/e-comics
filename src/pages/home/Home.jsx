@@ -37,7 +37,7 @@ const Home = () => {
       </Row>
         <Filters/>
       <div className="wrapper">
-        <div className="bkg-home">asdf</div>
+        <div className="bkg-home"></div>
         <main className="main">
           <Row>
             <Carrousel />

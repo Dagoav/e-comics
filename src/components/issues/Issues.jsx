@@ -1,24 +1,34 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { issueDetail } from "../../redux/actions";
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
+import { getIssues, addToCart } from "../../redux/actions";
+import CardIssue from './CardIssue';
 
-const Issue = ({ data }) => {
 
-    const dispatch = useDispatch();
-    const issue = useSelector((state) => state.issue);
+function Issue({ issue_number }) {
+  const dispatch = useDispatch();
+  const issues = useSelector((state) => state.issues);
+  const shopping_cart = useSelector(state => state.cart_shopping);
+  
+  useEffect(() => {
+    dispatch(getIssues(issue_number))
+  }, [dispatch, issue_number])
 
-    // useEffect(() => {
-    //     let path = data.api_detail_url
-    //     dispatch(issueDetail(path))
-    // }, [])
+  let buyAll = () => {
+    issues.map(i => 
+        dispatch(addToCart(i, shopping_cart))
+      )
+  }
 
-    console.log(data);
-    return (
-        <div className="d-flex flex-column">
-            <span src={data.api_detail_url} span />
-            <span className='mt-5'>{data.name}</span>
-            <span className='mt-5'>{data.issue_number}</span>
-        </div>
-    )
+  return (
+    <div className='container'>
+      <button onClick={buyAll}>COMPRAR TODOS</button> <br/> <br/>
+      {
+        issues.length > 0 && issues.map(issue => (
+          <CardIssue key={issue.id} data={issue} />
+        ))
+      }
+    </div>
+  );
 }
-export default Issue
+
+export default Issue;

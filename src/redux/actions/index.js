@@ -3,10 +3,14 @@ import axios from "axios";
 const backendURL = process.env.REACT_APP_API;
 
 export const getAllVolumes = () => {
+  // const token = JSON.parse(localStorage.getItem("token"))
   return async (dispatch) => {
     const volumes = await axios({
-      method: 'get',
+      method: 'GET',
       url: `${backendURL}/comics`,
+      // headers: {
+      // "Authorization": `Bearer ${token.token}`
+      // }
     })
     return dispatch({
       type: "GET_ALL_COMICS",
@@ -32,32 +36,63 @@ export const volumeDetail = (id) => {
 
 export const issueDetail = (path) => {
   return async (dispatch) => {
-    const issue = await axios({
-      method: 'post',
-      url: `${backendURL}/path-detail`,
-      data: {
-        path
+    const auth = await axios({
+      method: 'get',
+      url: `${backendURL}/sign-up`,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+        // 'Authorization': key,
+        withCredentials: true,
+        mode: 'no-cors',
       }
+    })
+    console.log(auth);
+    return dispatch({
+      type: "SET_AUTH",
+      payload: auth.data
+    })
+  }
+}
+
+
+export const getIssues = (id) => {
+  return async (dispatch) => {
+    const issues = await axios({
+      method: 'get',
+      url: `${backendURL}/comics/issues/${id}`,
     })
 
     return dispatch({
-      type: "GET_ISSUE",
-      payload: issue.data
+      type: "GET_ISSUES",
+      payload: issues.data
     })
   }
 }
 
 export const searchComic = (volume_name) => {
-  console.log(volume_name);
   return async (dispatch) => {
     const comics = await axios({
       method: 'get',
       url: `${backendURL}/comics/name?name=${volume_name}`,
     })
-    console.log(comics.data);
     return dispatch({
       type: "SEARCH_COMICS",
       payload: comics.data
+    })
+  }
+}
+
+
+export const getUsers = () => {
+  return async (dispatch) => {
+    const users = await axios({
+      method: 'get',
+      url: `${backendURL}/admin/users`
+    })
+    return dispatch({
+      type: "GET_USERS",
+      payload: users.data
     })
   }
 }
@@ -94,7 +129,7 @@ export function getConcepts() {
 
 export const reset_comicState = (payload) => {
   return {
-    type: "RESET_COMIC",
+    type: "RESET_STATE",
     payload
   }
 }
@@ -105,28 +140,57 @@ export const setShoppingCart = (products) => {
   }
 }
 
+export const addComic = (body) => {
+  return async (dispatch) => {
+    const comic_info = await axios({
+      method: 'post',
+      url: `${backendURL}/comics`,
+      data: body
+    })
+    return dispatch({
+      type: "POST_COMIC",
+      payload: comic_info.data
+    })
+  }
+}
+
+
+export const addToCart = (products, shopping_cart) => {
+
+  // Verifica que el producto no esté en el carrito para no agregarlo de nuevo
+  const inCart = shopping_cart.some(p => p.id === products.id)
+
+  if (!inCart) {
+    return {
+      type: "ADD_TO_CART",
+      payload: products,
+    }
+  } else {
+    return {
+      type: "NADA", //devuelve el estado, sino Redux llora
+    }
+  }
+}
+
+export const removeFromCart = (products) => {
+  return {
+    type: "REMOVE_FROM_CART",
+    payload: products,
+  }
+}
+
+export const setLoading = (bool) => {
+  return {
+    type: "SET_LOADING",
+    payload: bool
+  }
+}
 export const setTheme = (obj) => {
   return {
     type: "SET_THEME",
     payload: obj
   }
 }
-
-export function addFavorite(comic){
-  console.log(comic, "action.fav")
-  return {
-  type: "ADD_FAVORITE",
-  payload: comic
-  }
-  }
-
-  export function removeFavorite(comic){
-    console.log(comic, "quitando de fav")
-    return{
-      type: "REMOVE_FAVORITE",
-      payload: comic
-    }
-  }
 
 export function creategame(data) {
   return async function () {
@@ -137,47 +201,40 @@ export function creategame(data) {
     console.log(createUser)
   };
 }
-
-//------Filtros--------------//
-
-export function filterComicForPublishers(payload){
+export function addFavorite(comic) {
 
   return {
-  type:"FILTER_COMIC_FOR_PUBLISHER",
-  payload
-  }}
-
-
-  export function clear(){
-    return{
-        type:"CLEAR",
-    }
-}
-
-  export function setPage (payload){
-    return {
-        type:"SET_PAGE",
-        payload
-    }
-
-}
-export function filterForAD (payload){
-return {
-  type:"FILTER_COMIC_FOR_AD",
-  payload
+    type: "ADD_FAVORITE",
+    payload: comic
   }
 }
-export function FilterForEpisodes(payload){
-  console.log(payload)
-  return{
-      type:"FILTER_FOR_EPISODES",
-      payload
-      }}
-      
 
-      export function FilterForGender(payload){
-        console.log(payload)
-        return{
-            type:"FILTER_FOR_GENDER",
-            payload
-            }}
+export function removeFavorite(comic) {
+  return {
+    type: "REMUVE_FAVORITE",
+    payload: comic
+  }
+}
+
+//-----------------login usuario-------------------------
+
+// export function loginUser(data){
+//   return async function(){
+//     const response = await axios({
+//       url: "http://localhost:3000/user/login",
+//       method: 'POST',
+//       data: data
+//     })
+//   }
+// }
+
+export function registerUser(data) {
+  return async function () {
+    const register = await axios({
+      url: (`${backendURL}/user/singup`),
+      method: 'POST',
+      data: data
+    })
+  }
+}
+
