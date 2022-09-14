@@ -26,7 +26,7 @@ import {PublicRoute} from './components/routes/PublicRoute'
 import {AdminRoute} from './components/routes/AdminRoute'
 import Logout from './components/login/Logout';
 import ModalLogin from './components/account/ModalLogin';
-import { Nofound } from './components/NoFound/Nofound';
+import { Notfound } from './components/NotFound/Nofound';
 import Tabslogin from './components/account/Tabslogin';
 
 function App() {
@@ -62,7 +62,7 @@ function App() {
                     <Route path='/admin/logout' element={<Logout />} />
                 </Route>
                 
-                <Route path= '/*'   element={<Nofound />} />
+                <Route path= '/*'   element={<Notfound />} />
           </Routes>
        
    

@@ -29,6 +29,7 @@ const Searchbar = () => {
     else {
       dispatch(searchComic(inputValue));
       dispatch(setLoading(true));
+      // se añade para que cuando se busque desde el panel de usuario se redi
       navigate('/user/home')
     }
   };
