@@ -3,8 +3,10 @@ const initialState = {
   comics: [],
   issues: [],
   comic: {},
+  comic_info: {},
   cart_shopping: [],
   favourite: [],
+  users: [],
   characters: [],
   publishers: [],
   concepts: [],
@@ -34,16 +36,24 @@ const rootReducer = (state = initialState, action) => {
         issues: action.payload,
       }
 
+
     case "GET_COMIC":
       return {
         ...state,
         comic: action.payload
       }
 
-    case "RESET_COMIC":
+    case "POST_COMIC":
       return {
         ...state,
-        comic: {}
+        comic_info: action.payload
+      }
+
+    case "RESET_STATE":
+      return {
+        ...state,
+        comic: {},
+        issues: []
       }
 
     case "SEARCH_COMICS":
@@ -58,7 +68,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         cart_shopping: action.payload,
       }
-    
+
     case "ADD_TO_CART":
       return {
         ...state,
@@ -68,7 +78,7 @@ const rootReducer = (state = initialState, action) => {
     case "REMOVE_FROM_CART":
       return {
         ...state,
-        cart_shopping: state.cart_shopping.filter( c => c.id !== action.payload.id)
+        cart_shopping: state.cart_shopping.filter(c => c.id !== action.payload.id)
       }
 
     case "SET_LOADING":
@@ -89,6 +99,12 @@ const rootReducer = (state = initialState, action) => {
         characters: action.payload
       }
 
+    case "GET_USERS":
+      return {
+        ...state,
+        users: action.payload
+      }
+
     case "GET_PUBLISHERS":
       return {
         ...state,
@@ -103,13 +119,19 @@ const rootReducer = (state = initialState, action) => {
     case "ADD_FAVORITE":
       return {
         ...state,
-        favourite: [...state.favourite, action.payload]  
+        favourite: [...state.favourite, action.payload]
       }
     case "REMUVE_FAVORITE":
       return {
         ...state,
         favourite: state.favourite.filter(e => e.id !== action.payload.id)
       }
+      case "GET_FAVORITE":
+        return {
+          ...state, 
+          favourite: [...action.payload]
+        }
+
     default: return state
   };
 };

@@ -25,7 +25,7 @@ const ModalInfoIssue = ({ open, data, theme }) => {
 
   const handleClose = () => setShow(false);
   // const handleShow = () => setShow(true);
-
+  const rol = JSON.parse(localStorage.getItem("ROL"))
   return (
     <>
       {/* <Button variant="primary" onClick={handleShow}>
@@ -53,9 +53,10 @@ const ModalInfoIssue = ({ open, data, theme }) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Link to={"/shop"}>
+          {/* <Link to={"/shop"}> */}
+          <Link to={rol === "USER" ? '/user/shop': '/login'}>
             <Button variant="danger" onClick={handleClose}>
-              Comprar!
+              ir a carrito
             </Button>
           </Link>
         </Modal.Footer>

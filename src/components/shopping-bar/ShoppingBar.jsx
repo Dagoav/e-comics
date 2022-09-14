@@ -7,10 +7,7 @@ import { Col, Row } from 'react-bootstrap'
 
 import "./ShoppingBar.css"
 
-
-
 const ShoppingBar = ({ price, comic }) => {
-  console.log(comic);
   const favourite = useSelector((state) => state.favourite)
   const dispatch = useDispatch();
   const cart_shopping = useSelector((state) => state.cart_shopping);
@@ -18,6 +15,8 @@ const ShoppingBar = ({ price, comic }) => {
   const [comprado, setComprado] = useState(
     cart_shopping.some( c => c.id === comic.id)
   )
+
+  const idUsuer = JSON.parse(localStorage.getItem("id"))
 
   let addProducts = () => {
 
@@ -37,25 +36,32 @@ const ShoppingBar = ({ price, comic }) => {
     setComprado(false)
   }
 
-  const addFavhandler = () => {
-    dispatch(addFavorite(comic))
-    console.log(comic, "cuando agrego")
-  }
-  const remuveFavhandler = () => {
-    dispatch(removeFavorite(comic))
-    console.log(comic, "cuando elimina")
+  const addFavhandler = async() => {
+    // e.preventDefault()
+    dispatch(addFavorite(comic.id, idUsuer))
+    console.log(idUsuer, "id usuario 47")
   }
 
+  const remuveFavhandler = (e) => {
+    e.preventDefault()
+    dispatch(removeFavorite(comic, ))
+    // console.log(comic, "cuando elimina")
+  }
+  const rol = JSON.parse(localStorage.getItem("ROL"))
   return (                                                                  
     <div className="shopping-container">
       <Row>
         {favourite ?
         <Col md={1} >
+          {
+          rol==="USER"?
           <button className="fav-icon" onClick={addFavhandler}>
             <span className="material-symbols-outlined">
               heart_plus
             </span>
-          </button> 
+          </button> :
+          null
+          }
         </Col>
         :
           <button onClick={remuveFavhandler}>
@@ -66,11 +72,15 @@ const ShoppingBar = ({ price, comic }) => {
         {
           !comprado ?
           <Col md={1}  >
+            { rol === "USER"?
             <button className="shopping-icon" onClick={addProducts}>
               <span className="material-symbols-outlined">
                 add_shopping_cart
               </span>
-            </button>
+            </button>:
+            null
+            }
+
           </Col>
           :
           /* DANI NO SÉ DE BOOTSTRAP PERDÓN :( */

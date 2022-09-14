@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import { useSelector } from "react-redux";
 import logo from '../../assets/LogoRed2.png'
@@ -13,10 +14,24 @@ import Account from '../account/Account';
 import Darkmode from '../dark-mode/Darkmode';
 import ShoppingCart from '../shopping-cart/ShoppingCart';
 import "./Navbar.css"
+import { MdOutlineSignalCellularNull } from 'react-icons/md';
 
 function NavBar({ searchbar = true }) {
   const theme_params = useSelector((state) => state.theme_params);
   const { theme } = theme_params
+
+  useEffect(() => {
+    let links = document.querySelectorAll(".style-links")
+    console.log(links);
+    links.forEach(link => {
+      if (link) {
+        link.className = `style-links navbar-link-${theme} mt-2 mx-2`
+      }
+    })
+
+  }, [theme])
+
+  const rol = JSON.parse(localStorage.getItem("ROL"))
 
   return (
     <>
@@ -25,7 +40,7 @@ function NavBar({ searchbar = true }) {
           {/* logo */}
           <Col md={2} className="logo-box ms-3 d-md-flex justify-content-start align-items-center">
             <Navbar.Brand>
-              <Link to={"/home"}>
+              <Link to={rol === "ADMIN"? '/admin/home' : '/user/home'}>
                 <img className='logo' src={logo} width={80} height={80} alt="logo" />
               </Link>
             </Navbar.Brand>
@@ -54,14 +69,21 @@ function NavBar({ searchbar = true }) {
                 style={{ maxHeight: '450px' }}
                 navbarScroll
               >
-                <Nav.Link className='ms-2' href="#action1">Home</Nav.Link>
-                <Nav.Link className='ms-2' href="#action2">About</Nav.Link>
+                <Link to={rol === "ADMIN"? '/admin' : rol === "USER"? '/user/home' : '/home'} className='style-links'>
+                  Home
+                </Link>
+                <Link to={"/about"} className='style-links'>
+                  About
+                </Link>
 
                 {/* Account */}
                 <Account />
 
                 {/* shopping cart */}
+                {/* {rol === "USER"? */}
                 <ShoppingCart />
+                {/* // null
+                //  } */}
 
               </Nav>
             </Col>

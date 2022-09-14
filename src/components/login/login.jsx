@@ -1,12 +1,12 @@
 import React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
-import Swal from 'sweetalert2'
 import './Login.css'
-
+import { Link, useNavigate } from 'react-router-dom';
+import { MDBContainer, MDBCol, MDBRow, MDBInput } from 'mdb-react-ui-kit';
+import { Button } from 'react-bootstrap';
+import Swal from 'sweetalert2'
+import {useAuthContext} from '../../context/authContext'
 
 const backendURL = process.env.REACT_APP_API;
 
@@ -26,6 +26,8 @@ function validate(input) {
 }
 
 function LoginApp() {
+
+  const {login} = useAuthContext()
   const navigate = useNavigate()
 
 
@@ -56,19 +58,25 @@ function LoginApp() {
         method: 'POST',
         data: input
       })
-      localStorage.setItem('token', JSON.stringify(response.data))
+      localStorage.setItem('token', JSON.stringify(response.data.token))
       localStorage.setItem("user", JSON.stringify(response.data.name))
-
-      if (response.data.Rol === "USER") {
-        navigate('/userprofile')
-      }
-      if (response.data.Rol === "ADMIN") {
-        navigate('./admin')
-      }
+      localStorage.setItem("ROL", JSON.stringify(response.data.Rol))
+      localStorage.setItem("id", JSON.stringify(response.data.id))
+      
+      
+      // if (response.data.Rol === "USER") {
+      //   navigate('/userprofile')
+      //   //localStorage.setItem("MY_AUTH", true)
+      // }
+      // if (response.data.Rol === "ADMIN") {
+      //   navigate('./dashboard/admin')
+      //   //localStorage.setItem("MY_AUTH", true)
+      // }
       setInput({
         email: "",
         password: "",
       })
+      login()
     } catch (error) {
       Swal.fire({
         title: 'Error!',
@@ -106,9 +114,10 @@ function LoginApp() {
           </div>
 
           <div className='text-center text-md-start mt-4 pt-2'>
-            <MDBBtn type='submit' onClick={handleSubmit} className="mb-0 px-5" size='lg' disabled={Object.keys(errors).length === 0 ? false : true}>Login</MDBBtn>
+            <Button type='submit' onClick={handleSubmit} className="mb-0 px-5" size='lg' disabled={Object.keys(errors).length === 0 ? false : true}>Login</Button>
             <p className="small fw-bold mt-2 pt-1 mb-2">No tienes cuenta? <Link to='/singup'> <a className="link-danger">Registro</a>  </Link></p>
           </div>
+          
 
         </MDBCol>
       </MDBRow>

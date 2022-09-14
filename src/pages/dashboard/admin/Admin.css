@@ -8,116 +8,6 @@
   --black2: #999;
 }
 
-.contAdm {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-  min-height: 100vh;
-}
-
-.navAdm {
-  position: fixed;
-  width: 300px;
-  height: 100%;
-  background: var(--blue);
-  border-left: 10px solid var(--blue);
-  transition: 0.5;
-}
-
-.navAdm.active {
-  width: 80px;
-}
-
-.navAdm ul {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-
-.navAdm ul li {
-  position: relative;
-  width: 100%;
-  list-style: none;
-  border-top-left-radius: 30px;
-  border-bottom-left-radius: 30px;
-}
-
-.navAdm ul li:hover,
-.navAdm ul li.hovered {
-  background: var(--white);
-}
-
-.navAdm ul li:nth-child(1) {
-  margin-bottom: 40px;
-  pointer-events: none;
-}
-
-.navAdm ul li a {
-  position: relative;
-  width: 100%;
-  display: flex;
-  text-decoration: none;
-  color: var(--white)
-}
-
-.navAdm ul li:hover a,
-.navAdm ul li.hovered a {
-  color: var(--blue);
-}
-
-.icon {
-  font-size: 1.75em;
-}
-
-.navAdm ul li a .icon {
-  position: relative;
-  display: block;
-  min-width: 60px;
-  height: 60px;
-  line-height: 55px;
-  text-align: center;
-}
-
-.navAdm ul li a .title {
-  position: relative;
-  display: block;
-  padding: 0 10px;
-  height: 60px;
-  line-height: 60px;
-  text-align: start;
-  white-space: nowrap;
-}
-
-.navAdm ul li:hover a::before,
-.navAdm ul li.hovered a::before {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: -50px;
-  width: 50px;
-  height: 50px;
-  background: transparent;
-  border-radius: 50%;
-  box-shadow: 90px 90px 0 10px var(--white);
-  pointer-events: none;
-}
-
-.navAdm ul li:hover a::after,
-.navAdm ul li.hovered a::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  bottom: -50px;
-  width: 50px;
-  height: 50px;
-  background: transparent;
-  border-radius: 50%;
-  box-shadow: 90px -90px 0 10px var(--white);
-  pointer-events: none;
-}
-
 .mainAdm {
   position: absolute;
   width: calc(100% - 300px);
@@ -287,14 +177,14 @@
   color: var(--blue);
 }
 
-.btn {
+/* .btn {
   position: relative;
   padding: 5px 10px;
   background: var(--blue);
   text-decoration: none;
   color: var(--white);
   border-radius: 6px;
-}
+} */
 
 .detailsAdm table {
   width: 100%;

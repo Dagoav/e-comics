@@ -3,7 +3,7 @@ import axios from "axios";
 const backendURL = process.env.REACT_APP_API;
 
 export const getAllVolumes = () => {
-  const token = JSON.parse(localStorage.getItem("token"))
+  // const token = JSON.parse(localStorage.getItem("token"))
   return async (dispatch) => {
     const volumes = await axios({
       method: 'GET',
@@ -73,11 +73,25 @@ export const searchComic = (volume_name) => {
   return async (dispatch) => {
     const comics = await axios({
       method: 'get',
-      url: `${backendURL}/comics/name?name=${volume_name}`
+      url: `${backendURL}/comics/search?name=${volume_name}`
     })
     return dispatch({
       type: "SEARCH_COMICS",
       payload: comics.data
+    })
+  }
+}
+
+
+export const getUsers = () => {
+  return async (dispatch) => {
+    const users = await axios({
+      method: 'get',
+      url: `${backendURL}/admin/users`
+    })
+    return dispatch({
+      type: "GET_USERS",
+      payload: users.data
     })
   }
 }
@@ -114,7 +128,7 @@ export function getConcepts() {
 
 export const reset_comicState = (payload) => {
   return {
-    type: "RESET_COMIC",
+    type: "RESET_STATE",
     payload
   }
 }
@@ -125,18 +139,31 @@ export const setShoppingCart = (products) => {
   }
 }
 
-export const addToCart = (products, shopping_cart) => {
+export const addComic = (body) => {
+  return async (dispatch) => {
+    const comic_info = await axios({
+      method: 'post',
+      url: `${backendURL}/comics`,
+      data: body
+    })
+    return dispatch({
+      type: "POST_COMIC",
+      payload: comic_info.data
+    })
+  }
+}
 
+
+export const addToCart = (products, shopping_cart) => {
   // Verifica que el producto no esté en el carrito para no agregarlo de nuevo
   const inCart = shopping_cart.some(p => p.id === products.id)
-
-  if(!inCart){
+  if (!inCart) {
     return {
       type: "ADD_TO_CART",
       payload: products,
     }
   } else {
-    return{
+    return {
       type: "NADA", //devuelve el estado, sino Redux llora
     }
   }
@@ -171,18 +198,53 @@ export function creategame(data) {
     console.log(createUser)
   };
 }
-export function addFavorite(comic) {
-  
-  return {
-    type: "ADD_FAVORITE",
-    payload: comic
+export function addFavorite(issuesId, userId) {
+    // const token = JSON.parse(localStorage.getItem("token"))
+    console.log(userId, "id usuario")
+      return async (dispatch) => {
+        await axios({                  
+          method: 'POST',
+          url: `${backendURL}/fav`,
+          data: {issuesId, userId}
+          // headers: {
+          // "Authorization": `Bearer ${token.token}`
+          // }
+      })
+      }
+    }
+
+
+export function removeFavorite(issuesId, userId) {
+  // const token = JSON.parse(localStorage.getItem("token"))
+    return async (dispatch) => {
+      await axios({ 
+        method: 'DELETE',
+        url: `${backendURL}/fav`,
+        data: {issuesId, userId}
+      // headers: {
+      // "Authorization": `Bearer ${token.token}`
+      // }
+    })
   }
 }
 
-export function removeFavorite(comic) {
-  return {
-    type: "REMUVE_FAVORITE",
-    payload: comic
+
+export const getAllfavoritesDb = (userId) => {
+  // const token = JSON.parse(localStorage.getItem("token"))
+  return async (dispatch) => {
+    const favorites = await axios({
+      method: 'GET',
+      url: `${backendURL}/fav/${userId}`,
+      // const res = await axios.get('http://localhost:3000/fav', { params: { userId: userId } });
+      // headers: {
+      // "Authorization": `Bearer ${token.token}`
+      // }
+    })
+    return dispatch({
+      type: "GET_FAVORITE",
+      payload: favorites.data[0].issues    //.data[0].issues,
+
+    })
   }
 }
 
@@ -198,13 +260,13 @@ export function removeFavorite(comic) {
 //   }
 // }
 
-export function registerUser(data){
-    return async function(){
-      const register = await axios({
-        url: (`${backendURL}/user/singup`),
-        method: 'POST',
-        data: data
-      })
-    }
+export function registerUser(data) {
+  return async function () {
+    const register = await axios({
+      url: (`${backendURL}/user/singup`),
+      method: 'POST',
+      data: data
+    })
   }
+}
 

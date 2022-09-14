@@ -1,7 +1,6 @@
 .container-carrousel {
-    opacity: .85;
+    opacity: .75;
     padding: 20px;
-
 }
 
 .carousel-indicators [data-bs-target] {
@@ -15,7 +14,7 @@
     z-index: 1;
 }
 
-.carousel-indicators .active {
+.carousel-indicators .active  {
     opacity: 1;
     transform: scale(1.6) translateY(-4px);
     transition: all 500ms;

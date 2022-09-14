@@ -3,6 +3,8 @@ import { removeFromCart } from '../../redux/actions';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Checkout = () => {
 
@@ -14,7 +16,7 @@ const Checkout = () => {
 
     var totalprices = 0;
     stateCart.map(e => totalprices = e.price + totalprices)
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         
@@ -25,13 +27,18 @@ const Checkout = () => {
 
         // :( 
         const { id } = paymentMethod;
+
+            var totalprices = 0;
+            stateCart.map(e => totalprices = e.price + totalprices)
         try {
             if(!error){
                 const { data } = await axios.post(url + 'checkout', {
+                    carrito: stateCart,
                     id: id,
                     price: totalprices,
                     carrito: stateCart,
                 });
+                console.log(data, "soy data en el front buscando payment")
                 alert("COMIC PAGADO") // Ponganle un mensaje más bonito
                 elements.getElement(CardElement).clear() // Limpia el input
                 stateCart.map( p => removeFromCart(p))

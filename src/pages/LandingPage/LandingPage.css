@@ -7,7 +7,7 @@
   font-family: 'Poppins', sans-serif;
 }
 
-section {
+.landing-section {
   position: relative;
   width: 100%;
   min-height: 100vh;
@@ -226,3 +226,4 @@ header ul li a:hover {
     height: 140px;
   }
 }
+

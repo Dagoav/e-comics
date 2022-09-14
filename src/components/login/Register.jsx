@@ -1,5 +1,8 @@
-import React from "react";
-import { useState } from "react";
+import React,{useState} from "react";
+import { useDispatch} from "react-redux";
+import { registerUser } from "../../redux/actions";
+import { useNavigate } from "react-router-dom";
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import {
   MDBContainer,
   MDBCol,
@@ -8,12 +11,9 @@ import {
   MDBIcon,
   MDBInput,
 } from "mdb-react-ui-kit";
-import "./Register.css";
-import { useNavigate } from "react-router-dom";
-import { useDispatch} from "react-redux";
-import { registerUser } from "../../redux/actions";
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Button } from "react-bootstrap";
 import Swal from 'sweetalert2'
+import "./Register.css";
 
 function validate(input) {
   let errors = {};
@@ -69,18 +69,18 @@ function Register() {
     try {
       e.preventDefault();
       dispatch(registerUser(input))
-        setInput({
-          username: "",
-          email: "",
-          password: "",
-          repeatpassword: "",
-        })
-        Swal.fire({
-          text: 'Usuario registrado con exito',
-          icon: 'success',
-          timer: 1500
-        })  
-        navigate("/home");
+      navigate("/home");
+      Swal.fire({
+        text: 'Usuario registrado con exito',
+        icon: 'success',
+        timer: 1500
+      })  
+      setInput({
+        username: "",
+        email: "",
+        password: "",
+        repeatpassword: "",
+      })
     } catch (error) {
       Swal.fire({
         title: 'Error!',
@@ -173,7 +173,8 @@ function Register() {
           </div>
 
           <div className="text-center text-md-start mt-4 pt-2">
-            <MDBBtn
+            <Button
+            variant="primary"
               type="submit"
               onClick={handleSubmit}
               className="mb-0 px-5"
@@ -181,7 +182,7 @@ function Register() {
               disabled={Object.keys(errors).length === 0 ? false : true}
             >
               Registro
-            </MDBBtn>
+            </Button>
           </div>
 
           <link
