@@ -14,6 +14,7 @@ import Account from '../account/Account';
 import Darkmode from '../dark-mode/Darkmode';
 import ShoppingCart from '../shopping-cart/ShoppingCart';
 import "./Navbar.css"
+import { MdOutlineSignalCellularNull } from 'react-icons/md';
 
 function NavBar({ searchbar = true }) {
   const theme_params = useSelector((state) => state.theme_params);
@@ -30,6 +31,8 @@ function NavBar({ searchbar = true }) {
 
   }, [theme])
 
+  const rol = JSON.parse(localStorage.getItem("ROL"))
+
   return (
     <>
       <Navbar className='navbar fixed-top' bg={theme} variant={theme} expand="md">
@@ -37,7 +40,7 @@ function NavBar({ searchbar = true }) {
           {/* logo */}
           <Col md={2} className="logo-box ms-3 d-md-flex justify-content-start align-items-center">
             <Navbar.Brand>
-              <Link to={"/home"}>
+              <Link to={rol === "ADMIN"? '/admin/home' : '/user/home'}>
                 <img className='logo' src={logo} width={80} height={80} alt="logo" />
               </Link>
             </Navbar.Brand>
@@ -66,7 +69,7 @@ function NavBar({ searchbar = true }) {
                 style={{ maxHeight: '450px' }}
                 navbarScroll
               >
-                <Link to={"/home"} className='style-links'>
+                <Link to={rol === "ADMIN"? '/admin' : rol === "USER"? '/user/home' : '/home'} className='style-links'>
                   Home
                 </Link>
                 <Link to={"/about"} className='style-links'>
@@ -77,7 +80,10 @@ function NavBar({ searchbar = true }) {
                 <Account />
 
                 {/* shopping cart */}
+                {/* {rol === "USER"? */}
                 <ShoppingCart />
+                {/* // null
+                //  } */}
 
               </Nav>
             </Col>

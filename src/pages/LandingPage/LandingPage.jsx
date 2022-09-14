@@ -21,8 +21,8 @@ const LandingPage = () => {
   return (
     <>
       <section className='landing-section'>
-        <img src={patternYellow} className="circle" />
-        <img src={patternBlue} className="circle2" />
+        <img src={patternYellow} className="circle" alt='' />
+        <img src={patternBlue} className="circle2" alt=''/>
         <header className='shadow-lg sticky bg-gray-100  border-b-2 border-gray-100'>
           <Link to="/home"><img src={logo} alt="logo" className='logo' /></Link>
           <ul>
