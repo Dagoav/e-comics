@@ -1,12 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import './Login.css'
 import { Link, useNavigate } from 'react-router-dom';
-import { MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
+import { MDBContainer, MDBCol, MDBRow, MDBInput } from 'mdb-react-ui-kit';
 import { Button } from 'react-bootstrap';
 import Swal from 'sweetalert2'
-import './Login.css'
 import {useAuthContext} from '../../context/authContext'
 
 const backendURL = process.env.REACT_APP_API;
@@ -59,7 +58,7 @@ function LoginApp() {
         method: 'POST',
         data: input
       })
-      localStorage.setItem('token', JSON.stringify(response.data))
+      localStorage.setItem('token', JSON.stringify(response.data.token))
       localStorage.setItem("user", JSON.stringify(response.data.name))
       localStorage.setItem("ROL", JSON.stringify(response.data.Rol))
       localStorage.setItem("id", JSON.stringify(response.data.id))
