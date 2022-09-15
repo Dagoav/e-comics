@@ -59,10 +59,11 @@
 
 #desc a[disabled="disabled"] {
   pointer-events: none;
+  color: rgb(211, 125, 125);
   cursor: pointer;
 }
 
-.info-issues {
+.info-issues-light {
   width: 70%;
   height: 100vh;
   position: relative;
@@ -72,11 +73,49 @@
   margin: auto;
   padding-bottom: 100px;
   padding-top: 100px;
-  background-color: rgba(214, 215, 218, 0.329);
+  background-color: rgba(214, 215, 218, 0.486);
   overflow-x: hidden;
   overflow-y: auto;
 }
 
+.info-issues-dark {
+  width: 70%;
+  height: 100vh;
+  position: relative;
+  top: 160px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding-bottom: 100px;
+  padding-top: 100px;
+  /* background-color: rgba(68, 69, 70, 0.329); */
+  background-color: rgba(44, 45, 46, 0.466);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.pos-loading {
+  position: absolute;
+  left: 45%;
+  top: 130px;
+  transform: scale(1.2);
+}
+
+.undo-light {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 38px;
+  color: rgb(33, 33, 34);
+}
+
+.undo-dark {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 38px;
+  color: aliceblue;
+}
 
 @media (max-width: 768px) {
   .card-detail {

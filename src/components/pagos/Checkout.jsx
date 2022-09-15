@@ -12,7 +12,7 @@ const Checkout = (/* {price} */) => {
     const stripe = useStripe()
     const elements = useElements()
 
-    const stateCart = useSelector(state => state.cart_shopping)
+    const stateCart = useSelector(state => state.shop_fav_rating.cart_shopping)
 
     const handleSubmit = async (e) => {
         e.preventDefault()

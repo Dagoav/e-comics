@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addComic } from "../../../redux/actions";
+import { addComic } from "../../../redux/actions/admin";
 
 import { useForm } from "react-hook-form";
 
@@ -13,7 +13,7 @@ import "./UploadComic.css"
 
 const UploadComic = () => {
   const dispatch = useDispatch();
-  const comic_info = useSelector((state) => state.comic_info);
+  const comic_info = useSelector((state) => state.admin.comic_info);
   const [validated, setValidated] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm();
   const regex_url = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
