@@ -15,6 +15,35 @@ export const getUsers = () => {
   }
 }
 
+export const setUsersRol = (params) => {
+  return async (dispatch) => {
+    const users = await axios({
+      method: 'put',
+      url: `${backendURL}/admin/users/rol`,
+      data: params
+    })
+    console.log(users.data[0]);
+    return dispatch({
+      type: "ROL_USERS",
+      payload: users.data
+    })
+  }
+}
+export const setUsersActive = (params) => {
+  return async (dispatch) => {
+    const users = await axios({
+      method: 'put',
+      url: `${backendURL}/admin/users/active`,
+      data: params
+    })
+    console.log(users.data[0]);
+    return dispatch({
+      type: "ACTIVE_USERS",
+      payload: users.data
+    })
+  }
+}
+
 export const addComic = (body) => {
   return async (dispatch) => {
     const comic_info = await axios({

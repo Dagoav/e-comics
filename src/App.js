@@ -3,28 +3,28 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+// Pages
 import Home from './pages/home/Home';
 import Shop from './pages/shop/Shop';
 import CardDetail from './components/card-detail/CardDetail';
 import LandingPage from './pages/LandingPage/LandingPage.jsx';
+import DashboardNav from './pages/dashboard/dashboardNav/DashboardNav';
 
-import LoginApp from './components/login/login';
 import Favorites from './pages/favorites/Favorites';
 import Checkout from './components/pagos/Checkout'
-import DashboardNav from './pages/dashboard/dashboardNav/DashboardNav';
 import Admin from './pages/dashboard/admin/Admin';
 import Users from './pages/dashboard/users/Users'
 import Orders from './pages/dashboard/orders/Orders';
 import UploadComic from './pages/dashboard/uploadComic/UploadComic'
 import UserProfile from './pages/UserProfile/UserProfile';
+import Reviews from './pages/dashboard/reviews/Reviews';
 import Register from './components/login/Register';
 import { UserRoute } from './components/routes/UserRoute'
 import { PublicRoute } from './components/routes/PublicRoute'
 import { AdminRoute } from './components/routes/AdminRoute'
 import Logout from './components/login/Logout';
-import ModalLogin from './components/account/ModalLogin';
-import { Notfound } from './components/NotFound/Nofound';
 import Tabslogin from './components/account/Tabslogin';
+import { Notfound } from './components/NotFound/Nofound';
 
 function App() {
   return (
@@ -32,7 +32,7 @@ function App() {
       {/*----------------------------------rutas publicas-----------------------------------------  */}
       <Routes>
         <Route path='/' element={<PublicRoute />}>
-          <Route path="/landing" element={<LandingPage />} />
+          <Route path="/" element={<LandingPage />} />
           <Route path='/login' element={<Tabslogin />} />
           <Route path='/singup' element={<Register />} />
           <Route path="/home" element={<Home />} />
@@ -58,6 +58,7 @@ function App() {
           <Route path='/dashboard' element={<DashboardNav />} >
             <Route path='admin' element={<Admin />} />
             <Route path='users' element={<Users />} />
+            <Route path='reviews' element={<Reviews />} />
             <Route path='orders' element={<Orders />} />
             <Route path='upload' element={<UploadComic />} />
             <Route path='logout' element={<Logout />} />

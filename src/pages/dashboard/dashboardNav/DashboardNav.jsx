@@ -73,6 +73,16 @@ const DashboardNav = () => {
               <span className='title'>Users</span>
             </NavLink>
           </li>
+          <li>
+            <NavLink to={"/dashboard/reviews"} className={({ isActive }) => (isActive ? 'dashboard-active' : 'dashboard-inactive')} >
+              <span className='icon'>
+                <span className="material-symbols-outlined" style={{ fontSize: '2.5rem',paddingTop:'12px' }}>
+                  rate_review
+                </span>
+              </span>
+              <span className='title'>Reviews</span>
+            </NavLink>
+          </li>
           {/* <li>
             <a href="#">
             <span className='icon'><RiLockPasswordLine /></span>

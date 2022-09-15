@@ -1,10 +1,10 @@
 .user-card {
-  min-width: 80%;
-  height: 80px;
+  width: 100%;
+  height: auto;
   border: none;
   border-radius: 20px;
-  padding: 12px 20px;
-  margin: 10px 2px;
+  padding: 12px 18px;
+  margin: 8px 2px;
   box-shadow: 2px 2px 10px 2px #e7e5e5af;
   transition: all 500ms;
 }
@@ -15,6 +15,10 @@
   transition: all 500ms;
 }
 
+.user-card-headers {
+  color: #41a6de;
+  font-weight: 500;
+}
 
 .col-item {
   display: flex;

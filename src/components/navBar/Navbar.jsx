@@ -39,7 +39,7 @@ function NavBar({ searchbar = true }) {
           {/* logo */}
           <Col md={2} className="logo-box ms-3 d-md-flex justify-content-start align-items-center">
             <Navbar.Brand>
-              <Link to={rol === "ADMIN" ? '/admin/home' : '/user/home'}>
+              <Link to={rol ? '/user/home' : '/home'}>
                 <img className='logo' src={logo} width={80} height={80} alt="logo" />
               </Link>
             </Navbar.Brand>
@@ -68,7 +68,7 @@ function NavBar({ searchbar = true }) {
                 style={{ maxHeight: '450px' }}
                 navbarScroll
               >
-                <Link to={rol === "USER" ? '/user/landing' : '/landing'} className='style-links'>
+                <Link to={rol ? '/user/landing' : '/'} className='style-links'>
                   Go Start
                 </Link>
                 <Link to={rol === "ADMIN" ? '/admin' : rol === "USER" ? '/user/home' : '/home'} className='style-links'>

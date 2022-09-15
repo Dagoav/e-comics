@@ -59,20 +59,6 @@ export const searchComic = (volume_name) => {
   }
 }
 
-export const addComic = (body) => {
-  return async (dispatch) => {
-    const comic_info = await axios({
-      method: 'post',
-      url: `${backendURL}/comics`,
-      data: body
-    })
-    return dispatch({
-      type: "POST_COMIC",
-      payload: comic_info.data
-    })
-  }
-}
-
 export const reset_comicState = (payload) => {
   return {
     type: "RESET_STATE",
