@@ -12,8 +12,6 @@ import "./Home.css"
 const Home = () => {
   return (
     <div className="home-container">
-
-
       <Row className="header">
         <NavBar searchbar={true} />
       </Row>
@@ -32,6 +30,7 @@ const Home = () => {
               <CardsGallery />
             </Col>
           </Row>
+
         </main>
         <Footer />
       </div>

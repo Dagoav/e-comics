@@ -14,15 +14,14 @@ import Account from '../account/Account';
 import Darkmode from '../dark-mode/Darkmode';
 import ShoppingCart from '../shopping-cart/ShoppingCart';
 import "./Navbar.css"
-import { MdOutlineSignalCellularNull } from 'react-icons/md';
+// import { MdOutlineSignalCellularNull } from 'react-icons/md';
 
 function NavBar({ searchbar = true }) {
-  const theme_params = useSelector((state) => state.theme_params);
+  const theme_params = useSelector((state) => state.params.theme_params);
   const { theme } = theme_params
 
   useEffect(() => {
     let links = document.querySelectorAll(".style-links")
-    console.log(links);
     links.forEach(link => {
       if (link) {
         link.className = `style-links navbar-link-${theme} mt-2 mx-2`
@@ -40,7 +39,7 @@ function NavBar({ searchbar = true }) {
           {/* logo */}
           <Col md={2} className="logo-box ms-3 d-md-flex justify-content-start align-items-center">
             <Navbar.Brand>
-              <Link to={rol === "ADMIN"? '/admin/home' : '/user/home'}>
+              <Link to={rol === "ADMIN" ? '/admin/home' : '/user/home'}>
                 <img className='logo' src={logo} width={80} height={80} alt="logo" />
               </Link>
             </Navbar.Brand>
@@ -62,23 +61,22 @@ function NavBar({ searchbar = true }) {
 
 
             {/* links */}
-            <Col className="links pt-1 d-md-flex justify-content-center align-items-center" md={6} >
+            <Col className="links d-md-flex justify-content-center align-items-center" md={6} bg="danger" variant="danger" >
               <Nav
                 // className="me-auto my-2 my-lg-0"
                 // className='pe-4'
                 style={{ maxHeight: '450px' }}
                 navbarScroll
               >
-                <Link to={rol === "ADMIN"? '/admin' : rol === "USER"? '/user/home' : '/home'} className='style-links'>
-                  Home
+                <Link to={rol === "USER" ? '/user/landing' : '/landing'} className='style-links'>
+                  Go Start
                 </Link>
-                <Link to={"/about"} className='style-links'>
-                  About
+                <Link to={rol === "ADMIN" ? '/admin' : rol === "USER" ? '/user/home' : '/home'} className='style-links'>
+                  Home
                 </Link>
 
                 {/* Account */}
                 <Account />
-
                 {/* shopping cart */}
                 {/* {rol === "USER"? */}
                 <ShoppingCart />

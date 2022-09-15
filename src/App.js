@@ -32,7 +32,7 @@ function App() {
       {/*----------------------------------rutas publicas-----------------------------------------  */}
       <Routes>
         <Route path='/' element={<PublicRoute />}>
-          <Route exact path="/" element={<LandingPage />} />
+          <Route path="/landing" element={<LandingPage />} />
           <Route path='/login' element={<Tabslogin />} />
           <Route path='/singup' element={<Register />} />
           <Route path="/home" element={<Home />} />
@@ -41,7 +41,7 @@ function App() {
         {/* --------------------------------rutas usuario ----------------------------------------- */}
 
         <Route path='/user' element={<UserRoute />}>
-          
+          <Route path="/user/landing" element={<LandingPage />} />
           <Route path='/user' element={<UserProfile />} />
           <Route path="/user/home" element={<Home />} />
           <Route path='/user/cardDetail/:id' element={<CardDetail />} />

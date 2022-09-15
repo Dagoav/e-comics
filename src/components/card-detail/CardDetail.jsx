@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { volumeDetail } from "../../redux/actions";
-import { useParams } from "react-router-dom";
+import { volumeDetail } from "../../redux/actions/comics";
+import { Link, useParams } from "react-router-dom";
+import Loading from "../loading/Loading";
 import NavBar from '../navBar/Navbar'
 import Issues from '../issues/Issues';
 
@@ -12,10 +13,11 @@ import "./cardDetail.css"
 const CardDetail = () => {
 
   const dispatch = useDispatch();
-  const theme_params = useSelector((state) => state.theme_params);
+  const theme_params = useSelector((state) => state.params.theme_params);
   const { theme } = theme_params;
-  const comic = useSelector((state) => state.comic);
+  const comic = useSelector((state) => state.comicsReducer.comic);
   const { id } = useParams()
+  const rol = JSON.parse(localStorage.getItem("ROL"))
   const { image, name, deck, description, start_year } = comic
 
   useEffect(() => {
@@ -38,30 +40,48 @@ const CardDetail = () => {
 
       // set theme
       const description_bkg = document.getElementById("description-detail");
+      const infoIssues = document.getElementById("info-issues");
+      const undo = document.getElementById("undo");
       description_bkg.className = `description-detail-${theme}`
+      infoIssues.className = `info-issues-${theme}`
+      undo.className = `material-symbols-outlined undo-${theme}`
     }
-  },)
+  })
 
 
-  if (Object.entries(comic).length === 0) return <p>Loading...</p>
+  // if (Object.entries(comic).length === 0) return <p>Loading...</p>
   return (
     <>
       <div className='container-detail' >
         <NavBar searchbar={false} />
-        <div className='card-detail d-flex'>
-          <div className='img-detail'>
-            <img src={image} alt="" />
-          </div>
-          <div className='info-detail'>
-            <div id='description-detail'>
-              <p className='description-title'>{name} ({start_year})</p>
-              <p className='description-subtitle'>{deck}</p>
-              <p id='desc'></p>
+        {Object.entries(comic).length > 0 ?
+          (<div className='card-detail d-flex'>
+            <div className='img-detail'>
+              <img src={image} alt="" />
             </div>
+            <div className='info-detail'>
+              <Link to={rol ? '/user/home' : '/home'}>
+                <span id='undo' className="material-symbols-outlined undo">
+                  undo
+                </span>
+              </Link>
+              <div id='description-detail'>
+                <p className='description-title'>{name} ({start_year})</p>
+                <p className='description-subtitle'>{deck}</p>
+                <p id='desc'></p>
+              </div>
+            </div>
+          </div>) :
+          (<div className='pos-loading'>
+            < Loading data={Object.entries(comic)} state={true} timeWait={4000} />
           </div>
-        </div>
-        <div className='info-issues mt-5'>
-          <Issues issue_number={id}></Issues>
+          )
+        }
+        <div id='info-issues' className='mt-5'>
+          {
+            Object.entries(comic).length > 0 && <Issues issue_number={id}></Issues>
+          }
+
         </div>
       </div >
     </>

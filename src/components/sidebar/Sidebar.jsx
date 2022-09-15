@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getCharacters, getPublishers, getConcepts } from '../../redux/actions/index.js'
+import { getCharacters, getPublishers, getConcepts } from '../../redux/actions/filters'
 import "./Sidebar.css"
 
 
 const Sidebar = () => {
   const dispatch = useDispatch();
-  let characters = useSelector(state => state.characters)
-  let publishers = useSelector(state => state.publishers)
-  let concepts = useSelector(state => state.concepts)
+  let characters = useSelector(state => state.filters.characters)
+  let publishers = useSelector(state => state.filters.publishers)
+  let concepts = useSelector(state => state.filters.concepts)
 
   useEffect(() => {
     dispatch(getCharacters())

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getAllVolumes, searchComic, setLoading } from "../../redux/actions";
+import { getAllVolumes, searchComic } from "../../redux/actions/comics";
+import { setLoading } from "../../redux/actions/setParams";
 
 import "./Searchbar.css"
 
@@ -24,7 +25,7 @@ const Searchbar = () => {
   const handleSearch = () => {
     if (inputValue.trim() === "") {
       dispatch(getAllVolumes());
-      
+
     }
     else {
       dispatch(searchComic(inputValue));

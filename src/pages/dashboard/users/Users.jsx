@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { getUsers } from "../../../redux/actions";
+import { getUsers } from "../../../redux/actions/admin";
 import UserCard from './UserCard';
 import "./Users.css"
 
@@ -9,7 +9,7 @@ import "./Users.css"
 
 const Users = () => {
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.users);
+  const users = useSelector((state) => state.admin.users);
 
   useEffect(() => {
     dispatch(getUsers())

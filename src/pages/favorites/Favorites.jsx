@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { removeFavorite, addToCart, getAllfavoritesDb} from '../../redux/actions/index'
+import { removeFavorite, addToCart, getAllfavoritesDb} from '../../redux/actions/shop_favs_rating'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import NavBar from "../../components/navBar/Navbar";
@@ -7,9 +7,9 @@ import "./Favorites.css"
 
 export default function Favorites(comic) {
     
-    const cart = useSelector((state) => state.cart_shopping)
+    const cart = useSelector((state) => state.shop_fav_rating.cart_shopping)
     const dispatch = useDispatch()
-    const favourite = useSelector((state) => state.favourite)
+    const favourite = useSelector((state) => state.shop_fav_rating.favourite)
         console.log(favourite)
     
     const userId = JSON.parse(localStorage.getItem("id"))
