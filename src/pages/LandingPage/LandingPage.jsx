@@ -1,6 +1,7 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import "./LandingPage.css"
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import logo from '../../assets/LogoRed2.png'
 import comic1 from '../../assets/Comics/Comic1.jpg'
 import comic2 from '../../assets/Comics/Comic2.jpg'
@@ -15,8 +16,10 @@ import bestseller from '../../assets/Comics/Sales/BestSeller.png'
 
 import patternYellow from '../../assets/Comics/patternYellow.jpg'
 import patternBlue from '../../assets/Comics/patternBlue.jpg'
+import { getAllVolumes } from "../../redux/actions";
 
 const LandingPage = () => {
+ 
 
   return (
     <>

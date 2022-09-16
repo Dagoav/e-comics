@@ -10,30 +10,35 @@ import Loading from "../loading/Loading";
 // loading
 const CardsGallery = () => {
   const dispatch = useDispatch();
-  let [currentPage, setCurrentPage] = useState(1);
+  let currentPage = useSelector(state =>state.currentPage);
   // eslint-disable-next-line no-unused-vars
-  let [comicPerPage, setComicPerPage] = useState(12)
+  let [comicPerPage] = useState(12)
   let comics = useSelector((state) => state.comics);
   let loading_state = useSelector((state) => state.loading);
   let indexOfLastComic = currentPage * comicPerPage;
   let indexOfFirstComic = indexOfLastComic - comicPerPage;
-  let currentComic = comics.slice(indexOfFirstComic, indexOfLastComic)
+  let currentComic = comics.slice(indexOfFirstComic, indexOfLastComic);
+  const isFilter = useSelector(state => state.isFilter)
 
 
   useEffect(() => {
-    dispatch(reset_comicState())
-    dispatch(getAllVolumes())
-  }, [dispatch])
+    if(isFilter){
+  
+     dispatch(getAllVolumes())
+    }
+     
+    
+    
+}, [dispatch])
 
 
-  const paginado = (pageNumber) => {
-    setCurrentPage(pageNumber)
-  }
+  const paginado = pageNumber =>{ 
 
-  useEffect(() => {
-    setCurrentPage(1);
+    dispatch(setPage(pageNumber))
+    }
+  
 
-  }, [comics.length, setCurrentPage]);
+
 
   return (
     <>
@@ -41,7 +46,7 @@ const CardsGallery = () => {
         comicPerPage={comicPerPage}
         allComics={comics.length}
         paginado={paginado}
-        page={currentPage}
+        currentPage={currentPage}
       />
       <Loading data={comics} />
       {

@@ -106,7 +106,6 @@ export function getCharacters() {
     })
   }
 }
-
 export function getPublishers() {
   return async function (dispatch) {
     var publishers = await axios.get(`${backendURL}/publishers`)
@@ -115,6 +114,7 @@ export function getPublishers() {
       payload: publishers.data
     })
   }
+  
 }
 
 export function getConcepts() {
@@ -238,3 +238,45 @@ export function registerUser(data) {
   }
 }
 
+
+
+//77//77--------------------Filtros-----
+
+export function filterPublishers(payload){
+
+  return {
+  type:"FILTER_COMIC_FOR_PUBLISHERS",
+  payload
+  }}
+
+  export function FilterAD(payload){
+    console.log(payload)
+    return{
+        type:"FILTER_A_D",
+        payload
+        }}
+
+
+        export function FilterForRelease(payload){
+          return{
+              type:"FILTER_FOR_RELEASE",
+              payload
+          }
+      
+      }
+
+
+      export function clear(){
+        return{
+            type:"CLEAR",
+        }
+    }
+    
+    
+    export function setPage(payload) {
+        return {
+            type: 'SET_PAGE',
+            payload
+        }
+    }
+      

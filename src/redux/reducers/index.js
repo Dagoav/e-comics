@@ -1,5 +1,6 @@
 
 
+
 const initialState = {
   comics: [],
   issues: [],
@@ -13,6 +14,8 @@ const initialState = {
   concepts: [],
   comicsFilter: [],
   loading: true,
+  isFilter: true,
+  currentPage: 1,
   theme_params: {
     theme: "light",
     state: false
@@ -106,9 +109,64 @@ const rootReducer = (state = initialState, action) => {
                 publishers:action.payload
               }
 
-    case "FILTER_COMIC_FOR_PUBLISHER":
-      const allComic = state.comicsFilter
-            const filterByPublishers = allComic.filter(c => c.publisher === action.payload)
+
+              case "FILTER_COMIS_FOR_PUBLISHERS":
+                const allG = state.comicsFilter
+
+                const filterByP = allG.filter(c => c.publisher?.find(c => c === action.payload) || c.publisher?.find(c=> c.name === action.payload))
+                const statusFiltered = action.payload === "All" ? allG : filterByP
+
+                return {
+                    ...state,
+                  comics:statusFiltered
+                  }
+
+                  case "FILTER_A_D":
+                    const allGames2 = state.comicsFilter
+                      let  sortedArray= action.payload === "asc" ?
+                      allGames2.sort( function (a,b){
+                        if(a.name > b.name ){
+                            return 1;
+                        }
+                        if(b.name > a.name ){
+                            return -1;
+                        }
+                        return 0;
+                      }):
+                      allGames2.sort(function (a,b){
+                        if(a.name > b.name ){
+                            return -1;
+                        }
+                        if(b.name > a.name ){
+                            return 1;
+                        }
+                        return 0;
+                      })
+                      return{
+                        ...state,
+                      comics:sortedArray
+
+                      }
+
+                      case "FILTER_FOR_RELEASE":
+                        const  allGames4= state.comicsFilter
+                        // all[Countries2.sort(function (num1 = 1, num2= 2){
+                          const  createdFilter = action.payload ==="release next 50`s" ? allGames4.filter(v=>v.release     >=  "1950-01-01"):allGames4.filter(v => v.release <= "1943-01-01")
+                        //     if(num1.release > num2.release){
+                        //         return -1;
+                        //     }
+                        //     if(num2.release > num1.release){
+                        //         return 1;
+                        //     }
+                        //     return 0;
+                        // })
+                        return {
+                            ...state,
+                            comics:createdFilter
+                        }
+
+
+
 
     case "GET_USERS":
       return {
@@ -116,11 +174,7 @@ const rootReducer = (state = initialState, action) => {
         users: action.payload
       }
 
-    case "GET_PUBLISHERS":
-      return {
-        ...state,
-        comics: filterByPublishers
-      }
+
 
     case "GET_CONCEPTS":
       return {
@@ -137,6 +191,29 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         favourite: state.favourite.filter(e => e.id !== action.payload.id)
       }
+
+
+
+      case 'SET_PAGE': {
+        return {
+            ...state,
+            currentPage: action.payload
+        }
+    }
+case "CLEAR": {
+return {
+    ...state,
+    comic: {}
+}
+}
+
+
+
+
+
+
+
+
     default: return state
   };
 };

@@ -10,6 +10,7 @@ import "./cardDetail.css"
 
 
 const CardDetail = () => {
+  const navigate = useNavigate()
 
   const dispatch = useDispatch();
   const theme_params = useSelector((state) => state.theme_params);
@@ -64,6 +65,7 @@ const CardDetail = () => {
         <div className='info-issues mt-5'>
           <Issues issue_number={id}></Issues>
         </div>
+        <button onClick= {()=>navigate(-1)} >Back</button>
       </div >
     </>
   );

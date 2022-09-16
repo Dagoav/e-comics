@@ -2,7 +2,7 @@ import React from "react";
 
 import NavBar from "../../components/navBar/Navbar";
 import Carrousel from "../../components/carrousel/Carrousel";
-import Sidebar from "../../components/sidebar/Sidebar";
+import Sidebars from "../../components/sidebar/Sidebar";
 import CardsGallery from "../../components/cards-gallery/CardsGallery";
 import Footer from "../../components/footer/Footer";
 import { useState,useEffect } from "react";
@@ -10,20 +10,15 @@ import { Col, Row } from "react-bootstrap";
 import "./Home.css"
 import { useDispatch,useSelector } from "react-redux";
 import { getAllVolumes,FilterForEpisodes,clear } from "../../redux/actions";
-//import Filters from "../../components/filter";
+
+
 
 const Home = () => {
   const dispatch =useDispatch()
-  const {comics}=useSelector(state =>state.comics)
+  const {comics}=useSelector(state =>state)
   const isFilter = useSelector(state => state.isFilter)
 
 
-//   useEffect(() => {
-//     if(isFilter){}
-     
-    
-    
-// }, [isFilter])
 
 
 
@@ -41,10 +36,11 @@ const Home = () => {
         <main className="main">
           <Row>
             <Carrousel />
+            
+              <Sidebars />
           </Row>
           <Row className="mt-5">
             <Col md={2} className="container" >
-              <Sidebar />
             </Col>
             <Col md={9} className="container" >
               <CardsGallery comics={comics}/>

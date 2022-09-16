@@ -1,72 +1,78 @@
 import React, { useEffect,useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getCharacters, getPublishers, getConcepts,clear,filterForAD, FilterForEpisodes } from '../../redux/actions/index.js'
+import { getCharacters, getPublishers, getConcepts,clear,FilterAD, FilterForEpisodes,filterPublishers,FilterForRelease } from '../../redux/actions/index.js'
 import "./Sidebar.css"
 
 
-const Sidebar = () => {
+const Sidebars = () => {
   const dispatch = useDispatch();
   let characters = useSelector(state => state.characters)
-  let publishers = useSelector(state => state.publishers)
+ 
   let concepts = useSelector(state => state.concepts)
  let [ordenAD, setOrdenAD] = useState("");
  const [ordenEpisodes, setOrdenEpisodes] = useState("");
+ const [ordenPopulation,setOrdenRelease] = useState("")
+ 
 
-  function handlePublisher(e){
-   
-    dispatch(getPublishers());
-   
-  }
+ let filter = useSelector((state) => state.publishers)
+ 
 
-  useEffect(() => { 
-    dispatch(getCharacters())
-    dispatch(getPublishers());
-   
-    dispatch(getConcepts())
-  }, [dispatch])
 
-  // function  handleFilterForAD(e) {
-  //   dispatch(filterForAD(e.target.value));
-  //   setOrdenAD(`ordenado A_D ${e.target.value}`);
-   
-  // }
-  // function handleFilterForEpisodes(e) {
-  //   dispatch(FilterForEpisodes(e.target.value));
-  //   setOrdenEpisodes(`ordenado Rating ${e.target.value}`);
-    
-  
-  // }
+ 
+ 
+ function handleGenre(e) {
+     dispatch(getPublishers())
 
-  return (
-    <div className="containerSide">
+     dispatch(filterPublishers(e.target.value));
+   }
+   
+   useEffect(() => {
+     dispatch(getPublishers());
+   }, [dispatch]);
+
+
+ 
+
+
+
+function handleFilterAD(e) {
+  dispatch(FilterAD(e.target.value));
+  setOrdenAD(`ordenado A_D ${e.target.value}`);
+
+}
+
+function handleFilterForRelease(e){
+  dispatch(FilterForRelease(e.target.value));
+  setOrdenRelease(`orden Population ${e.target.value}`);
+
+}
+return (
+  <div style={{ height: "100px" }}>
+    <select onChange={(e) => handleGenre(e)}>
+         <option value="DC Comics"> for Publisher </option>
+
      
-      
-          <h6 className="publisher">Publishers</h6>
-          <select className="select"
-          onChange={(e) => handlePublisher(e)}>
-      <option value="All">All Publishers</option>
-            {
-              publishers?.map(char => (
-                
-              <option key={char.name} value={char.name}>{char.name}</option>
+         {
+           filter.map(g => {
+               return<option key={g.id}>{g.name}</option>;
+            })}
+    </select>
+  
 
-              ))
-            }
-              </select>
-       {/* <select onChange={(e) => handleFilterForAD(e)}>
+    <select onChange={(e) => handleFilterAD(e)}>
         <option value="asc">ASC</option>
         <option value="desc">DESC</option>
       </select>
 
-      <select onChange={(e) => handleFilterForEpisodes(e)}>
-        <option value="episodesdown">Rating Down</option>
-        <option value="episodesup">Rating Up</option>
-      </select> */}
-        
-       
-    </div>
-  );
+
+      <select onChange={(e) => handleFilterForRelease(e)}>
+FILTER_A_D
+        <option value="release next 50`s">Release next 50`s</option>
+        <option value="release 40`s"> Release 40`s</option>
+      </select>
+  </div>
+);
 }
 
-export default Sidebar
+export default Sidebars
 
