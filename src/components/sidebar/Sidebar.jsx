@@ -1,20 +1,20 @@
 import React, { useEffect,useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getCharacters, getPublishers, getConcepts,clear,FilterAD, FilterForEpisodes,filterPublishers,FilterForRelease } from '../../redux/actions/index.js'
+import { getCharacters, getPublishers, getConcepts,clear,FilterAD, FilterForEpisodes,filterPublishers,FilterForRelease } from '../../redux/actions/filters'
 import "./Sidebar.css"
 
 
 const Sidebars = () => {
   const dispatch = useDispatch();
-  let characters = useSelector(state => state.characters)
+  let characters = useSelector(state => state.filters.characters)
  
-  let concepts = useSelector(state => state.concepts)
+  
  let [ordenAD, setOrdenAD] = useState("");
  const [ordenEpisodes, setOrdenEpisodes] = useState("");
  const [ordenPopulation,setOrdenRelease] = useState("")
  
 
- let filter = useSelector((state) => state.publishers)
+ let filter = useSelector((state) => state.filters.publishers)
  
 
 

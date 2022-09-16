@@ -25,8 +25,6 @@ const Home = () => {
 
   return (
     <div className="home-container">
-
-
       <Row className="header">
         <NavBar searchbar={true} />
       </Row>
@@ -46,6 +44,7 @@ const Home = () => {
               <CardsGallery comics={comics}/>
             </Col>
           </Row>
+
         </main>
         <Footer />
 

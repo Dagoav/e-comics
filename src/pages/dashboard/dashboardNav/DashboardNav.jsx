@@ -38,7 +38,7 @@ const DashboardNav = () => {
         <ul>
           <li className='mt-2'>
             {/* no importa esta ruta */}
-            <Link to={"/"}> 
+            <Link to={"/"}>
               <span className='icon'>
                 <span className="material-symbols-outlined pt-2" style={{ fontSize: '2.5rem' }}>
                   admin_panel_settings
@@ -48,7 +48,7 @@ const DashboardNav = () => {
             </Link>
           </li>
           <li>
-            <NavLink to={"/dashboard/admin"} >
+            <NavLink to={"/dashboard/admin"} className={({ isActive }) => (isActive ? 'dashboard-active' : 'dashboard-inactive')}>
               <span className='icon'>
                 <span className="material-symbols-outlined pt-2" style={{ fontSize: '2.5rem' }}>
                   dashboard
@@ -58,7 +58,7 @@ const DashboardNav = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/dashboard/orders"} >
+            <NavLink to={"/dashboard/orders"} className={({ isActive }) => (isActive ? 'dashboard-active' : 'dashboard-inactive')} >
               <span className='icon'>
                 <span className="material-symbols-outlined pt-2" style={{ fontSize: '2.5rem' }}>
                   list_alt
@@ -68,9 +68,19 @@ const DashboardNav = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/dashboard/users"}>
+            <NavLink to={"/dashboard/users"} className={({ isActive }) => (isActive ? 'dashboard-active' : 'dashboard-inactive')}>
               <span className='icon'><RiUser3Fill /></span>
               <span className='title'>Users</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to={"/dashboard/reviews"} className={({ isActive }) => (isActive ? 'dashboard-active' : 'dashboard-inactive')} >
+              <span className='icon'>
+                <span className="material-symbols-outlined" style={{ fontSize: '2.5rem',paddingTop:'12px' }}>
+                  rate_review
+                </span>
+              </span>
+              <span className='title'>Reviews</span>
             </NavLink>
           </li>
           {/* <li>
@@ -80,13 +90,13 @@ const DashboardNav = () => {
             </a>
           </li> */}
           <li>
-            <NavLink to={"/dashboard/upload"} >
+            <NavLink to={"/dashboard/upload"} className={({ isActive }) => (isActive ? 'dashboard-active' : 'dashboard-inactive')}>
               <span className='icon'><RiUpload2Line /></span>
               <span className='title'>Subir comic</span>
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/dashboard/logout"}>
+            <NavLink to={"/dashboard/logout"} className={({ isActive }) => (isActive ? 'dashboard-active' : 'dashboard-inactive')}>
               <span className='icon'><RiLogoutBoxRLine /></span>
               <span className='title'>Exit</span>
             </NavLink>

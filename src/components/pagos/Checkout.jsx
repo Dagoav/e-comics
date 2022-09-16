@@ -1,5 +1,7 @@
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Checkout = (/* {price} */) => {
 
@@ -10,6 +12,8 @@ const Checkout = (/* {price} */) => {
     const stripe = useStripe()
     const elements = useElements()
 
+    const stateCart = useSelector(state => state.shop_fav_rating.cart_shopping)
+
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -18,12 +22,17 @@ const Checkout = (/* {price} */) => {
             card: elements.getElement(CardElement) // Selecciona el num de tarjeta del componente Card
         })
         const { id } = paymentMethod;
+
+            var totalprices = 0;
+            stateCart.map(e => totalprices = e.price + totalprices)
         try {
             if(!error){
                 const { data } = await axios.post(url + 'checkout', {
+                    carrito: stateCart,
                     id: id,
-                    price: price,
+                    price: totalprices,
                 });
+                console.log(data, "soy data en el front buscando payment")
                 alert("COMIC PAGADO") // Ponganle un mensaje más bonito
                 elements.getElement(CardElement).clear() // Limpia el input
             } else {
@@ -40,6 +49,10 @@ const Checkout = (/* {price} */) => {
             <button>
                 Buy
             </button>
+            <Link to="/home">
+            <button>home
+            </button>
+            </Link>
         </form>
     )
 }

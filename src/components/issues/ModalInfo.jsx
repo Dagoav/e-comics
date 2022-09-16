@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import ShoppingBar from '../shopping-bar/ShoppingBar';
 import { Link } from 'react-router-dom'
+import ShoppingBar from '../shopping-bar/ShoppingBar';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
@@ -16,22 +16,14 @@ const ModalInfoIssue = ({ open, data, theme }) => {
     }
   }, [open])
 
-  useEffect(() => {
-    // set theme
-    // const modal = document.getElementById("modal");
-    // console.log(modal);
-    // modal.className = `modal-${theme}`
-  })
 
   const handleClose = () => setShow(false);
   // const handleShow = () => setShow(true);
   const rol = JSON.parse(localStorage.getItem("ROL"))
+
   return (
     <>
-      {/* <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </Button> */}
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} size='md' >
         <Modal.Header closeButton>
           <Modal.Title>
             <span className='px-1'>
@@ -54,7 +46,7 @@ const ModalInfoIssue = ({ open, data, theme }) => {
             Close
           </Button>
           {/* <Link to={"/shop"}> */}
-          <Link to={rol === "USER" ? '/user/shop': '/login'}>
+          <Link to={rol === "USER" ? '/user/shop' : '/login'}>
             <Button variant="danger" onClick={handleClose}>
               ir a carrito
             </Button>
