@@ -44,4 +44,44 @@ export function creategame(data) {
 }
 
 
+//77//77--------------------Filtros-----
+
+// export function filterPublishers(payload){
+// console.log(payload)
+//   return {
+//   type:"FILTER_COMIC_FOR_PUBLISHERS",
+//   payload
+//   }}
+
+  export function FilterAD(payload){
+    console.log(payload)
+    return{
+        type:"FILTER_A_D",
+        payload
+        }}
+
+
+        export function FilterForRelease(payload){
+          return{
+              type:"FILTER_FOR_RELEASE",
+              payload
+          }
+      
+      }
+
+
+      export function clear(){
+        return{
+            type:"CLEAR",
+        }
+    }
+    
+    
+    export function setPage(payload) {
+        return {
+            type: 'SET_PAGE',
+            payload
+        }
+    }
+
 

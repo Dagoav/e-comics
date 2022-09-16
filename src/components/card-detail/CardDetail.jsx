@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { volumeDetail } from "../../redux/actions/comics";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams,useNavigate } from "react-router-dom";
 import Loading from "../loading/Loading";
 import NavBar from '../navBar/Navbar'
 import Issues from '../issues/Issues';
@@ -11,6 +11,7 @@ import "./cardDetail.css"
 
 
 const CardDetail = () => {
+  const navigate = useNavigate()
 
   const dispatch = useDispatch();
   const theme_params = useSelector((state) => state.params.theme_params);
@@ -21,6 +22,7 @@ const CardDetail = () => {
   const { image, name, deck, description, start_year } = comic
 
   useEffect(() => {
+
     dispatch(volumeDetail(id))
   }, [dispatch, id])
 
@@ -83,6 +85,7 @@ const CardDetail = () => {
           }
 
         </div>
+        <button onClick= {()=>navigate(-1)} >Back</button>
       </div >
     </>
   );

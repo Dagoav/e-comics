@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllVolumes, reset_comicState } from "../../redux/actions/comics";
+
+import { getAllVolumes } from "../../redux/actions/comics";
+import { setPage } from "../../redux/actions/filters";
+
 import ComicCard from "../../components/card/Card";
 import Paginado from "../paginado/paginado";
 import Loading from "../loading/Loading";
@@ -10,33 +13,36 @@ import Loading from "../loading/Loading";
 // loading
 const CardsGallery = () => {
   const dispatch = useDispatch();
-  let [currentPage, setCurrentPage] = useState(1);
+  let currentPage = useSelector(state =>state.filters.currentPage);
   // eslint-disable-next-line no-unused-vars
   let [comicPerPage, setComicPerPage] = useState(12)
   let comics = useSelector((state) => state.comicsReducer.comics);
   let loading_state = useSelector((state) => state.comicsReducer.loading);
   let indexOfLastComic = currentPage * comicPerPage;
   let indexOfFirstComic = indexOfLastComic - comicPerPage;
-  let currentComic = comics.slice(indexOfFirstComic, indexOfLastComic)
+  let currentComic = comics.slice(indexOfFirstComic, indexOfLastComic);
+  const isFilter = useSelector(state => state.filters.isFilter)
+
+  
 
   useEffect(() => {
-    dispatch(reset_comicState())
-  })
+    if(isFilter){
+  
+     dispatch(getAllVolumes())
+    }
+     
+    
+    
+}, [dispatch])
 
-  useEffect(() => {
-    dispatch(reset_comicState())
-    dispatch(getAllVolumes())
-  }, [dispatch])
+
+  const paginado = pageNumber =>{ 
+
+    dispatch(setPage(pageNumber))
+    }
+  
 
 
-  const paginado = (pageNumber) => {
-    setCurrentPage(pageNumber)
-  }
-
-  useEffect(() => {
-    setCurrentPage(1);
-
-  }, [comics.length, setCurrentPage]);
 
   return (
     <>
@@ -44,7 +50,7 @@ const CardsGallery = () => {
         comicPerPage={comicPerPage}
         allComics={comics.length}
         paginado={paginado}
-        page={currentPage}
+        currentPage={currentPage}
       />
       <Loading data={comics} state={loading_state} />
       {
