@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom'
 import ShoppingBar from '../shopping-bar/ShoppingBar';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import StarRating from "../starRating/starRating.jsx";
 
 import "./ModalInfo.css"
 
 const ModalInfoIssue = ({ open, data, theme }) => {
   const [show, setShow] = useState(false);
-  const { image, name, issue_number, price, description } = data
+  const { image, name, issue_number, price, description, Ratings, id, volume_id } = data
 
   useEffect(() => {
     if (open) {
@@ -21,6 +22,12 @@ const ModalInfoIssue = ({ open, data, theme }) => {
   // const handleShow = () => setShow(true);
   const rol = JSON.parse(localStorage.getItem("ROL"))
 
+  console.log(`id: ${id} comicId: ${volume_id}`)
+
+  const promRating = () => {
+    var prom = Ratings.reduce((sum, value) => (typeof value.rating == "number" ? sum + value.rating : sum), 0)
+    return Math.ceil((prom / Ratings.length))
+  }
   return (
     <>
       <Modal show={show} onHide={handleClose} size='md' >
@@ -40,6 +47,7 @@ const ModalInfoIssue = ({ open, data, theme }) => {
           </p>
           <img className='ms-5 mt-3' style={{ width: '80%' }} src={image} alt="" />
         </Modal.Body>
+        <StarRating value={promRating()} />
         <Modal.Footer className='pe-5'>
           <ShoppingBar price={price} comic={data} />
           <Button variant="secondary" onClick={handleClose}>
