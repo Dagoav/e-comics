@@ -7,6 +7,7 @@ import { setPage } from "../../redux/actions/filters";
 import ComicCard from "../../components/card/Card";
 import Paginado from "../paginado/paginado";
 import Loading from "../loading/Loading";
+import "./CardsGallery.css"
 
 const CardsGallery = () => {
   const dispatch = useDispatch();
@@ -41,12 +42,17 @@ const CardsGallery = () => {
         paginado={paginado}
         currentPage={currentPage}
       />
-      <Loading data={comics} state={loading_state} />
+      <div className='pos-loading-gallery'>
+        <Loading data={comics} state={loading_state} />
+      </div>
       {
-        comics.length > 0 && !loading_state &&
-        currentComic.map(c => (
-          <ComicCard key={c.id} data={c} />
-        ))
+        comics.length > 0 && !loading_state ?
+          currentComic.map(c => (
+            <ComicCard key={c.id} data={c} />
+          )) :
+          (<div style={{ height: '800px' }}>
+
+          </div>)
       }
     </>
   )
