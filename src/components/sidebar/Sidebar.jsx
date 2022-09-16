@@ -1,6 +1,11 @@
 import React, { useEffect,useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getCharacters, getPublishers, getConcepts,clear,FilterAD, FilterForEpisodes,filterPublishers,FilterForRelease } from '../../redux/actions/filters'
+import { getCharacters, getPublishers, getConcepts,clear,FilterAD, FilterForEpisodes,FilterForRelease } from '../../redux/actions/filters'
+import { filterPublishers } from "../../redux/actions/comics";
+
+
+
+
 import "./Sidebar.css"
 
 
@@ -10,16 +15,15 @@ const Sidebars = () => {
  
   
  let [ordenAD, setOrdenAD] = useState("");
- const [ordenEpisodes, setOrdenEpisodes] = useState("");
+
  const [ordenPopulation,setOrdenRelease] = useState("")
  
-
  let filter = useSelector((state) => state.filters.publishers)
- 
+  
 
-
  
- 
+  
+  
  function handleGenre(e) {
      dispatch(getPublishers())
 
@@ -29,9 +33,13 @@ const Sidebars = () => {
    useEffect(() => {
      dispatch(getPublishers());
    }, [dispatch]);
+ 
+ 
 
 
  
+ 
+
 
 
 
@@ -48,15 +56,17 @@ function handleFilterForRelease(e){
 }
 return (
   <div style={{ height: "100px" }}>
-    <select onChange={(e) => handleGenre(e)}>
-         <option value="DC Comics"> for Publisher </option>
+   <select onChange={(e) => handleGenre(e)}>
+         <option value= "null"> For publishers </option>
 
      
          {
-           filter.map(g => {
-               return<option key={g.id}>{g.name}</option>;
-            })}
+           filter.map(g => (
+               <option key={g.id} value= {g.name}>{g.name}</option>
+            ))
+            }
     </select>
+   
   
 
     <select onChange={(e) => handleFilterAD(e)}>

@@ -46,12 +46,12 @@ export function creategame(data) {
 
 //77//77--------------------Filtros-----
 
-export function filterPublishers(payload){
-
-  return {
-  type:"FILTER_COMIC_FOR_PUBLISHERS",
-  payload
-  }}
+// export function filterPublishers(payload){
+// console.log(payload)
+//   return {
+//   type:"FILTER_COMIC_FOR_PUBLISHERS",
+//   payload
+//   }}
 
   export function FilterAD(payload){
     console.log(payload)

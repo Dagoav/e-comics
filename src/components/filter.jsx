@@ -7,7 +7,7 @@ import {  getPublishers,filterPublishers} from '.././redux/actions/index.js'
 const PublishersFilter = () => {
   const dispatch = useDispatch();
 
-  let filter = useSelector((state) => state.publishers)
+  let filter = useSelector((state) => state.comicReducer.publishers)
   
 
  
@@ -28,7 +28,7 @@ const PublishersFilter = () => {
 return (
   <div style={{ height: "100px" }}>
     <select onChange={(e) => handleGenre(e)}>
-         <option value="DC Comics"> for Publisher </option>
+         <option value="All"> All </option>
 
      
          {

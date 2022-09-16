@@ -28,7 +28,7 @@ const Paginado = ({ comicPerPage, allComics, paginado, currentPage}) => {
             ))}
         {
                 currentPage < Paginas ?(
-                    <button   onClick ={(pageNumbers)=> paginado (currentPage + 1 )}> Next</button>
+                    <button   onClick ={()=> paginado (currentPage + 1 )}> Next</button>
                 )
                 : null
             }

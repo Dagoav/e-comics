@@ -66,4 +66,10 @@ export const reset_comicState = (payload) => {
   }
 }
 
+export function filterPublishers(payload){
+  console.log(payload)
+    return {
+    type:"FILTER_COMIC_FOR_PUBLISHERS",
+    payload
+    }}
 
