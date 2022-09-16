@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { getAllVolumes } from "../../redux/actions/comics";
+import { getAllVolumes, reset_comicState } from "../../redux/actions/comics";
 import { setPage } from "../../redux/actions/filters";
 
 import ComicCard from "../../components/card/Card";
 import Paginado from "../paginado/paginado";
 import Loading from "../loading/Loading";
 
-
-// Aqui va el ordenamiento, filtrado y paginado
-// loading
 const CardsGallery = () => {
   const dispatch = useDispatch();
-  let currentPage = useSelector(state =>state.filters.currentPage);
+  let currentPage = useSelector(state => state.filters.currentPage);
   // eslint-disable-next-line no-unused-vars
   let [comicPerPage, setComicPerPage] = useState(12)
   let comics = useSelector((state) => state.comicsReducer.comics);
@@ -23,26 +20,18 @@ const CardsGallery = () => {
   let currentComic = comics.slice(indexOfFirstComic, indexOfLastComic);
   const isFilter = useSelector(state => state.filters.isFilter)
 
-  
-
   useEffect(() => {
-    if(isFilter){
-  
-     dispatch(getAllVolumes())
+    dispatch(reset_comicState())
+    if (isFilter) {
+      dispatch(getAllVolumes())
     }
-     
-    
-    
-}, [dispatch])
+
+  }, [dispatch, isFilter])
 
 
-  const paginado = pageNumber =>{ 
-
+  const paginado = pageNumber => {
     dispatch(setPage(pageNumber))
-    }
-  
-
-
+  }
 
   return (
     <>

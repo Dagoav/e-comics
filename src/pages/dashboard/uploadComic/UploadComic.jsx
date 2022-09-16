@@ -15,11 +15,14 @@ const UploadComic = () => {
   const dispatch = useDispatch();
   const comic_info = useSelector((state) => state.admin.comic_info);
   const [validated, setValidated] = useState(false);
+  const [show, setShow] = useState(true);
   const { register, handleSubmit, formState: { errors } } = useForm();
   const regex_url = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
 
+
   const onSubmit = (values) => {
     console.log({ values });
+    setShow(true)
     setValidated(true);
 
     if (Object.entries(errors).length === 0) {
@@ -27,8 +30,6 @@ const UploadComic = () => {
       dispatch(addComic(values))
     }
   }
-
-  console.log(comic_info);
 
   return (
     <div className="mainAdm-users">
@@ -128,10 +129,22 @@ const UploadComic = () => {
         </Row>
       </Form>
       {
-        comic_info.info && <Alert className="alert-styles" key='success' variant='success'>{comic_info.info}</Alert>
+        comic_info.info &&
+        <Alert show={show} className="alert-box" key='success' variant='success'>
+          <span className="material-symbols-outlined d-flex justify-content-end alert-close" onClick={() => setShow(false)}>
+            close
+          </span>
+          {comic_info.info}
+        </Alert>
       }
       {
-        comic_info.error && <Alert className="alert-styles" key='danger' variant='danger'>{comic_info.error}</Alert>
+        comic_info.error &&
+        <Alert show={show} className="alert-box" key='danger' variant='danger'>
+          <span className="material-symbols-outlined d-flex justify-content-end alert-close" onClick={() => setShow(false)}>
+            close
+          </span>
+          {comic_info.error}
+        </Alert>
       }
 
     </div >
