@@ -7,6 +7,7 @@ import { MDBContainer, MDBCol, MDBRow, MDBInput } from 'mdb-react-ui-kit';
 import { Button } from 'react-bootstrap';
 import Swal from 'sweetalert2'
 import {useAuthContext} from '../../context/authContext'
+import LoginAuth from '../Logingoogle/Login';
 
 const backendURL = process.env.REACT_APP_API;
 
@@ -63,15 +64,6 @@ function LoginApp() {
       localStorage.setItem("ROL", JSON.stringify(response.data.Rol))
       localStorage.setItem("id", JSON.stringify(response.data.id))
       
-      
-      // if (response.data.Rol === "USER") {
-      //   navigate('/userprofile')
-      //   //localStorage.setItem("MY_AUTH", true)
-      // }
-      // if (response.data.Rol === "ADMIN") {
-      //   navigate('./dashboard/admin')
-      //   //localStorage.setItem("MY_AUTH", true)
-      // }
       setInput({
         email: "",
         password: "",
@@ -118,10 +110,11 @@ function LoginApp() {
             <p className="small fw-bold mt-2 pt-1 mb-2">No tienes cuenta? <Link to='/singup'> <a className="link-danger">Registro</a>  </Link></p>
           </div>
           
-
         </MDBCol>
       </MDBRow>
 
+{/* <Logingoogle/> */}
+<LoginAuth login={login}/>
     </MDBContainer>
   );
 }

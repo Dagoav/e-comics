@@ -75,6 +75,7 @@ function NavBar({ searchbar = true }) {
                   Home
                 </Link>
 
+
                 {/* Account */}
                 <Account />
                 {/* shopping cart */}
