@@ -10,7 +10,7 @@ export default function Favorites(comic) {
     const cart = useSelector((state) => state.cart_shopping)
     const dispatch = useDispatch()
     const favourite = useSelector((state) => state.favourite)
-        console.log(favourite)
+        // console.log(favourite)
     
     const userId = JSON.parse(localStorage.getItem("id"))
 

@@ -139,11 +139,12 @@ export const setShoppingCart = (products) => {
   }
 }
 
-export const addComic = (body) => {
+export const addComic = ( body, base64EncodedImage, previewSource ) => {
   return async (dispatch) => {
     const comic_info = await axios({
       method: 'post',
       url: `${backendURL}/comics`,
+      body:JSON.stringify({data: base64EncodedImage}),
       data: body
     })
     return dispatch({
