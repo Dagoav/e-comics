@@ -1,0 +1,12 @@
+.pos-loading-gallery {
+  position: absolute;
+  top: 300px;
+  right: 45%;
+  transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+  .pos-loading-gallery {
+    right: 70%;
+  }
+}

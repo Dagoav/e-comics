@@ -1,61 +1,88 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getCharacters, getPublishers, getConcepts } from '../../redux/actions/index.js'
+import { getCharacters, getPublishers, getConcepts,clear,FilterAD, FilterForEpisodes,FilterForRelease } from '../../redux/actions/filters'
+import { filterPublishers } from "../../redux/actions/comics";
+
+
+
+
 import "./Sidebar.css"
 
 
-const Sidebar = () => {
+const Sidebars = () => {
   const dispatch = useDispatch();
-  let characters = useSelector(state => state.characters)
-  let publishers = useSelector(state => state.publishers)
-  let concepts = useSelector(state => state.concepts)
+  let characters = useSelector(state => state.filters.characters)
+ 
+  
+ let [ordenAD, setOrdenAD] = useState("");
 
-  useEffect(() => {
-    dispatch(getCharacters())
-    dispatch(getPublishers())
-    dispatch(getConcepts())
-  }, [dispatch])
+ const [ordenPopulation,setOrdenRelease] = useState("")
+ 
+ let filter = useSelector((state) => state.filters.publishers)
+  
 
-  return (
-    <div className="containerSide">
-      <section id="sidebar">
-        <div>
-          <h6 className="publisher">Characters</h6>
-          <select className="select">
-            <option value="All">All characters</option>
-            {
-              characters?.map(char => (
-                <option key={char.name} value={char.name}>{char.name}</option>
-              ))
-            }
-          </select>
-        </div>
-        <div>
-          <h6 className="publisher">Publishers</h6>
-          <select className="select">
-            <option value="All">All Publishers</option>
-            {
-              publishers?.map(char => (
-                <option key={char.name} value={char.name}>{char.name}</option>
-              ))
-            }
-          </select>
-        </div>
-        <div>
-          <h6 className="publisher">Concepts</h6>
-          <select className="select extra">
-            <option value="All">All characters</option>
-            {
-              concepts?.map(char => (
-                <option key={char.name} value={char.name}>{char.name}</option>
-              ))
-            }
-          </select>
-        </div>
-      </section>
-    </div>
-  )
+ 
+  
+  
+ function handleGenre(e) {
+     dispatch(getPublishers())
+
+     dispatch(filterPublishers(e.target.value));
+   }
+   
+   useEffect(() => {
+     dispatch(getPublishers());
+   }, [dispatch]);
+ 
+ 
+
+
+ 
+ 
+
+
+
+
+function handleFilterAD(e) {
+  dispatch(FilterAD(e.target.value));
+  setOrdenAD(`ordenado A_D ${e.target.value}`);
+
 }
 
-export default Sidebar
+function handleFilterForRelease(e){
+  dispatch(FilterForRelease(e.target.value));
+  setOrdenRelease(`orden Population ${e.target.value}`);
+
+}
+return (
+  <div style={{ height: "100px" }}>
+   <select onChange={(e) => handleGenre(e)}>
+         <option value= "null"> For publishers </option>
+
+     
+         {
+           filter.map(g => (
+               <option key={g.id} value= {g.name}>{g.name}</option>
+            ))
+            }
+    </select>
+   
+  
+
+    <select onChange={(e) => handleFilterAD(e)}>
+        <option value="asc">ASC</option>
+        <option value="desc">DESC</option>
+      </select>
+
+
+      <select onChange={(e) => handleFilterForRelease(e)}>
+FILTER_A_D
+        <option value="release next 50`s">Release next 50`s</option>
+        <option value="release 40`s"> Release 40`s</option>
+      </select>
+  </div>
+);
+}
+
+export default Sidebars
 

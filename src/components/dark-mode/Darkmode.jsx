@@ -1,10 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
-import { setTheme } from "../../redux/actions";
+import { setTheme } from "../../redux/actions/setParams";
 import "./Darkmode.css"
 
 const Darkmode = () => {
     const dispatch = useDispatch();
-    const theme_params = useSelector((state) => state.theme_params);
+    const theme_params = useSelector((state) => state.params.theme_params);
     const { theme, state } = theme_params
 
 

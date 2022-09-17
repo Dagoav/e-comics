@@ -1,13 +1,13 @@
 import React,{useState} from "react";
 import { useDispatch} from "react-redux";
-import { registerUser } from "../../redux/actions";
+import { registerUser } from "../../redux/actions/auth";
 import { useNavigate } from "react-router-dom";
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+// import { Formik, Form, Field, ErrorMessage } from 'formik';
 import {
   MDBContainer,
   MDBCol,
   MDBRow,
-  MDBBtn,
+  // MDBBtn,
   MDBIcon,
   MDBInput,
 } from "mdb-react-ui-kit";
@@ -99,7 +99,7 @@ function Register() {
           <img
             src="https://static.vecteezy.com/system/resources/previews/002/881/857/non_2x/comic-lettering-speech-bubble-for-emotion-with-text-welcome-comic-style-vector.jpg"
             className="img-fluid"
-            alt="Sample image"
+            alt=""
           />
         </MDBCol>
 

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { removeFavorite, addFavorite, addToCart, removeFromCart } from "../../redux/actions";
+import { removeFavorite, addFavorite, addToCart, removeFromCart } from "../../redux/actions/shop_favs_rating";
 // import Favorites from "../../pages/favorites/Favorites";
 
 import { Col, Row } from 'react-bootstrap'
@@ -8,12 +8,12 @@ import { Col, Row } from 'react-bootstrap'
 import "./ShoppingBar.css"
 
 const ShoppingBar = ({ price, comic }) => {
-  const favourite = useSelector((state) => state.favourite)
+  const favourite = useSelector((state) => state.shop_fav_rating.favourite)
   const dispatch = useDispatch();
-  const cart_shopping = useSelector((state) => state.cart_shopping);
+  const cart_shopping = useSelector((state) => state.shop_fav_rating.cart_shopping);
   const [countProducts, setCountProducts] = useState(cart_shopping.length);
   const [comprado, setComprado] = useState(
-    cart_shopping.some( c => c.id === comic.id)
+    cart_shopping.some(c => c.id === comic.id)
   )
 
   const idUsuer = JSON.parse(localStorage.getItem("id"))
@@ -30,7 +30,7 @@ const ShoppingBar = ({ price, comic }) => {
     setComprado(false)
   }
 
-  const addFavhandler = async() => {
+  const addFavhandler = async () => {
     // e.preventDefault()
     dispatch(addFavorite(comic.id, idUsuer))
     console.log(idUsuer, "id usuario 47")
@@ -38,26 +38,26 @@ const ShoppingBar = ({ price, comic }) => {
 
   const remuveFavhandler = (e) => {
     e.preventDefault()
-    dispatch(removeFavorite(comic, ))
+    dispatch(removeFavorite(comic,))
     // console.log(comic, "cuando elimina")
   }
   const rol = JSON.parse(localStorage.getItem("ROL"))
-  return (                                                                  
+  return (
     <div className="shopping-container">
       <Row>
         {favourite ?
-        <Col md={1} >
-          {
-          rol==="USER"?
-          <button className="fav-icon" onClick={addFavhandler}>
-            <span className="material-symbols-outlined">
-              heart_plus
-            </span>
-          </button> :
-          null
-          }
-        </Col>
-        :
+          <Col md={1} >
+            {
+              rol === "USER" ?
+                <button className="fav-icon" onClick={addFavhandler}>
+                  <span className="material-symbols-outlined">
+                    heart_plus
+                  </span>
+                </button> :
+                null
+            }
+          </Col>
+          :
           <button onClick={remuveFavhandler}>
             remuve_Fav
           </button>
@@ -65,23 +65,23 @@ const ShoppingBar = ({ price, comic }) => {
 
         {
           !comprado ?
-          <Col md={1}  >
-            { rol === "USER"?
-            <button className="shopping-icon" onClick={addProducts}>
-              <span className="material-symbols-outlined">
-                add_shopping_cart
-              </span>
-            </button>:
-            null
-            }
+            <Col md={1}  >
+              {rol === "USER" ?
+                <button className="shopping-icon" onClick={addProducts}>
+                  <span className="material-symbols-outlined">
+                    add_shopping_cart
+                  </span>
+                </button> :
+                null
+              }
 
-          </Col>
-          :
-          /* DANI NO SÉ DE BOOTSTRAP PERDÓN :( */
+            </Col>
+            :
+            /* DANI NO SÉ DE BOOTSTRAP PERDÓN :( */
 
-          <button onClick={removeProducts}> 
-            QUITAR DE CARRITO
-          </button>
+            <button onClick={removeProducts}>
+              QUITAR DE CARRITO
+            </button>
         }
 
         <Col >

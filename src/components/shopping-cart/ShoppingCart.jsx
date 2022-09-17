@@ -9,12 +9,12 @@ import "./ShoppingCart.css"
 
 // Guardar el estado de la compra en local storage
 const ShoppingCart = () => {
-    const cart_shopping = useSelector((state) => state.cart_shopping.length);
-    
+    const cart_shopping = useSelector((state) => state.shop_fav_rating.cart_shopping.length);
+
     const rol = JSON.parse(localStorage.getItem("ROL"))
     return (
         <>
-            <Link to={rol === "USER"? '/user/shop' : '/login'} style={{ textDecoration: 'none' }}>
+            <Link to={rol === "USER" ? '/user/shop' : '/login'} style={{ textDecoration: 'none' }}>
                 <div className='p-2 position-relative'>
                     <span className="material-symbols-outlined cart">
                         shopping_cart
