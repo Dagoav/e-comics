@@ -76,6 +76,7 @@ function NavBar({ searchbar = true }) {
                   About
                 </Link>
 
+
                 {/* Account */}
                 <Account />
 
