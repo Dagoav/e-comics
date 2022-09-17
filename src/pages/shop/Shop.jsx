@@ -1,7 +1,7 @@
 import React from "react";
 import { ListGroup } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromCart } from "../../redux/actions";
+import { removeFromCart } from "../../redux/actions/shop_favs_rating";
 
 import NavBar from "../../components/navBar/Navbar";
 import "./Shop.css"
@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 const Shop = () => {
 
-  const cart_shopping = useSelector(state => state.cart_shopping)
+  const cart_shopping = useSelector(state => state.shop_fav_rating.cart_shopping)
 
   const dispatch = useDispatch()
 
@@ -46,8 +46,8 @@ const Shop = () => {
               PRECIO TOTAL: ${Number(totalPrice).toFixed(2)}
               <button onClick={removeAll}>Vaciar Carrito</button>
               <Link to='/user/checkout'>
-              {/* <Link to= {rol === "USER" ? '/user/checkout' : '/admin/dashboard' }> */}
-              <button>COMPRAR</button></Link>
+                {/* <Link to= {rol === "USER" ? '/user/checkout' : '/admin/dashboard' }> */}
+                <button>COMPRAR</button></Link>
             </div>
             : <div>No hay productos</div>
         }

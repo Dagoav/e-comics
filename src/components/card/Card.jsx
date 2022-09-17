@@ -20,6 +20,9 @@ const ComicCard = ({ data }) => {
   return (
     <>
       <Card className="m-3 card-style" style={{ width: '16rem', height: '22rem' }}>
+     
+
+      
         <Card.Img className="img-card" variant="top" src={image} onClick={(e) => moveLeft(e)} />
         {/* <Link to={`/cardDetail/${id}`}> */}
         <Link to={rol === "ADMIN"? `/admin/cardDetail/${id}`: rol=== "USER" ? `/user/cardDetail/${id}`: `/cardDetail/${id}`}>

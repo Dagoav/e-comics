@@ -1,10 +1,5 @@
-.modal-light {
-  background-color: rgba(252, 248, 248, 0.87);
-  color: rgb(29, 28, 28);
-}
-
-.modal-dark {
-  background-color: rgba(80, 79, 79, 0.87);
+.modal-content {
+  background-color: rgb(48, 46, 46);
   color: rgb(199, 192, 192);
 }
 

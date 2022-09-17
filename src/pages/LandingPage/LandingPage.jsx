@@ -17,6 +17,7 @@ import patternYellow from '../../assets/Comics/patternYellow.jpg'
 import patternBlue from '../../assets/Comics/patternBlue.jpg'
 
 const LandingPage = () => {
+ 
 
   return (
     <>
