@@ -14,3 +14,14 @@
   left: 3px;
   top: 10px;
 }
+
+.btn-reviews {
+  background: red;
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 1.5rem;
+}
+
+.starPost {
+  cursor: pointer;
+}

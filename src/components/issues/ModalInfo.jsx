@@ -4,6 +4,8 @@ import ShoppingBar from '../shopping-bar/ShoppingBar';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import StarRating from "../starRating/starRating.jsx";
+import ModalReviews from '../starRating/modalReviews';
+import ModalPostReview from '../starRating/modalPostReview'
 
 import "./ModalInfo.css"
 
@@ -17,17 +19,18 @@ const ModalInfoIssue = ({ open, data, theme }) => {
     }
   }, [open])
 
-
   const handleClose = () => setShow(false);
   // const handleShow = () => setShow(true);
   const rol = JSON.parse(localStorage.getItem("ROL"))
 
+  //TODO: ELIMINAR ESTE CONSOLE.LOG !!!
   console.log(`id: ${id} comicId: ${volume_id}`)
 
   const promRating = () => {
     var prom = Ratings.reduce((sum, value) => (typeof value.rating == "number" ? sum + value.rating : sum), 0)
     return Math.ceil((prom / Ratings.length))
   }
+
   return (
     <>
       <Modal show={show} onHide={handleClose} size='md' >
@@ -48,6 +51,10 @@ const ModalInfoIssue = ({ open, data, theme }) => {
           <img className='ms-5 mt-3' style={{ width: '80%' }} src={image} alt="" />
         </Modal.Body>
         <StarRating value={promRating()} />
+        <div className='contModals'>
+          <ModalReviews data={data} />
+          <ModalPostReview data={data} />
+        </div>
         <Modal.Footer className='pe-5'>
           <ShoppingBar price={price} comic={data} />
           <Button variant="secondary" onClick={handleClose}>

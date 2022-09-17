@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import "./modalReviews.css"
+import StarRating from './starRating';
 
-const ModalReviews = () => {
+const ModalReviews = (data) => {
 
   const [show, setShow] = useState(false);
 
@@ -11,21 +13,30 @@ const ModalReviews = () => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Reviews
+      <Button className="btn-reviews" variant="primary" onClick={handleShow} width={50} >
+        See Reviews
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal className='modalReview' size='lg' show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Comic Reviews</Modal.Title>
+          <Modal.Title>Comic Review </Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Body>
+          <div className="contReviews">
+            {data.data.Ratings.map((e, i) => {
+              return (
+                <div className='flex'>
+                  <StarRating key={i} value={e.rating} />
+                  <p>{e.description}</p>
+                  <hr />
+                </div>
+              )
+            })}
+          </div>
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
           </Button>
         </Modal.Footer>
       </Modal>

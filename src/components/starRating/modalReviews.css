@@ -1,0 +1,24 @@
+.contReviews {
+  display: flex;
+  flex-direction: column;
+}
+
+.contModals {
+  width: 70%;
+  display: flex;
+  gap: 2rem;
+  margin-left: 1.3rem;
+  margin-right: 1.3rem;
+  margin: 0 auto;
+}
+
+.btn-PostReviews {
+  background: Green;
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 1.5rem;
+}
+
+.modalReview .modal-content {
+  border: solid 2px #35a800
+}
