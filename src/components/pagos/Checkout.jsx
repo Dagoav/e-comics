@@ -1,5 +1,5 @@
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import { removeFromCart } from '../../redux/actions';
+import { removeFromCart } from '../../redux/actions/shop_favs_rating';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -7,7 +7,7 @@ import axios from 'axios';
 const Checkout = () => {
 
     const url = 'http://localhost:3000/shop/'
-    const stateCart = useSelector(state => state.cart_shopping)
+    const stateCart = useSelector(state => state.shop_fav_rating.cart_shopping)
 
     const stripe = useStripe()
     const elements = useElements()

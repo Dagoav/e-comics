@@ -1,11 +1,24 @@
-import { applyMiddleware, createStore } from 'redux';
+import { applyMiddleware, createStore, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
-import rootReducer from '../reducers/index.js';
+import comicsReducer from '../reducers/comicsReducer';
+import admin from '../reducers/admin';
+import shop_fav_rating from '../reducers/shop_fav_rating';
+import filters from '../reducers/filters';
+import params from '../reducers/params';
+
+const reducer = combineReducers({
+    comicsReducer,
+    admin,
+    shop_fav_rating,
+    filters,
+    params
+})
+
 
 const store = createStore(
-    rootReducer,
+    reducer,
     composeWithDevTools(applyMiddleware(thunk))
 );
 

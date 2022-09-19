@@ -1,7 +1,7 @@
 import React from "react";
 import { ListGroup } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromCart, emptyCart } from "../../redux/actions";
+import { removeFromCart, emptyCart } from "../../redux/actions/shop_favs_rating";
 
 import NavBar from "../../components/navBar/Navbar";
 import "./Shop.css"
@@ -9,9 +9,9 @@ import { Link } from "react-router-dom";
 
 const Shop = () => {
 
-  const cart_shopping = useSelector(state => state.cart_shopping)
-  console.log(cart_shopping, "cart shopping en redux")
+  const cart_shopping = useSelector(state => state.shop_fav_rating.cart_shopping)
 
+  console.log(cart_shopping, "CART SHOPPING EN SHOP")
   const dispatch = useDispatch()
 
   const removeProduct = (issue) => {

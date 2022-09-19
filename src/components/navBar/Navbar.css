@@ -23,6 +23,9 @@
     left: 20px;
 }
 
+.nav-item {
+    bottom: 2px;
+}
 
 .navbar-link-light {
     text-decoration: none;

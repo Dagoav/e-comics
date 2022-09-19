@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { removeFavorite, addFavorite, addToCart, removeFromCart } from "../../redux/actions";
+import { removeFavorite, addFavorite, addToCart, removeFromCart } from "../../redux/actions/shop_favs_rating";
 // import Favorites from "../../pages/favorites/Favorites";
 
 import { Col, Row } from 'react-bootstrap'
@@ -8,18 +8,18 @@ import { Col, Row } from 'react-bootstrap'
 import "./ShoppingBar.css"
 
 const ShoppingBar = ({ price, comic }) => {
-  const favourite = useSelector((state) => state.favourite)
+  const favourite = useSelector((state) => state.shop_fav_rating.favourite)
   const dispatch = useDispatch();
   //const cart_shopping = useSelector((state) => state.cart_shopping);
-  const cart = useSelector(state => state.cart_shopping)
-  const idUsuer = JSON.parse(localStorage.getItem("id"))
+  const idUsuer = localStorage.getItem("id")
+  console.log(idUsuer, "ID USER SHOPPING BAR")
   
   /* ----------- Revisar si el comic ya está comprado ------- */
-  
-  const [countProducts, setCountProducts] = useState(cart.length);
-  
+
+  const cart_shopping = useSelector((state) => state.shop_fav_rating.cart_shopping);
+  const [countProducts, setCountProducts] = useState(cart_shopping.length);
   const [comprado, setComprado] = useState(
-    cart.some(p => p.id === comic.id)
+    cart_shopping.some(c => c.id === comic.id)
   )
 
   /* ----------- Botones agregar y quitar ------- */
@@ -30,7 +30,7 @@ const ShoppingBar = ({ price, comic }) => {
     
     let carrito
 
-    if((!localStorage.getItem('carrito'))){
+    if(!localStorage.getItem('carrito') || localStorage.getItem('carrito') == 'null'){
       carrito = []
       carrito.push(comic)
       dispatch(addToCart(comic))
@@ -48,10 +48,8 @@ const ShoppingBar = ({ price, comic }) => {
   }
 
   const removeProducts = () => {
-    console.log("boton borrar")
     setCountProducts(() => countProducts - 1)
     dispatch(removeFromCart(comic))
-    console.log("dispatch")
 
     let carrito = [...JSON.parse(localStorage.getItem('carrito'))]
     carrito = carrito.filter(c => c.id !== comic.id)
@@ -61,32 +59,34 @@ const ShoppingBar = ({ price, comic }) => {
 
   /* ---------------------------------------------------------- */
 
-  const addFavhandler = async() => {
+  const addFavhandler = async () => {
+    // e.preventDefault()
     dispatch(addFavorite(comic.id, idUsuer))
   }
 
   const remuveFavhandler = (e) => {
     e.preventDefault()
+    dispatch(removeFavorite(comic,))
+    // console.log(comic, "cuando elimina")
   }
 
   const rol = JSON.parse(localStorage.getItem("ROL"))
-
-  return (                                                                  
+  return (
     <div className="shopping-container">
       <Row>
         {favourite ?
-        <Col md={1} >
-          {
-          rol==="USER"?
-          <button className="fav-icon" onClick={addFavhandler}>
-            <span className="material-symbols-outlined">
-              heart_plus
-            </span>
-          </button> :
-          null
-          }
-        </Col>
-        :
+          <Col md={1} >
+            {
+              rol === "USER" ?
+                <button className="fav-icon" onClick={addFavhandler}>
+                  <span className="material-symbols-outlined">
+                    heart_plus
+                  </span>
+                </button> :
+                null
+            }
+          </Col>
+          :
           <button onClick={remuveFavhandler}>
             remuve_Fav
           </button>
@@ -94,16 +94,15 @@ const ShoppingBar = ({ price, comic }) => {
 
         {
           !comprado ?
-          <Col md={1}  >
-            { rol === "USER"?
-            <button className="shopping-icon" onClick={addProducts}>
-              <span className="material-symbols-outlined">
-                add_shopping_cart
-              </span>
-            </button>:
-            null
-            }
-
+            <Col md={1}  >
+              {rol === "USER" ?
+                <button className="shopping-icon" onClick={addProducts}>
+                  <span className="material-symbols-outlined">
+                    add_shopping_cart
+                  </span>
+                </button> :
+                null
+              }
           </Col>
           :
           <button className="remove-shopping-icon" onClick={removeProducts}>
