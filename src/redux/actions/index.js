@@ -132,10 +132,32 @@ export const reset_comicState = (payload) => {
     payload
   }
 }
-export const setShoppingCart = (products) => {
-  return {
-    type: "SET_SHOPPING_CART",
-    payload: products
+export const setShoppingCart = () => {
+  return async (dispatch) => {
+
+    const userId = localStorage.getItem("id")
+
+    const comic_info = await axios({
+      method: 'get',
+      url: `${backendURL}/shop/cart/${userId}`,
+    })
+
+    if(comic_info.data && comic_info.data.length > 0){
+
+      localStorage.setItem("carrito", JSON.stringify(comic_info.data));
+
+      return dispatch ({
+        type: "SET_SHOPPING_CART",
+        payload: comic_info.data
+      })
+    } else {
+      localStorage.setItem("carrito", null);
+      return dispatch({
+        type: "SET_SHOPPING_CART",
+        payload: []
+      })
+    }
+
   }
 }
 
@@ -154,25 +176,36 @@ export const addComic = (body) => {
 }
 
 
-export const addToCart = (products, shopping_cart) => {
-  // Verifica que el producto no esté en el carrito para no agregarlo de nuevo
-  const inCart = shopping_cart.some(p => p.id === products.id)
-  if (!inCart) {
-    return {
+export const addToCart = (products) => {
+  return async (dispatch) => {
+    const compra = {
+      comic: products,
+      userId: localStorage.getItem("id")
+    }
+    await axios.post(`${backendURL}/shop/cart`, compra);
+    return dispatch({
       type: "ADD_TO_CART",
       payload: products,
-    }
-  } else {
-    return {
-      type: "NADA", //devuelve el estado, sino Redux llora
-    }
+    })
   }
 }
 
 export const removeFromCart = (products) => {
-  return {
-    type: "REMOVE_FROM_CART",
-    payload: products,
+  console.log("Borrando desde el front")
+  return async (dispatch) => {
+    await axios({ 
+      method: 'DELETE',
+      url: `${backendURL}/shop/cart`,
+      data: {
+        comic: products,
+        userId: localStorage.getItem("id")
+      }
+    })
+
+    return dispatch({
+      type: "REMOVE_FROM_CART",
+      payload: products,
+    })
   }
 }
 

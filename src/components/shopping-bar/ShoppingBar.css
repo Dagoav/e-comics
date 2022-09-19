@@ -17,7 +17,8 @@
 }
 
 .shopping-icon,
-.fav-icon {
+.fav-icon,
+.remove-shopping-icon {
   width: 40px;
   height: 40px;
   position: absolute;
@@ -29,7 +30,8 @@
   background: white;
 }
 
-.shopping-icon {
+.shopping-icon,
+.remove-shopping-icon {
   left: 80px;
 }
 
@@ -39,7 +41,15 @@
 }
 
 .shopping-icon:active,
-.fav-icon:active {
+.fav-icon:active,
+.remove-shopping-icon:active {
   border-radius: 50%;
   box-shadow: 0px 0px 18px 2px rgba(145, 141, 141, 0.527);
+}
+
+.remove-shopping-icon{
+  color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

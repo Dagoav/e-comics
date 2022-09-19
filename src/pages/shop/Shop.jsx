@@ -10,19 +10,31 @@ import { Link } from "react-router-dom";
 const Shop = () => {
 
   const cart_shopping = useSelector(state => state.cart_shopping)
+  console.log(cart_shopping, "cart shopping en redux")
 
   const dispatch = useDispatch()
 
   const removeProduct = (issue) => {
     var confirm = window.confirm(`¿Eliminar ${issue.name || 'esta issue'} del Carrito?`)
-    if(confirm) dispatch(removeFromCart(issue))
+    if(confirm) {
+      let carrito = cart_shopping.filter(c => c.id !== issue.id)
+      if(carrito.length === 0) {
+        localStorage.removeItem("carrito")
+      } else{
+        localStorage.setItem("carrito", JSON.stringify(carrito))
+      } 
+      dispatch(removeFromCart(issue))
+    }
   }
 
   console.log(JSON.parse(localStorage.getItem("carrito")), "CARRITO LOCAL STORAGE")
 
   const removeAll = () => {
     var confirm = window.confirm(`¿Vaciar Carrito de Compras?`)
-    if(confirm) cart_shopping.map(p => dispatch(removeFromCart(p)))
+    if(confirm) {
+      localStorage.removeItem("carrito")
+      cart_shopping.map(p => dispatch(removeFromCart(p)))
+    }
   }
   const rol = JSON.stringify(localStorage.getItem("ROL"))
   let totalPrice = 0;

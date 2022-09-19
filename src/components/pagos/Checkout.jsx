@@ -3,8 +3,6 @@ import { removeFromCart } from '../../redux/actions';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 const Checkout = () => {
 
@@ -36,7 +34,6 @@ const Checkout = () => {
                     carrito: stateCart,
                     id: id,
                     price: totalprices,
-                    carrito: stateCart,
                 });
                 console.log(data, "soy data en el front buscando payment")
                 alert("COMIC PAGADO") // Ponganle un mensaje más bonito
