@@ -1,15 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import "./modalReviews.css"
 import StarRating from './starRating';
+import { getReviews } from '../../redux/actions/reviews'
 
 const ModalReviews = (data) => {
+  const dispatch = useDispatch();
+  const datitos = {
+    volumeId: data.data.volume_id,
+    IssueId: data.data.id
+  }
+
+  useEffect(() => {
+    dispatch(getReviews(datitos))
+  }, [dispatch])
+
+  let reviews = useSelector(state => state.reviews)
 
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+
 
   return (
     <>
@@ -23,9 +38,10 @@ const ModalReviews = (data) => {
         </Modal.Header>
         <Modal.Body>
           <div className="contReviews">
-            {data.data.Ratings.map((e, i) => {
+            {reviews.reviews.map((e, i) => {
               return (
-                <div className='flex'>
+                <div className='reviewsCont'>
+                  <h4>{e.User.username}</h4>
                   <StarRating key={i} value={e.rating} />
                   <p>{e.description}</p>
                   <hr />

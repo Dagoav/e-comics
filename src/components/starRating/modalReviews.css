@@ -20,5 +20,15 @@
 }
 
 .modalReview .modal-content {
-  border: solid 2px #35a800
+  border: solid 2px #35a800;
+}
+
+.reviewsCont {
+  margin-bottom: 1rem;
+}
+
+.reviewsCont h4 {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 2rem;
 }

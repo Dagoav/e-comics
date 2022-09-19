@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import './modalPostReview.css'
-import { postReviews } from '../../redux/actions/reviews'
+import { postReview } from '../../redux/actions/reviews'
 
 import { FaStar } from 'react-icons/fa'
 import "./starRating.css"
 
 const ModalPostReview = (data) => {
-  // const [rating, setRating] = useState(null)
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
   const [hover, setHover] = useState(null)
 
 
@@ -18,8 +20,8 @@ const ModalPostReview = (data) => {
   const [input, setInput] = useState({
     rating: null,
     description: '',
-    ComicId: data.data.volume_id,
-    UserId: localStorage.getItem("user"),
+    comicId: data.data.volume_id,
+    userId: localStorage.getItem("id").slice(1, -1),
     IssueId: data.data.id,
   })
 
@@ -30,14 +32,9 @@ const ModalPostReview = (data) => {
     })
   }
 
-  // function handleCheck() {
-  //   setInput({
-
-  //   })
-  // }
-
   function sendReview() {
-    console.log(input)
+    dispatch(postReview(input))
+    navigate('/user/home')
   }
 
   const handleClose = () => setShow(false);
