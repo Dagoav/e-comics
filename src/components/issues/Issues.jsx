@@ -18,31 +18,34 @@ function Issue({ issue_number }) {
 
   let buyAll = () => {
 
-    if(shopping_cart.length > 0){
+    let carrito
 
-    } else {
-      // si carrito vacio
-
-    }
-    /* if((!localStorage.getItem('carrito'))){
+    if(!localStorage.getItem('carrito') || localStorage.getItem('carrito') == 'null'){
       carrito = []
-      carrito.push(comic)
-    } else  {
+    } else {
       carrito = [...JSON.parse(localStorage.getItem('carrito'))]
-      const inCart = carrito.some(c => c.id === comic.id)
+    }
+
+    issues.map( issue => {
+      const inCart = shopping_cart.some(c => c.id === issue.id)
       if(!inCart){
-        carrito = [...carrito, comic]
-        setComprado(true)
+        carrito = [...carrito, issue]
+        dispatch(addToCart(issue))
       }
-    } */
-    //localStorage.setItem("carrito", JSON.stringify(carrito));
-    issues.map(i => i
-        //dispatch(addToCart(i, shopping_cart))
-      )
+    })
+    localStorage.setItem("carrito", JSON.stringify(carrito))
+
+    console.log(carrito)
+    console.log(JSON.parse(localStorage.getItem('carrito')))
   }
 
   return (
     <div className='container'>
+      <div className='row justify-content-center px-5 mb-5'>
+        <button onClick={buyAll} className='btn btn-light btn-lg'>
+          BUY ALL ISSUES
+        </button>
+      </div> <br/> <br/>
       <div className='pos-loading-issues'>
         <Loading data={issues} state={loading_state} />
       </div>

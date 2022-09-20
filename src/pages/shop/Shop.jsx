@@ -11,11 +11,10 @@ const Shop = () => {
 
   const cart_shopping = useSelector(state => state.shop_fav_rating.cart_shopping)
 
-  console.log(cart_shopping, "CART SHOPPING EN SHOP")
   const dispatch = useDispatch()
 
   const removeProduct = (issue) => {
-    var confirm = window.confirm(`¿Eliminar ${issue.name || 'esta issue'} del Carrito?`)
+    var confirm = window.confirm(`Remove ${issue.name || 'this issue'} from the Cart?`)
     if(confirm) {
       let carrito = cart_shopping.filter(c => c.id !== issue.id)
       if(carrito.length === 0) {
@@ -27,10 +26,8 @@ const Shop = () => {
     }
   }
 
-  console.log(JSON.parse(localStorage.getItem("carrito")), "CARRITO LOCAL STORAGE")
-
   const removeAll = () => {
-    var confirm = window.confirm(`¿Vaciar Carrito de Compras?`)
+    var confirm = window.confirm(`Are you sure you want to empty your shopping cart?`)
     if(confirm) {
       localStorage.removeItem("carrito")
       cart_shopping.map(p => dispatch(removeFromCart(p)))
@@ -50,7 +47,7 @@ const Shop = () => {
                 <div key={product.id} className="product-container">
                   <img src={product.image} alt={product.name} width='100px' />
                   <div>${Number(product.price).toFixed(2)}</div>
-                  <button onClick={() => removeProduct(product)}>QUITAR</button>
+                  <button onClick={() => removeProduct(product)}>REMOVE</button>
                 </div>
               )
             })
@@ -59,13 +56,13 @@ const Shop = () => {
         {
           totalPrice > 0 ?
             <div className="checkout-box">
-              PRECIO TOTAL: ${Number(totalPrice).toFixed(2)}
-              <button onClick={removeAll}>Vaciar Carrito</button>
+              TOTAL: ${Number(totalPrice).toFixed(2)}
+              <button onClick={removeAll}>Empty Cart</button>
               <Link to='/user/shop/checkout'>
               {/* <Link to= {rol === "USER" ? '/user/checkout' : '/admin/dashboard' }> */}
-              <button>COMPRAR</button></Link>
+              <button>BUY</button></Link>
             </div>
-            : <div>No hay productos</div>
+            : <div>Your Shopping Cart is empty.</div>
         }
       </div>
     </>
