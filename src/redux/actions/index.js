@@ -132,9 +132,6 @@ export const reset_comicState = (payload) => {
     payload
   }
 }
-
-
-export const addComic = (body) => {
   return async (dispatch) => {
     const comic_info = await axios({
       method: 'post',
@@ -207,7 +204,8 @@ export const getAllfavoritesDb = (userId) => {
     const favorites = await axios({
       method: 'GET',
       url: `${backendURL}/fav/${userId}`,
-      // const res = await axios.get('http://localhost:3000/fav', { params: { userId: userId } });
+st res = await axios.get('http://localhost:3000/fav', { params: { userId: userId } });
+
       // headers: {
       // "Authorization": `Bearer ${token.token}`
       // }

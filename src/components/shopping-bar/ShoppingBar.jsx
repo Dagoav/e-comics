@@ -64,8 +64,7 @@ const ShoppingBar = ({ price, comic }) => {
 
   const remuveFavhandler = (e) => {
     e.preventDefault()
-    dispatch(removeFavorite(comic,))
-    // console.log(comic, "cuando elimina")
+    dispatch(removeFavorite(comic.id,))
   }
 
   const rol = JSON.parse(localStorage.getItem("ROL"))
@@ -76,7 +75,7 @@ const ShoppingBar = ({ price, comic }) => {
           <Col md={1} >
             {
               rol === "USER" ?
-                <button className="fav-icon" onClick={addFavhandler}>
+                <button  className="fav-icon" style={ favourite ? {backgroundColor:"red", color:"white", border:"white"} : {backgroundColor:"transparent"}} onClick={addFavhandler}>      
                   <span className="material-symbols-outlined">
                     heart_plus
                   </span>
@@ -85,7 +84,7 @@ const ShoppingBar = ({ price, comic }) => {
             }
           </Col>
           :
-          <button onClick={remuveFavhandler}>
+          <button  className="fav-icon" onClick={remuveFavhandler}>
             remuve_Fav
           </button>
         }
