@@ -63,7 +63,7 @@ function LoginApp() {
       localStorage.setItem("user", JSON.stringify(response.data.name))
       localStorage.setItem("ROL", JSON.stringify(response.data.Rol))
       localStorage.setItem("id", JSON.stringify(response.data.id))
-      localStorage.setItem("email", JSON.stringify(response.data.id))
+      localStorage.setItem("email", JSON.stringify(response.data.email))
 
       setInput({
         email: "",
@@ -103,18 +103,20 @@ function LoginApp() {
           ) : null}
 
           <div className="d-flex justify-content-between mb-4">
-            <a href="!#">olvido su contraseña?</a>
+            <a href="!#">Forgot your password?
+
+</a>
           </div>
 
           <div className='text-center text-md-start mt-4 pt-2'>
             <Button type='submit' onClick={handleSubmit} className="mb-0 px-5" size='lg' disabled={Object.keys(errors).length === 0 ? false : true} >Login</Button>
-            <p className="small fw-bold mt-2 pt-1 mb-2">No tienes cuenta? <Link to='/singup'> <a className="link-danger">Registro</a>  </Link></p>
+            <p className="small fw-bold mt-2 pt-1 mb-2">Don't have an account? <Link to='/singup'> <a className="link-danger">sign up</a>  </Link></p>
           </div>
 
             <br />
             <br />
             <div className='textgoogle'>
-            <p >O inicia sesion con google</p>
+            <p >Continue with Google</p>
             </div>
 
 

@@ -11,7 +11,7 @@ const ShoppingBar = ({ price, comic }) => {
   const favourite = useSelector((state) => state.shop_fav_rating.favourite)
   const dispatch = useDispatch();
   //const cart_shopping = useSelector((state) => state.cart_shopping);
-  const idUsuer = localStorage.getItem("id")
+  const idUsuer = JSON.parse(localStorage.getItem("id"))
   
   /* ----------- Revisar si el comic ya está comprado ------- */
 

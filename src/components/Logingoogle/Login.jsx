@@ -25,6 +25,8 @@ export default function LoginAuth({login}) {
     localStorage.setItem("user", JSON.stringify(respuesta.data.name))
     localStorage.setItem("ROL", JSON.stringify(respuesta.data.Rol))
     localStorage.setItem("id", JSON.stringify(respuesta.data.id))
+    localStorage.setItem("email", JSON.stringify(respuesta.data.email))
+
 
     login()
   }
