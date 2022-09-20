@@ -10,30 +10,58 @@ import "./ShoppingBar.css"
 const ShoppingBar = ({ price, comic }) => {
   const favourite = useSelector((state) => state.shop_fav_rating.favourite)
   const dispatch = useDispatch();
+  //const cart_shopping = useSelector((state) => state.cart_shopping);
+  const idUsuer = localStorage.getItem("id")
+  console.log(idUsuer, "ID USER SHOPPING BAR")
+  
+  /* ----------- Revisar si el comic ya está comprado ------- */
+
   const cart_shopping = useSelector((state) => state.shop_fav_rating.cart_shopping);
   const [countProducts, setCountProducts] = useState(cart_shopping.length);
   const [comprado, setComprado] = useState(
     cart_shopping.some(c => c.id === comic.id)
   )
 
-  const idUsuer = JSON.parse(localStorage.getItem("id"))
+  /* ----------- Botones agregar y quitar ------- */
 
-  let addProducts = () => {
-    dispatch(addToCart(comic, cart_shopping))   // axios.post(al carrito)
-    setCountProducts(() => countProducts + 1)
-    setComprado(true)
+  const addProducts = () => {
+    setCountProducts(() => countProducts + 1);
+    console.log("aaaaaaa")
+    
+    let carrito
+
+    if(!localStorage.getItem('carrito') || localStorage.getItem('carrito') == 'null'){
+      carrito = []
+      carrito.push(comic)
+      dispatch(addToCart(comic))
+      setComprado(true)
+    } else  {
+      carrito = [...JSON.parse(localStorage.getItem('carrito'))]
+      const inCart = carrito.some(c => c.id === comic.id)
+      if(!inCart){
+        carrito = [...carrito, comic]
+        dispatch(addToCart(comic))
+        setComprado(true)
+      }
+    }
+    localStorage.setItem("carrito", JSON.stringify(carrito));
   }
 
-  let removeProducts = () => {
-    dispatch(removeFromCart(comic))
+  const removeProducts = () => {
     setCountProducts(() => countProducts - 1)
+    dispatch(removeFromCart(comic))
+
+    let carrito = [...JSON.parse(localStorage.getItem('carrito'))]
+    carrito = carrito.filter(c => c.id !== comic.id)
+    localStorage.setItem("carrito", JSON.stringify(carrito));
     setComprado(false)
   }
+
+  /* ---------------------------------------------------------- */
 
   const addFavhandler = async () => {
     // e.preventDefault()
     dispatch(addFavorite(comic.id, idUsuer))
-    console.log(idUsuer, "id usuario 47")
   }
 
   const remuveFavhandler = (e) => {
@@ -41,6 +69,7 @@ const ShoppingBar = ({ price, comic }) => {
     dispatch(removeFavorite(comic,))
     // console.log(comic, "cuando elimina")
   }
+
   const rol = JSON.parse(localStorage.getItem("ROL"))
   return (
     <div className="shopping-container">
@@ -74,14 +103,13 @@ const ShoppingBar = ({ price, comic }) => {
                 </button> :
                 null
               }
-
-            </Col>
-            :
-            /* DANI NO SÉ DE BOOTSTRAP PERDÓN :( */
-
-            <button onClick={removeProducts}>
-              QUITAR DE CARRITO
-            </button>
+          </Col>
+          :
+          <button className="remove-shopping-icon" onClick={removeProducts}>
+            <span className="material-symbols-outlined danger">
+              remove_shopping_cart
+            </span>
+          </button>
         }
 
         <Col >
