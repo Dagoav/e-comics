@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { getIssues } from "../../redux/actions/comics";
 import { addToCart } from "../../redux/actions/shop_favs_rating";
@@ -19,15 +19,15 @@ function Issue({ volume_id }) {
 
     let carrito
 
-    if(!localStorage.getItem('carrito') || localStorage.getItem('carrito') == 'null'){
+    if (!localStorage.getItem('carrito') || localStorage.getItem('carrito') === 'null') {
       carrito = []
     } else {
       carrito = [...JSON.parse(localStorage.getItem('carrito'))]
     }
 
-    issues.map( issue => {
+    issues.forEach(issue => {
       const inCart = shopping_cart.some(c => c.id === issue.id)
-      if(!inCart){
+      if (!inCart) {
         carrito = [...carrito, issue]
         dispatch(addToCart(issue))
       }
@@ -42,11 +42,11 @@ function Issue({ volume_id }) {
     <div className='container'>
       <div className='row justify-content-center px-5 mb-5'>
         <button onClick={buyAll} className='btn btn-light btn-lg'>
-          BUY ALL ISSUES
+          BUY ALL COMICS!
         </button>
-      </div> <br/> <br/>
+      </div> <br /> <br />
       <div className='pos-loading-issues'>
-        <Loading data={issues} state={loading_state} />
+        <Loading data={issues} state={loading_state} timeWait={5000} />
       </div>
       {
         issues.length > 0 && !loading_state &&

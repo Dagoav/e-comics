@@ -63,7 +63,7 @@ function LoginApp() {
       localStorage.setItem("user", JSON.stringify(response.data.name))
       localStorage.setItem("ROL", JSON.stringify(response.data.Rol))
       localStorage.setItem("id", JSON.stringify(response.data.id))
-      localStorage.setItem("email", JSON.stringify(response.data.id))
+      localStorage.setItem("email", JSON.stringify(response.data.email))
 
       setInput({
         email: "",

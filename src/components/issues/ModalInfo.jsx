@@ -21,7 +21,7 @@ const ModalInfoIssue = ({ open, data, theme }) => {
 
   return (
     <>
-      <Modal show={show} onHide={handleClose} size='md' >
+      <Modal contentClassName={`modal-issue-${theme}`} show={show} onHide={handleClose} size='md' >
         <Modal.Header closeButton>
           <Modal.Title>
             <span className='px-1'>

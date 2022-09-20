@@ -1,5 +1,11 @@
-:root {
-  --bs-modal-color: brown !important;
+.modal-issue-light {
+  background-color: whitesmoke;
+  color: rgb(31, 31, 31);
+}
+
+.modal-issue-dark {
+  background-color: rgb(31, 31, 31);
+  color: whitesmoke;
 }
 
 .name-issue {
