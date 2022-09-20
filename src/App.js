@@ -23,8 +23,10 @@ import { UserRoute } from './components/routes/UserRoute'
 import { PublicRoute } from './components/routes/PublicRoute'
 import { AdminRoute } from './components/routes/AdminRoute'
 import Logout from './components/login/Logout';
-import Tabslogin from './components/account/Tabslogin';
+//import Tabslogin from './components/account/Tabslogin';
 import { Notfound } from './components/NotFound/Nofound';
+import ModalLogin from './components/account/ModalLogin';
+import ModalRegister from './components/account/ModalRegister';
 
 function App() {
   return (
@@ -33,16 +35,16 @@ function App() {
       <Routes>
         <Route path='/' element={<PublicRoute />}>
           <Route path="/" element={<LandingPage />} />
-          <Route path='/login' element={<Tabslogin />} />
-          <Route path='/singup' element={<Register />} />
+          <Route path='/login' element={<ModalLogin />} />
+          <Route path='/singup' element={<ModalRegister />} />
           <Route path="/home" element={<Home />} />
           <Route path="/cardDetail/:id" element={<CardDetail />} />
         </Route>
         {/* --------------------------------rutas usuario ----------------------------------------- */}
 
         <Route path='/user' element={<UserRoute />}>
-          <Route path="/user/landing" element={<LandingPage />} />
           <Route path='/user' element={<UserProfile />} />
+          <Route path="/user/landing" element={<LandingPage />} />
           <Route path="/user/home" element={<Home />} />
           <Route path='/user/cardDetail/:id' element={<CardDetail />} />
           <Route path='/user/fav' element={<Favorites />} />

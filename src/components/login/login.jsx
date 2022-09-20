@@ -73,7 +73,7 @@ function LoginApp() {
     } catch (error) {
       Swal.fire({
         title: 'Error!',
-        text: 'Usuario no se encuentra registrado',
+        text: 'Usuario o contraseña incorrecta',
         icon: 'error',
         confirmButtonText: 'cerrar'
       })
@@ -88,7 +88,7 @@ function LoginApp() {
       <MDBRow>
 
         <MDBCol col='10' md='6'>
-          <img src="https://previews.123rf.com/images/galamar/galamar1601/galamar160101219/51191399-el-arte-pop-icono-de-c%C3%B3mics-hola.jpg" className="img-fluid" alt="Sample image" />
+          <img src="https://media.dcbservice.com/xlarge/OCT207144.jpg" className="img-fluid" alt="Sample image" />
         </MDBCol>
 
         <MDBCol col='4' md='6'>
@@ -107,15 +107,33 @@ function LoginApp() {
           </div>
 
           <div className='text-center text-md-start mt-4 pt-2'>
-            <Button type='submit' onClick={handleSubmit} className="mb-0 px-5" size='lg' disabled={Object.keys(errors).length === 0 ? false : true}>Login</Button>
+            <Button type='submit' onClick={handleSubmit} className="mb-0 px-5" size='lg' disabled={Object.keys(errors).length === 0 ? false : true} >Login</Button>
             <p className="small fw-bold mt-2 pt-1 mb-2">No tienes cuenta? <Link to='/singup'> <a className="link-danger">Registro</a>  </Link></p>
           </div>
 
+            <br />
+            <br />
+            <div className='textgoogle'>
+            <p >O inicia sesion con google</p>
+            </div>
+
+
+          <div  className='botonGoogle'>
+          <LoginAuth login={login}/>
+          </div>
+          
+          <br />
+          <br />
+
+            <div className='tohome'>
+              <Link to={'/home'}>
+              <button type="button" class="btn btn-outline-secondary">Home</button>
+              </Link>
+            </div>
+          
         </MDBCol>
       </MDBRow>
 
-{/* <Logingoogle/> */}
-<LoginAuth login={login}/>
     </MDBContainer>
   );
 }

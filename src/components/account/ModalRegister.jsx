@@ -5,8 +5,11 @@ import Modal from "react-bootstrap/Modal";
 import "./ModalLogin.css"
 import { useEffect } from "react";
 import LoginApp from "../login/login";
+import Register from "../login/Register";
+import { Link } from "react-router-dom";
 
-function ModalLogin() {
+
+function ModalRegister() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -18,25 +21,28 @@ function ModalLogin() {
   
   return (
     <>
-     
       <>
+      <div className="modalregister"  >
         <Modal size="lg" show={show} onHide={handleClose} backdrop="static" keyboard="false">
           <Modal.Body>
-            <div className="tabs-login-container" >
-              <LoginApp />
+            <div className="tabs-login-container"  >
+              <Register />
             </div>
           </Modal.Body>
           {/* <Modal.Footer>
+            <Link to= '/home'>
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
+            </Link>
           </Modal.Footer> */}
         </Modal>
+
+      </div>
 
       </>
     </>
   );
 }
 
-export default ModalLogin;
-
+export default ModalRegister;

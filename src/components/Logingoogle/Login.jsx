@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import GoogleLogin from 'react-google-login';
 import axios from 'axios';
 import { gapi } from 'gapi-script';
-
+import './Login.css'
 export default function LoginAuth({login}) {
   
   const clientId = "73480857070-b1pmolqom7futp18ta7mjgf3naq9lk27.apps.googleusercontent.com"
@@ -20,7 +20,6 @@ export default function LoginAuth({login}) {
         method: "POST",
         data: {google: response.tokenId}
     })
-    console.log(respuesta, "hola")
 
     localStorage.setItem('token', JSON.stringify(respuesta.data.token))
     localStorage.setItem("user", JSON.stringify(respuesta.data.name))
@@ -32,7 +31,7 @@ export default function LoginAuth({login}) {
     return (
     <div>
             <div>
-                <GoogleLogin
+                <GoogleLogin className='boton'
                     clientId = "73480857070-b1pmolqom7futp18ta7mjgf3naq9lk27.apps.googleusercontent.com" 
                     buttonText="Log in with Google"
                     onSuccess={responsegoogle}

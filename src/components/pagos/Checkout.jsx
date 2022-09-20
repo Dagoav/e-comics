@@ -3,9 +3,8 @@ import axios from 'axios';
 import { useSelector,useDispatch } from 'react-redux';
 import { sendEmail } from '../../redux/actions/admin';
 import { processPayment, removeFromCart } from '../../redux/actions/shop_favs_rating';
-import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+
 
 
 const Checkout = () => {
