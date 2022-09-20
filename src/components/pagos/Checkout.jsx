@@ -1,6 +1,6 @@
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import { removeFromCart } from '../../redux/actions/shop_favs_rating';
-import { useSelector } from 'react-redux';
+import { processPayment, removeFromCart } from '../../redux/actions/shop_favs_rating';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -11,6 +11,7 @@ const Checkout = () => {
 
     const stripe = useStripe()
     const elements = useElements()
+    const dispatch = useDispatch()
 
     var totalprices = 0;
     stateCart.map(e => totalprices = e.price + totalprices)
@@ -23,11 +24,13 @@ const Checkout = () => {
             card: elements.getElement(CardElement), // Selecciona el num de tarjeta del componente Card
         })
 
-        // :( 
         const { id } = paymentMethod;
+        const card = paymentMethod.card.funding
+        
+        var totalprices = 0;
+        stateCart.map(e => totalprices = e.price + totalprices)
+        totalprices = Math.floor(totalprices * 100)
 
-            var totalprices = 0;
-            stateCart.map(e => totalprices = e.price + totalprices)
         try {
             if(!error){
                 const { data } = await axios.post(url + 'checkout', {
@@ -35,10 +38,14 @@ const Checkout = () => {
                     id: id,
                     price: totalprices,
                 });
-                console.log(data, "soy data en el front buscando payment")
-                alert("COMIC PAGADO") // Ponganle un mensaje más bonito
-                elements.getElement(CardElement).clear() // Limpia el input
-                stateCart.map( p => removeFromCart(p))
+
+                alert("PAYMENT SUCCESSFUL!")
+                elements.getElement(CardElement).clear()
+
+                const status = "Completo"
+                stateCart.map( p => dispatch(processPayment(p, card, status)))
+                stateCart.map( p => dispatch(removeFromCart(p)))
+
             } else {
                 console.error("Error")
             }

@@ -65,6 +65,29 @@ export const removeFromCart = (products) => {
 }
 
 
+export function processPayment(comic, card, status){
+  const userId = localStorage.getItem("id")
+  const compra = {
+    userId,
+    comic,
+    card,
+    status,
+  }
+  return async (dispatch) => {
+    await axios({
+      method: 'PUT',
+      url: `${backendURL}/shop/cart`,
+      data: compra
+    })
+
+    return dispatch({
+      type: "REMOVE_FROM_CART",
+      payload: comic,
+    })
+  }
+}
+
+
 export function addFavorite(issuesId, userId) {
     // const token = JSON.parse(localStorage.getItem("token"))
     console.log(userId, "id usuario")

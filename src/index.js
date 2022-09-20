@@ -18,11 +18,11 @@ root.render(
   <React.StrictMode >
     <AuthContextProvider>
       <Provider store={store}>
-        {/* <Elements stripe={stripePromise}> */}
+        <Elements stripe={stripePromise}>
           <BrowserRouter>
             <App />
           </BrowserRouter>
-        {/* </Elements> */}
+        </Elements>
       </Provider>
     </AuthContextProvider>
   </React.StrictMode>
