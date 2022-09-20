@@ -15,19 +15,19 @@ const CardsGallery = () => {
   // eslint-disable-next-line no-unused-vars
   let [comicPerPage, setComicPerPage] = useState(12)
   let comics = useSelector((state) => state.comicsReducer.comics);
+  let filters = useSelector((state) => state.filters.filters);
   let loading_state = useSelector((state) => state.comicsReducer.loading);
   let indexOfLastComic = currentPage * comicPerPage;
   let indexOfFirstComic = indexOfLastComic - comicPerPage;
   let currentComic = comics.slice(indexOfFirstComic, indexOfLastComic);
-  const isFilter = useSelector(state => state.filters.isFilter)
+  // console.log(comics);
 
   useEffect(() => {
     dispatch(reset_comicState())
-    if (isFilter) {
+    if (!filters) {
       dispatch(getAllVolumes())
     }
-
-  }, [dispatch, isFilter])
+  }, [dispatch, filters])
 
 
   const paginado = pageNumber => {

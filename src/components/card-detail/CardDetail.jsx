@@ -21,7 +21,6 @@ const CardDetail = () => {
   const { image, name, deck, description, start_year } = comic
 
   useEffect(() => {
-
     dispatch(volumeDetail(id))
   }, [dispatch, id])
 
@@ -35,9 +34,13 @@ const CardDetail = () => {
         return await text.replaceAll(pattern, 'href="javascript:()=> false;" disabled="disabled"');
       }
 
-      removeHref(description).then(result => {
-        desc_content.innerHTML = result
-      })
+      if (description.includes("<")) {
+        removeHref(description).then(result => {
+          desc_content.innerHTML = result
+        })
+      } else {
+        desc_content.innerHTML = description;
+      }
 
       // set theme
       const description_bkg = document.getElementById("description-detail");
@@ -52,7 +55,7 @@ const CardDetail = () => {
   return (
     <>
       <div className='container-detail' >
-        <NavBar searchbar={false} />
+        <NavBar searchbar={true} />
         <span className="material-symbols-outlined undo" onClick={() => navigate(-1)}>undo</span>
         <span className='undo-text' onClick={() => navigate(-1)}>Back</span>
         {Object.entries(comic).length > 0 ?
@@ -80,7 +83,7 @@ const CardDetail = () => {
         }
         <div id='info-issues' className='mt-5'>
           {
-            Object.entries(comic).length > 0 && <Issues issue_number={id}></Issues>
+            Object.entries(comic).length > 0 && <Issues volume_id={id}></Issues>
           }
 
         </div>

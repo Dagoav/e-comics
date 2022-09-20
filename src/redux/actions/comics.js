@@ -34,15 +34,27 @@ export const volumeDetail = (id) => {
 
 export const getIssues = (id) => {
   return async (dispatch) => {
-    const issues = await axios({
-      method: 'get',
-      url: `${backendURL}/comics/issues/${id}`,
-    })
+    let ratings = null
+    try {
+      const issues = await axios({
+        method: 'get',
+        url: `${backendURL}/comics/issues/${id}`,
+      })
 
-    return dispatch({
-      type: "GET_ISSUES",
-      payload: issues.data
-    })
+      if (issues) {
+        ratings = await axios({
+          method: 'get',
+          url: `${backendURL}/comics/issues/rating/${id}`,
+        })
+      }
+
+      return dispatch({
+        type: "GET_ISSUES",
+        payload: ratings.data
+      })
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 
@@ -66,10 +78,11 @@ export const reset_comicState = (payload) => {
   }
 }
 
-export function filterPublishers(payload){
+export function filterPublishers(payload) {
   console.log(payload)
-    return {
-    type:"FILTER_COMIC_FOR_PUBLISHERS",
+  return {
+    type: "FILTER_COMIC_FOR_PUBLISHERS",
     payload
-    }}
+  }
+}
 

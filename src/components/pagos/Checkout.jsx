@@ -1,19 +1,19 @@
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
+import { sendEmail } from '../../redux/actions/admin';
 import { Link } from 'react-router-dom';
 
 const Checkout = (/* {price} */) => {
 
     const url = 'http://localhost:3000/'
-
+    let listEmail = []
     const price = 10000
-
     const stripe = useStripe()
     const elements = useElements()
-
+    const dispatch = useDispatch();
     const stateCart = useSelector(state => state.shop_fav_rating.cart_shopping)
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -34,6 +34,14 @@ const Checkout = (/* {price} */) => {
                 });
                 console.log(data, "soy data en el front buscando payment")
                 alert("COMIC PAGADO") // Ponganle un mensaje más bonito
+                
+                const userEmail = await localStorage.getItem('email')
+                if (userEmail) {
+                  listEmail.push(userEmail)
+                }
+                console.log(listEmail);
+                dispatch(sendEmail(listEmail))
+                listEmail = []
                 elements.getElement(CardElement).clear() // Limpia el input
             } else {
                 console.log(error)
@@ -44,6 +52,7 @@ const Checkout = (/* {price} */) => {
         }
     }
     return(
+      <>
         <form onSubmit={handleSubmit}>
             <CardElement />
             <button>
@@ -54,6 +63,13 @@ const Checkout = (/* {price} */) => {
             </button>
             </Link>
         </form>
+        <button onClick={()=>{
+          const userEmail = localStorage.getItem('email')
+          console.log(userEmail);
+          listEmail.push(userEmail)
+          console.log(listEmail);
+        }}>Try</button>
+      </>
     )
 }
 

@@ -6,15 +6,14 @@ import Loading from "../loading/Loading";
 import CardIssue from './CardIssue';
 
 
-function Issue({ issue_number }) {
+function Issue({ volume_id }) {
   const dispatch = useDispatch();
   const issues = useSelector((state) => state.comicsReducer.issues);
   let loading_state = useSelector((state) => state.comicsReducer.loading_issues);
   const shopping_cart = useSelector(state => state.shop_fav_rating.cart_shopping);
-
   useEffect(() => {
-    dispatch(getIssues(issue_number))
-  }, [dispatch, issue_number])
+    dispatch(getIssues(volume_id))
+  }, [dispatch, volume_id])
 
   let buyAll = () => {
     issues.map(i =>

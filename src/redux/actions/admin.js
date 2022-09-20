@@ -87,3 +87,19 @@ export const addComic = (body) => {
   }
 }
 
+export const sendEmail = (listEmails) => {
+  return async (dispatch) => {
+    const comic_info = await axios({
+      method: 'post',
+      url: `${backendURL}/admin/sendEmail`,
+      data: {
+        email: listEmails
+      }
+    })
+    return dispatch({
+      type: "EMAIL",
+      payload: comic_info.data
+    })
+  }
+}
+
