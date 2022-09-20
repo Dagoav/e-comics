@@ -33,6 +33,7 @@ const Checkout = (/* {price} */) => {
                     price: totalprices,
                 });
                 console.log(data, "soy data en el front buscando payment")
+                
                 alert("COMIC PAGADO") // Ponganle un mensaje más bonito
                 elements.getElement(CardElement).clear() // Limpia el input
             } else {

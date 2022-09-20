@@ -41,8 +41,8 @@ function App() {
         {/* --------------------------------rutas usuario ----------------------------------------- */}
 
         <Route path='/user' element={<UserRoute />}>
-          <Route path="/user/landing" element={<LandingPage />} />
           <Route path='/user' element={<UserProfile />} />
+          <Route path="/user/landing" element={<LandingPage />} />
           <Route path="/user/home" element={<Home />} />
           <Route path='/user/cardDetail/:id' element={<CardDetail />} />
           <Route path='/user/fav' element={<Favorites />} />

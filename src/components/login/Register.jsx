@@ -2,6 +2,7 @@ import React,{useState} from "react";
 import { useDispatch} from "react-redux";
 import { registerUser } from "../../redux/actions/auth";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import { Formik, Form, Field, ErrorMessage } from 'formik';
 import {
   MDBContainer,
@@ -39,12 +40,12 @@ function validate(input) {
   return errors;
 }
 
+
 function Register() {
 
   const navigate = useNavigate();
   const [errors, setErrors] = useState([""]);
   const dispatch = useDispatch()
-
   const [input, setInput] = useState({
     username: "",
     email: "",
@@ -66,29 +67,30 @@ function Register() {
   }
 
   const handleSubmit = async (e) => {
-    try {
+    // try {
       e.preventDefault();
       dispatch(registerUser(input))
-      navigate("/home");
-      Swal.fire({
-        text: 'Usuario registrado con exito',
-        icon: 'success',
-        timer: 1500
-      })  
       setInput({
         username: "",
         email: "",
         password: "",
         repeatpassword: "",
       })
-    } catch (error) {
       Swal.fire({
-        title: 'Error!',
-        text: 'no se pudo registrar el usuario',
-        icon: 'error',
-        confirmButtonText: 'cerrar'
-      })
-    }
+        text: 'Usuario registrado con exito',
+        icon: 'success',
+        timer: 1500
+      })  
+      
+    // } catch (error) {
+    //   Swal.fire({
+    //     title: 'Error!',
+    //     text: 'no se pudo registrar el usuario',
+    //     icon: 'error',
+    //     confirmButtonText: 'cerrar'
+    //   })
+    // }
+      navigate('/login')
   };
 
 
@@ -97,7 +99,7 @@ function Register() {
       <MDBRow>
         <MDBCol col="10" md="6">
           <img
-            src="https://static.vecteezy.com/system/resources/previews/002/881/857/non_2x/comic-lettering-speech-bubble-for-emotion-with-text-welcome-comic-style-vector.jpg"
+            src="https://i.pinimg.com/originals/9c/04/fc/9c04fc0ab5432780d547faa89d6441c7.jpg"
             className="img-fluid"
             alt=""
           />
@@ -184,6 +186,14 @@ function Register() {
               Registro
             </Button>
           </div>
+          <br />
+          <br />
+          
+          <div className="registerhome">
+          <Link to={'/home'}>
+              <button type="button" class="btn btn-outline-secondary">Home</button>
+          </Link>
+          </div>
 
           <link
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
@@ -200,123 +210,4 @@ function Register() {
 }
 
 export default Register;
-
-// import React from "react";
-// import { useState } from "react";
-// import {
-//   MDBContainer,
-//   MDBCol,
-//   MDBRow,
-//   MDBBtn,
-//   MDBIcon,
-//   MDBInput,
-// } from "mdb-react-ui-kit";
-// import "./Register.css";
-// import { useNavigate } from "react-router-dom";
-// import { useDispatch} from "react-redux";
-// import { registerUser } from "../../redux/actions";
-// import { Formik, Form, Field, ErrorMessage } from 'formik';
-// import Swal from 'sweetalert2'
-
-// const validateFields = values=> {
-//   const errors = {};
-
-//   if (!values.username) {
-//     errors.username = "El nombre de usuario es requerido";
-//   } 
-  
-//   if (!values.email) {
-//     errors.email = "El email es requerido";
-//   } else if (
-//     !/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(values.email)) {
-//     errors.email = "correo no valido";
-//   } 
-  
-//   if (!values.password) {
-//     errors.password = "contraseña es requerida";
-//   } 
-
-//   if (values.password !== values.repeatpassword) {
-//     errors.repeatpassword = "Las contraseñas no coinciden";
-//   }
-//   return errors;
-// }
-
-// const initialValues ={
-//   username: "",
-//   email: "",
-//   password: "",
-//   repeatpassword: "",
-// };
-
-// function Register() {
-// const dispatch = useDispatch()
-//   const [registered, setRegistered] = useState(false)
-
-//   if (registered) {
-//     return <h4>
-//       Congratulations ✅! You've been successfully registered!
-//     </h4>
-//   }
-
-//   return (
-//     <div>
-//      <Formik
-//         initialValues={initialValues}
-//         validate={validateFields}
-//         onSubmit={(values, { setFieldError }) => {
-//           dispatch(registerUser(initialValues))
-//           .then(() => {
-//             setRegistered(true)
-//           })
-//           .catch(() => {
-//             setFieldError("username", "This username is not valid");
-//           });
-//         }}
-//       >
-//           {({ errors, isSubmitting }) => (
-//           <Form className="form">
-//             <Field
-//               className={errors.username ? 'error' : ''}
-//               name="username"
-//               placeholder="nombre de usuario"
-//             />
-//             <ErrorMessage className='form-error' name='username' component='small' />
-
-//             <Field
-//               className={errors.email ? 'error' : ''}
-//               name="email"
-//               placeholder="escribe el email"
-//               type='email'
-//             />
-//             <ErrorMessage className='form-error' name='email' component='small' />
-
-//             <Field
-//               className={errors.password ? 'error' : ''}
-//               name="password"
-//               placeholder="escribe la contraseña"
-//               type='password'
-//             />
-//             <ErrorMessage className='form-error' name='password' component='small' />
-
-
-//             <Field
-//               className={errors.repeatpassword ? 'error' : ''}
-//               name="repeatpassword"
-//               placeholder="verifica la contraseña"
-//               type='password'
-//             />
-//             <ErrorMessage className='form-error' name='repeatpassword' component='small' />
-
-//             <button className="btn" disabled={isSubmitting}>
-//               Registrarse
-//             </button>
-//           </Form>
-//         )}
-//     </Formik>
-//     </div>
-//   );
-// }
-
-// export default Register;
 
