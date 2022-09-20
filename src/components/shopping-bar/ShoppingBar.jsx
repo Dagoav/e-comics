@@ -12,7 +12,6 @@ const ShoppingBar = ({ price, comic }) => {
   const dispatch = useDispatch();
   //const cart_shopping = useSelector((state) => state.cart_shopping);
   const idUsuer = localStorage.getItem("id")
-  console.log(idUsuer, "ID USER SHOPPING BAR")
   
   /* ----------- Revisar si el comic ya está comprado ------- */
 
@@ -26,7 +25,6 @@ const ShoppingBar = ({ price, comic }) => {
 
   const addProducts = () => {
     setCountProducts(() => countProducts + 1);
-    console.log("aaaaaaa")
     
     let carrito
 
