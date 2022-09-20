@@ -1,7 +1,7 @@
 import React from "react";
 import { ListGroup } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromCart } from "../../redux/actions/shop_favs_rating";
+import { removeFromCart, emptyCart } from "../../redux/actions/shop_favs_rating";
 
 import NavBar from "../../components/navBar/Navbar";
 import "./Shop.css"
@@ -11,14 +11,30 @@ const Shop = () => {
 
   const cart_shopping = useSelector(state => state.shop_fav_rating.cart_shopping)
 
+  console.log(cart_shopping, "CART SHOPPING EN SHOP")
   const dispatch = useDispatch()
 
   const removeProduct = (issue) => {
-    dispatch(removeFromCart(issue))
+    var confirm = window.confirm(`¿Eliminar ${issue.name || 'esta issue'} del Carrito?`)
+    if(confirm) {
+      let carrito = cart_shopping.filter(c => c.id !== issue.id)
+      if(carrito.length === 0) {
+        localStorage.removeItem("carrito")
+      } else{
+        localStorage.setItem("carrito", JSON.stringify(carrito))
+      } 
+      dispatch(removeFromCart(issue))
+    }
   }
 
+  console.log(JSON.parse(localStorage.getItem("carrito")), "CARRITO LOCAL STORAGE")
+
   const removeAll = () => {
-    cart_shopping.map(p => removeProduct(p))
+    var confirm = window.confirm(`¿Vaciar Carrito de Compras?`)
+    if(confirm) {
+      localStorage.removeItem("carrito")
+      cart_shopping.map(p => dispatch(removeFromCart(p)))
+    }
   }
   const rol = JSON.stringify(localStorage.getItem("ROL"))
   let totalPrice = 0;
@@ -45,9 +61,9 @@ const Shop = () => {
             <div className="checkout-box">
               PRECIO TOTAL: ${Number(totalPrice).toFixed(2)}
               <button onClick={removeAll}>Vaciar Carrito</button>
-              <Link to='/user/checkout'>
-                {/* <Link to= {rol === "USER" ? '/user/checkout' : '/admin/dashboard' }> */}
-                <button>COMPRAR</button></Link>
+              <Link to='/user/shop/checkout'>
+              {/* <Link to= {rol === "USER" ? '/user/checkout' : '/admin/dashboard' }> */}
+              <button>COMPRAR</button></Link>
             </div>
             : <div>No hay productos</div>
         }

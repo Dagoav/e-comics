@@ -2,29 +2,39 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import axios from 'axios';
 import { useSelector,useDispatch } from 'react-redux';
 import { sendEmail } from '../../redux/actions/admin';
+import { processPayment, removeFromCart } from '../../redux/actions/shop_favs_rating';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-const Checkout = (/* {price} */) => {
 
-    const url = 'http://localhost:3000/'
+const Checkout = () => {
+
+    const url = 'http://localhost:3000/shop/'
+    const stateCart = useSelector(state => state.shop_fav_rating.cart_shopping)
     let listEmail = []
-    const price = 10000
     const stripe = useStripe()
     const elements = useElements()
-    const dispatch = useDispatch();
-    const stateCart = useSelector(state => state.shop_fav_rating.cart_shopping)
-    
+    const dispatch = useDispatch()
+
+    var totalprices = 0;
+    stateCart.map(e => totalprices = e.price + totalprices)
+
     const handleSubmit = async (e) => {
         e.preventDefault()
-
+        
         const { paymentMethod, error } = await stripe.createPaymentMethod({
             type: 'card',
-            card: elements.getElement(CardElement) // Selecciona el num de tarjeta del componente Card
+            card: elements.getElement(CardElement), // Selecciona el num de tarjeta del componente Card
         })
-        const { id } = paymentMethod;
 
-            var totalprices = 0;
-            stateCart.map(e => totalprices = e.price + totalprices)
+        const { id } = paymentMethod;
+        const card = paymentMethod.card.funding
+        
+        var totalprices = 0;
+        stateCart.map(e => totalprices = e.price + totalprices)
+        totalprices = Math.floor(totalprices * 100)
+
         try {
             if(!error){
                 const { data } = await axios.post(url + 'checkout', {
@@ -32,9 +42,8 @@ const Checkout = (/* {price} */) => {
                     id: id,
                     price: totalprices,
                 });
-                console.log(data, "soy data en el front buscando payment")
-                alert("COMIC PAGADO") // Ponganle un mensaje más bonito
-                
+
+                alert("PAYMENT SUCCESSFUL!")
                 const userEmail = await localStorage.getItem('email')
                 if (userEmail) {
                   listEmail.push(userEmail)
@@ -42,9 +51,14 @@ const Checkout = (/* {price} */) => {
                 console.log(listEmail);
                 dispatch(sendEmail(listEmail))
                 listEmail = []
-                elements.getElement(CardElement).clear() // Limpia el input
+                elements.getElement(CardElement).clear()
+
+                const status = "Completo"
+                stateCart.map( p => dispatch(processPayment(p, card, status)))
+                stateCart.map( p => dispatch(removeFromCart(p)))
+
             } else {
-                console.log(error)
+                console.error("Error")
             }
         } catch (error) {
             // Error en el pago, ej sin fondos
@@ -56,10 +70,11 @@ const Checkout = (/* {price} */) => {
         <form onSubmit={handleSubmit}>
             <CardElement />
             <button>
-                Buy
+                BUY
             </button>
-            <Link to="/home">
-            <button>home
+            <Link to='/home'>
+            <button>
+                HOME
             </button>
             </Link>
         </form>

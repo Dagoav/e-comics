@@ -6,6 +6,7 @@ const backendURL = process.env.REACT_APP_API;
 export function getCharacters() {
   return async function (dispatch) {
     var chars = await axios.get(`${backendURL}/characters`)
+    // console.log("soy actions")
     return dispatch({
       type: "GET_CHARACTERS",
       payload: chars.data

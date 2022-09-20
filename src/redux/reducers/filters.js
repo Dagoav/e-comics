@@ -12,11 +12,11 @@ const filters = (state = initialState, action) => {
   switch (action.type) {
 
     case "GET_CHARACTERS":
+      // console.log(action.payload, "estate characters")
       return {
         ...state,
         characters: action.payload
       }
-
     case "GET_PUBLISHERS":
       return {
         ...state,

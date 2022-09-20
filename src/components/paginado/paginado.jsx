@@ -16,6 +16,7 @@ const Paginado = ({ comicPerPage, allComics, paginado, currentPage }) => {
   for (let i = 1; i <= Paginas; i++) {
     pageNumbers.push(i)
   }
+
   return (
     <nav>
       <ul className="pagination">

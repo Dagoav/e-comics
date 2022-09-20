@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
 import { getAllVolumes, reset_comicState } from "../../redux/actions/comics";
+import { setShoppingCart } from "../../redux/actions/shop_favs_rating";
 import { setPage } from "../../redux/actions/filters";
-
 import ComicCard from "../../components/card/Card";
 import Paginado from "../paginado/paginado";
 import Loading from "../loading/Loading";
@@ -22,6 +21,18 @@ const CardsGallery = () => {
   let currentComic = comics.slice(indexOfFirstComic, indexOfLastComic);
   // console.log(comics);
 
+  /** ------- Para traer el carrito desde el back ----- */
+  let userId = localStorage.getItem("id")
+  
+  useEffect(() => {
+    if(userId){
+      dispatch(setShoppingCart(userId))
+    }
+  }, [userId])
+  
+  /**-------- (solo los trae cuando estoy en el Home) -------- */
+
+  
   useEffect(() => {
     dispatch(reset_comicState())
     if (!filters) {
