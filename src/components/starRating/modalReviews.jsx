@@ -32,7 +32,7 @@ const ModalReviews = (data) => {
         See Reviews
       </Button>
 
-      <Modal className='modalReview' size='lg' show={show} onHide={handleClose}>
+      <Modal className={`modalReview ${data.tema}`} size='lg' show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Comic Review </Modal.Title>
         </Modal.Header>

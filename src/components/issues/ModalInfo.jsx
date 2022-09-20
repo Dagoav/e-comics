@@ -6,16 +6,13 @@ import Modal from 'react-bootstrap/Modal';
 import StarRating from "../starRating/starRating.jsx";
 import ModalReviews from '../starRating/modalReviews';
 import ModalPostReview from '../starRating/modalPostReview'
-import { useDispatch, useSelector } from 'react-redux'
 
 import "./ModalInfo.css"
-import { getAvg } from '../../redux/actions/reviews';
+
 
 const ModalInfoIssue = ({ open, data, theme }) => {
-  const dispatch = useDispatch();
-  let avg = useSelector(state => Math.round(state.reviews.avg.avgRating))
   const [show, setShow] = useState(false);
-  const { image, name, issue_number, price, description } = data
+  const { image, name, issue_number, price, description, avgRating } = data
 
   useEffect(() => {
     if (open) {
@@ -23,17 +20,6 @@ const ModalInfoIssue = ({ open, data, theme }) => {
     }
   }, [open])
 
-  console.log(avg)
-
-
-  function getAverage(data) {
-    console.log(data)
-    const datitos = {
-      volumeId: data.volume_id,
-      IssueId: data.id
-    }
-    dispatch(getAvg(datitos))
-  }
 
   const HandleClose = () => {
     setShow(false)
@@ -41,45 +27,51 @@ const ModalInfoIssue = ({ open, data, theme }) => {
   // const handleShow = () => setShow(true);
   const rol = JSON.parse(localStorage.getItem("ROL"))
 
+  let color = ""
+  if (theme === "dark") {
+    color = "modalDark"
+  } else {
+    color = "modalLight"
+  }
 
   return (
-    <>
-      <Modal show={show} onHide={HandleClose} size='md' onEnter={() => getAverage(data)} >
-        <Modal.Header closeButton>
-          <Modal.Title>
-            <span className='px-1'>
-              #{issue_number}
-            </span>
-          </Modal.Title>
-          <span className='px-5 name-issue'>
-            {name}
+    <Modal show={show} onHide={HandleClose} size='md' className={color}>
+      <Modal.Header closeButton>
+        <Modal.Title>
+          <span className='px-1'>
+            #{issue_number}
           </span>
-        </Modal.Header>
-        <Modal.Body>
-          <p>
-            {description || "Woohoo"}
-          </p>
-          <img className='ms-5 mt-3' style={{ width: '80%' }} src={image} alt="" />
-        </Modal.Body>
-        <StarRating key={data.id} value={avg} />
-        <div className='contModals'>
-          <ModalReviews data={data} />
-          <ModalPostReview data={data} />
-        </div>
-        <Modal.Footer className='pe-5'>
-          <ShoppingBar price={price} comic={data} />
-          <Button variant="secondary" onClick={HandleClose}>
-            Close
+        </Modal.Title>
+        <span className='px-5 name-issue'>
+          {name}
+        </span>
+      </Modal.Header>
+      <Modal.Body>
+        <p>
+          {description || "Woohoo"}
+        </p>
+        <img className='ms-5 mt-3' style={{ width: '80%' }} src={image} alt="" />
+      </Modal.Body>
+      {
+        avgRating ? <StarRating key={data.id} value={avgRating} /> : <h4 className='d-flex justify-content-center'>Not reviews for this comic</h4>
+      }
+      <div className='contModals'>
+        <ModalReviews data={data} tema={color} />
+        <ModalPostReview data={data} tema={color} />
+      </div>
+      <Modal.Footer className='pe-5'>
+        <ShoppingBar price={price} comic={data} />
+        <Button variant="secondary" onClick={HandleClose}>
+          Close
+        </Button>
+        {/* <Link to={"/shop"}> */}
+        <Link to={rol === "USER" ? '/user/shop' : '/login'}>
+          <Button variant="danger" onClick={HandleClose}>
+            ir a carrito
           </Button>
-          {/* <Link to={"/shop"}> */}
-          <Link to={rol === "USER" ? '/user/shop' : '/login'}>
-            <Button variant="danger" onClick={HandleClose}>
-              ir a carrito
-            </Button>
-          </Link>
-        </Modal.Footer>
-      </Modal>
-    </>
+        </Link>
+      </Modal.Footer>
+    </Modal>
   );
 }
 

@@ -1,6 +1,5 @@
 const initialState = {
   reviews: [],
-  avg: [],
 };
 
 
@@ -11,12 +10,6 @@ const reviews = (state = initialState, action) => {
       return {
         ...state,
         reviews: action.payload,
-      }
-
-    case "GET_AVG":
-      return {
-        ...state,
-        avg: action.payload,
       }
 
     case "POST_REVIEW":

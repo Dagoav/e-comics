@@ -25,3 +25,8 @@
 .starPost {
   cursor: pointer;
 }
+
+.star svg path {
+  stroke: black;
+  stroke-width: 60;
+}

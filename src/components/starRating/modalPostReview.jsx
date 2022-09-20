@@ -5,6 +5,8 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import './modalPostReview.css'
 import { postReview } from '../../redux/actions/reviews'
+import Swal from 'sweetalert2'
+
 
 import { FaStar } from 'react-icons/fa'
 import "./starRating.css"
@@ -17,13 +19,16 @@ const ModalPostReview = (data) => {
 
   const [show, setShow] = useState(false);
 
+  let localUser = localStorage.getItem("id")
+
   const [input, setInput] = useState({
     rating: null,
     description: '',
-    comicId: data.data.volume_id,
-    userId: localStorage.getItem("id").slice(1, -1),
+    ComicId: data.data.volume_id,
+    UserId: localUser ? localUser.slice(1, -1) : "",
     IssueId: data.data.id,
   })
+
 
   function handleChange(e) {
     setInput({
@@ -32,8 +37,16 @@ const ModalPostReview = (data) => {
     })
   }
 
+
   function sendReview() {
     dispatch(postReview(input))
+    if (localUser) {
+      Swal.fire({
+        title: 'Post review',
+        text: 'Your review has been posted ok',
+        icon: 'success'
+      })
+    }
     navigate('/user/home')
   }
 
@@ -47,7 +60,7 @@ const ModalPostReview = (data) => {
         Post Review
       </Button>
 
-      <Modal className='modalPost' size='lg' show={show} onHide={handleClose}>
+      <Modal className={`modalPost ${data.tema}`} size='lg' show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Post a your Comic Review</Modal.Title>
         </Modal.Header>
