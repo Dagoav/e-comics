@@ -18,3 +18,10 @@
   color: red;
   margin-top: 65px;
 }
+.textgoogle{
+ text-align: center;
+}
+.tohome{
+  display: flex;
+  justify-content: center;
+}

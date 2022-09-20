@@ -16,7 +16,7 @@ const Users = () => {
   }, [dispatch])
 
   return (
-    <div className='mainAdm-users'>
+    <div className='mainAdm'>
       <h2>Users</h2>
       {
         users?.map(user => (

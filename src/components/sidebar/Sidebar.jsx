@@ -1,61 +1,65 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getCharacters, getPublishers, getConcepts } from '../../redux/actions/filters'
+import { getPublishers, FilterAD, FilterForRelease } from '../../redux/actions/filters'
+import { getAllVolumes } from "../../redux/actions/comics";
+import { filterPublishers } from "../../redux/actions/comics";
+
 import "./Sidebar.css"
 
 
-const Sidebar = () => {
+const Sidebars = () => {
   const dispatch = useDispatch();
-  let characters = useSelector(state => state.filters.characters)
-  let publishers = useSelector(state => state.filters.publishers)
-  let concepts = useSelector(state => state.filters.concepts)
+  // let characters = useSelector(state => state.filters.characters)
+  let publishers = useSelector((state) => state.filters.publishers)
 
   useEffect(() => {
-    dispatch(getCharacters())
     dispatch(getPublishers())
-    dispatch(getConcepts())
   }, [dispatch])
 
+  // const [ordenPopulation, setOrdenRelease] = useState("")
+
+
+  function handleGenre(e) {
+    dispatch(filterPublishers(e.target.value));
+  }
+
+  function handleFilterAD(e) {
+    // setOrdenAD(`ordenado A_D ${e.target.value}`);
+    dispatch(FilterAD(e.target.value));
+  }
+
+  function handleFilterForRelease(e) {
+    // setOrdenRelease(`orden Population ${e.target.value}`);
+    dispatch(FilterForRelease(e.target.value));
+
+  }
   return (
-    <div className="containerSide">
-      <section id="sidebar">
-        <div>
-          <h6 className="publisher">Characters</h6>
-          <select className="select">
-            <option value="All">All characters</option>
-            {
-              characters?.map(char => (
-                <option key={char.name} value={char.name}>{char.name}</option>
-              ))
-            }
-          </select>
-        </div>
-        <div>
-          <h6 className="publisher">Publishers</h6>
-          <select className="select">
-            <option value="All">All Publishers</option>
-            {
-              publishers?.map(char => (
-                <option key={char.name} value={char.name}>{char.name}</option>
-              ))
-            }
-          </select>
-        </div>
-        <div>
-          <h6 className="publisher">Concepts</h6>
-          <select className="select extra">
-            <option value="All">All characters</option>
-            {
-              concepts?.map(char => (
-                <option key={char.name} value={char.name}>{char.name}</option>
-              ))
-            }
-          </select>
-        </div>
-      </section>
+    <div style={{ height: "100px" }}>
+      <select onChange={(e) => handleGenre(e)}>
+        <option value="All">All</option>
+        {
+          publishers.map((publisher, i) => (
+            <option key={`${publisher}-${i}`} value={publisher}>{publisher}</option>
+          ))
+        }
+      </select>
+
+
+
+      <select onChange={(e) => handleFilterAD(e)}>
+        <option value="asc">ASC</option>
+        <option value="desc">DESC</option>
+      </select>
+
+
+      <select onChange={(e) => handleFilterForRelease(e)}>
+        FILTER_A_D
+        <option value="release next 50`s">Release next 50`s</option>
+        <option value="release 40`s"> Release 40`s</option>
+      </select>
     </div>
-  )
+  );
 }
 
-export default Sidebar
+export default Sidebars
 

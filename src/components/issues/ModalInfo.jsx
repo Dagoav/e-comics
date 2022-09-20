@@ -20,11 +20,10 @@ const ModalInfoIssue = ({ open, data, theme }) => {
     }
   }, [open])
 
-
-  const HandleClose = () => {
-    setShow(false)
-  };
   // const handleShow = () => setShow(true);
+=======
+  const handleClose = () => setShow(false);
+
   const rol = JSON.parse(localStorage.getItem("ROL"))
 
   let color = ""

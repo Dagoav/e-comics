@@ -1,7 +1,10 @@
 const initialState = {
   characters: [],
   publishers: [],
-  concepts: [],
+
+  isFilter: true,
+  currentPage: 1,
+  comicsFilter: [],
 };
 
 
@@ -9,11 +12,11 @@ const filters = (state = initialState, action) => {
   switch (action.type) {
 
     case "GET_CHARACTERS":
+      // console.log(action.payload, "estate characters")
       return {
         ...state,
         characters: action.payload
       }
-
     case "GET_PUBLISHERS":
       return {
         ...state,
@@ -25,6 +28,15 @@ const filters = (state = initialState, action) => {
         ...state,
         concepts: action.payload
       }
+    case 'SET_PAGE': {
+      return {
+        ...state,
+        currentPage: action.payload
+      }
+    }
+
+
+
 
     default: return state
   };

@@ -1,6 +1,7 @@
 .container-detail {
   width: 100%;
   height: 100vh;
+  position: relative;
   background: url("../../assets/intro1.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -101,26 +102,31 @@
   transform: scale(1.2);
 }
 
-.undo-light {
+.undo {
   position: absolute;
-  top: 10px;
-  right: 20px;
+  top: 140px;
+  right: 4%;
   font-size: 38px;
-  color: rgb(33, 33, 34);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  z-index: 1;
 }
 
-.undo-dark {
+.undo-text {
   position: absolute;
-  top: 10px;
-  right: 20px;
-  font-size: 38px;
-  color: aliceblue;
+  top: 120px;
+  right: 4%;
+  text-align: center;
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  z-index: 1;
 }
 
 @media (max-width: 768px) {
   .card-detail {
     flex-direction: column;
     margin-bottom: 100px;
-    background-color: rgb(122, 133, 129);
+    /* background-color: rgb(122, 133, 129); */
   }
 }
