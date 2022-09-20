@@ -106,7 +106,7 @@ function LoginApp() {
           </div>
 
           <div className='text-center text-md-start mt-4 pt-2'>
-            <Button type='submit' onClick={handleSubmit} className="mb-0 px-5" size='lg' disabled={Object.keys(errors).length === 0 ? false : true}>Login</Button>
+            <Button type='submit' onClick={handleSubmit} className="mb-0 px-5" size='lg' disabled={Object.keys(errors).length === 0 ? false : true} >Login</Button>
             <p className="small fw-bold mt-2 pt-1 mb-2">No tienes cuenta? <Link to='/singup'> <a className="link-danger">Registro</a>  </Link></p>
           </div>
 

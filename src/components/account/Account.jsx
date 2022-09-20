@@ -50,8 +50,13 @@ const Account = () => {
               <Link to = {rol === "ADMIN"? "/admin" : '/user'}> 
               {localStorage.getItem("user").replace(/['"]+/g, '')}
               </Link>:
+              <Link to={'/login'}>
+                <span>login</span>
+              </Link>
 
-              <ModalLogin/>
+
+
+              // <ModalLogin/>
 
               )}
             </span>

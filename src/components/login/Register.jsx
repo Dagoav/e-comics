@@ -79,7 +79,7 @@ function Register() {
       Swal.fire({
         text: 'Usuario registrado con exito',
         icon: 'success',
-        timer: 1500
+        timer: 2000
       })  
       
     // } catch (error) {
@@ -95,7 +95,7 @@ function Register() {
 
 
   return (
-    <MDBContainer fluid className="p-3 my-5 h-custom">
+    <MDBContainer fluid className="p-3 my-5 h-custom"  id="staticBackdrop" data-bs-backdrop="static">
       <MDBRow>
         <MDBCol col="10" md="6">
           <img
