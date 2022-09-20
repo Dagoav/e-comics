@@ -10,11 +10,14 @@
 
 .mainAdm {
   position: absolute;
-  width: calc(100% - 300px);
+  width: 75%;
+  height: 100vh;
   left: 300px;
-  min-height: 100vh;
   background: var(--white);
-  transition: 0.5s;
+  /* transition: 0.5s; */
+  overflow-y: auto;
+  margin: 30px;
+  padding-bottom: 60px;
 }
 
 .mainAdm.active {
@@ -328,18 +331,20 @@
 
 @media (max-width: 991px) {
   .navAdm {
-    left: -300px;
+    width: 80px;
   }
 
-  .navAdm.active {
+  .mainAdm {
+    width: 70%;
+    left: 90px;
+  }
+
+
+  /* .navAdm.active {
     width: 300px;
     left: 0;
   }
 
-  .mainAdm {
-    width: 100%;
-    left: 0;
-  }
 
   .mainAdm.active {
     left: 300px;
@@ -347,57 +352,25 @@
 
   .cardBox {
     grid-template-columns: repeat(2, 1fr);
-  }
+  } */
 }
 
 @media (max-width: 768px) {
-  .detailsAdm {
-    grid-template-columns: repeat(1, 1fr);
+  .navAdm {
+    width: 80px;
   }
 
-  .recentOrders {
-    overflow-x: auto;
+  .mainAdm {
+    width: 80%;
+    left: 90px;
   }
 
-  .status.inprogress {
-    white-space: nowrap;
-  }
 }
 
 
 @media (max-width: 480px) {
-  .cardBox {
-    grid-template-columns: repeat(1, 1fr);
-  }
-
-  .cardHeader h2 {
-    font-size: 20px;
-  }
-
-  .user {
-    min-width: 40px;
-  }
-
-  .navAdm {
-    width: 100%;
-    left: -100%;
-    z-index: 1000;
-  }
-
-  .navAdm.active {
-    width: 100%;
-    left: 0;
-  }
-
-  .toggle {
-    z-index: 10001;
-
-  }
-
-  .mainAdm.active .toggle {
-    position: fixed;
-    right: 0;
-    left: initial;
-    color: var(--white);
+  .mainAdm {
+    width: 75%;
+    left: 90px;
   }
 }

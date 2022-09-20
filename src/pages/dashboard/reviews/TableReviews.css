@@ -1,0 +1,4 @@
+.delete-review:hover {
+  color: rgb(219, 80, 80);
+  transition: all 400ms;
+}

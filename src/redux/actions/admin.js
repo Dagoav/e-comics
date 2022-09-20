@@ -15,6 +15,35 @@ export const getUsers = () => {
   }
 }
 
+export const getAllReviews = () => {
+  return async (dispatch) => {
+    const reviews = await axios({
+      method: 'get',
+      url: `${backendURL}/admin/reviews`
+    })
+    return dispatch({
+      type: "GET_REVIEWS",
+      payload: reviews.data
+    })
+  }
+}
+
+export const deleteReview = (body) => {
+  return async (dispatch) => {
+    const reviews = await axios({
+      method: 'delete',
+      url: `${backendURL}/admin/reviews`,
+      data: body
+    })
+
+    getAllReviews()
+    return dispatch({
+      type: "DELETE_REVIEW",
+      payload: reviews.data
+    })
+  }
+}
+
 export const setUsersRol = (params) => {
   return async (dispatch) => {
     const users = await axios({
@@ -53,6 +82,22 @@ export const addComic = (body) => {
     })
     return dispatch({
       type: "POST_COMIC",
+      payload: comic_info.data
+    })
+  }
+}
+
+export const sendEmail = (listEmails) => {
+  return async (dispatch) => {
+    const comic_info = await axios({
+      method: 'post',
+      url: `${backendURL}/admin/sendEmail`,
+      data: {
+        email: listEmails
+      }
+    })
+    return dispatch({
+      type: "EMAIL",
       payload: comic_info.data
     })
   }

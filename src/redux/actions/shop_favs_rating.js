@@ -89,28 +89,28 @@ export function processPayment(comic, card, status){
 
 
 export function addFavorite(issuesId, userId) {
-    // const token = JSON.parse(localStorage.getItem("token"))
-    console.log(userId, "id usuario")
-      return async (dispatch) => {
-        await axios({                  
-          method: 'POST',
-          url: `${backendURL}/fav`,
-          data: {issuesId, userId}
-          // headers: {
-          // "Authorization": `Bearer ${token.token}`
-          // }
-      })
-      }
-    }
+  // const token = JSON.parse(localStorage.getItem("token"))
+  console.log(userId, "id usuario")
+  return async (dispatch) => {
+    await axios({
+      method: 'POST',
+      url: `${backendURL}/fav`,
+      data: { issuesId, userId }
+      // headers: {
+      // "Authorization": `Bearer ${token.token}`
+      // }
+    })
+  }
+}
 
 
 export function removeFavorite(issuesId, userId) {
   // const token = JSON.parse(localStorage.getItem("token"))
-    return async (dispatch) => {
-      await axios({ 
-        method: 'DELETE',
-        url: `${backendURL}/fav`,
-        data: {issuesId, userId}
+  return async (dispatch) => {
+    await axios({
+      method: 'DELETE',
+      url: `${backendURL}/fav`,
+      data: { issuesId, userId }
       // headers: {
       // "Authorization": `Bearer ${token.token}`
       // }

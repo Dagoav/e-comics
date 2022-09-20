@@ -54,35 +54,36 @@ export function creategame(data) {
 //   payload
 //   }}
 
-  export function FilterAD(payload){
-    console.log(payload)
-    return{
-        type:"FILTER_A_D",
-        payload
-        }}
+export function FilterAD(payload) {
+  console.log(payload)
+  return {
+    type: "ORDER_NAME",
+    payload
+  }
+}
 
 
-        export function FilterForRelease(payload){
-          return{
-              type:"FILTER_FOR_RELEASE",
-              payload
-          }
-      
-      }
+export function FilterForRelease(payload) {
+  return {
+    type: "FILTER_FOR_RELEASE",
+    payload
+  }
+
+}
 
 
-      export function clear(){
-        return{
-            type:"CLEAR",
-        }
-    }
-    
-    
-    export function setPage(payload) {
-        return {
-            type: 'SET_PAGE',
-            payload
-        }
-    }
+export function clear() {
+  return {
+    type: "CLEAR",
+  }
+}
+
+
+export function setPage(payload) {
+  return {
+    type: 'SET_PAGE',
+    payload
+  }
+}
 
 
