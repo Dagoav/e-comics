@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useSelector,useDispatch } from 'react-redux';
 import { sendEmail } from '../../redux/actions/admin';
 import { processPayment, removeFromCart } from '../../redux/actions/shop_favs_rating';
-import { Link } from 'react-router-dom';
+import { json, Link } from 'react-router-dom';
 
 
 
@@ -43,7 +43,7 @@ const Checkout = () => {
                 });
 
                 alert("PAYMENT SUCCESSFUL!")
-                const userEmail = await localStorage.getItem('email')
+                const userEmail = await JSON.parse(localStorage.getItem('email'))
                 if (userEmail) {
                   listEmail.push(userEmail)
                 }
@@ -77,12 +77,6 @@ const Checkout = () => {
             </button>
             </Link>
         </form>
-        <button onClick={()=>{
-          const userEmail = localStorage.getItem('email')
-          console.log(userEmail);
-          listEmail.push(userEmail)
-          console.log(listEmail);
-        }}>Try</button>
       </>
     )
 }

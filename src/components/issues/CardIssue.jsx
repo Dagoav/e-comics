@@ -9,7 +9,7 @@ function CardIssue({ data }) {
   const theme_params = useSelector((state) => state.params.theme_params);
   const { theme } = theme_params
   const [showModal, setShowModal] = useState(false)
-  const { image } = data
+  const { id, image } = data
 
   useEffect(() => {
     setShowModal(() => false)
@@ -24,7 +24,7 @@ function CardIssue({ data }) {
       <Card className='ms-5 card-issue' style={{ width: '8rem', height: '1rem' }} onClick={handleModal}>
         <Card.Img src={image} />
       </Card>
-      <ModalInfoIssue open={showModal} data={data} theme={theme} />
+      <ModalInfoIssue key={`modal-issue-${id}`} open={showModal} data={data} theme={theme} />
     </>
   );
 }

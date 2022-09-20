@@ -1,0 +1,32 @@
+.star {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  transition: color 200ms;
+  margin-bottom: 10px;
+}
+
+.star label input[type="checkbox"] {
+  display: none;
+  position: relative;
+  left: 3px;
+  top: 10px;
+}
+
+.btn-reviews {
+  background: red;
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 1.5rem;
+}
+
+.starPost {
+  cursor: pointer;
+}
+
+.star svg path {
+  stroke: black;
+  stroke-width: 60;
+}

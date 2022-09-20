@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import LoginApp from "../login/login";
 import Register from "../login/Register";
 import { Link } from "react-router-dom";
+import "./Modalregister.css"
 
 
 function ModalRegister() {
@@ -23,7 +24,7 @@ function ModalRegister() {
     <>
       <>
       <div className="modalregister"  >
-        <Modal size="lg" show={show} onHide={handleClose} backdrop="static" keyboard="false">
+        <Modal backdropClassName="modal-register"  size="lg" show={show} onHide={handleClose} backdrop="static" keyboard="false">
           <Modal.Body>
             <div className="tabs-login-container"  >
               <Register />
