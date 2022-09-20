@@ -1,5 +1,12 @@
-:root {
-  --bs-modal-color: brown !important;
+.modalDark .modal-content {
+  background-color: rgb(48, 46, 46);
+  color: rgb(199, 192, 192);
+
+}
+
+.modalLight .modal-content {
+  background-color: #F8F9FA;
+  color: rgb(48, 46, 46);
 }
 
 .name-issue {

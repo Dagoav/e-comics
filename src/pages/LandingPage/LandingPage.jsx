@@ -23,13 +23,13 @@ const rol = JSON.parse(localStorage.getItem("rol"))
     <>
       <section className='landing-section'>
         <img src={patternYellow} className="circle" alt='' />
-        <img src={patternBlue} className="circle2" alt=''/>
+        <img src={patternBlue} className="circle2" alt='' />
         <header className='shadow-lg sticky bg-gray-100  border-b-2 border-gray-100'>
           <Link to="/home"><img src={logo} alt="logo" className='logo' /></Link>
           <ul>
             <li><a href='/home'>Home</a></li>
             <li><a href='/login'>Login</a></li>
-            <li><a href='/singup'>Sign Up</a></li>
+            <li><a href='/login'>Sign Up</a></li>
           </ul>
         </header>
         <div className="cont">
@@ -47,9 +47,9 @@ const rol = JSON.parse(localStorage.getItem("rol"))
             <img src={comic6} width={180} height={200} alt="comic" />
           </div>
           <ul className='thumb'>
-            <Link to="/home"><li><img src={sale50} alt="sale" width={150} height={150} /></li></Link>
-            <Link to="/home"><li><img src={offer} alt="offer" width={150} height={150} /></li></Link>
-            <Link to="/home"><li><img src={bestseller} alt="best" width={150} height={150} /></li></Link>
+            <Link to="/cardDetail/773"><li><img src={sale50} alt="sale" width={150} height={150} /></li></Link>
+            <Link to="/cardDetail/1174"><li><img src={offer} alt="offer" width={150} height={150} /></li></Link>
+            <Link to="/cardDetail/796"><li><img src={bestseller} alt="best" width={150} height={150} /></li></Link>
           </ul>
         </div>
       </section>
