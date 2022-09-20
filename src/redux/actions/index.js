@@ -132,48 +132,16 @@ export const reset_comicState = (payload) => {
     payload
   }
 }
-export const setShoppingCart = (products) => {
-  return {
-    type: "SET_SHOPPING_CART",
-    payload: products
-  }
-}
-
-export const addComic = ( body, base64EncodedImage, previewSource ) => {
   return async (dispatch) => {
     const comic_info = await axios({
       method: 'post',
       url: `${backendURL}/comics`,
-      body:JSON.stringify({data: base64EncodedImage}),
       data: body
     })
     return dispatch({
       type: "POST_COMIC",
       payload: comic_info.data
     })
-  }
-}
-
-
-export const addToCart = (products, shopping_cart) => {
-  // Verifica que el producto no esté en el carrito para no agregarlo de nuevo
-  const inCart = shopping_cart.some(p => p.id === products.id)
-  if (!inCart) {
-    return {
-      type: "ADD_TO_CART",
-      payload: products,
-    }
-  } else {
-    return {
-      type: "NADA", //devuelve el estado, sino Redux llora
-    }
-  }
-}
-
-export const removeFromCart = (products) => {
-  return {
-    type: "REMOVE_FROM_CART",
-    payload: products,
   }
 }
 
@@ -236,6 +204,8 @@ export const getAllfavoritesDb = (userId) => {
     const favorites = await axios({
       method: 'GET',
       url: `${backendURL}/fav/${userId}`,
+st res = await axios.get('http://localhost:3000/fav', { params: { userId: userId } });
+
       // headers: {
       // "Authorization": `Bearer ${token.token}`
       // }
