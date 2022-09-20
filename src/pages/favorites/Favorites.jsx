@@ -49,9 +49,9 @@ export default function Favorites(comic) {
                 )
             }) 
         }
-        <Link to='/home'>
+        {/* <Link to='/home'>
             <button>Volver⬅️</button>
-        </Link> 
+        </Link>  */}
     </div>
     )
 }

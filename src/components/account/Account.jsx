@@ -46,7 +46,7 @@ const Account = () => {
                 </>
               ) : (
 
-              localStorage.getItem("token")?
+                localStorage.getItem("token")?
               <Link to = {rol === "ADMIN"? "/admin" : '/user'}> 
               {localStorage.getItem("user").replace(/['"]+/g, '')}
               </Link>:

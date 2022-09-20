@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addComic } from "../../../redux/actions/admin";
 
@@ -9,8 +9,8 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Alert from "react-bootstrap/Alert";
 import Button from 'react-bootstrap/Button';
+import { getCharacters } from "../../../redux/actions/filters";
 import "./UploadComic.css";
-import axios from "axios";
 
 const UploadComic = () => {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const UploadComic = () => {
   const [show, setShow] = useState(true);
   const { register, handleSubmit, formState: { errors } } = useForm();
   // const regex_url = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
-
+ 
   const [imagen, setImagen] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -82,7 +82,7 @@ const UploadComic = () => {
               placeholder="https: ..."
               onChange={uploadImage}
             />
-            {loading ? (<h3>Loading image...</h3>) : (<img src={imagen} alt="" style={{width: "300px"}}/>)}
+            {loading ? (<h3>Loading image...</h3>) : (<img src={imagen} alt="" style={{width: "100px"}}/>)}
             {errors.image && <span className="errors">{errors.image.message || "This field is required"}</span>}
             < Form.Control.Feedback > Looks good!</Form.Control.Feedback>
           </Form.Group>

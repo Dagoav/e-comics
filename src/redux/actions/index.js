@@ -236,7 +236,6 @@ export const getAllfavoritesDb = (userId) => {
     const favorites = await axios({
       method: 'GET',
       url: `${backendURL}/fav/${userId}`,
-      // const res = await axios.get('http://localhost:3000/fav', { params: { userId: userId } });
       // headers: {
       // "Authorization": `Bearer ${token.token}`
       // }
