@@ -10,7 +10,6 @@ export default function Favorites(comic) {
     const cart = useSelector((state) => state.shop_fav_rating.cart_shopping)
     const dispatch = useDispatch()
     const favourite = useSelector((state) => state.shop_fav_rating.favourite)
-        console.log(favourite)
     
     const userId = JSON.parse(localStorage.getItem("id"))
 
@@ -22,7 +21,6 @@ export default function Favorites(comic) {
     const removeHandler = (comic) => {
         dispatch(removeFavorite(comic.id, userId)) 
         dispatch(getAllfavoritesDb(userId))
-        // console.log(comic)
     }
     const buyHandler = (comic) => {
         dispatch(addToCart(comic, cart)) 
@@ -51,9 +49,9 @@ export default function Favorites(comic) {
                 )
             }) 
         }
-        <Link to='/home'>
+        {/* <Link to='/home'>
             <button>Volver⬅️</button>
-        </Link> 
+        </Link>  */}
     </div>
     )
 }

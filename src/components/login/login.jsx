@@ -28,7 +28,7 @@ function validate(input) {
 
 function LoginApp() {
 
-  const {login} = useAuthContext()
+  const { login } = useAuthContext()
   const navigate = useNavigate()
 
 
@@ -63,7 +63,8 @@ function LoginApp() {
       localStorage.setItem("user", JSON.stringify(response.data.name))
       localStorage.setItem("ROL", JSON.stringify(response.data.Rol))
       localStorage.setItem("id", JSON.stringify(response.data.id))
-      
+      localStorage.setItem("email", JSON.stringify(response.data.id))
+
       setInput({
         email: "",
         password: "",

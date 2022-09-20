@@ -8,7 +8,7 @@ import "./ModalInfo.css"
 
 const ModalInfoIssue = ({ open, data, theme }) => {
   const [show, setShow] = useState(false);
-  const { image, name, issue_number, price, description } = data
+  const { image, name, issue_number, price, description, avgRating } = data
 
   useEffect(() => {
     if (open) {
@@ -16,9 +16,7 @@ const ModalInfoIssue = ({ open, data, theme }) => {
     }
   }, [open])
 
-
   const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
   const rol = JSON.parse(localStorage.getItem("ROL"))
 
   return (
@@ -41,6 +39,7 @@ const ModalInfoIssue = ({ open, data, theme }) => {
           <img className='ms-5 mt-3' style={{ width: '80%' }} src={image} alt="" />
         </Modal.Body>
         <Modal.Footer className='pe-5'>
+          <p>{avgRating}</p>
           <ShoppingBar price={price} comic={data} />
           <Button variant="secondary" onClick={handleClose}>
             Close

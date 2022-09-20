@@ -50,12 +50,12 @@ function App() {
           <Route path='/user/fav' element={<Favorites />} />
           <Route path='/user/users' element={<Users />} />
           <Route path="/user/shop" element={<Shop />} />
-          <Route path='/user/checkout' element={<Checkout />} />
+          <Route path='/user/shop/checkout' element={<Checkout />} />
           <Route path='/user/logout' element={<Logout />} />
         </Route>
         {/*-------------------------------- rutas de administador ----------------------------------*/}
         <Route path='/dashboard' element={<AdminRoute />} >
-
+          
           {/* <Route path='/admin/dashboard' element={<DashboardNav />} /> */}
           <Route path='/dashboard' element={<DashboardNav />} >
             <Route path='admin' element={<Admin />} />

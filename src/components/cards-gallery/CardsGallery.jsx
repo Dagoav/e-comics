@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
 import { getAllVolumes, reset_comicState } from "../../redux/actions/comics";
+import { setShoppingCart } from "../../redux/actions/shop_favs_rating";
 import { setPage } from "../../redux/actions/filters";
-
 import ComicCard from "../../components/card/Card";
 import Paginado from "../paginado/paginado";
 import Loading from "../loading/Loading";
@@ -15,19 +14,31 @@ const CardsGallery = () => {
   // eslint-disable-next-line no-unused-vars
   let [comicPerPage, setComicPerPage] = useState(12)
   let comics = useSelector((state) => state.comicsReducer.comics);
+  let filters = useSelector((state) => state.filters.filters);
   let loading_state = useSelector((state) => state.comicsReducer.loading);
   let indexOfLastComic = currentPage * comicPerPage;
   let indexOfFirstComic = indexOfLastComic - comicPerPage;
   let currentComic = comics.slice(indexOfFirstComic, indexOfLastComic);
-  const isFilter = useSelector(state => state.filters.isFilter)
+  // console.log(comics);
 
+  /** ------- Para traer el carrito desde el back ----- */
+  let userId = localStorage.getItem("id")
+  
+  useEffect(() => {
+    if(userId){
+      dispatch(setShoppingCart(userId))
+    }
+  }, [userId])
+  
+  /**-------- (solo los trae cuando estoy en el Home) -------- */
+
+  
   useEffect(() => {
     dispatch(reset_comicState())
-    if (isFilter) {
+    if (!filters) {
       dispatch(getAllVolumes())
     }
-
-  }, [dispatch, isFilter])
+  }, [dispatch, filters])
 
 
   const paginado = pageNumber => {
