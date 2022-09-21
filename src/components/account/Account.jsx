@@ -82,7 +82,7 @@ const Account = () => {
       {rol&&
         <span className='ms-2'>
           <Link to='/user/purchases'>
-           <p>Mis compras</p>
+           <p>My comics</p>
           </Link>
         </span>
         }
@@ -99,7 +99,7 @@ const Account = () => {
       {rol&&
           <span className='ms-2'>
           <Link to='/user/fav'>
-           <p>Mis favoritos</p>
+           <p>Favorites</p>
           </Link>
         </span>
       }

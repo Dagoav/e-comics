@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart, emptyCart } from "../../redux/actions/shop_favs_rating";
-
+import Button from 'react-bootstrap/Button'
 import { Link } from "react-router-dom";
 import NavBar from "../../components/navBar/Navbar";
 import {
@@ -22,6 +22,7 @@ const ShoppingCart2 = () => {
   console.log(cart_shopping);
   const dispatch = useDispatch()
   let totalPrice = 0;
+  const [compras, setCompras] = useState(false)
 
   const removeProduct = (issue) => {
     // var confirm = window.confirm(`Remove ${issue.name || 'this issue'} from the Cart?`)
@@ -99,9 +100,12 @@ const ShoppingCart2 = () => {
                     <th scope="col">Remove</th>
                   </tr>
                 </MDBTableHead>
-                <button onClick={removeAll}>
+                {/* <button onClick={removeAll}>
                   Empty cart
-                </button>
+                </button> */}
+                   <Button className="btn-reviews" variant="primary" onClick={removeAll} width={50} >
+                   Empty cart
+                   </Button>
                 {
                   cart_shopping.map(product => {
                     totalPrice += product.price
@@ -138,9 +142,9 @@ const ShoppingCart2 = () => {
                           </td>
                           <td className="align-middle">
                             <p className="mb-0" style={{ fontWeight: "500" }}>
-                              <span className="material-symbols-outlined remove-comic">
-                                <button onClick={() => removeProduct(product)}>
-                                  disabled_by_default
+                              <span className="material-symbols-outlined remove-comic " >
+                                <button className="btn btn-danger "  onClick={() => removeProduct(product)}>
+                                  X
                                 </button>
                               </span>
                             </p>

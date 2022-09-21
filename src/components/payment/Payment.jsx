@@ -78,6 +78,7 @@ const Payment = () => {
     }
     return(
       <>
+      
         <form onSubmit={handleSubmit}>
             <CardElement />
             <button>

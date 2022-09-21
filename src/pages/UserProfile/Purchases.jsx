@@ -17,7 +17,7 @@ import {
 } from "mdb-react-ui-kit";
 import "./purchase.css"
 
-const ShoppingCart2 = () => {
+const Purchases = () => {
   const dispatch = useDispatch()
     const userId = JSON.parse(localStorage.getItem("id"))
     let purchase = useSelector((state) => state.shop_fav_rating.purchases )
@@ -101,4 +101,4 @@ const ShoppingCart2 = () => {
   );
 }
 
-export default ShoppingCart2;
+export default Purchases;
