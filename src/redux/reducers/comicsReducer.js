@@ -1,5 +1,6 @@
 const initialState = {
   comics: [],
+  comics_filter: [],
   issues: [],
   comic: {},
   comics_filter: [],
@@ -63,66 +64,44 @@ const comicsReducer = (state = initialState, action) => {
 
     ///-------------Filtros
     case "FILTER_COMIC_FOR_PUBLISHERS":
-      const allG = state.comics_filter
-
-      // const filterByP = allG.filter(c =>{
-      //   if(!c.publisher) return undefined
-      //   return c.publisher.includes(action.payload)
-      // })
-
-      const filterByP = allG.filter(c => c.publisher === action.payload)
-      const statusFiltered = action.payload === "All" ? allG : filterByP
-
-      return {
+      const allpubli = state.comics_filter
+      const filterByP = allpubli.filter(p => {
+        if(!p.publisher) return undefined
+        return p.publisher.includes(action.payload)
+      })
+      return{
         ...state,
-        filters: true,
-        comics_filter: statusFiltered
+        comics: filterByP
       }
 
     case "ORDER_NAME":
-      const allGames2 = state.comics_filter
-
-      let sortedArray = action.payload === "asc" ?
-        allGames2.sort(function (a, b) {
-          if (a.name > b.name) {
-            return 1;
-          }
-          if (b.name > a.name) {
-            return -1;
-          }
+      // console.log(state.comics_filter, "soy 70")
+      // console.log(action.payload)
+      const sortedArray = action.payload === 'Asc' ?
+        state.comics.sort((a, b) => {
+          if (a.name > b.name)return 1;
+          if (b.name > a.name)return -1;
           return 0;
         }) :
-        allGames2.sort(function (a, b) {
-          if (a.name > b.name) {
-            return -1;
-          }
-          if (b.name > a.name) {
-            return 1;
-          }
+        state.comics.sort(function(a, b) {
+          if (a.name > b.name)return -1;
+          if (b.name > a.name)return 1;
           return 0;
         })
       return {
         ...state,
-        filters: true,
         comics: sortedArray
       }
 
     case "FILTER_FOR_RELEASE":
-      const allGames4 = state.comics_filter
-      // all[Countries2.sort(function (num1 = 1, num2= 2){
-      const createdFilter = action.payload === "release next 50`s" ? allGames4.filter(v => v.release >= "1950-01-01") : allGames4.filter(v => v.release <= "1943-01-01")
-      //     if(num1.release > num2.release){
-      //         return -1;
-      //     }
-      //     if(num2.release > num1.release){
-      //         return 1;
-      //     }
-      //     return 0;
-      // })
+      const filterR = state.comics_filter
+      const filterRelease = action.payload === "1990"
+      console.log(filterR)
+      // comics.filter(v => v.release) : filterR.filter(v => v.release !== "1943-01-01")
+  
       return {
         ...state,
-        filters: true,
-        comics: createdFilter
+        comics: filterRelease
       }
 
 
