@@ -13,7 +13,7 @@ const CardsGallery = () => {
   let currentPage = useSelector(state => state.filters.currentPage);
   // eslint-disable-next-line no-unused-vars
   let [comicPerPage, setComicPerPage] = useState(12)
-  let comics = useSelector((state) => state.comicsReducer.comics);
+  let comics = useSelector((state) => state.comicsReducer.comics_filter);
   let filters = useSelector((state) => state.filters.filters);
   let loading_state = useSelector((state) => state.comicsReducer.loading);
   let indexOfLastComic = currentPage * comicPerPage;
