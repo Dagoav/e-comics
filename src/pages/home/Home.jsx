@@ -27,8 +27,6 @@ const Home = () => {
             <Sidebars />
           </Row>
           <Row className="mt-5">
-            <Col md={2} className="container" >
-            </Col>
             <Col md={9} className="container" >
               <CardsGallery />
             </Col>
