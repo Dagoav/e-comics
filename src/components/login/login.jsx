@@ -73,9 +73,9 @@ function LoginApp() {
     } catch (error) {
       Swal.fire({
         title: 'Error!',
-        text: 'Usuario o contraseña incorrecta',
+        text: 'Incorrect user or password',
         icon: 'error',
-        confirmButtonText: 'cerrar'
+        confirmButtonText: 'close'
       })
     }
   }
@@ -95,17 +95,14 @@ function LoginApp() {
           {input.email.length && errors && errors.email ? (
             <span className="texterror"> {errors.email} </span>
           ) : null}
-          <MDBInput value={input.email} name="email" onChange={handleChange} wrapperClass='mb-4' label='Correo electronico' id='formControlLg' type='email' size="lg" />
+          <MDBInput value={input.email} name="email" onChange={handleChange} wrapperClass='mb-4' label='Email' id='formControlLg' type='email' size="lg" />
 
-          <MDBInput value={input.password} name="password" onChange={handleChange} wrapperClass='mb-4' label='contraseña' id='formControlLg' type='password' size="lg" />
+          <MDBInput value={input.password} name="password" onChange={handleChange} wrapperClass='mb-4' label='Password' id='formControlLg' type='password' size="lg" />
           {input.password.length && errors && errors.password ? (
             <span className="text-danger position-absolute"> {errors.password} </span>
           ) : null}
 
           <div className="d-flex justify-content-between mb-4">
-            <a href="!#">Forgot your password?
-
-</a>
           </div>
 
           <div className='text-center text-md-start mt-4 pt-2'>

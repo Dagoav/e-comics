@@ -76,11 +76,15 @@ function Register() {
         password: "",
         repeatpassword: "",
       })
+
       Swal.fire({
-        text: 'Usuario registrado con exito',
+        position: 'top-end',
         icon: 'success',
-        timer: 2000
-      })  
+        title: 'Registered user successfully',
+        showConfirmButton: false,
+        timer: 1500
+      })
+     
       
     // } catch (error) {
     //   Swal.fire({
@@ -113,7 +117,7 @@ function Register() {
               name="username"
               onChange={handleChange}
               wrapperClass="mb-4"
-              label="Nombre de usuario"
+              label="Username"
               id="formControlLg"
               type="user"
               size="lg"
@@ -130,7 +134,7 @@ function Register() {
               name="email"
               onChange={handleChange}
               wrapperClass="mb-4"
-              label="Correo electronico"
+              label="Email"
               id="formControlLg"
               type="email"
               size="lg"
@@ -147,7 +151,7 @@ function Register() {
               name="password"
               onChange={handleChange}
               wrapperClass="mb-4"
-              label="Contraseña"
+              label="Password"
               id="formControlLg"
               type="password"
               size="lg"
@@ -164,7 +168,7 @@ function Register() {
               name="repeatpassword"
               onChange={handleChange}
               wrapperClass="mb-4"
-              label="Verifica tu contraseña"
+              label="verify your password"
               id="formControlLg"
               type="password"
               size="lg"
@@ -183,7 +187,7 @@ function Register() {
               size="lg"
               disabled={Object.keys(errors).length === 0 ? false : true}
             >
-              Registro
+              sign up
             </Button>
           </div>
           <br />

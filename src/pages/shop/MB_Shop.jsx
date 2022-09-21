@@ -14,6 +14,7 @@ import {
   MDBTableHead,
 } from "mdb-react-ui-kit";
 import "./MB_Shop.css"
+import Swal from "sweetalert2";
 
 const ShoppingCart2 = () => {
   const cart_shopping = useSelector(state => state.shop_fav_rating.cart_shopping)
@@ -23,24 +24,59 @@ const ShoppingCart2 = () => {
   let totalPrice = 0;
 
   const removeProduct = (issue) => {
-    var confirm = window.confirm(`Remove ${issue.name || 'this issue'} from the Cart?`)
-    if (confirm) {
-      let carrito = cart_shopping.filter(c => c.id !== issue.id)
-      if (carrito.length === 0) {
-        localStorage.removeItem("carrito")
-      } else {
-        localStorage.setItem("carrito", JSON.stringify(carrito))
+    // var confirm = window.confirm(`Remove ${issue.name || 'this issue'} from the Cart?`)
+    Swal.fire({
+      title: (`Remove ${issue.name || 'this issue'} from the Cart?`),
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'your comic has been removed from your shopping list',
+          'success'
+        )
+        let carrito = cart_shopping.filter(c => c.id !== issue.id)
+        if (carrito.length === 0) {
+          localStorage.removeItem("carrito")
+        } else {
+          localStorage.setItem("carrito", JSON.stringify(carrito))
+        }
+        dispatch(removeFromCart(issue))
       }
-      dispatch(removeFromCart(issue))
-    }
+    })
+    // if (confirm) {
+    // }
   }
 
+
   const removeAll = () => {
-    var confirm = window.confirm(`Are you sure you want to empty your shopping cart?`)
-    if (confirm) {
-      localStorage.removeItem("carrito")
-      cart_shopping.map(p => dispatch(removeFromCart(p)))
-    }
+    // var confirm = window.confirm(`Are you sure you want to empty your shopping cart?`)
+    Swal.fire({
+      title: 'Are you sure?',
+      text: (`Are you sure you want to empty your shopping cart?`),
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, empty!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'your shopping cart is empty.',
+          'success'
+        )
+        localStorage.removeItem("carrito")
+        cart_shopping.map(p => dispatch(removeFromCart(p)))
+      }
+    })
+    // if (confirm) {
+    // }
   }
 
   return (
