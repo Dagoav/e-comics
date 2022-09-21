@@ -34,29 +34,32 @@ const Sidebars = () => {
 
   }
   return (
-    <div style={{ height: "100px" }}>
-      <select onChange={(e) => handleGenre(e)}>
-        <option value="All">All</option>
-        {
-          publishers.map((publisher, i) => (
-            <option key={`${publisher}-${i}`} value={publisher}>{publisher}</option>
-          ))
-        }
-      </select>
+    <div className="sidebar">
+      <h4>Filters:</h4>
+      <div className="contSelects">
+        <select onChange={(e) => handleGenre(e)}>
+          <option value="All">All</option>
+          {
+            publishers.map((publisher, i) => (
+              <option key={`${publisher}-${i}`} value={publisher}>{publisher}</option>
+            ))
+          }
+        </select>
 
 
 
-      <select onChange={(e) => handleFilterAD(e)}>
-        <option value="asc">ASC</option>
-        <option value="desc">DESC</option>
-      </select>
+        <select onChange={(e) => handleFilterAD(e)}>
+          <option value="asc">ASC</option>
+          <option value="desc">DESC</option>
+        </select>
 
 
-      <select onChange={(e) => handleFilterForRelease(e)}>
-        FILTER_A_D
-        <option value="release next 50`s">Release next 50`s</option>
-        <option value="release 40`s"> Release 40`s</option>
-      </select>
+        <select onChange={(e) => handleFilterForRelease(e)}>
+          FILTER_A_D
+          <option value="release next 50`s">Release next 50`s</option>
+          <option value="release 40`s"> Release 40`s</option>
+        </select>
+      </div>
     </div>
   );
 }
