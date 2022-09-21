@@ -8,8 +8,8 @@ import { json, Link } from 'react-router-dom';
 
 
 const Payment = () => {
-
-    const url = 'http://localhost:3000/shop/'
+    const backendURL = process.env.REACT_APP_API;
+    const url = `${backendURL}/shop`
     const stateCart = useSelector(state => state.shop_fav_rating.cart_shopping)
     let listEmail = []
     const stripe = useStripe()

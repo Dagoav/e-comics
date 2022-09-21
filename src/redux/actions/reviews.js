@@ -1,8 +1,9 @@
 import axios from "axios";
+const backendURL = process.env.REACT_APP_API;
 
 export function getReviews(payload) {
   return async function (dispatch) {
-    const review = await axios.post("http://localhost:3000/ratings/byIssue", payload)
+    const review = await axios.post(`${backendURL}/ratings/byIssue`, payload)
 
     return dispatch({
       type: "GET_REVIEWS",
@@ -13,7 +14,7 @@ export function getReviews(payload) {
 
 export function getAvg(payload) {
   return async function (dispatch) {
-    const avg = await axios.post("http://localhost:3000/ratings/avg", payload)
+    const avg = await axios.post(`${backendURL}/ratings/avg`, payload)
 
     return dispatch({
       type: "GET_AVG",
@@ -24,7 +25,7 @@ export function getAvg(payload) {
 
 export function postReview(payload) {
   return async function (dispatch) {
-    const postReview = await axios.post("http://localhost:3000/ratings", payload)
+    const postReview = await axios.post(`${backendURL}/ratings`, payload)
 
     return dispatch({
       type: "POST_REVIEW",
