@@ -2,7 +2,7 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import axios from 'axios';
 import { useSelector,useDispatch } from 'react-redux';
 import { sendEmail } from '../../redux/actions/admin';
-import { processPayment, removeFromCart } from '../../redux/actions/shop_favs_rating';
+import { processPayment, removeFromCartOnly } from '../../redux/actions/shop_favs_rating';
 import { json, Link } from 'react-router-dom';
 
 
@@ -47,14 +47,14 @@ const Payment = () => {
                 if (userEmail) {
                   listEmail.push(userEmail)
                 }
-                console.log(listEmail);
+                
                 dispatch(sendEmail(listEmail))
                 listEmail = []
                 elements.getElement(CardElement).clear()
 
                 const status = "Completo"
                 stateCart.map( p => dispatch(processPayment(p, card, status)))
-                stateCart.map( p => dispatch(removeFromCart(p)))
+                stateCart.map( p => dispatch(removeFromCartOnly(p)))
 
             } else {
                 console.error("Error")

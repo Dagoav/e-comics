@@ -37,7 +37,7 @@ const comicsReducer = (state = initialState, action) => {
     case "SEARCH_COMICS":
       return {
         ...state,
-        comics: action.payload,
+        comics_filter: action.payload,
         loading: false
       }
 
