@@ -16,7 +16,8 @@ import {
 import "./MB_Shop.css"
 
 const ShoppingCart2 = () => {
-  const cart_shopping = JSON.parse(localStorage.getItem('carrito'))
+  const cart_shopping = useSelector(state => state.shop_fav_rating.cart_shopping)
+  //JSON.parse(localStorage.getItem('carrito'))
   console.log(cart_shopping);
   const dispatch = useDispatch()
   let totalPrice = 0;
@@ -62,6 +63,9 @@ const ShoppingCart2 = () => {
                     <th scope="col">Remove</th>
                   </tr>
                 </MDBTableHead>
+                <button onClick={removeAll}>
+                  Empty cart
+                </button>
                 {
                   cart_shopping.map(product => {
                     totalPrice += product.price
@@ -99,7 +103,9 @@ const ShoppingCart2 = () => {
                           <td className="align-middle">
                             <p className="mb-0" style={{ fontWeight: "500" }}>
                               <span className="material-symbols-outlined remove-comic">
-                                disabled_by_default
+                                <button onClick={() => removeProduct(product)}>
+                                  disabled_by_default
+                                </button>
                               </span>
                             </p>
                           </td>
@@ -116,7 +122,7 @@ const ShoppingCart2 = () => {
               <MDBBtn size="lg">
                 <div className="px-2">
                   <span className="px-2">Checkout</span>
-                  <span>$26.48</span>
+                  <span>${Number(totalPrice).toFixed(2)}</span>
                 </div>
               </MDBBtn>
             </MDBRow>
