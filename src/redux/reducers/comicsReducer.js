@@ -3,6 +3,7 @@ const initialState = {
   issues: [],
   comic: {},
   comics_filter: [],
+  issues_sorting: [],
   filters: false,
   loading: true,
   loading_issues: true,
@@ -23,7 +24,8 @@ const comicsReducer = (state = initialState, action) => {
       return {
         ...state,
         issues: action.payload,
-        loading_issues: false
+        loading_issues: false,
+        issues_sorting: action.payload
       }
 
     case "GET_COMIC":
@@ -53,7 +55,11 @@ const comicsReducer = (state = initialState, action) => {
         loading_issues: action.payload
       }
 
-
+    case "SORT_ISSUES":
+      return{
+        ...state,
+        issues_sorting: action.payload
+      }
 
     ///-------------Filtros
     case "FILTER_COMIC_FOR_PUBLISHERS":

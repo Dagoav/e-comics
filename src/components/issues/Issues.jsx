@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { getIssues } from "../../redux/actions/comics";
+import { sortIssues } from '../../redux/actions/filters';
 import { addToCart } from "../../redux/actions/shop_favs_rating";
 import Loading from "../loading/Loading";
 import CardIssue from './CardIssue';
@@ -8,12 +9,17 @@ import CardIssue from './CardIssue';
 
 function Issue({ volume_id }) {
   const dispatch = useDispatch();
-  const issues = useSelector((state) => state.comicsReducer.issues);
+  const issuesDefault = useSelector((state) => state.comicsReducer.issues);
+  const issues = useSelector((state) => state.comicsReducer.issues_sorting)
   let loading_state = useSelector((state) => state.comicsReducer.loading_issues);
   const shopping_cart = useSelector(state => state.shop_fav_rating.cart_shopping);
   useEffect(() => {
     dispatch(getIssues(volume_id))
   }, [dispatch, volume_id])
+
+  console.log("sorted issues: ", issues)
+
+  /**---------------------- BOTON COMPRAR TODOS ------------------------------------ */
 
   let buyAll = () => {
 
@@ -32,11 +38,25 @@ function Issue({ volume_id }) {
         dispatch(addToCart(issue))
       }
     })
+
     localStorage.setItem("carrito", JSON.stringify(carrito))
 
-    console.log(carrito)
     console.log(JSON.parse(localStorage.getItem('carrito')))
   }
+
+  /**-------------------------------------------------------------------------- */
+
+
+  /* ORDENAMIENTO POR RATING */
+  const [ordenarPor, setOrdenarPor] = useState('default')
+
+  const handleSelectSort = (orden) => {
+    setOrdenarPor(orden.target.value)
+  }
+
+  useEffect(() => {
+    dispatch(sortIssues(ordenarPor, issuesDefault))
+  },[ordenarPor])
 
   return (
     <div className='container'>
@@ -45,6 +65,17 @@ function Issue({ volume_id }) {
           BUY ALL COMICS!
         </button>
       </div> <br /> <br />
+      <div className='row justify-content-center px-5 mb-5'>
+          <h2 className='text-center'>
+            Sort Issues By...
+          </h2>
+        <select id="sort" className='form-select' onChange={(sel) => handleSelectSort(sel)}>
+          <option value='default' selected>Default</option>
+          <option value='issueNum'>Issue Number</option>
+          <option value='ratingAsc'>Rating Ascending</option>
+          <option value='ratingDesc'>Rating Descending</option>
+        </select>
+      </div>
       <div className='pos-loading-issues'>
         <Loading data={issues} state={loading_state} timeWait={5000} />
       </div>
