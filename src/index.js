@@ -8,21 +8,21 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { AuthContextProvider } from './context/authContext'
 
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
+// import { Elements } from '@stripe/react-stripe-js';
+// import { loadStripe } from '@stripe/stripe-js';
 
-const stripePromise = loadStripe(`pk_test_51LfTSHGC3HF3I57E5nG3wk53uKn9xDdyVUV7rgoM2LkTu8J1xqZOTAnM8huTJNLB6eaf4wIGbCjwui0QJQisdXu400ndMdI9Er`)
+// const stripePromise = loadStripe(`pk_test_51LfTSHGC3HF3I57E5nG3wk53uKn9xDdyVUV7rgoM2LkTu8J1xqZOTAnM8huTJNLB6eaf4wIGbCjwui0QJQisdXu400ndMdI9Er`)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode >
     <AuthContextProvider>
       <Provider store={store}>
-        <Elements stripe={stripePromise}>
+        {/* <Elements stripe={stripePromise}> */}
           <BrowserRouter>
             <App />
           </BrowserRouter>
-        </Elements>
+        {/* </Elements> */}
       </Provider>
     </AuthContextProvider>
   </React.StrictMode>

@@ -1,0 +1,9 @@
+.container-shop {
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.remove-comic {
+  color: gray;
+  padding-left: 3rem;
+}
