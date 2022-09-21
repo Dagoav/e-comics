@@ -7,13 +7,15 @@ import admin from '../reducers/admin';
 import shop_fav_rating from '../reducers/shop_fav_rating';
 import filters from '../reducers/filters';
 import params from '../reducers/params';
+import reviews from '../reducers/reviews';
 
 const reducer = combineReducers({
     comicsReducer,
     admin,
     shop_fav_rating,
     filters,
-    params
+    params,
+    reviews
 })
 
 

@@ -45,9 +45,9 @@ const Account = () => {
           ) : (
 
               localStorage.getItem("token")?
-              <Link to = {rol === "ADMIN"? "/admin" : '/user'}> 
-              {localStorage.getItem("user").replace(/['"]+/g, '')}
-              </Link>:
+              <span>
+                {localStorage.getItem("user").replace(/['"]+/g, '')}
+              </span>:
               <Link to={'/login'}>
                 <span>login</span>
               </Link>
@@ -73,20 +73,43 @@ const Account = () => {
       </NavDropdown.Item> */}
 
       {/* si se da click al boton con el nombre ya lleva el panel, ya sea de usuario o de admin */}
-      {/* <NavDropdown.Item href="#" className='d-flex'>
+      <NavDropdown.Item href="#" className='d-flex'>
+      {rol&&
         <span className="material-symbols-outlined">
           dashboard
         </span>
+      }
+      {rol&&
         <span className='ms-2'>
-          <Link to='/dashboard/admin'>
-            <button>Dashboard
-            </button>
+          <Link to='/user/purchases'>
+           <p>Mis compras</p>
           </Link>
         </span>
+        }
+        
 
-      </NavDropdown.Item> */}
+      </NavDropdown.Item>
+      
+      <NavDropdown.Item href="#" className='d-flex'>
+      {rol&&
+        <span className="material-symbols-outlined">
+          dashboard
+        </span>
+      }
+      {rol&&
+          <span className='ms-2'>
+          <Link to='/user/fav'>
+           <p>Mis favoritos</p>
+          </Link>
+        </span>
+      }
+        
+      
+      
+      </NavDropdown.Item>
       <NavDropdown.Divider />
       <NavDropdown.Item onClick={() => Logout()} className='d-flex'>
+
 
         {/* {rol ? 
           <Link to = '/user/logout'  >
@@ -97,10 +120,12 @@ const Account = () => {
           null
           }
          */}
+         <div>
         {rol &&
           <span className='ms-2 '>
             Exit
           </span>}
+         </div>
 
 
 

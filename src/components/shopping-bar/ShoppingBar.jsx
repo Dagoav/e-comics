@@ -12,7 +12,6 @@ const ShoppingBar = ({ price, comic }) => {
   const dispatch = useDispatch();
   //const cart_shopping = useSelector((state) => state.cart_shopping);
   const idUsuer = JSON.parse(localStorage.getItem("id"))
-  
   /* ----------- Revisar si el comic ya está comprado ------- */
 
   const cart_shopping = useSelector((state) => state.shop_fav_rating.cart_shopping);
@@ -25,18 +24,18 @@ const ShoppingBar = ({ price, comic }) => {
 
   const addProducts = () => {
     setCountProducts(() => countProducts + 1);
-    
+
     let carrito
 
-    if(!localStorage.getItem('carrito') || localStorage.getItem('carrito') == 'null'){
+    if (!localStorage.getItem('carrito') || localStorage.getItem('carrito') == 'null') {
       carrito = []
       carrito.push(comic)
       dispatch(addToCart(comic))
       setComprado(true)
-    } else  {
+    } else {
       carrito = [...JSON.parse(localStorage.getItem('carrito'))]
       const inCart = carrito.some(c => c.id === comic.id)
-      if(!inCart){
+      if (!inCart) {
         carrito = [...carrito, comic]
         dispatch(addToCart(comic))
         setComprado(true)
@@ -64,7 +63,7 @@ const ShoppingBar = ({ price, comic }) => {
 
   const remuveFavhandler = (e) => {
     e.preventDefault()
-    dispatch(removeFavorite(comic.id,))
+    dispatch(removeFavorite(comic.id,idUsuer))
   }
 
   const rol = JSON.parse(localStorage.getItem("ROL"))
@@ -75,7 +74,7 @@ const ShoppingBar = ({ price, comic }) => {
           <Col md={1} >
             {
               rol === "USER" ?
-                <button  className="fav-icon" style={ favourite ? {backgroundColor:"red", color:"white", border:"white"} : {backgroundColor:"transparent"}} onClick={addFavhandler}>      
+                <button className="fav-icon" style={favourite ? { backgroundColor: "red", color: "white", border: "white" } : { backgroundColor: "transparent" }} onClick={addFavhandler}>
                   <span className="material-symbols-outlined">
                     heart_plus
                   </span>
@@ -84,7 +83,7 @@ const ShoppingBar = ({ price, comic }) => {
             }
           </Col>
           :
-          <button  className="fav-icon" onClick={remuveFavhandler}>
+          <button className="fav-icon" onClick={remuveFavhandler}>
             remuve_Fav
           </button>
         }
@@ -100,13 +99,13 @@ const ShoppingBar = ({ price, comic }) => {
                 </button> :
                 null
               }
-          </Col>
-          :
-          <button className="remove-shopping-icon" onClick={removeProducts}>
-            <span className="material-symbols-outlined danger">
-              remove_shopping_cart
-            </span>
-          </button>
+            </Col>
+            :
+            <button className="remove-shopping-icon" onClick={removeProducts}>
+              <span className="material-symbols-outlined danger">
+                remove_shopping_cart
+              </span>
+            </button>
         }
 
         <Col >

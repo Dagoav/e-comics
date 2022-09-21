@@ -6,7 +6,7 @@ export const getLogin = () => {
   return async (dispatch) => {
     const auth = await axios({
       method: 'get',
-      url: `${backendURL}/sign-up`,
+      url: `${backendURL}/user/login`,
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json',

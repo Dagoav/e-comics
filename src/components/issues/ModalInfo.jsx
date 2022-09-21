@@ -3,8 +3,12 @@ import { Link } from 'react-router-dom'
 import ShoppingBar from '../shopping-bar/ShoppingBar';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import StarRating from "../starRating/starRating.jsx";
+import ModalReviews from '../starRating/modalReviews';
+import ModalPostReview from '../starRating/modalPostReview'
 
 import "./ModalInfo.css"
+
 
 const ModalInfoIssue = ({ open, data, theme }) => {
   const [show, setShow] = useState(false);
@@ -16,12 +20,15 @@ const ModalInfoIssue = ({ open, data, theme }) => {
     }
   }, [open])
 
+  // const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
+
   const rol = JSON.parse(localStorage.getItem("ROL"))
+
 
   return (
     <>
-      <Modal show={show} onHide={handleClose} size='md' >
+      <Modal contentClassName={`modal-issue-${theme}`} show={show} onHide={handleClose} size='md' >
         <Modal.Header closeButton>
           <Modal.Title>
             <span className='px-1'>
@@ -38,8 +45,14 @@ const ModalInfoIssue = ({ open, data, theme }) => {
           </p>
           <img className='ms-5 mt-3' style={{ width: '80%' }} src={image} alt="" />
         </Modal.Body>
+        {
+          avgRating ? <StarRating key={data.id} value={avgRating} /> : <h4 className='d-flex justify-content-center'>Not reviews for this comic</h4>
+        }
+        <div className='contModals'>
+          <ModalReviews data={data} theme={theme} />
+          <ModalPostReview data={data} theme={theme} />
+        </div>
         <Modal.Footer className='pe-5'>
-          <p>{avgRating}</p>
           <ShoppingBar price={price} comic={data} />
           <Button variant="secondary" onClick={handleClose}>
             Close

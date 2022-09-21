@@ -137,3 +137,16 @@ export const getAllfavoritesDb = (userId) => {
     })
   }
 }
+
+export const  getAllPurchases = (userId) => {
+  return async (dispatch) => {
+    const purchases = await axios({
+      method: 'GET',
+      url: `${backendURL}/shop/cart/${userId}`,
+    })
+    return dispatch({
+      type:"GET_PURCHASES",
+      payload: purchases.data
+    })
+  }
+}

@@ -1,4 +1,7 @@
- .modal{
-    background-image: url("https://www.nintenderos.com/wp-content/uploads/2021/07/Sin-titulo-Cropped-93-800x450.jpg");
-    background-color: rgb(192, 192, 48);
+.modal-register {
+  background: url('../../assets/dev-d2Py_uhXJQo-unsplash.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: left left;
+  opacity: 0.70 !important;
 }

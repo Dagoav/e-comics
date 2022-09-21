@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 //import Tabslogin from "./Tabslogin";
 import "./ModalLogin.css"
@@ -13,27 +13,23 @@ function ModalLogin() {
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-   handleShow()
-  },[])
-  
+    handleShow()
+  }, [])
+
   return (
     <>
-     
-      <>
-        <Modal size="lg" show={show} onHide={handleClose} backdrop="static" keyboard="false">
-          <Modal.Body>
-            <div className="tabs-login-container" >
-              <LoginApp />
-            </div>
-          </Modal.Body>
-          {/* <Modal.Footer>
+      <Modal backdropClassName="modal-login" size="lg" show={show} onHide={handleClose} backdrop="static" keyboard="false">
+        <Modal.Body>
+          <div className="tabs-login-container" >
+            <LoginApp />
+          </div>
+        </Modal.Body>
+        {/* <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
           </Modal.Footer> */}
-        </Modal>
-
-      </>
+      </Modal>
     </>
   );
 }
