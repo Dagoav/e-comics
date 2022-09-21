@@ -80,9 +80,26 @@ export const reset_comicState = (payload) => {
 
 export function filterPublishers(payload) {
   console.log(payload)
-  return {
+  return (dispatch) => {
+    return dispatch ({
     type: "FILTER_COMIC_FOR_PUBLISHERS",
     payload
-  }
-}
+      })
+    }}
+ 
+export function filterAD(payload) {
+      console.log(payload)
+      return {
+        type: "ORDER_NAME",
+        payload
+      }
+    }
+export function filterForRelease(payload) {
+  const filtrando = payload.slice(0, 10)
+  console.log(filtrando)
+      return {
+        type: "FILTER_FOR_RELEASE",
+        payload
+      }
+    }
 

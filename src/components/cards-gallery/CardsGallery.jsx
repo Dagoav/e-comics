@@ -28,11 +28,11 @@ const CardsGallery = () => {
     if(userId){
       dispatch(setShoppingCart(userId))
     }
-  }, [userId])
+  }, [dispatch, userId])
   
   /**-------- (solo los trae cuando estoy en el Home) -------- */
 
-  
+
   useEffect(() => {
     dispatch(reset_comicState())
     if (!filters) {
