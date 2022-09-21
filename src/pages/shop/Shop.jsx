@@ -15,20 +15,20 @@ const Shop = () => {
 
   const removeProduct = (issue) => {
     var confirm = window.confirm(`Remove ${issue.name || 'this issue'} from the Cart?`)
-    if(confirm) {
+    if (confirm) {
       let carrito = cart_shopping.filter(c => c.id !== issue.id)
-      if(carrito.length === 0) {
+      if (carrito.length === 0) {
         localStorage.removeItem("carrito")
-      } else{
+      } else {
         localStorage.setItem("carrito", JSON.stringify(carrito))
-      } 
+      }
       dispatch(removeFromCart(issue))
     }
   }
 
   const removeAll = () => {
     var confirm = window.confirm(`Are you sure you want to empty your shopping cart?`)
-    if(confirm) {
+    if (confirm) {
       localStorage.removeItem("carrito")
       cart_shopping.map(p => dispatch(removeFromCart(p)))
     }
@@ -59,8 +59,8 @@ const Shop = () => {
               TOTAL: ${Number(totalPrice).toFixed(2)}
               <button onClick={removeAll}>Empty Cart</button>
               <Link to='/user/shop/checkout'>
-              {/* <Link to= {rol === "USER" ? '/user/checkout' : '/admin/dashboard' }> */}
-              <button>BUY</button></Link>
+                <button>BUY</button>
+              </Link>
             </div>
             : <div>Your Shopping Cart is empty.</div>
         }

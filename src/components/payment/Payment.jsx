@@ -7,7 +7,7 @@ import { json, Link } from 'react-router-dom';
 
 
 
-const Checkout = () => {
+const Payment = () => {
 
     const url = 'http://localhost:3000/shop/'
     const stateCart = useSelector(state => state.shop_fav_rating.cart_shopping)
@@ -81,7 +81,7 @@ const Checkout = () => {
     )
 }
 
-export default Checkout;
+export default Payment;
 
 
 
