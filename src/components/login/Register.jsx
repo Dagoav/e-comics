@@ -1,5 +1,5 @@
-import React,{useState} from "react";
-import { useDispatch} from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { registerUser } from "../../redux/actions/auth";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -21,18 +21,18 @@ function validate(input) {
 
   if (!input.username) {
     errors.username = "El nombre de usuario es requerido";
-  } 
-  
+  }
+
   if (!input.email) {
     errors.email = "El email es requerido";
   } else if (
     !/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(input.email)) {
     errors.email = "correo no valido";
-  } 
-  
+  }
+
   if (input.password.length < 6) {
     errors.password = "Debe contener minimo 6 caracteres";
-  } 
+  }
 
   if (input.password !== input.repeatpassword) {
     errors.repeatpassword = "Las contraseñas no coinciden";
@@ -68,20 +68,20 @@ function Register() {
 
   const handleSubmit = async (e) => {
     // try {
-      e.preventDefault();
-      dispatch(registerUser(input))
-      setInput({
-        username: "",
-        email: "",
-        password: "",
-        repeatpassword: "",
-      })
-      Swal.fire({
-        text: 'Usuario registrado con exito',
-        icon: 'success',
-        timer: 2000
-      })  
-      
+    e.preventDefault();
+    dispatch(registerUser(input))
+    setInput({
+      username: "",
+      email: "",
+      password: "",
+      repeatpassword: "",
+    })
+    Swal.fire({
+      text: 'Usuario registrado con exito',
+      icon: 'success',
+      timer: 2000
+    })
+
     // } catch (error) {
     //   Swal.fire({
     //     title: 'Error!',
@@ -90,12 +90,12 @@ function Register() {
     //     confirmButtonText: 'cerrar'
     //   })
     // }
-      navigate('/login')
+    navigate('/login')
   };
 
 
   return (
-    <MDBContainer fluid className="p-3 my-5 h-custom"  id="staticBackdrop" data-bs-backdrop="static">
+    <MDBContainer fluid className="p-3 my-5 h-custom" id="staticBackdrop" data-bs-backdrop="static">
       <MDBRow>
         <MDBCol col="10" md="6">
           <img
@@ -117,10 +117,10 @@ function Register() {
               id="formControlLg"
               type="user"
               size="lg"
-              />
-              {errors && errors.username ? (
-                <span className="text-danger" > {errors.username} </span>
-              ) : null}
+            />
+            {errors && errors.username ? (
+              <span className="text-danger" > {errors.username} </span>
+            ) : null}
           </div>
 
           <div className="d-flex flex-row align-items-center mb-4">
@@ -134,10 +134,10 @@ function Register() {
               id="formControlLg"
               type="email"
               size="lg"
-              />
-              {input.email.length && errors && errors.email ? (
-                <span className="text-danger "> {errors.email} </span>
-              ) : null}
+            />
+            {input.email.length && errors && errors.email ? (
+              <span className="text-danger "> {errors.email} </span>
+            ) : null}
           </div>
 
           <div className="d-flex flex-row align-items-center mb-4">
@@ -151,10 +151,10 @@ function Register() {
               id="formControlLg"
               type="password"
               size="lg"
-              />
-              {input.password.length && errors && errors.password ? (
-                <span  className="text-danger" > {errors.password} </span>
-              ) : null}
+            />
+            {input.password.length && errors && errors.password ? (
+              <span className="text-danger" > {errors.password} </span>
+            ) : null}
           </div>
 
           <div className="d-flex flex-row align-items-center mb-4">
@@ -168,15 +168,15 @@ function Register() {
               id="formControlLg"
               type="password"
               size="lg"
-              />
-              {input.repeatpassword.length &&errors && errors.repeatpassword ? (
-                <span className="text-danger"> {errors.repeatpassword} </span>
-              ) : null}
+            />
+            {input.repeatpassword.length && errors && errors.repeatpassword ? (
+              <span className="text-danger"> {errors.repeatpassword} </span>
+            ) : null}
           </div>
 
           <div className="text-center text-md-start mt-4 pt-2">
             <Button
-            variant="primary"
+              variant="primary"
               type="submit"
               onClick={handleSubmit}
               className="mb-0 px-5"
@@ -188,11 +188,11 @@ function Register() {
           </div>
           <br />
           <br />
-          
+
           <div className="registerhome">
-          <Link to={'/home'}>
+            <Link to={'/home'}>
               <button type="button" class="btn btn-outline-secondary">Home</button>
-          </Link>
+            </Link>
           </div>
 
           <link
