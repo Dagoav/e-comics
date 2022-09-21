@@ -64,8 +64,17 @@ export const removeFromCart = (products) => {
   }
 }
 
+export const removeFromCartOnly = (products) => {
+  return async (dispatch) => {
+    return dispatch({
+      type: "REMOVE_FROM_CART",
+      payload: products,
+    })
+  }
+}
 
 export function processPayment(comic, card, status){
+  console.log("procesando pago")
   const userId = localStorage.getItem("id")
   const compra = {
     userId,
@@ -74,11 +83,14 @@ export function processPayment(comic, card, status){
     status,
   }
   return async (dispatch) => {
+    console.log("haciendo el put")
     await axios({
       method: 'PUT',
       url: `${backendURL}/shop/cart`,
       data: compra
     })
+
+    console.log("put completado")
 
     return dispatch({
       type: "REMOVE_FROM_CART",

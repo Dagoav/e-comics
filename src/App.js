@@ -11,7 +11,7 @@ import LandingPage from './pages/LandingPage/LandingPage.jsx';
 import DashboardNav from './pages/dashboard/dashboardNav/DashboardNav';
 
 import Favorites from './pages/favorites/Favorites';
-import Checkout from './components/pagos/Checkout'
+import Checkout from './components/payment/Payment'
 import Admin from './pages/dashboard/admin/Admin';
 import Users from './pages/dashboard/users/Users'
 import Orders from './pages/dashboard/orders/Orders';
@@ -28,6 +28,8 @@ import { Notfound } from './components/NotFound/Nofound';
 import ModalLogin from './components/account/ModalLogin';
 import ModalRegister from './components/account/ModalRegister';
 import Purchases from './pages/UserProfile/Purchases';
+
+import ShoppingCart2 from './pages/shop/MB_Shop'
 
 function App() {
   return (
@@ -50,14 +52,14 @@ function App() {
           <Route path='/user/cardDetail/:id' element={<CardDetail />} />
           <Route path='/user/fav' element={<Favorites />} />
           <Route path='/user/users' element={<Users />} />
-          <Route path="/user/shop" element={<Shop />} />
+          <Route path="/user/shop" element={<ShoppingCart2 />} />
           <Route path='/user/shop/checkout' element={<Checkout />} />
           <Route path='/user/logout' element={<Logout />} />
           <Route path='/user/purchases' element={<Purchases />} />
         </Route>
         {/*-------------------------------- rutas de administador ----------------------------------*/}
         <Route path='/dashboard' element={<AdminRoute />} >
-          
+
           {/* <Route path='/admin/dashboard' element={<DashboardNav />} /> */}
           <Route path='/dashboard' element={<DashboardNav />} >
             <Route path='admin' element={<Admin />} />
