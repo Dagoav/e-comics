@@ -6,20 +6,30 @@
   color: #313131;
 }
 
-body {
-  color: grey;
-}
 
-#sidebar {
-  width: 100%;
+.sidebar {
+  display: flex;
+  width: 50%;
   padding: 10px;
-  margin: 1rem;
+  margin: 2rem auto;
   background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(6.5px);
   -webkit-backdrop-filter: blur(6.5px);
   border-radius: 10px;
   border: 1px solid #313131;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.sidebar h4 {
+  margin-top: 6px
+}
+
+.contSelects {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
 }
 
 h6 {
@@ -28,8 +38,10 @@ h6 {
 }
 
 .publisher {
+  background-color: aliceblue;
   margin: 2rem;
   margin-top: 1rem;
+  color: #d01e00;
 }
 
 .select {

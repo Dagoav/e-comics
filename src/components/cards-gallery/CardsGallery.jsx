@@ -1,39 +1,49 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllVolumes, reset_comicState } from "../../redux/actions";
+import { getAllVolumes, reset_comicState } from "../../redux/actions/comics";
+import { setShoppingCart } from "../../redux/actions/shop_favs_rating";
+import { setPage } from "../../redux/actions/filters";
 import ComicCard from "../../components/card/Card";
 import Paginado from "../paginado/paginado";
 import Loading from "../loading/Loading";
+import "./CardsGallery.css"
 
-
-// Aqui va el ordenamiento, filtrado y paginado
-// loading
 const CardsGallery = () => {
   const dispatch = useDispatch();
-  let [currentPage, setCurrentPage] = useState(1);
+  let currentPage = useSelector(state => state.filters.currentPage);
   // eslint-disable-next-line no-unused-vars
   let [comicPerPage, setComicPerPage] = useState(12)
-  let comics = useSelector((state) => state.comics);
-  let loading_state = useSelector((state) => state.loading);
+  let comics = useSelector((state) => state.comicsReducer.comics);
+  let filters = useSelector((state) => state.filters.filters);
+  let loading_state = useSelector((state) => state.comicsReducer.loading);
   let indexOfLastComic = currentPage * comicPerPage;
   let indexOfFirstComic = indexOfLastComic - comicPerPage;
-  let currentComic = comics.slice(indexOfFirstComic, indexOfLastComic)
+  let currentComic = comics.slice(indexOfFirstComic, indexOfLastComic);
+  // console.log(comics);
 
+  /** ------- Para traer el carrito desde el back ----- */
+  let userId = localStorage.getItem("id")
+  
+  useEffect(() => {
+    if(userId){
+      dispatch(setShoppingCart(userId))
+    }
+  }, [userId])
+  
+  /**-------- (solo los trae cuando estoy en el Home) -------- */
 
+  
   useEffect(() => {
     dispatch(reset_comicState())
-    dispatch(getAllVolumes())
-  }, [dispatch])
+    if (!filters) {
+      dispatch(getAllVolumes())
+    }
+  }, [dispatch, filters])
 
 
-  const paginado = (pageNumber) => {
-    setCurrentPage(pageNumber)
+  const paginado = pageNumber => {
+    dispatch(setPage(pageNumber))
   }
-
-  useEffect(() => {
-    setCurrentPage(1);
-
-  }, [comics.length, setCurrentPage]);
 
   return (
     <>
@@ -41,16 +51,20 @@ const CardsGallery = () => {
         comicPerPage={comicPerPage}
         allComics={comics.length}
         paginado={paginado}
-        page={currentPage}
+        currentPage={currentPage}
       />
-      <Loading data={comics} />
+      <div className='pos-loading-gallery'>
+        <Loading data={comics} state={loading_state} />
+      </div>
       {
-        comics.length > 0 && !loading_state &&
-        currentComic.map(c => (
-          <ComicCard key={c.id} data={c} />
-        ))
-      }
+        comics.length > 0 && !loading_state ?
+          currentComic.map(c => (
+            <ComicCard key={c.id} data={c} />
+          )) :
+          (<div style={{ height: '800px' }}>
 
+          </div>)
+      }
     </>
   )
 }

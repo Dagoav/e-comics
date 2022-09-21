@@ -9,18 +9,19 @@ import "./ShoppingCart.css"
 
 // Guardar el estado de la compra en local storage
 const ShoppingCart = () => {
-    const cart_shopping = useSelector((state) => state.cart_shopping.length);
-    
+    // const cart_shopping = useSelector((state) => state.shop_fav_rating.cart_shopping.length);
+    const cart_shopping = JSON.parse(localStorage.getItem('carrito'))
+    console.log(cart_shopping);
     const rol = JSON.parse(localStorage.getItem("ROL"))
     return (
         <>
-            <Link to={rol === "USER"? '/user/shop' : '/login'} style={{ textDecoration: 'none' }}>
+            <Link to={rol === "USER" ? '/user/shop' : '/login'} style={{ textDecoration: 'none' }}>
                 <div className='p-2 position-relative'>
                     <span className="material-symbols-outlined cart">
                         shopping_cart
                     </span>
                     {
-                        cart_shopping > 0 && <Badge className='badge' bg="danger">{cart_shopping}</Badge>
+                        cart_shopping.length > 0 && <Badge className='badge' bg="danger">{cart_shopping.length}</Badge>
                     }
                 </div>
             </Link>

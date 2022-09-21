@@ -1,11 +1,11 @@
-.modal-light {
-  background-color: rgba(252, 248, 248, 0.87);
-  color: rgb(29, 28, 28);
+.modal-issue-light {
+  background-color: whitesmoke;
+  color: rgb(31, 31, 31);
 }
 
-.modal-dark {
-  background-color: rgba(80, 79, 79, 0.87);
-  color: rgb(199, 192, 192);
+.modal-issue-dark {
+  background-color: rgb(31, 31, 31);
+  color: whitesmoke;
 }
 
 .name-issue {

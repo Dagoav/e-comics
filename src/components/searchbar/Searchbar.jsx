@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getAllVolumes, searchComic, setLoading } from "../../redux/actions";
+import { getAllVolumes, searchComic } from "../../redux/actions/comics";
+import { setLoading } from "../../redux/actions/setParams";
 
 import "./Searchbar.css"
 
@@ -9,6 +10,7 @@ const Searchbar = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState("");
+  const rol = JSON.parse(localStorage.getItem("ROL"))
 
   const handleChange = (e) => {
     setInputValue(() => e.target.value);
@@ -24,28 +26,15 @@ const Searchbar = () => {
   const handleSearch = () => {
     if (inputValue.trim() === "") {
       dispatch(getAllVolumes());
-      
+
     }
     else {
       dispatch(searchComic(inputValue));
       dispatch(setLoading(true));
       // se añade para que cuando se busque desde el panel de usuario se redi
-      navigate('/user/home')
+      navigate(rol ? '/user/home' : '/home')
     }
   };
-
-  // search auto
-  // useEffect(() => {
-  //   console.log(inputValue);
-  //   if (inputValue !== "") {
-  //     dispatch(searchComic(inputValue));
-  //     dispatch(setLoading(true));
-  //   }
-  //   else {
-  //     dispatch(getAllVolumes());
-  //   }
-  // }, [inputValue, dispatch]);
-
 
   const clearText = () => {
     setInputValue(() => "");
