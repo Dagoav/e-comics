@@ -116,7 +116,32 @@ export const sortIssues = (sortBy, allIssues) => dispatch => {
         type: 'SORT_ISSUES',
         payload: sortBy === 'ratingDesc' ? sortedComics : sortedComics.reverse()
       })
-      break;
+
+
+    case 'priceAsc':
+    case 'priceDesc':
+      for(let i = 0 ; i < allIssues.length ; i++){
+        menorMayor = sortedComics[i]
+        for (let j = 0 ; j < allIssues.length ; j++){
+          if(sortedComics[j].price < menorMayor.price){
+            menorMayor = sortedComics[j]
+            posicion = j
+            cambios = true
+          }
+          
+          if(cambios){
+            cambios = false
+            aux = sortedComics[i]
+            sortedComics[i] = menorMayor
+            sortedComics[posicion] = aux  
+          }
+        }
+      }
+
+      return dispatch({
+        type: 'SORT_ISSUES',
+        payload: sortBy === 'priceDesc' ? sortedComics : sortedComics.reverse()
+      })
     
     case 'issueNum':
       console.log("ordenando por issue number")

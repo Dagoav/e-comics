@@ -78,22 +78,41 @@ export const reset_comicState = (payload) => {
   }
 }
 
-export function filterPublishers(payload) {
-  console.log(payload)
+export function filterPublishers(payload, comics) {
   return (dispatch) => {
+
+    const allpubli = comics
+    const filterByP = allpubli.filter(p => {
+      if(!p.publisher) return undefined
+        return p.publisher.includes(payload)
+    })
+
     return dispatch ({
     type: "FILTER_COMIC_FOR_PUBLISHERS",
-    payload
+    payload: filterByP
       })
     }}
  
-export function filterAD(payload) {
-      console.log(payload)
-      return {
+export function filterAD(order, comics) {
+  const sortedArray = order === 'Asc' ?
+        comics.sort((a, b) => {
+          if (a.name > b.name)return 1;
+          if (b.name > a.name)return -1;
+          return 0;
+        }) :
+        comics.sort(function(a, b) {
+          if (a.name > b.name)return -1;
+          if (b.name > a.name)return 1;
+          return 0;
+        })
+    return (dispatch) => {
+      return dispatch({
         type: "ORDER_NAME",
-        payload
-      }
+        payload: sortedArray
+      })
     }
+  }
+
 export function filterForRelease(payload) {
   const filtrando = payload.slice(0, 10)
   console.log(filtrando)

@@ -74,6 +74,8 @@ function Issue({ volume_id }) {
           <option value='issueNum'>Issue Number</option>
           <option value='ratingAsc'>Rating Ascending</option>
           <option value='ratingDesc'>Rating Descending</option>
+          <option value='priceAsc'>Price Ascending</option>
+          <option value='priceDesc'>Price Descending</option>
         </select>
       </div>
       <div className='pos-loading-issues'>
