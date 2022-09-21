@@ -4,7 +4,7 @@ import { useSelector,useDispatch } from 'react-redux';
 import { sendEmail } from '../../redux/actions/admin';
 import { processPayment, removeFromCartOnly } from '../../redux/actions/shop_favs_rating';
 import { json, Link } from 'react-router-dom';
-
+import Swal from 'sweetalert2';
 
 
 const Payment = () => {
@@ -42,7 +42,13 @@ const Payment = () => {
                     price: totalprices,
                 });
 
-                alert("PAYMENT SUCCESSFUL!")
+                // alert("PAYMENT SUCCESSFUL!")
+                Swal.fire({
+                    title: 'PAYMENT SUCCESSFUL!',
+                    icon: 'success',
+                    confirmButtonText: 'close'
+                  })
+
                 const userEmail = await JSON.parse(localStorage.getItem('email'))
                 if (userEmail) {
                   listEmail.push(userEmail)
@@ -61,11 +67,18 @@ const Payment = () => {
             }
         } catch (error) {
             // Error en el pago, ej sin fondos
-            alert(error.response.data.error)
+            // alert(error.response.data.error)
+            Swal.fire({
+                title: 'Error!',
+                text: (error.response.data.error),
+                icon: 'error',
+                confirmButtonText: 'close'
+              })
         }
     }
     return(
       <>
+      
         <form onSubmit={handleSubmit}>
             <CardElement />
             <button>

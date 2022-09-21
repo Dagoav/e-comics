@@ -11,7 +11,7 @@ import "./ShoppingCart.css"
 const ShoppingCart = () => {
     const cart_shopping = useSelector((state) => state.shop_fav_rating.cart_shopping.length);
     // const cart_shopping = JSON.parse(localStorage.getItem('carrito'))
-    console.log(cart_shopping);
+ 
     const rol = JSON.parse(localStorage.getItem("ROL"))
     return (
         <>

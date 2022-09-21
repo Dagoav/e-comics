@@ -10,7 +10,7 @@ export const setShoppingCart = () => {
 
     const comic_info = await axios({
       method: 'get',
-      url: `${backendURL}/shop/cart/${userId}`,
+      url: `${backendURL}/shop/cart/${userId}/carrito`,
     })
 
     if(comic_info.data && comic_info.data.length > 0){
@@ -146,6 +146,19 @@ export const getAllfavoritesDb = (userId) => {
       type: "GET_FAVORITE",
       payload: favorites.data[0].issues    //.data[0].issues,
 
+    })
+  }
+}
+
+export const  getAllPurchases = (userId) => {
+  return async (dispatch) => {
+    const purchases = await axios({
+      method: 'GET',
+      url: `${backendURL}/shop/cart/${userId}/comprado`,
+    })
+    return dispatch({
+      type:"GET_PURCHASES",
+      payload: purchases.data
     })
   }
 }

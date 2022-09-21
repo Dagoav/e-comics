@@ -27,6 +27,7 @@ import Logout from './components/login/Logout';
 import { Notfound } from './components/NotFound/Nofound';
 import ModalLogin from './components/account/ModalLogin';
 import ModalRegister from './components/account/ModalRegister';
+import Purchases from './pages/UserProfile/Purchases';
 
 import ShoppingCart2 from './pages/shop/MB_Shop'
 
@@ -54,6 +55,7 @@ function App() {
           <Route path="/user/shop" element={<ShoppingCart2 />} />
           <Route path='/user/shop/checkout' element={<Checkout />} />
           <Route path='/user/logout' element={<Logout />} />
+          <Route path='/user/purchases' element={<Purchases />} />
         </Route>
         {/*-------------------------------- rutas de administador ----------------------------------*/}
         <Route path='/dashboard' element={<AdminRoute />} >

@@ -24,7 +24,7 @@ const TableUsers = ({ data }) => {
       "id_user": userid,
       "rol": value
     }
-    console.log(params);
+   
     dispatch(setUsersRol(params))
   };
 
@@ -34,7 +34,7 @@ const TableUsers = ({ data }) => {
       "id_user": userid,
       "active": checkbox
     }
-    console.log(params);
+
     dispatch(setUsersActive(params))
   }
 
