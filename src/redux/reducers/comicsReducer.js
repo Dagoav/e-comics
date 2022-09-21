@@ -3,7 +3,6 @@ const initialState = {
   comics_filter: [],
   issues: [],
   comic: {},
-  comics_filter: [],
   issues_sorting: [],
   filters: false,
   loading: true,
@@ -64,33 +63,17 @@ const comicsReducer = (state = initialState, action) => {
 
     ///-------------Filtros
     case "FILTER_COMIC_FOR_PUBLISHERS":
-      const allpubli = state.comics_filter
-      const filterByP = allpubli.filter(p => {
-        if(!p.publisher) return undefined
-        return p.publisher.includes(action.payload)
-      })
       return{
         ...state,
-        comics: filterByP
+        comics_filter: action.payload
       }
 
     case "ORDER_NAME":
       // console.log(state.comics_filter, "soy 70")
       // console.log(action.payload)
-      const sortedArray = action.payload === 'Asc' ?
-        state.comics.sort((a, b) => {
-          if (a.name > b.name)return 1;
-          if (b.name > a.name)return -1;
-          return 0;
-        }) :
-        state.comics.sort(function(a, b) {
-          if (a.name > b.name)return -1;
-          if (b.name > a.name)return 1;
-          return 0;
-        })
       return {
         ...state,
-        comics: sortedArray
+        comics_filter: [...action.payload]
       }
 
     case "FILTER_FOR_RELEASE":
