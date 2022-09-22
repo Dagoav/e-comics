@@ -56,7 +56,7 @@ const UploadComic = () => {
   }
 
   return (
-    <div className="mainAdm-users">
+    <div className="mainAdm">
       <h2>Upload Comic</h2>
       <Form noValidate validated={validated} onSubmit={handleSubmit(onSubmit)}>
         <Row>
