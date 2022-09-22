@@ -65,7 +65,7 @@ const Payment = () => {
                     title: 'PAYMENT SUCCESSFUL!',
                     icon: 'success',
                     confirmButtonText: 'close'
-                  })
+                })
 
                 const userEmail = await JSON.parse(localStorage.getItem('email'))
                 if (userEmail) {
@@ -91,13 +91,13 @@ const Payment = () => {
             // Error en el pago, ej sin fondos
 
             // alert(error.response.data.error)
-             setProcessing(false);
+            setProcessing(false);
             Swal.fire({
                 title: 'Error!',
                 text: (error.response.data.error),
                 icon: 'error',
                 confirmButtonText: 'close'
-              })
+            })
         }
     }
 
@@ -110,6 +110,7 @@ const Payment = () => {
     <div className='contenedorFonfo'>
         <form id="payment-form" onSubmit={handleSubmit}>
             <input
+            className='inputpayment'
                 type="text"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -119,8 +120,9 @@ const Payment = () => {
             <button
                 disabled={processing || disabled || succeeded}
                 id="submit"
+                className='btn_payment'
             >
-            <div className='butoncompra'  >
+            <div className='butoncompra_payment'  >
                 <span id="button-text">
                 {processing ? (
                     <div className="spinner" id="spinner"></div>
@@ -150,8 +152,8 @@ const Payment = () => {
                     {/* <button className='undo'> undo</button> */}
                     
             </form>
-                    <span className="material-symbols-outlined undo" onClick={() => navigate(-1)}>undo</span>
-                    <span className='undo-text' onClick={() => navigate(-1)}>Back</span>
+                    <span className="material-symbols-outlined undo_payment" onClick={() => navigate(-1)}>undo</span>
+                    <span className='undo-text_payment' onClick={() => navigate(-1)}>Back</span>
         </div>
     )
 }
