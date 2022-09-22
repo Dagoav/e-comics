@@ -73,9 +73,9 @@ function LoginApp() {
     } catch (error) {
       Swal.fire({
         title: 'Error!',
-        text: 'Usuario o contraseña incorrecta',
+        text: 'Incorrect user or password',
         icon: 'error',
-        confirmButtonText: 'cerrar'
+        confirmButtonText: 'close'
       })
     }
   }
@@ -95,26 +95,25 @@ function LoginApp() {
           {input.email.length && errors && errors.email ? (
             <span className="texterror"> {errors.email} </span>
           ) : null}
-          <MDBInput value={input.email} name="email" onChange={handleChange} wrapperClass='mb-4' label='Correo electronico' id='formControlLg' type='email' size="lg" />
+          <MDBInput value={input.email} name="email" onChange={handleChange} wrapperClass='mb-4' label='Email' id='formControlLg' type='email' size="lg" />
 
-          <MDBInput value={input.password} name="password" onChange={handleChange} wrapperClass='mb-4' label='contraseña' id='formControlLg' type='password' size="lg" />
+          <MDBInput value={input.password} name="password" onChange={handleChange} wrapperClass='mb-4' label='Password' id='formControlLg' type='password' size="lg" />
           {input.password.length && errors && errors.password ? (
             <span className="text-danger position-absolute"> {errors.password} </span>
           ) : null}
 
           <div className="d-flex justify-content-between mb-4">
-            <a href="!#">olvido su contraseña?</a>
           </div>
 
           <div className='text-center text-md-start mt-4 pt-2'>
             <Button type='submit' onClick={handleSubmit} className="mb-0 px-5" size='lg' disabled={Object.keys(errors).length === 0 ? false : true} >Login</Button>
-            <p className="small fw-bold mt-2 pt-1 mb-2">No tienes cuenta? <Link to='/singup'> <a className="link-danger">Registro</a>  </Link></p>
+            <p className="small fw-bold mt-2 pt-1 mb-2">Don't have an account? <Link to='/singup'> <a className="link-danger">sign up</a>  </Link></p>
           </div>
 
             <br />
             <br />
             <div className='textgoogle'>
-            <p >O inicia sesion con google</p>
+            <p >Continue with Google</p>
             </div>
 
 

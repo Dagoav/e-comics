@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
+
 import Modal from "react-bootstrap/Modal";
 //import Tabslogin from "./Tabslogin";
 import "./ModalLogin.css"
 import { useEffect } from "react";
-import LoginApp from "../login/login";
 import Register from "../login/Register";
-import { Link } from "react-router-dom";
+
 import "./Modalregister.css"
 
 

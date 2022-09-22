@@ -1,0 +1,82 @@
+/* .containergen{
+overflow-y:scroll;
+height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+margin-top: 60px; */
+/* background-image: url("../../assets/doomsday.jpg"); */
+/* background-image: url("../../assets/intro1.jpg"); */
+/* background-image: url("../../assets/erik-mclean-27kCu7bXGEI-unsplash.jpg");
+background-size: contain;
+} */
+/* .titlename{
+    
+    font-family:cursive;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+.titlepur{
+    background-color: rgba(217, 224, 224, 0.727);
+    color: black;
+    font-family:cursive;
+    font-size: 3em;
+}
+.contenedorcompras{
+width: 70vw;
+background-color: rgba(175, 200, 200, 0.899);
+}
+.contendorpurchases{
+display: flex;
+flex-direction: row;
+}
+.detailpurchase{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px
+    ;
+}
+
+.imgcomic{
+    width: 100px;
+    height: 150px;
+}
+.volum{
+margin-left: 20px;
+margin-right: 20px;
+}
+
+.issues{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.price{
+    margin-left: 20px;
+margin-right: 20px;
+}
+.imgcompra{
+    margin-left: 20px;
+    margin-right: 20px;
+} */
+
+
+.container-shops {
+    height: 100vh;
+    overflow-y: auto;
+    background-image: url("../../assets/intro1.jpg");
+    background-size: contain;
+    background-color: gray;
+  }
+  
+  .remove-comic {
+    color: gray;
+    padding-left: 3rem;
+  }
+  
+  .justify-content-center{
+    background-color: rgba(255, 255, 255, 0.874);
+    border-radius: 20px;
+  }

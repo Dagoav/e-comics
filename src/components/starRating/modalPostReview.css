@@ -5,6 +5,8 @@
 
 .contPost textarea {
   resize: none;
+  padding-left: 5px;
+  padding-top: 5px;
 }
 
 .modalPost .modal-content {

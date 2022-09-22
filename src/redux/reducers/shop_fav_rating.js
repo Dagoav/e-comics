@@ -1,6 +1,7 @@
 const initialState = {
   cart_shopping: [],
   favourite: [],
+  purchases: []
 };
 
 
@@ -41,6 +42,11 @@ const shop_fav_rating = (state = initialState, action) => {
         favourite: [...action.payload]
       }
 
+    case "GET_PURCHASES":
+      return{
+        ...state,
+        purchases: action.payload
+      }
     default: return state
   };
 };

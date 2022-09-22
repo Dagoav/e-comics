@@ -2,11 +2,13 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import axios from 'axios';
 import { useSelector,useDispatch } from 'react-redux';
 import { sendEmail } from '../../redux/actions/admin';
-import { processPayment, removeFromCart } from '../../redux/actions/shop_favs_rating';
+import { processPayment, removeFromCartOnly } from '../../redux/actions/shop_favs_rating';
 import { json, Link, useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 import cardStyle from './payment.css'
 import NavBar from '../navBar/Navbar';
+import Swal from 'sweetalert2';
+
 
 
 
@@ -56,27 +58,46 @@ const Payment = () => {
                     price: totalprices,
                     
                 });
-                alert("PAYMENT SUCCESSFUL!")
+
+
+                // alert("PAYMENT SUCCESSFUL!")
+                Swal.fire({
+                    title: 'PAYMENT SUCCESSFUL!',
+                    icon: 'success',
+                    confirmButtonText: 'close'
+                  })
+
                 const userEmail = await JSON.parse(localStorage.getItem('email'))
                 if (userEmail) {
                 listEmail.push(userEmail)
                 }
-                console.log(listEmail);
-                // dispatch(sendEmail(listEmail))
+
+                
+                dispatch(sendEmail(listEmail))
+
                 listEmail = []
                 elements.getElement(CardElement).clear()
 
                 const status = "Completo"
                 stateCart.map( p => dispatch(processPayment(p, card, status)))
-                stateCart.map( p => dispatch(removeFromCart(p)))
+
+                stateCart.map( p => dispatch(removeFromCartOnly(p)))
                 setProcessing(false);
+
             } else {
                 console.error("Error")
             }
         } catch (error) {
             // Error en el pago, ej sin fondos
-            alert(error.response.data.error)
-            setProcessing(false);
+
+            // alert(error.response.data.error)
+             setProcessing(false);
+            Swal.fire({
+                title: 'Error!',
+                text: (error.response.data.error),
+                icon: 'error',
+                confirmButtonText: 'close'
+              })
         }
     }
 
@@ -108,6 +129,7 @@ const Payment = () => {
                 )}
                 </span>
             </div>    
+
             </button>
             {error && (
                 <div className="card-error" role="alert">

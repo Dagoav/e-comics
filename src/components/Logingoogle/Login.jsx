@@ -20,7 +20,7 @@ export default function LoginAuth({login}) {
         method: "POST",
         data: {google: res.tokenId}
     })
-    console.log("from Google");
+   
     localStorage.setItem('token', JSON.stringify(response.data.token))
     localStorage.setItem("user", JSON.stringify(response.data.name))
     localStorage.setItem("ROL", JSON.stringify(response.data.Rol))

@@ -1,5 +1,157 @@
-.test {
-  height: 500px;
-  overflow-x: hidden;
-  background-color: antiquewhite;
+
+.titlefav{
+  color: white;
+}
+
+.namefav{
+  color: black;
+}
+
+.pgen{
+  color: black;
+}
+
+.buscandofav{
+  color: white;
+  
+}
+
+.containergeneral{
+  overflow-y:scroll;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background-image: url("../../assets/erik-mclean-27kCu7bXGEI-unsplash.jpg"); */
+  /* background-image: url("../../assets/comic_hand.jpg"); */
+  background-image: url("../../assets/intro1.jpg");
+  background-size: contain;
+  margin-top: 60px;
+  text-align: center;
+ 
+}
+.contenedor{
+  
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.744);
+  margin-top: 50px;
+  margin-bottom: 50px;
+  width: 70vw;
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 25px;
+}
+
+.contenedor .contendorfav{
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  background-color: white;
+  border-radius: 20px;
+  height: 480px;
+  width: 260px;
+  margin-top: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+
+}
+
+.contenedor .img{
+  margin-top: auto;
+  width: 210px;
+  height: 300px;
+}
+
+.botonesfav{
+  display: flex;
+  margin-left: 16px;
+}
+
+.eliminar{
+  text-align: right;
+  width: 75px;
+  height: 40px;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  overflow: hidden;
+  border-radius: 5px;
+  border: none;
+  background-color: #ef233c;
+  margin-right: 5px;
+  margin-bottom: 10px;
+  
+}
+.eliminar {
+  border-radius: 5px;
+  padding-right: 24px;
+  padding-left:8px;
+}
+.eliminar{
+  opacity: 1;
+  right: 10px;
+}
+.eliminar :hover {
+  background-color: #4CAF50; /* Green */
+  color: rgb(65, 74, 198);
+}
+
+.botonbuy{
+  text-align: end;
+  width: 75px;
+  height: 40px;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  overflow: hidden;
+  border-radius: 5px;
+  border: none;
+  background-color: #068613;
+  margin-right: 5px;
+  margin-bottom: 10px;
+  
+}
+.botonbuy {
+  border-radius: 5px;
+  padding-right: 24px;
+  padding-left:8px;
+}
+.botonbuy{
+  opacity: 1;
+  right: 10px;
+}
+.botonbuy :hover {
+  background-color: #4CAF50; /* Green */
+  color: rgb(65, 74, 198);
+}
+
+.textos{
+  text-align: center;
+}
+
+
+.titulonombre{
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+.titlefav{
+  color: white;
+  font-family:cursive;
+  font-size: 3em;
 }

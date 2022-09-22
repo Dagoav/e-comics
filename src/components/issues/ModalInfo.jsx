@@ -60,7 +60,7 @@ const ModalInfoIssue = ({ open, data, theme }) => {
           {/* <Link to={"/shop"}> */}
           <Link to={rol === "USER" ? '/user/shop' : '/login'}>
             <Button variant="danger" onClick={handleClose}>
-              ir a carrito
+              Buy now
             </Button>
           </Link>
         </Modal.Footer>

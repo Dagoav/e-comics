@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart, emptyCart } from "../../redux/actions/shop_favs_rating";
-
+import Button from 'react-bootstrap/Button'
 import { Link } from "react-router-dom";
 import NavBar from "../../components/navBar/Navbar";
 import {
@@ -14,32 +14,70 @@ import {
   MDBTableHead,
 } from "mdb-react-ui-kit";
 import "./MB_Shop.css"
+import Swal from "sweetalert2";
 
 const ShoppingCart2 = () => {
-  const cart_shopping = JSON.parse(localStorage.getItem('carrito'))
+  const cart_shopping = useSelector(state => state.shop_fav_rating.cart_shopping)
+  //JSON.parse(localStorage.getItem('carrito'))
   console.log(cart_shopping);
   const dispatch = useDispatch()
   let totalPrice = 0;
+  const [compras, setCompras] = useState(false)
 
   const removeProduct = (issue) => {
-    var confirm = window.confirm(`Remove ${issue.name || 'this issue'} from the Cart?`)
-    if (confirm) {
-      let carrito = cart_shopping.filter(c => c.id !== issue.id)
-      if (carrito.length === 0) {
-        localStorage.removeItem("carrito")
-      } else {
-        localStorage.setItem("carrito", JSON.stringify(carrito))
+    // var confirm = window.confirm(`Remove ${issue.name || 'this issue'} from the Cart?`)
+    Swal.fire({
+      title: (`Remove ${issue.name || 'this issue'} from the Cart?`),
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'your comic has been removed from your shopping list',
+          'success'
+        )
+        let carrito = cart_shopping.filter(c => c.id !== issue.id)
+        if (carrito.length === 0) {
+          localStorage.removeItem("carrito")
+        } else {
+          localStorage.setItem("carrito", JSON.stringify(carrito))
+        }
+        dispatch(removeFromCart(issue))
       }
-      dispatch(removeFromCart(issue))
-    }
+    })
+    // if (confirm) {
+    // }
   }
 
+
   const removeAll = () => {
-    var confirm = window.confirm(`Are you sure you want to empty your shopping cart?`)
-    if (confirm) {
-      localStorage.removeItem("carrito")
-      cart_shopping.map(p => dispatch(removeFromCart(p)))
-    }
+    // var confirm = window.confirm(`Are you sure you want to empty your shopping cart?`)
+    Swal.fire({
+      title: 'Are you sure?',
+      text: (`Are you sure you want to empty your shopping cart?`),
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, empty!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'your shopping cart is empty.',
+          'success'
+        )
+        localStorage.removeItem("carrito")
+        cart_shopping.map(p => dispatch(removeFromCart(p)))
+      }
+    })
+    // if (confirm) {
+    // }
   }
 
   return (
@@ -62,6 +100,12 @@ const ShoppingCart2 = () => {
                     <th scope="col">Remove</th>
                   </tr>
                 </MDBTableHead>
+                {/* <button onClick={removeAll}>
+                  Empty cart
+                </button> */}
+                   <Button className="btn-reviews" variant="primary" onClick={removeAll} width={50} >
+                   Empty cart
+                   </Button>
                 {
                   cart_shopping.map(product => {
                     totalPrice += product.price
@@ -98,8 +142,10 @@ const ShoppingCart2 = () => {
                           </td>
                           <td className="align-middle">
                             <p className="mb-0" style={{ fontWeight: "500" }}>
-                              <span className="material-symbols-outlined remove-comic">
-                                disabled_by_default
+                              <span className="material-symbols-outlined remove-comic " >
+                                <button className="btn btn-danger "  onClick={() => removeProduct(product)}>
+                                  X
+                                </button>
                               </span>
                             </p>
                           </td>
@@ -116,7 +162,7 @@ const ShoppingCart2 = () => {
               <MDBBtn size="lg">
                 <div className="px-2">
                   <span className="px-2">Checkout</span>
-                  <span>$26.48</span>
+                  <span>${Number(totalPrice).toFixed(2)}</span>
                 </div>
               </MDBBtn>
             </MDBRow>
