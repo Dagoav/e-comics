@@ -65,16 +65,16 @@ const Payment = () => {
                     confirmButtonText: 'close'
                 })
 
-                // const userEmail = await JSON.parse(localStorage.getItem('email'))
-                // if (userEmail) {
-                // listEmail.push(userEmail)
-                // }
+                const userEmail = await JSON.parse(localStorage.getItem('email'))
+                if (userEmail) {
+                    listEmail.push(userEmail)
+                }
 
                 console.log(email);
-                dispatch(sendEmail([email]))
+                dispatch(sendEmail(listEmail))
+                
                 setEmail(() => "")
-
-                // listEmail = []
+                listEmail = []
                 elements.getElement(CardElement).clear()
 
                 const status = "Completo"
@@ -108,13 +108,13 @@ const Payment = () => {
     return (
         <div className='contenedorFonfo'>
             <form id="payment-form" onSubmit={handleSubmit}>
-                <input
+                {/* <input
                     className='inputpayment'
                     type="text"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter email address"
-                />
+                /> */}
                 <CardElement id="card-element" options={cardStyle} onChange={handleChange} />
                 <button
                     disabled={processing || disabled || succeeded}
