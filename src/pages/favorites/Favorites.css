@@ -65,6 +65,7 @@
   margin-top: auto;
   width: 210px;
   height: 300px;
+  border-radius: 10px;
 }
 
 .botonesfav{
@@ -101,9 +102,9 @@
   opacity: 1;
   right: 10px;
 }
-.eliminar :hover {
-  background-color: #4CAF50; /* Green */
-  color: rgb(65, 74, 198);
+.eliminar:hover {
+  background-color: blue; /* Green */
+  color: white;
 }
 
 .botonbuy{
@@ -135,9 +136,9 @@
   opacity: 1;
   right: 10px;
 }
-.botonbuy :hover {
-  background-color: #4CAF50; /* Green */
-  color: rgb(65, 74, 198);
+.botonbuy:hover {
+  background-color: blue; /* Green */
+  color: white;
 }
 
 .textos{
@@ -154,4 +155,18 @@
   color: white;
   font-family:cursive;
   font-size: 3em;
+}
+.namevolume{
+  margin-top: 10px;
+  font-size:20px;
+  font-family:cursive;
+}
+.nameissue{
+  font-size:20px;
+  font-family: cursive;
+}
+.privevalue{
+  margin-bottom: 10px;
+  font-size:20px;
+  font-family: cursive;
 }

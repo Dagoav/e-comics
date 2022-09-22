@@ -78,12 +78,12 @@ function Register() {
       })
 
       Swal.fire({
-        position: 'top-end',
         icon: 'success',
         title: 'Registered user successfully',
         showConfirmButton: false,
         timer: 1500
       })
+      navigate('/login')
      
     
     // } catch (error) {
@@ -94,7 +94,6 @@ function Register() {
     //     confirmButtonText: 'cerrar'
     //   })
     // }
-    navigate('/login')
   };
 
 
