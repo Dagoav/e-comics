@@ -77,7 +77,7 @@ const Payment = () => {
                 elements.getElement(CardElement).clear()
 
                 const status = "Completo"
-                navigate("/user/purchases")
+                navigate("/user/home")
                 stateCart.map(p => dispatch(processPayment(p, card, status)))
 
                 stateCart.map(p => dispatch(removeFromCartOnly(p)))
