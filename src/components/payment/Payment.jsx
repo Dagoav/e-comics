@@ -10,11 +10,9 @@ import NavBar from '../navBar/Navbar';
 import Swal from 'sweetalert2';
 
 
-
-
 const Payment = () => {
     const backendURL = process.env.REACT_APP_API;
-    const url = `${backendURL}/shop/checkout`
+    const url = `${backendURL}/shop/`
     const stateCart = useSelector(state => state.shop_fav_rating.cart_shopping)
     let listEmail = []
     const stripe = useStripe()
