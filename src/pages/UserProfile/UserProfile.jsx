@@ -1,17 +1,21 @@
 
 import React from "react";
-import { Link } from "react-router-dom";
 import NavBar from "../../components/navBar/Navbar";
 import Favorites from "../favorites/Favorites";
-
+import './userprofile.css'
 
 function UserProfile() {
   return (
-    <div>
-
-      <NavBar/>
-
-      <Favorites/>
+    <div >
+    <NavBar/>
+     
+     {/* <div className="titulocomics">
+     <h1> <b>YOUR FAVORITE COMICS</b>  </h1>
+     </div> */}
+    
+    <Favorites/>
+      
+        
     </div>
      
   );

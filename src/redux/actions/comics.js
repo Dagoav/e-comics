@@ -34,15 +34,27 @@ export const volumeDetail = (id) => {
 
 export const getIssues = (id) => {
   return async (dispatch) => {
-    const issues = await axios({
-      method: 'get',
-      url: `${backendURL}/comics/issues/${id}`,
-    })
+    let ratings = null
+    try {
+      const issues = await axios({
+        method: 'get',
+        url: `${backendURL}/comics/issues/${id}`,
+      })
 
-    return dispatch({
-      type: "GET_ISSUES",
-      payload: issues.data
-    })
+      if (issues) {
+        ratings = await axios({
+          method: 'get',
+          url: `${backendURL}/comics/issues/rating/${id}`,
+        })
+      }
+
+      return dispatch({
+        type: "GET_ISSUES",
+        payload: ratings.data
+      })
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 
@@ -66,6 +78,49 @@ export const reset_comicState = (payload) => {
   }
 }
 
+export function filterPublishers(payload, comics) {
+  return (dispatch) => {
+
+    const allpubli = comics
+    const filterByP = allpubli.filter(p => {
+      if(!p.publisher) return undefined
+        return p.publisher.includes(payload)
+    })
+
+    return dispatch ({
+    type: "FILTER_COMIC_FOR_PUBLISHERS",
+    payload: filterByP
+      })
+    }}
+ 
+export function filterAD(order, comics) {
+  const sortedArray = order === 'Asc' ?
+        comics.sort((a, b) => {
+          if (a.name > b.name)return 1;
+          if (b.name > a.name)return -1;
+          return 0;
+        }) :
+        comics.sort(function(a, b) {
+          if (a.name > b.name)return -1;
+          if (b.name > a.name)return 1;
+          return 0;
+        })
+    return (dispatch) => {
+      return dispatch({
+        type: "ORDER_NAME",
+        payload: sortedArray
+      })
+    }
+  }
+
+export function filterForRelease(payload) {
+  const filtrando = payload.slice(0, 10)
+  console.log(filtrando)
+      return {
+        type: "FILTER_FOR_RELEASE",
+        payload
+      }
+    }
 
 
     export function clear(){
@@ -124,12 +179,12 @@ export function creategame(data) {
 
 //77//77--------------------Filtros-----
 
-export function filterPublishers(payload){
-console.log(payload)
-  return {
-  type:"FILTER_COMIC_FOR_PUBLISHERS",
-  payload
-  }}
+// export function filterPublishers(payload){
+// console.log(payload)
+//   return {
+//   type:"FILTER_COMIC_FOR_PUBLISHERS",
+//   payload
+//   }}
 
   export function FilterAD(payload){
     console.log(payload)

@@ -13,51 +13,52 @@ import "./Account.css"
 
 
 const Account = () => {
-  const {logout} = useAuthContext();
+  const { logout } = useAuthContext();
   // const dispatch = useDispatch();
   const navigate = useNavigate()
-  const { isAuthenticated } = useAuth0()  
+  const { isAuthenticated } = useAuth0()
   const auth0_login = () => {
   }
-  
+
   function Logout() {
     logout()
     navigate('/home')
 
   }
   const rol = JSON.parse(localStorage.getItem("ROL"))
- const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true); 
+  const handleShow = () => setShow(true);
   return (
     <NavDropdown title="Account" id="navbarScrollingDropdown">
-      <NavDropdown.Item className='d-flex' onClick={() => auth0_login()}>
-        <div className='me-4'>
-          <div className='d-flex' >
-            <span className="material-symbols-outlined" >
-              account_circle
-            </span>
-            <span className='ms-2'>
-              {/* <Login /> */}
+      <div className='login-style d-flex ps-3'>
+        <span className="material-symbols-outlined" >
+          account_circle
+        </span>
+        <span className='ms-2'>
+          {/* <Login /> */}
 
-              {isAuthenticated ? (
-                <>
-                  <Profile />
-                </>
-              ) : (
+          {isAuthenticated ? (
+            <>
+              <Profile />
+            </>
+          ) : (
 
               localStorage.getItem("token")?
-              <Link to = {rol === "ADMIN"? "/admin" : '/user'}> 
-              {localStorage.getItem("user").replace(/['"]+/g, '')}
-              </Link>:
+              <span>
+                {localStorage.getItem("user").replace(/['"]+/g, '')}
+              </span>:
+              <Link to={'/login'}>
+                <span>login</span>
+              </Link>
 
-              <ModalLogin/>
 
-              )}
-            </span>
-          </div>
-        </div>
-      </NavDropdown.Item>
+
+              // <ModalLogin/>
+
+          )}
+        </span>
+      </div>
 
       {/* loa favoritoas van a estar en el panel de administracion  y el libro no tiene funcionalidad*/}
       {/* <NavDropdown.Item href="#action5" className='d-flex'>
@@ -72,22 +73,45 @@ const Account = () => {
       </NavDropdown.Item> */}
 
       {/* si se da click al boton con el nombre ya lleva el panel, ya sea de usuario o de admin */}
-      {/* <NavDropdown.Item href="#" className='d-flex'>
+      <NavDropdown.Item href="#" className='d-flex'>
+      {rol&&
         <span className="material-symbols-outlined">
           dashboard
         </span>
+      }
+      {rol&&
         <span className='ms-2'>
-          <Link to='/dashboard/admin'>
-            <button>Dashboard
-            </button>
+          <Link to='/user/purchases'>
+           <p>My comics</p>
           </Link>
         </span>
+        }
+        
 
-      </NavDropdown.Item> */}
+      </NavDropdown.Item>
+      
+      <NavDropdown.Item href="#" className='d-flex'>
+      {rol&&
+        <span className="material-symbols-outlined">
+          dashboard
+        </span>
+      }
+      {rol&&
+          <span className='ms-2'>
+          <Link to='/user/fav'>
+           <p>Favorites</p>
+          </Link>
+        </span>
+      }
+        
+      
+      
+      </NavDropdown.Item>
       <NavDropdown.Divider />
       <NavDropdown.Item onClick={() => Logout()} className='d-flex'>
-    
-          {/* {rol ? 
+
+
+        {/* {rol ? 
           <Link to = '/user/logout'  >
           <span className='ms-2 '>
           Exit
@@ -96,14 +120,16 @@ const Account = () => {
           null
           }
          */}
-          {rol &&
+         <div>
+        {rol &&
           <span className='ms-2 '>
-          Exit
+            Exit
           </span>}
-        
-        
-          
-        
+         </div>
+
+
+
+
       </NavDropdown.Item>
     </NavDropdown >
   )

@@ -1,3 +1,15 @@
+/* #modalLogin .modal {
+
+} */
+
+.modal-login {
+  background: url('../../assets/dev-d2Py_uhXJQo-unsplash.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: left left;
+  opacity: 0.70 !important;
+}
+
 .tabs-login-container {
   width: 100%;
 }

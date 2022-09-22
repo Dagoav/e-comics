@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addComic } from "../../../redux/actions/admin";
 
@@ -9,7 +9,8 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Alert from "react-bootstrap/Alert";
 import Button from 'react-bootstrap/Button';
-import "./UploadComic.css"
+import { getCharacters } from "../../../redux/actions/filters";
+import "./UploadComic.css";
 
 const UploadComic = () => {
   const dispatch = useDispatch();
@@ -17,17 +18,39 @@ const UploadComic = () => {
   const [validated, setValidated] = useState(false);
   const [show, setShow] = useState(true);
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const regex_url = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
+  // const regex_url = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
+ 
+  const [imagen, setImagen] = useState('');
+  const [loading, setLoading] = useState(false);
+
+
+ const uploadImage = async (e) => {
+   const files = e.target.files;
+   const data = new FormData();
+  data.append("file", files[0]);
+  data.append("upload_preset", "comics")
+  setLoading(true)
+  const res = await fetch (
+    "https://api.cloudinary.com/v1_1/det9kofa5/image/upload",
+    {
+      method: "POST",
+      body: data,
+    }
+  )
+  const file = await res.json()
+  setImagen(file.secure_url)
+  setLoading(false)
+  }
+
 
 
   const onSubmit = (values) => {
-    console.log({ values });
     setShow(true)
     setValidated(true);
 
     if (Object.entries(errors).length === 0) {
-      console.log("no erros");
-      dispatch(addComic(values))
+      const data = {values, imagen}
+      dispatch(addComic(data))
     }
   }
 
@@ -55,13 +78,11 @@ const UploadComic = () => {
             <Form.Label>Image</Form.Label>
             <Form.Control
               required
-              type="text"
+              type="file"
               placeholder="https: ..."
-              defaultValue={"https://kbimages1-a.akamaihd.net/fdc54578-b6e4-401a-a1c9-1116ca5541b3/1200/1200/False/marvel-comics-5.jpg"}
-              autoComplete="off"
-              {...register("image", { required: true, pattern: { value: regex_url, message: "URL Format is required" } })}
-
+              onChange={uploadImage}
             />
+            {loading ? (<h3>Loading image...</h3>) : (<img src={imagen} alt="" style={{width: "100px"}}/>)}
             {errors.image && <span className="errors">{errors.image.message || "This field is required"}</span>}
             < Form.Control.Feedback > Looks good!</Form.Control.Feedback>
           </Form.Group>
@@ -97,13 +118,13 @@ const UploadComic = () => {
 
           {/*  Released */}
           <Form.Group as={Col} md="4" className="my-2">
-            <Form.Label>Released</Form.Label>
+            <Form.Label>Release</Form.Label>
             <Form.Control
               required
               type="date"
               placeholder="26 Sep 2020"
               autoComplete="off"
-              {...register("released", { required: true })}
+              {...register("release", { required: true })}
             />
             {errors.released && <span className="errors">This field is required</span>}
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>

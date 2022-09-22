@@ -11,7 +11,7 @@ import LandingPage from './pages/LandingPage/LandingPage.jsx';
 import DashboardNav from './pages/dashboard/dashboardNav/DashboardNav';
 
 import Favorites from './pages/favorites/Favorites';
-import Checkout from './components/pagos/Checkout'
+import Checkout from './components/payment/Payment'
 import Admin from './pages/dashboard/admin/Admin';
 import Users from './pages/dashboard/users/Users'
 import Orders from './pages/dashboard/orders/Orders';
@@ -23,8 +23,13 @@ import { UserRoute } from './components/routes/UserRoute'
 import { PublicRoute } from './components/routes/PublicRoute'
 import { AdminRoute } from './components/routes/AdminRoute'
 import Logout from './components/login/Logout';
-import Tabslogin from './components/account/Tabslogin';
+//import Tabslogin from './components/account/Tabslogin';
 import { Notfound } from './components/NotFound/Nofound';
+import ModalLogin from './components/account/ModalLogin';
+import ModalRegister from './components/account/ModalRegister';
+import Purchases from './pages/UserProfile/Purchases';
+
+import ShoppingCart2 from './pages/shop/MB_Shop'
 
 function App() {
   return (
@@ -33,23 +38,24 @@ function App() {
       <Routes>
         <Route path='/' element={<PublicRoute />}>
           <Route path="/" element={<LandingPage />} />
-          <Route path='/login' element={<Tabslogin />} />
-          <Route path='/singup' element={<Register />} />
+          <Route path='/login' element={<ModalLogin />} />
+          <Route path='/singup' element={<ModalRegister />} />
           <Route path="/home" element={<Home />} />
           <Route path="/cardDetail/:id" element={<CardDetail />} />
         </Route>
         {/* --------------------------------rutas usuario ----------------------------------------- */}
 
         <Route path='/user' element={<UserRoute />}>
-          <Route path="/user/landing" element={<LandingPage />} />
           <Route path='/user' element={<UserProfile />} />
+          <Route path="/user/landing" element={<LandingPage />} />
           <Route path="/user/home" element={<Home />} />
           <Route path='/user/cardDetail/:id' element={<CardDetail />} />
           <Route path='/user/fav' element={<Favorites />} />
           <Route path='/user/users' element={<Users />} />
-          <Route path="/user/shop" element={<Shop />} />
-          <Route path='/user/checkout' element={<Checkout />} />
+          <Route path="/user/shop" element={<ShoppingCart2 />} />
+          <Route path='/user/shop/checkout' element={<Checkout />} />
           <Route path='/user/logout' element={<Logout />} />
+          <Route path='/user/purchases' element={<Purchases />} />
         </Route>
         {/*-------------------------------- rutas de administador ----------------------------------*/}
         <Route path='/dashboard' element={<AdminRoute />} >
