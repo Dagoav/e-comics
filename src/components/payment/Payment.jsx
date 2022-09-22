@@ -82,7 +82,7 @@ const Payment = () => {
                 stateCart.map(p => dispatch(removeFromCartOnly(p)))
                 setProcessing(false);
                 
-                navigate("/user/home")
+                //navigate("/user/home")
 
             } else {
                 console.error("Error")
