@@ -58,12 +58,18 @@ function Issue({ volume_id }) {
     dispatch(sortIssues(ordenarPor, issuesDefault))
   },[ordenarPor])
 
+  const rol = JSON.parse(localStorage.getItem("ROL"))
   return (
     <div className='container'>
       <div className='row justify-content-center px-5 mb-5'>
-        <button onClick={buyAll} className='btn btn-light btn-lg'>
-          BUY ALL COMICS!
-        </button>
+        {
+          rol === "USER" ?
+            <button onClick={buyAll} className='btn btn-light btn-lg'>
+              BUY ALL COMICS!
+            </button>
+            :
+            null
+        }
       </div> <br /> <br />
       <div className='row justify-content-center px-5 mb-5'>
           <h2 className='text-center'>

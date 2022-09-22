@@ -15,6 +15,7 @@ import {
 } from "mdb-react-ui-kit";
 import "./MB_Shop.css"
 import Swal from "sweetalert2";
+import cartIcon from '../../assets/cart2.png'
 
 const ShoppingCart2 = () => {
   const cart_shopping = useSelector(state => state.shop_fav_rating.cart_shopping)
@@ -38,7 +39,7 @@ const ShoppingCart2 = () => {
       if (result.isConfirmed) {
         Swal.fire(
           'Deleted!',
-          'your comic has been removed from your shopping list',
+          'The comic has been removed from your shopping list',
           'success'
         )
         let carrito = cart_shopping.filter(c => c.id !== issue.id)
@@ -69,7 +70,7 @@ const ShoppingCart2 = () => {
       if (result.isConfirmed) {
         Swal.fire(
           'Deleted!',
-          'your shopping cart is empty.',
+          'Your shopping cart is empty.',
           'success'
         )
         localStorage.removeItem("carrito")
@@ -100,10 +101,14 @@ const ShoppingCart2 = () => {
                     <th scope="col">Remove</th>
                   </tr>
                 </MDBTableHead>
-
+                {
+                  cart_shopping.length > 0 ? 
                    <Button className="btn-reviews"  variant="primary"    onClick={removeAll} width={50} >
-                   Empty cart
+                    Empty cart
                    </Button>
+                   :
+                   <div></div>
+                }
                 {
                   cart_shopping.map(product => {
                     totalPrice += product.price
@@ -155,16 +160,34 @@ const ShoppingCart2 = () => {
               </MDBTable>
             </MDBCol>
           </MDBRow>
-          <Link to='/user/shop/checkout' >
-            <MDBRow className="payment-btn">
-              <MDBBtn size="lg">
-                <div className="px-2">
-                  <span className="px-2">Checkout</span>
-                  <span>${Number(totalPrice).toFixed(2)}</span>
-                </div>
-              </MDBBtn>
-            </MDBRow>
-          </Link>
+                {
+                  totalPrice > 0 ?
+                      
+                    <Link to='/user/shop/checkout' >
+                      <MDBRow className="payment-btn">
+                        <MDBBtn size="lg">
+                          <div className="px-2">
+                            <span className="px-2">Checkout</span>
+                            <span>${Number(totalPrice).toFixed(2)}</span>
+                          </div>
+                        </MDBBtn>
+                      </MDBRow>
+                    </Link>
+
+                    : 
+
+				            <div class="row">
+            					<div class="card-body cart">
+                        <div class="col-sm-12 empty-cart-cls text-center">
+                          <img src={cartIcon} width="130" height="130" class="img-fluid mb-4 mr-3" />
+                          <h3><strong>Your Cart is Empty</strong></h3>
+                          <Link to='/user/home'>
+                            <button class="btn btn-primary cart-btn-transform m-3" data-abc="true">Continue Shopping</button>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                }
         </MDBContainer>
       </section>
     </div>
