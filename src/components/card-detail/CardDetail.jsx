@@ -30,17 +30,13 @@ const CardDetail = () => {
       // format and add description
       const desc_content = document.getElementById("desc")
       const removeHref = async (text) => {
-        const pattern = /href="(.*?)"/g
-        return await text.replaceAll(pattern, 'href="javascript:()=> false;" disabled="disabled"');
+        if (text.includes("<")) {
+          const pattern = /href="(.*?)"/g
+          return await text.replaceAll(pattern, 'href="javascript:()=> false;" disabled="disabled"');
+        } else return await text
       }
 
-      if (description.includes("<")) {
-        removeHref(description).then(result => {
-          desc_content.innerHTML = result
-        })
-      } else {
-        desc_content.innerHTML = description;
-      }
+      desc_content.innerHTML = description.length > 0 ? removeHref(description).then(result => result) : "";
 
       // set theme
       const description_bkg = document.getElementById("description-detail");
