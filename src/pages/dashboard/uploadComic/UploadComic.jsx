@@ -51,8 +51,8 @@ const UploadComic = () => {
     if (Object.entries(errors).length === 0) {
       const data = { values, imagen }
       dispatch(addComic(data))
+      window.location.reload(false);
     }
-    window.location.reload(false);
   }
 
   return (
