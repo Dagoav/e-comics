@@ -39,10 +39,10 @@ const Footer = () => {
                     <h6>Daniel Gonzalez Avila</h6>
                     <img src={Daniel} className="imgRedonda mt-1" alt='' />
                     <div className="containerIcons">
-                      <a className="github" href='https://www.google.com.ar'>
+                      <a className="github" href='https://github.com/Dagoav'>
                         <BsGithub />
                       </a>
-                      <a href='https://www.linkedin.com/in/sergio-moyano-a-1425b6a/'>
+                      <a href='https://www.linkedin.com/in/daniel-gonzalez-avila-75770b234/'>
                         <BsLinkedin />
                       </a>
                     </div>
@@ -68,7 +68,7 @@ const Footer = () => {
                       <a className="github" href='https://github.com/juank27ra'>
                         <BsGithub />
                       </a>
-                      <a href='https://www.linkedin.com/in/sergio-moyano-a-1425b6a/'>
+                      <a href='https://www.linkedin.com/in/juan-carlos-ramirez-pinilla-a8518077/'>
                         <BsLinkedin />
                       </a>
                     </div>
@@ -81,7 +81,7 @@ const Footer = () => {
                       <a className="github" href='https://github.com/Ankara-mg'>
                         <BsGithub />
                       </a>
-                      <a href='https://www.linkedin.com/in/sergio-moyano-a-1425b6a/'>
+                      <a href='https://www.linkedin.com/in/sol-rom%C3%A1n-9a4b55221/'>
                         <BsLinkedin />
                       </a>
                     </div>
