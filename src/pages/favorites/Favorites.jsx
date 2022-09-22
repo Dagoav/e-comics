@@ -36,10 +36,10 @@ export default function Favorites(comic) {
         {
             favourite.map((comics, i) => {
                 return (
-                    <div key={i} > 
-                    <h1>{comics.name }</h1>
-                        <img src= {comics.image} width="400px" height="240px" alt=""/> 
-                        <h4>volume: {comics.volume_id}</h4>
+                    <div className='center' key={i} > 
+                    <h1 >{comics.name }</h1>
+                        <img src= {comics.image} width="200px" height="140px" alt=""/> 
+                        <h4   >volume: {comics.volume_id}</h4>
                         <h4>issues: {comics.issue_number}</h4>
                         <h4>price: {(comics.price).toFixed(2)}</h4> 
                     <button onClick={() => removeHandler(comics)}>❌</button> 

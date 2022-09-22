@@ -11,7 +11,7 @@ import "./CardsGallery.css"
 
 const CardsGallery = () => {
   const dispatch = useDispatch();
-  let currentPage = useSelector(state => state.filters.currentPage);
+  let currentPage = useSelector(state => state.comicsReducer.currentPage);
   // eslint-disable-next-line no-unused-vars
   let [comicPerPage, setComicPerPage] = useState(12)
   let comics = useSelector((state) => state.comicsReducer.comics);
@@ -19,15 +19,8 @@ const CardsGallery = () => {
   let indexOfLastComic = currentPage * comicPerPage;
   let indexOfFirstComic = indexOfLastComic - comicPerPage;
   let currentComic = comics.slice(indexOfFirstComic, indexOfLastComic);
-  const isFilter = useSelector(state => state.filters.isFilter)
 
-  useEffect(() => {
-    dispatch(reset_comicState())
-    if (isFilter) {
-      dispatch(getAllVolumes())
-    }
 
-  }, [dispatch, isFilter])
 
 
   const paginado = pageNumber => {

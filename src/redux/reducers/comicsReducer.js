@@ -5,6 +5,12 @@ const initialState = {
   comicsFilter: [],
   loading: true,
   loading_issues: true,
+  characters: [],
+    publishers: [],
+    
+    isFilter: true,
+    currentPage: 1,
+    
 };
 
 
@@ -13,7 +19,7 @@ const comicsReducer = (state = initialState, action) => {
     case "GET_ALL_COMICS":
       return {
         ...state,
-        isFilter:action.payload,
+        isFilter:action.filter,
         comics: action.payload,
         comicsFilter: action.payload,
         loading: false
@@ -75,10 +81,10 @@ const comicsReducer = (state = initialState, action) => {
           }
 
           case "FILTER_A_D":
-            const allGames2 = state.comicsFilter
+            const allComic = state.comicsFilter
           
               let  sortedArray= action.payload === "asc" ?
-              allGames2.sort( function (a,b){
+              allComic.sort( function (a,b){
                 if(a.name > b.name ){
                     return 1;
                 }
@@ -87,7 +93,7 @@ const comicsReducer = (state = initialState, action) => {
                 }
                 return 0;
               }):
-              allGames2.sort(function (a,b){
+              allComic.sort(function (a,b){
                 if(a.name > b.name ){
                     return -1;
                 }
@@ -98,14 +104,14 @@ const comicsReducer = (state = initialState, action) => {
               })
               return{
                 ...state,
-              comics:sortedArray
+              comicsFilter:sortedArray
 
               }
 
               case "FILTER_FOR_RELEASE":
-                const  allGames4= state.comicsFilter
+                const  allComic2= state.comicsFilter
                 // all[Countries2.sort(function (num1 = 1, num2= 2){
-                  const  createdFilter = action.payload ==="release next 50`s" ? allGames4.filter(v=>v.release     >=  "1950-01-01"):allGames4.filter(v => v.release <= "1943-01-01")
+                  const  createdFilter = action.payload ==="release next 50`s" ? allComic2.filter(v=>v.release     >=  "1950-01-01"):allComic2.filter(v => v.release <= "1943-01-01")
                 //     if(num1.release > num2.release){
                 //         return -1;
                 //     }
@@ -118,6 +124,31 @@ const comicsReducer = (state = initialState, action) => {
                     ...state,
                     comics:createdFilter
                 }
+
+
+                case "GET_CHARACTERS":
+                        return {
+                          ...state,
+                          characters: action.payload
+                        }
+                  
+                      case "GET_PUBLISHERS":
+                        return {
+                          ...state,
+                          publishers: action.payload
+                        }
+                  
+                      case "GET_CONCEPTS":
+                        return {
+                          ...state,
+                          concepts: action.payload
+                        }
+                        case 'SET_PAGE': {
+                          return {
+                              ...state,
+                              currentPage: action.payload
+                          }
+                      }
 
              
     default: return state
