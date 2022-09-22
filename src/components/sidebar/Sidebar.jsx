@@ -39,12 +39,12 @@ const Sidebars = ({setCurrentPage}) => {
     dispatch(getAllVolumes())
   }
 
-  function handleFilterForRelease(e) {
-    e.preventDefault();
-    if(e.target.value === 'null') return
-    dispatch(filterForRelease(e.target.value));
-    // setCurrentPage(1);
-  }
+  // function handleFilterForRelease(e) {
+  //   e.preventDefault();
+  //   if(e.target.value === 'null') return
+  //   dispatch(filterForRelease(e.target.value));
+  //   // setCurrentPage(1);
+  // }
   return (
     <div style={{ height: "100px" }}>
       <select className='w-25 m-2 p-2 border border-white rounded' onChange={e => handlePublishers(e)}>

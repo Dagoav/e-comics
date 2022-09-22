@@ -22,7 +22,7 @@ const ModalPostReview = ({ data, theme }) => {
   let localUser = localStorage.getItem("id")
 
   const [input, setInput] = useState({
-    rating: null,
+    rating: 0,
     description: '',
     ComicId: data.volume_id,
     UserId: localUser ? localUser.slice(1, -1) : "",
