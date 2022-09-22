@@ -43,9 +43,9 @@ export default function Favorites(comic) {
                                 <div>
                                 <img className='img' src= {e.image} alt="comic"/> 
                                 <div className='textos'>
-                                <h4><b> volume: {e.volume_id}</b></h4>
-                                <h4><b>issues: {e.issue_number}</b></h4>
-                                <h4><b>price: {(e.price).toFixed(2)}</b></h4> 
+                                <h4 className='namevolume'><b> volume: {e.volume_id}</b></h4>
+                                <h4 className='nameissue'><b>issues: {e.issue_number}</b></h4>
+                                <h4 className='privevalue'><b>price: {(e.price).toFixed(2)}</b></h4> 
                                 </div>
                                 </div>
                                 <div  className='botonesfav'>

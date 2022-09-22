@@ -133,7 +133,7 @@ const Payment = () => {
             </div>    
 
             </button>
-            {error && (
+                {error && (
                 <div className="card-error" role="alert">
                 {error}
                 </div>

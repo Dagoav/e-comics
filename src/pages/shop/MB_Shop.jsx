@@ -100,10 +100,8 @@ const ShoppingCart2 = () => {
                     <th scope="col">Remove</th>
                   </tr>
                 </MDBTableHead>
-                {/* <button onClick={removeAll}>
-                  Empty cart
-                </button> */}
-                   <Button className="btn-reviews" variant="primary" onClick={removeAll} width={50} >
+
+                   <Button className="btn-reviews"  variant="primary"    onClick={removeAll} width={50} >
                    Empty cart
                    </Button>
                 {
