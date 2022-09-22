@@ -29,12 +29,11 @@ const CardDetail = () => {
     if (Object.entries(comic).length > 0) {
       // format and add description
       const desc_content = document.getElementById("desc")
-      const removeHref = async (text) => {
+      const removeHref = (text) => {
         const pattern = /href="(.*?)"/g
-        return await text.replaceAll(pattern, 'href="javascript:()=> false;" disabled="disabled"');
+        return text.replaceAll(pattern, 'href="javascript:()=> false;" disabled="disabled"');
       }
-
-      desc_content.innerHTML = description ? removeHref(description).then(result => result) : "";
+      desc_content.innerHTML = description ? removeHref(description) : "";
 
       // set theme
       const description_bkg = document.getElementById("description-detail");
