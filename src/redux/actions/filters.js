@@ -6,7 +6,6 @@ const backendURL = process.env.REACT_APP_API;
 export function getCharacters() {
   return async function (dispatch) {
     var chars = await axios.get(`${backendURL}/characters`)
-    // console.log("soy actions")
     return dispatch({
       type: "GET_CHARACTERS",
       payload: chars.data
@@ -40,7 +39,6 @@ export function creategame(data) {
       "http://localhost:3000/publishers",
       data
     );
-    console.log(createUser)
   };
 }
 
@@ -144,7 +142,6 @@ export const sortIssues = (sortBy, allIssues) => dispatch => {
       })
     
     case 'issueNum':
-      console.log("ordenando por issue number")
       for(let i = 0 ; i < allIssues.length ; i++){
         menorMayor = sortedComics[i]
         for (let j = 0 ; j < allIssues.length ; j++){

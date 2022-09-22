@@ -115,7 +115,6 @@ export function filterAD(order, comics) {
 
 export function filterForRelease(payload) {
   const filtrando = payload.slice(0, 10)
-  console.log(filtrando)
       return {
         type: "FILTER_FOR_RELEASE",
         payload

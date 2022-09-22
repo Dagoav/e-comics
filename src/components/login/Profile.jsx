@@ -9,10 +9,8 @@ export default function Profile() {
 
   const { user, isAuthenticated, isLoading } = useAuth0()
   const dispatch = useDispatch()
-  console.log(useAuth0)
 
   useEffect(() => {
-    console.log(user);
     dispatch(creategame(user))
   },)
 

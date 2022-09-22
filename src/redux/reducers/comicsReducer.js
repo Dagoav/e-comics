@@ -69,8 +69,6 @@ const comicsReducer = (state = initialState, action) => {
       }
 
     case "ORDER_NAME":
-      // console.log(state.comics_filter, "soy 70")
-      // console.log(action.payload)
       return {
         ...state,
         comics_filter: [...action.payload]
@@ -79,7 +77,6 @@ const comicsReducer = (state = initialState, action) => {
     case "FILTER_FOR_RELEASE":
       const filterR = state.comics_filter
       const filterRelease = action.payload === "1990"
-      console.log(filterR)
       // comics.filter(v => v.release) : filterR.filter(v => v.release !== "1943-01-01")
   
       return {

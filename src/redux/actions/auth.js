@@ -15,7 +15,6 @@ export const getLogin = () => {
         mode: 'no-cors',
       }
     })
-    console.log(auth);
     return dispatch({
       type: "SET_AUTH",
       payload: auth.data
@@ -31,7 +30,6 @@ export function registerUser(data) {
       method: 'POST',
       data: data
     })
-    console.log(register);
   }
 }
 

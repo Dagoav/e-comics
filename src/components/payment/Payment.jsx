@@ -49,7 +49,6 @@ const Payment = () => {
 
         try {
             if(!error){
-                console.log(stateCart, "soy totalprice")
                 const { data } = await axios.post(url + 'checkout', {
                     
                     carrito: stateCart,
