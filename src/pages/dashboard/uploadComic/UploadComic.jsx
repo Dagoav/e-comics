@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addComic } from "../../../redux/actions/admin";
 
@@ -19,27 +19,27 @@ const UploadComic = () => {
   const [show, setShow] = useState(true);
   const { register, handleSubmit, formState: { errors } } = useForm();
   // const regex_url = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
- 
+
   const [imagen, setImagen] = useState('');
   const [loading, setLoading] = useState(false);
 
 
- const uploadImage = async (e) => {
-   const files = e.target.files;
-   const data = new FormData();
-  data.append("file", files[0]);
-  data.append("upload_preset", "comics")
-  setLoading(true)
-  const res = await fetch (
-    "https://api.cloudinary.com/v1_1/det9kofa5/image/upload",
-    {
-      method: "POST",
-      body: data,
-    }
-  )
-  const file = await res.json()
-  setImagen(file.secure_url)
-  setLoading(false)
+  const uploadImage = async (e) => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "comics")
+    setLoading(true)
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/det9kofa5/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    )
+    const file = await res.json()
+    setImagen(file.secure_url)
+    setLoading(false)
   }
 
 
@@ -49,9 +49,10 @@ const UploadComic = () => {
     setValidated(true);
 
     if (Object.entries(errors).length === 0) {
-      const data = {values, imagen}
+      const data = { values, imagen }
       dispatch(addComic(data))
     }
+    window.location.reload(false);
   }
 
   return (
@@ -82,7 +83,7 @@ const UploadComic = () => {
               placeholder="https: ..."
               onChange={uploadImage}
             />
-            {loading ? (<h3>Loading image...</h3>) : (<img src={imagen} alt="" style={{width: "100px"}}/>)}
+            {loading ? (<h3>Loading image...</h3>) : (<img src={imagen} alt="" style={{ width: "100px" }} />)}
             {errors.image && <span className="errors">{errors.image.message || "This field is required"}</span>}
             < Form.Control.Feedback > Looks good!</Form.Control.Feedback>
           </Form.Group>
