@@ -36,78 +36,78 @@ const Footer = () => {
                 <h5 className="text-uppercase mb-4 font-weight-bold">Developers Team</h5>
                 <div className="containerDevs">
                   <div className="containerDev">
-                    <h6>Daniel Gonzalez Avila</h6>
+                    <h6>Daniel Gonzalez Avila (bode)</h6>
                     <img src={Daniel} className="imgRedonda mt-1" alt='' />
                     <div className="containerIcons">
-                      <a className="github" href='https://github.com/Dagoav'>
+                      <a className="github" href='https://github.com/Dagoav' target="_blank">
                         <BsGithub />
                       </a>
-                      <a href='https://www.linkedin.com/in/daniel-gonzalez-avila-75770b234/'>
+                      <a href='https://www.linkedin.com/in/daniel-gonzalez-avila-75770b234/' target="_blank">
                         <BsLinkedin />
                       </a>
                     </div>
                   </div>
 
                   <div className="containerDev">
-                    <h6>Jorge Alejandro Gonzales Firigua</h6>
+                    <h6>Jorge Alejandro Gonzales Firigua (cizañas)</h6>
                     <img src={Jorge} className="imgRedonda mt-1" alt='' />
                     <div className="containerIcons">
-                      <a className="github" href='https://github.com/alejo10913'>
+                      <a className="github" href='https://github.com/alejo10913' target="_blank">
                         <BsGithub />
                       </a>
-                      <a href='https://www.linkedin.com/in/jorge-alejandro-gonzález-58398a4b'>
+                      <a href='https://www.linkedin.com/in/jorge-alejandro-gonzález-58398a4b' target="_blank">
                         <BsLinkedin />
                       </a>
                     </div>
                   </div>
 
                   <div className="containerDev">
-                    <h6>Juan Carlos Ramirez Pinilla</h6>
+                    <h6>Juan Carlos Ramirez Pinilla (capo de front)</h6>
                     <img src={Juan} className="imgRedonda mt-1" alt='' />
                     <div className="containerIcons">
-                      <a className="github" href='https://github.com/juank27ra'>
+                      <a className="github" href='https://github.com/juank27ra' target="_blank">
                         <BsGithub />
                       </a>
-                      <a href='https://www.linkedin.com/in/juan-carlos-ramirez-pinilla-a8518077/'>
+                      <a href='https://www.linkedin.com/in/juan-carlos-ramirez-pinilla-a8518077/' target="_blank">
                         <BsLinkedin />
                       </a>
                     </div>
                   </div>
 
                   <div className="containerDev">
-                    <h6>Antonella Sol Román</h6>
+                    <h6>Antonella Sol Román (la gata del código)</h6>
                     <img src={Sol} className="imgRedonda mt-1" alt='' />
                     <div className="containerIcons">
-                      <a className="github" href='https://github.com/Ankara-mg'>
+                      <a className="github" href='https://github.com/Ankara-mg' target="_blank">
                         <BsGithub />
                       </a>
-                      <a href='https://www.linkedin.com/in/sol-rom%C3%A1n-9a4b55221/'>
+                      <a href='https://www.linkedin.com/in/sol-rom%C3%A1n-9a4b55221/' target="_blank">
                         <BsLinkedin />
                       </a>
                     </div>
                   </div>
 
                   <div className="containerDev">
-                    <h6>Johan Stiven Turmeque</h6>
+                    <h6>Johan Stiven Turmeque (404)</h6>
                     <img src={Johan} className="imgRedonda mt-1" alt='' />
                     <div className="containerIcons">
-                      <a className="github" href='https://github.com/turmeque'>
+                      <a className="github" href='https://github.com/turmeque' target="_blank">
                         <BsGithub />
                       </a>
-                      <a href='https://www.linkedin.com/in/sergio-moyano-a-1425b6a/'>
+                      <a href='https://www.linkedin.com/in/sergio-moyano-a-1425b6a/' target="_blank">
                         <BsLinkedin />
                       </a>
                     </div>
                   </div>
 
                   <div className="containerDev">
-                    <h6>Sergio Daniel Moyano</h6>
+                    <h6>Sergio Daniel Moyano (Woky)</h6>
                     <img src={Sergio} className="imgRedonda mt-1" alt='' />
                     <div className="containerIcons">
-                      <a className="github" href='https://github.com/woky88'>
+                      <a className="github" href='https://github.com/woky88' target="_blank">
                         <BsGithub />
                       </a>
-                      <a href='https://www.linkedin.com/in/sergio-moyano07'>
+                      <a href='https://www.linkedin.com/in/sergio-moyano07' target="_blank">
                         <BsLinkedin />
                       </a>
                     </div>
