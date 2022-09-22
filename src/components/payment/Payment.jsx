@@ -46,8 +46,7 @@ const Payment = () => {
         totalprices = Math.floor(totalprices * 100)
 
         try {
-            if (!error) {
-                console.log(stateCart, "soy totalprice")
+            if(!error){
                 const { data } = await axios.post(url + 'checkout', {
 
                     carrito: stateCart,

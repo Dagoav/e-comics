@@ -16,7 +16,6 @@ const TableReviews = ({ data }) => {
     const params = {
       "id_review": data.id,
     }
-    console.log(params);
     dispatch(deleteReview(params))
     navigate(0);
   };

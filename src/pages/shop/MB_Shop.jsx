@@ -20,7 +20,6 @@ import cartIcon from '../../assets/cart2.png'
 const ShoppingCart2 = () => {
   const cart_shopping = useSelector(state => state.shop_fav_rating.cart_shopping)
   //JSON.parse(localStorage.getItem('carrito'))
-  console.log(cart_shopping);
   const dispatch = useDispatch()
   let totalPrice = 0;
   const [compras, setCompras] = useState(false)

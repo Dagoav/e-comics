@@ -17,8 +17,6 @@ function Issue({ volume_id }) {
     dispatch(getIssues(volume_id))
   }, [dispatch, volume_id])
 
-  console.log("sorted issues: ", issues)
-
   /**---------------------- BOTON COMPRAR TODOS ------------------------------------ */
 
   let buyAll = () => {
@@ -40,8 +38,6 @@ function Issue({ volume_id }) {
     })
 
     localStorage.setItem("carrito", JSON.stringify(carrito))
-
-    console.log(JSON.parse(localStorage.getItem('carrito')))
   }
 
   /**-------------------------------------------------------------------------- */

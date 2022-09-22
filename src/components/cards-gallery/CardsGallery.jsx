@@ -19,7 +19,6 @@ const CardsGallery = () => {
   let indexOfLastComic = currentPage * comicPerPage;
   let indexOfFirstComic = indexOfLastComic - comicPerPage;
   let currentComic = comics.slice(indexOfFirstComic, indexOfLastComic);
-  // console.log(comics);
 
   /** ------- Para traer el carrito desde el back ----- */
   let userId = localStorage.getItem("id")

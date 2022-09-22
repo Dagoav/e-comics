@@ -7,7 +7,6 @@ import TableReviews from './TableReviews';
 const Reviews = () => {
   const dispatch = useDispatch();
   const reviews = useSelector((state) => state.admin.reviews);
-  console.log(reviews);
 
   useEffect(() => {
     dispatch(getAllReviews())
