@@ -92,9 +92,15 @@ const DashboardNav = () => {
           <li>
             <NavLink to={"/dashboard/upload"} className={({ isActive }) => (isActive ? 'dashboard-active' : 'dashboard-inactive')}>
               <span className='icon'><RiUpload2Line /></span>
-              <span className='title'>Subir comic</span>
+              <span className='title'>Upload comic</span>
             </NavLink>
           </li>
+          {/* <li>
+            <NavLink to={"/dashboard/upload"} className={({ isActive }) => (isActive ? 'dashboard-active' : 'dashboard-inactive')}>
+              <span className='icon'><RiUpload2Line /></span>
+              <span className='title'>Upload issues</span>
+            </NavLink>
+          </li> */}
           <li>
             <NavLink to={"/dashboard/logout"} className={({ isActive }) => (isActive ? 'dashboard-active' : 'dashboard-inactive')}>
               <span className='icon'><RiLogoutBoxRLine /></span>
