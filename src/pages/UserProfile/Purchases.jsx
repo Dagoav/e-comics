@@ -32,7 +32,7 @@ const Purchases = () => {
       <NavBar searchbar={false}></NavBar>
       <section className="mt-5">
         <MDBContainer className="test-shop py-5 h-100">
-          <MDBRow className="justify-content-center align-items-center h-100">
+          <MDBRow className="justify-content-centers align-items-center h-100">
             <MDBCol>
               <MDBTable responsive>
                 {/* Issues */}
