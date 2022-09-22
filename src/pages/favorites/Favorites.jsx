@@ -50,7 +50,6 @@ export default function Favorites(comic) {
                                 </div>
                                 <div  className='botonesfav'>
                                     <button className='eliminar' onClick={() => removeHandler(e)}>REMOVE</button> 
-                                    <button className='botonbuy' onClick={() => buyHandler(e)}> BUY</button> 
                                  </div>
                         </div>
                     )

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getAllVolumes, searchComic } from "../../redux/actions/comics";
+import { setPage } from "../../redux/actions/filters";
 import { setLoading } from "../../redux/actions/setParams";
 
 import "./Searchbar.css"
@@ -31,6 +32,7 @@ const Searchbar = () => {
     else {
       dispatch(searchComic(inputValue));
       dispatch(setLoading(true));
+      dispatch(setPage(1))
       // se añade para que cuando se busque desde el panel de usuario se redi
       navigate(rol ? '/user/home' : '/home')
     }

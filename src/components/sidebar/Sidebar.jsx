@@ -15,6 +15,7 @@ const Sidebars = ({setCurrentPage}) => {
   // let characters = useSelector(state => state.filters.characters)
   let publishers = useSelector((state) => state.filters.publishers)
   const comics = useSelector((state) => state.comicsReducer.comics)
+  const comicsFilter = useSelector((state) => state.comicsReducer.comics_filter)
 
   useEffect(() => {
     dispatch(getPublishers())
@@ -30,7 +31,7 @@ const Sidebars = ({setCurrentPage}) => {
   function handleFilterAD(e) {
     e.preventDefault();
     if(e.target.value === 'null') return
-    dispatch(filterAD(e.target.value, comics));
+    dispatch(filterAD(e.target.value, comicsFilter));
     setOrder(`Ordenado ${e.target.value}`);
     // setCurrentPage(1)
   }
