@@ -14,7 +14,7 @@ import Favorites from './pages/favorites/Favorites';
 import Checkout from './components/payment/Payment'
 import Admin from './pages/dashboard/admin/Admin';
 import Users from './pages/dashboard/users/Users'
-import Orders from './pages/dashboard/orders/Orders';
+// import Orders from './pages/dashboard/orders/Orders';
 import UploadComic from './pages/dashboard/uploadComic/UploadComic'
 import UserProfile from './pages/UserProfile/UserProfile';
 import Reviews from './pages/dashboard/reviews/Reviews';
@@ -65,7 +65,7 @@ function App() {
             <Route path='admin' element={<Admin />} />
             <Route path='users' element={<Users />} />
             <Route path='reviews' element={<Reviews />} />
-            <Route path='orders' element={<Orders />} />
+            {/* <Route path='orders' element={<Orders />} /> */}
             <Route path='upload' element={<UploadComic />} />
             <Route path='logout' element={<Logout />} />
           </Route>
