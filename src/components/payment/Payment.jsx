@@ -71,7 +71,7 @@ const Payment = () => {
                 // }
 
                 console.log(email);
-                dispatch(sendEmail(email))
+                dispatch(sendEmail([email]))
                 setEmail(() => "")
 
                 // listEmail = []
